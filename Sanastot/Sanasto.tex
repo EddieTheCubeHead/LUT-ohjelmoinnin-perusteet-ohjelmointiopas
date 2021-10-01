@@ -1,0 +1,140 @@
+\newglossaryentry{abstraktio}
+{
+    name=abstraktio,
+    description={(abstraction) Ohjelmoinnin perustekniikka, jossa ongelman
+tarkka ratkaisu piilotetaan kutsuttavan koodirakenteen, kuten funktion, 
+tietorakenteen tai luokan taakse}
+}
+
+\newglossaryentry{funktio}
+{
+    name=funktio,
+    description={(function) Ohjelmoijan määrittelemä käskysarja, eli koodin
+osa, joka on rajattu, ottaa tietyn määrän parametreja ja mahdollisesti
+palauttaa paluuarvon. Tunnetaan olio-ohjelmoinnissa nimellä metodi},
+    see={parametri,metodi}
+}
+
+\newglossaryentry{parametri}
+{
+    name=parametri,
+    description={(parameter) Arvo, jonka funktio tai metodi ottaa muulta
+koodilta vastaan},
+    see={funktio,metodi}
+}
+
+\newglossaryentry{metodi}
+{
+    name=metodi,
+    description={(method) Luokkaan sidottu käskysarja, joka suorittaa
+ottamiensa parametrien ja luokan omien datakenttien perusteella jonkin tietyn
+toiminnon},
+    see={parametri,funktio,luokka}
+}
+
+\newglossaryentry{tietue}
+{
+    name=tietue,
+    description={(struct) Vanhahko muokattava tietotyyppi, yleinen esimerkiksi
+C-kielessä. Käyttäjä voi määritellä tietueen sisältämään mitä tahansa
+vakiokokoisia datakenttiä. Luokkien edeltäjä}
+}
+
+\newglossaryentry{olio}
+{
+    name=olio,
+    description={(object) Luokan instanssi. Yksittäinen koodissa luotu
+toimija, joka sisältää datakenttiä ja metodeita. Luokka, jonka pohjalta olio
+luodaan määrittää olion käytettävissä olevat metodit ja siihen
+tallennetut datatyypit, mutta vain olio pääsee käsiksi omiin metodeihin
+ja datakenttiinsä},
+    see={luokka,metodi,instanssi}
+}
+
+\newglossaryentry{luokka}
+{
+    name=luokka,
+    description={(class) Ohjelmoijan kirjoittama muotti, jonka pohjalta
+ohjelmisto luo olioita. Voi sisältää metodeja ja datakenttiä mutta yleensä
+näiden käyttämiseksi vaaditaan olion luontia},
+    see={olio,metodi,instanssi}
+}
+
+\newglossaryentry{instanssi}
+{
+    name=instanssi,
+    description={(instance) Olio, joka on luotu jonkin luokan pohjalta on
+kyseisen luokan instanssi},
+    see={olio,luokka}
+}
+
+\newglossaryentry{enkapsulaatio}
+{
+    name=enkapsulaatio,
+    description={(encapsulation) Datan piilottaminen olion sisään niin ettei
+muu ohjelmisto näe kyseistä dataa. Mitataan asteikolla matala-korkea, niin että
+korkea enkapsulaatio tarkoittaa pientä määrää julkisia metodeja tai datakenttiä
+ja matala taas suurta määrää julkisia metodeja ja datakenttiä}
+    see={luokka,koheesio,metodi}
+}
+
+\newglossaryentry{rajapinta}
+{
+    name=rajapinta,
+    description={(interface) Termi ohjelmistossa toteutuvalle sopimukselle,
+jonka jokin metodi, luokka tmv. toteuttaa. Myös kahden ohjelmiston osan välinen
+taso. Myös Javan Interface-avainsana},
+    see={java:interface}
+}
+
+\newglossaryentry{koheesio}
+{
+    name=koheesio,
+    description={(cohesion) Ohjelmiston laadun mittaamiseen käytetty käsite.
+Mittaa luokkien sisäistä yhtenäisyyttä akselilla matala-korkea. Matala koheesio
+tarkoittaa että luokassa on paljon metodeja jotka eivät keskustele toisten
+luokan metodien kanssa ja matala että luokan kaikki metodit käyttävät useita
+muita luokan metodeja. Matala koheesio on toivottavaa, koska luokan tehtävä
+on tehdä yksi ja vain yksi asia}
+}
+
+\newglossaryentry{pariutuminen}
+{
+    name=pariutuminen,
+    description={(coupling) Ohjelman laadun mittaamiseen käytetty käsite.
+Mittaa luokkien keskenäisten riippuvuuksien määrää akselilla löysä-tiukka.
+Löysässä pariutumisessa ohjelmiston luokkien väliset riippuvuudet ovat
+harvassa, jolloin ohjelmiston muokkaaminen on helppoa. Tiukassa pariutumisessa
+puolestaan jokaisella ohjelmiston luokalla on riippuvuus moneen muuhun
+ohjelmiston luokkaan, jolloin ohjelmison muokkaus hankaloituu ja täten voidaan
+katsoa ohjelmiston laadun laskevan}
+}
+
+\newglossaryentry{primitiivinen tietotyyppi}{
+    name=primitiivinen tietotyyppi,
+    description={(primitive data type) Tietotyyppi, jonka ohjelmointikieli
+kykenee säilömään suoraan muistipaikkaan raakana numeerisena datana. Ainoat
+tietotyypit Javassa, jotka eivät ole jonkin luokan instansseja},
+    see={luokka,instanssi}
+}
+
+\newglossaryentry{nakyvyysmaare}
+{
+    name=näkyvyysmääre,
+    description={(access modifier) Muuttujan näkyvyyden määrittävä avainsana},
+    see={muuttuja}
+}
+
+\newglossaryentry{muuttuja}
+{
+    name=muuttuja,
+    description={(variable) koodissa määritelty tietokenttä, joka sisältää jonkin ohjelman
+käyttämän arvon}
+}
+
+\newglossaryentry{staattinen kieli}
+{
+    name=staattisesti tyypitetty kieli,
+    description={(statically typed language) Ohjelmointikieli, joka tietää jokaisen koodissa
+esiintyvän muuttujan tietotyypin koko ajan}
+}

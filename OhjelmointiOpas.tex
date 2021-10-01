@@ -1,0 +1,459 @@
+\documentclass{tufte-book}
+
+\hypersetup{colorlinks}
+
+%%
+% Omat komennot
+\newcommand{\lut}{Lappeenrannan-Lahden teknillinen yliopisto LUT }
+\newcommand{\lutin}{Lappeenrannan-Lahden teknillisen yliopiston LUT:n }
+\newcommand{\eng}[1]{\textit{(#1)}}
+\newcommand{\new}[1]{\textit{\gls{#1}}}
+\newcommand{\newnogls}[1]{\textit{#1}}
+\newcommand{\neweng}[2]{\new{#1} \eng{#2}}
+\newcommand{\newengnogls}[2]{\newnogls{#1} \eng{#2}}
+\newcommand{\java}[1]{\underline{\gls{java:#1}}}
+\newcommand{\javanogls}[1]{\underline{#1}}
+\newcommand{\newjava}[1]{\textit{\java{#1}}}
+\newcommand{\newjavanogls}[1]{\textit{\javanogls{#1}}}
+
+
+%%
+% Book metadata
+\title{Ohjelmointiopas{\small \lutin olio-ohjelmointikurssi}\thanks{Kiitokset kandityön valvojalle
+Erno Vanhalalle.}}
+\author[Eetu Juhani Asikainen]{Eetu Juhani Asikainen}
+\publisher{Lisää julkaisija?}
+
+%%
+% For nicely typeset tabular material
+\usepackage{booktabs}
+
+%%
+% Prints a trailing space in a smart way.
+\usepackage{xspace}
+
+% Prints the month name (e.g., January) and the year (e.g., 2008)
+\newcommand{\monthyear}{
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or
+  December\fi\space\number\year
+}
+
+\usepackage{units}
+
+% Generates the index
+\usepackage{makeidx}
+\makeindex
+
+\usepackage[toc]{glossaries}
+\newglossary[jvg]{java}{jvd}{jvn}{Javan avainsanat}
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Java code highlighting
+\usepackage[utf8]{inputenc}
+\usepackage{pygmentex}
+\usepackage[cache=false]{minted} 
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Koodiesimerkki}
+\renewcommand{\lstlistlistingname}{Koodiesimerkit}
+
+\newcommand{\code}[3]{
+\begin{listing}
+    \inputminted{java}{OhjelmointiopasEsimerkit/src/#1/#2.java}
+    \caption{#3}
+    \label{Java-#1-#2}
+\end{listing}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% SANASTOT
+\include{Sanastot/Sanasto}
+\include{Sanastot/JavaAvainsanat}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Front matter
+\frontmatter
+
+\maketitle
+
+\newpage
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyright \copyright\ \the\year\ \thanklessauthor
+
+\par\smallcaps{Published by \thanklesspublisher}
+
+\par\smallcaps{tufte-latex.googlecode.com}
+
+\par Licensed under the Apache License, Version 2.0 (the ``License''); you may not
+use this file except in compliance with the License. You may obtain a copy
+of the License at \url{http://www.apache.org/licenses/LICENSE-2.0}. Unless
+required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an \smallcaps{``AS IS'' BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND}, either express or implied. See the
+License for the specific language governing permissions and limitations
+under the License.\index{license}
+
+\par\textit{First printing, \monthyear}
+\end{fullwidth}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Oppaasta ja sen käytöstä}
+\label{oppaasta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Esipuhe}
+
+\newthought{Tämä opas} on kirjoitettu osaksi \lutin olio-ohjelmoinnin perusteiden kurssin
+kurssimateriaaleja. Opas käy läpi koko kurssin  teoriasisällön lukuunottamatta Android-API:n
+käyttöä. Opas on tarkoitettu käytettäväksi osana kurssikokonaisuutta, mutta se on suunniteltu
+niin, että se tarjoaa laadukkaan perehdytyksen oliopohjaiseen ajatteluun, suunnitteluun ja
+ohjelmointiin myös itsenäisenä kokonaisuutena.
+
+\newthought{Oppaan tavoitteena} on tarjota opiskelijoille helppokäyttöinen,
+laadukas ja suomenkielinen resurssi kurssin käsittelemien aihealueiden
+opiskeluun. Opas olettaa käyttäjän hallitsevan proseduraalisen ohjelmoinnin
+perusteet, jotka käydään läpi esimerkiksi \lutin "Ohjelmoinnin Perusteet" 
+-kurssilla.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Oppaan rakenne}
+
+\newthought{Opas on jaettu} kahteentoista sisältölukuun ja kahteentoista bonuslukuun. Sisältöluvut
+käsittelevät kurssilla käsiteltäviä sisältöjä ja sisältävät kaiken kurssin sisältöön kuuluvan
+materiaalin. Sisältöluvut on numeroitu välillä 0-11 niin, että luvun numero vastaa viikkoa, jolla
+luvun sisältöä käsitellään kurssilla ja luku 0 käsittelee itse opasta ja sen käyttöä. Näin opasta
+on helppo seurata kurssin edetessä.
+
+\newthought{Jokaista sisältölukua} vastaa oppaan toisella puoliskolla yksi bonusluku. Bonusluvut
+tarjoavat laajempia ja syvempiä katsauksia Javaan ja oliopohjaiseen ohjelmointiin. Ne eivät aina
+syvennä suoraan vastaavan sisältöluvun materiaaliin liittyviä aiheita, mutta myös niiden järjestys
+on suunniteltu niin, että käyttäjä voi opiskella yhden luvun viikossa.
+
+\newthought{Bonusluvut on tarkoitettu} hyödyllisiksi ja hauskoiksi lisälukemistoiksi. Opas on
+suunniteltu niin, että bonusluvut eivät sisällä kurssin oppimistavoitteisiin luokiteltua sisältöä.
+Niiden lukeminen on siis täysin vapaaehtoista.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Termistö ja kieli oppaassa}
+
+\newthought{Oppaan pääasiallisena} kielenä koodiesimerkkejä lukuunottamatta toimii suomi muun
+kurssimateriaalin kielivalinnan mukaan. Oppaan käyttämä termistö on tämän vuoksi käännetty Javan
+avainsanoja lukuunottamatta suomeksi. Olisi kuitenkaan turha kiistää englannin ehdotonta ylivaltaa
+tietojenkäsittelytieteen pääkielenä. Tämän vuoksi oppaan sanastosta löytyy jokaisen termin
+selityksen lisäksi termin englanninkielinen vastine.
+
+\newthought{Opas pyrkii} korostamaan tärkeää termistöä sanaston opettelun helpottamiseksi.
+Jokainen tärkeä termi on kerätty oppaan sanastoon lyhyen selityksen ja termin englanninkielisen
+vastineen kera. Sanastosta löytyvät termit on myös korostettu ensimmäisessä esiintymisessään.
+Sanastotermeillä tämä korostus näkyy kursivoituna kirjoitusasuna ja termin perässä esiintyvänä
+sulkuihin suljettuna englanninkielisenä vastineena termille. Vastine on niin ikään kursivoitu.
+Koko korostettu kirjoitusasu termille näyttää siis tältä: \newengnogls{esimerkki}{example}
+
+\newthought{Opaan teoriateksti} sisältää sanastosta löytyvien konseptuaalisesti tärkeiden termien
+lisäksi myös Javan avainsanoja. Nämä on erotettu muusta korostetusta termistöstä alleviivauksilla
+ja kääntämättömyydellä. Ensimmäisellä esiintymiskerrallaan Javan avainsanat ovat lisäksi
+kursivoituja. Ensimmäistä kertaa esiintyvä Javan avainsana näyttää tältä: \newjavanogls{example}
+ja uudestaan mainittu tältä: \javanogls{example}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Koodiesimerkit oppaassa}
+
+\newthought{Opas tarjoaa} kattavat koodiesimerkit kaikista siinä käsiteltävistä aihealueista.
+Koodiesimerkit ovat lyhyitä, toimivia, koodinpätkiä ja ne sijaitsevat heti esitellyn konseptin
+yhteydessä. Kaikki oppaan koodiesimerkit on koottu yhteen *tänne*. %TODO lisää koodien sijainti!
+
+\newthought{Koodiesimerkit on kirjoitettu} Javan virallisen tyylioppaan suosittelemien
+ohjelinjojen mukaisesti. Kaikki muuttujat, luokat ja metodit on nimetty englanniksi, mutta koodi
+on kommentoitu suomeksi. Kommentointi ei noudata hyvää ohjelmointityyliä vaan kommentit ovat
+koodin opetusmaisen luonteen vuoksi monisanaisempaa ja yleisempää kuin suosituksissa.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Oliopohjainen ajattelu}
+\label{olioista}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Abstraktio laadukkaan koodin pohjana}
+
+\newthought{Oliopohjainen ohjelmointi} on ohjelmointiparadigma, joka on kehitetty vastaamaan
+ohjelmistotuotannon peruskysymykseen: kuinka kirjoittaa ymmärrettävää ja ylläpidettävää koodia
+helposti?
+
+\newthought{Yksi helpoimmista} ja yleisimmistä tavoista selkeyttää koodikantaa on
+\neweng{abstraktio}{abstraction}: yleisten toimintojen ja kutsusarjojen eristäminen ennalta
+määriteltyihin koodipaloihin. Nämä palat tunnetaan nimellä \neweng{funktio}{function}. Tällä
+tavalla jaettuja kutsusarjoja voidaan uusiokäyttää ja ohjelman muokkaaminen helpottuu, kun
+kutsusarjan päivittäminen tapahtuu vain yhdessä keskitetyssä paikassa.
+
+\newthought{Käskysarjat ovat} kuitenkin vain puolikas toimivasta ohjelmistosta. Toinen ja aivan
+yhtä tärkeä puoli on data, jota käskysarjoilla käsitellään. Myös tämän datan abstraktio on
+mahdollista proseduraalisen ohjelmoinnin puitteissa muokattavilla tietorakenteilla. Tällaisestä
+hyviä esimerkkejä ovat esimerkiksi Pythonin class-avainsanalla määritellyt luokat, jos niitä
+käytetään vain datan ryhmittämiseen tai C-kielen \neweng{tietue}{struct}.
+
+\newthought{Nämä abstraktiotyypit} ovat kuitenkin erotettuja toisitaan, eivätkä huomioi
+käskysarjojen ja datan yhteyttä. Lähes poikkeuksetta tiettyjä funktioita kutsutaan koodissa
+monessa paikkassa parametreinään toistuvasti sama tietorakenne. Eikö siis olisi järkevää yhdistää
+datan ja sitä käsittelevien funktioiden sijainti koodissa?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Oliopohjaisen ajattelun perusteet}
+
+\newthought{Olio-ohjelmoinnissa ohjelmisto} koostuu kokonaan keskenään kommunikoivista yksiköistä.
+Näille yksiköille vakiintunut kutsumanimi on \neweng{olio}{object}. Oliot koostuvat datasta ja
+sitä manipuloivista käskysarjoista, jotka tunnetaan nimellä \neweng{metodi}{method}. Se on
+oliopohjaisen ohjelmoinnin nimi olioon sidotulle funktiolle, termiä \gls{funktio} ei juuri
+käytetä.
+
+\newthought{Ohjelmisto luo} kaikki käyttämänsä oliot ohjelmoijan tekemien muottien pohjalta.
+Tälläinen muotti, eli \neweng{luokka}{class} voi luoda itsetään yleensä rajattoman määrän olioita
+ajon aikana. Luokan ja olion ero on yksi oliopohjaisen ohjelmoinnin tärkeimmistä käsitteistä ja
+sen ymmärtäminen alusta lähtien on kriittistä oliopohjaisen ohjelmoinnin opiskelussa.
+
+\newthought{Jokainen olio} on jonkin luokan \neweng{instanssi}{instance}. Saman luokan eri
+instanssit omistavat identtiset metodit, mutta instansseihin säilötty data on uniikki jokaiselle
+instansille ja instanssin metodit käsittelevät tätä uniikkia dataa. Luokka määrittää nämä metodit
+ja kertoo minkä tyyppiset datakentät jokaiselta luokan instanssilta löytyvät. Tästä lähtien
+opas käyttää termiä "luokka" viitatessaan ohjelmoijan määrittämään olio muottiin eli puhuttaessa
+suunnitteluperiaatteista ja koodin kirjoittamisesta ja termiä "olio" vain puhuessaan selkeästi
+koodissa sijaitsevasta luokan ilmentymästä.
+
+\newthought{Tälläinen jaottelu} järjestää koodia proseduraalista koodia luonnollisempiin osiin.
+Tästä syystä oliopohjaista ohjelmointia esitellessä mainitaan usein sen kyky luoda koodin sisällä
+järjestelmiä, jotka muistuttavat todellisen maailman rakenteita. Vaikka tämä pitää paikkansa on
+hyödyllistä ymmärtää alusta lähtien, ettei oliopohjaisen ohjelmoinnin tavoitteena ole luoda yksi
+yhteen oikean maailman kanssa samoin toimivaa järjestelmää. Sen sijaan oikea oliopohjaisen
+ohjelmoinnin tavoite on luoda järjestelmä, joka koostuu pienistä tarkasti toisistaan erotelluista
+osista, jotka kommunikoivat keskenään vain selkeästi määriteltyjä rajapintoja pitkin.
+
+\newthought{Käytännössä laadukasta} oliopohjaista ohjelmistoa voidaan täten verrata esimerkiksi
+moderniin modulaarisesti suunniteltuun autoon. Siinä missä auton moottori, pyörät tai verhoilu
+ovat muokattavissa asiakkaan toiveiden ja budjetin mukaan, on laadukkaan oliopohjaisen ohjelmiston
+osien, kuten vaikka autorisaatiomoduulin tai tietokantayhteyden laajentaminen ja muokkaaminen
+mahdollista koskematta muuhun ohjelmistoon.
+
+\newthought{Tämä kuulostaa} kunnianhimoiselta ja monimutkaiselta tavoitteelta, joten on tärkeää
+edetä sopivan pienissä paloissa. Samoin kuin laadukas oliopohjainen ohjelmisto koostuu pienistä
+paloista, kasataan ohjelmiston tekemiseen vaadittu tieto pieni pala kerrallaan. Tässä kappaleessa
+esiteltyjä termejä ja käsitteitä tullaan syventämään oppaan tulevissa kappaleissa yksitellen,
+joten vaikka tiedon määrä voi tuntua nyt kohtuuttomalta ei kannata huolestua liikaa.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Koodin laadun mittaamisesta}
+
+\newthought{Jotta ohjelmistojen} modulaarisuus saadaan toivotulle tasolle on tärkeää miettiä mitä
+metodeja tai dataa luokka paljastaa muulle ohjelmistolle. Oliopohjaiset kielet sisältävätkin
+yleensä jonkin keinon rajoittaa datakenttien ja metodien näkyvyyttä luokan ulkopuolelle. Tämä
+näkyvyyden rajaaminen ja tarkkojen vastuiden määrittäminen tunnetaan nimellä
+\neweng{enkapsulaatio}{encapsulation}.
+
+\newthought{Luokan paljastamat} datakentät ja metodit kertovat ulkopuoliselle ohjelmistolle, mitä
+luokasta luodut oliot voivat tehdä ja mitä niiltä voi odottaa. Tämä muodostaa sopimuksen luokan ja
+muiden luokan paljastamia metodeja tai datakenttiä käyttävien luokkien välillä. Tätä sopimusta
+kutsutaan nimellä \neweng{rajapinta}{interface}. Rajapinnan abstraktia käsitettä ei pidä sekoittaa
+Javan samankaltaiseen "interface"-avainsanaan, joka esitellään myöhemmin.
+
+\newthought{Yksi olio-ohjelmoinnin nyrkkisäännöistä} on pitää huolta, että jokainen luokka
+suorittaa yhden ja vain yhden tehtävän. Tämä tarkoittaa luokan rajapinnan pitämistä minimaalisena,
+eli korkeaa enkapsulaatiota. Tämän lisäksi ohjelmiston peruslaatua voidaan arvioida käsitteillä
+\neweng{koheesio}{cohesion} ja \neweng{pariutuminen}{coupling}.
+
+\newthought{Koheesio voidaan arvioida} luokkakohtaisesti luokan metodien ja datakenttien
+yhteistoiminnan perusteella. Mitä tiiviimmin metodit ja datakentät ovat yhteistyössä ja mitä
+vähemmän luokassa on metodeja ja datakenttiä, jotka eivät ole vuorovaikutuksissa muun luokan
+kanssa, sitä korkeampi koheesio luokalla on. Korkea koheesio kulkee siis pitkälti käsi kädessä
+tiukan enkapsulaation kanssa. Mitä vähemmän luokka paljastaa itsestään muulle ohjelmistolle, sitä
+tiukemmin sen metodit ja datakentät yleensä komminkoivat keskenään.
+
+\newthought{Pariutuminen tarkoittaa} ohjelmiston luokkien riippuvuutta toisista ohjelmiston
+luokista. Siitä puhutaan usein asteikolla \newengnogls{löysä}{loose}-\newengnogls{tiukka}{tight}.
+Löysästi pariutineessa ohjelmistossa jokainen luokka on riippuvainen vain muutamasta muusta
+luokasta ja riippuvaisuudet muistuttavat usein enemmän ketjua tai puuta kuin verkkoa.
+
+\newthought{Koheesio ja pariutuminen} kulkevat usein käsi kädessä: Korkea koheesio johtaa löysään
+pariutumiseen ja matala koheesio tiukkaan pariutumiseen. Enkapsulaatio mukailee yleensä koheesiota
+niin että korkeasta koheesiosta seuraa korkea enkapsulaatio ja toisin päin. Kaikki kolme ovat
+tärkeitä mittareita puhuttaessa oliopohjaisen ohjelmiston laadusta. Vaikka oppaan tärkein tehtävä
+onkin opettaa lukija koodaamaan Javalla, eikä niinkään koodaamaan huipputason koodia, on näiden
+käsitteiden olemassaolo ja merkitys hyvä tiedostaa. Tämä auttaa ymmärtääkseen oliopohjaisten
+kielten suunnittelua ja etuja suhteessa muihin ohjelmointikieliin ja saattaa myös parantaa
+tuotetun koodin laatua huomaamattomasti.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Javan perusteet}
+\label{perusteet}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+\section{Javan syntaksin alkeet}
+
+\subsection{Java ohjelmointikielenä}
+
+\newthought{Java} on staattisesti tyypitetty korkean tason oliopohjainen ohjelmointikieli, joka
+pyrkii standardisoimaan ohjelmien kirjoittamisen alustasta riippumatta. Java-ohjelmat käännetään
+bittikoodiksi, joka ajetaan Java-virtuaalikoneella siten, että tismalleen sama koodi voidaan ajaa
+jokaisella alustalla, jolle virtuaalikone voidaan asentaa.
+
+\newthought{Tästä syystä} Java toimii tismalleen samoin kaikilla käyttöjärjestelmillä. Tämä
+yhdessä Javan helposti opittavan syntaksin ja oliopohjaiseen suunnitteluun pakottavan luonteen
+ohella on tehnyt Javasta yhden käytetyimmistä ohjelmointikielistä teollisessa ohjelmoinnissa.
+
+\newthought{Javan syntaksi} on saanut paljon vaikutteita C-kielestä. Muun muassa kaarisulkeiden
+käyttö koodin osien erotteluun ja suurin osa ohjausrakenteiden nimistä on suoraan C-kielestä
+kopioitua.
+
+\subsection{Kommentointi}
+
+\newthought{Suurin osa} ohjelmointikielistä tukee ainakin yhtä kommentointisyntaksia. Javassa on
+kaksi pääasiallista tapaa merkata koodissa oleva teksti kommentiksi. Yhden rivin kommentti voidaan
+aloittaa "//"-merkkiparilla, kun taas monen rivin kommentti suljetaan "/*"- ja "*/"-merkkien
+väliin. Seuraava esimerkki esittää kommentointisyntaksin vielä tarkemmin. Älä välitä vielä itse
+koodista, sen tehtävä on vain selventää miten kommenttien sijoittelu vaikuttaa koodin toimintaan.
+
+\newpage
+\code{week2}{CommentingExample}{Kommentointi Javassa}
+\newpage
+
+\subsection{Primitiiviset tietotyypit ja String}
+
+\newthought{Yksiä tärkeimmistä} koodin osista ovat ehdottomasti \textit{\gls{muuttuja}t}
+\eng{variable}. Ne ovat koodissa määriteltyjä tietokenttiä, jotka kykenevät säilömään joko jonkin
+luokan instanssin, tai kokonaislukumuodossa esitetyn simppelin datayksikön. Koska Java on 
+\neweng{staattinen kieli}{statically typed language}, täytyy siinä jokaisen muuttujan tietotyyppi
+määritellä muuttujan määrittelyn yhteydessä. Muuttujan tyyppi voi olla joko jokin käyttäjän
+määrittelemä luokka, jokin Javan standardikirjaston luokka, tai jokin \neweng{primitiivinen
+tietotyyppi}{primitive data type}.
+
+\newthought{Java sisältää} yhteensä kahdeksan primitiivistiä tietotyyppiä. Nämä määritellään
+pienellä alkukirjaimella kirjoitetulla tyypin nimellä. Seuraava taulukko ja koodiesimerkki
+sisältävät kaikki primitiivisten tietotyyppien nimet, arvojoukot, oletusarvot ja määrittelytavan
+koodissa.
+
+\bigskip
+\begin{center}
+\footnotesize
+\begin{tabular}{lll}
+\toprule
+Avainsana & Oletusarvo & Arvojoukko \\
+\midrule
+\newjava{bool} & false & true ja false \\
+\addlinespace
+\newjava{byte} & 0 & $-2^7$:stä $2^7-1$:een \\
+\addlinespace
+\newjava{short} & 0 & $-2^{15}$:stä $2^{15}-1$:een \\
+\addlinespace
+\newjava{int} & 0 & $-2^{31}$:stä $2^{31}-1$:een \\
+\addlinespace
+\newjava{long} & 0L & $-2^{63}$:stä $2^{63}-1$:een \\
+\addlinespace
+\newjava{float} & 0.0f & noin $1.4e-45$:stä noin $3.4e+38$:aan \\
+\addlinespace
+\newjava{double} & 0.0d & noin $4.9e-324d$:stä noin $1.8e+308d$:hen \\
+\addlinespace
+\newjava{char} & 0 & $0$:sta $2^{16}-1$:een \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\newpage
+\code{week2}{BasicDataTypes}{Primitiiviset tietotyypit Javassa}
+
+\newthought{Näiden tietotyyppien} lisäksi Javasta löytyy monta valmiiksi määriteltyä luokkaa datan
+säilömistä varten. Näistä tärkein kielen opettelua aloitettaessa on ehdottomasti merkkijonoja
+säilövä \newjava{String}-luokka. Tämä luokka mahdollistaa dynaamisten merkkijonojen helpon luomisen
+ja manipulaation. String-luokka on voimakas työkalu ja sen toimintaan kannattaa kiinnittää huomiota
+Javan opiskelun alussa.
+
+\newthought{String-tyyppisen} muuttujan arvo kerrotaan ohjelmalle antamalla String-tyypin
+muuttujalle toivottu merkkijono suljettuna normaalien lainausmerkkien (") sisään. Yksittäiset 
+hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määrittämiseen.
+
+\newpage
+\code{week2}{BasicString}{String-tyypin muuttujan määrittäminen}
+
+\section{Luokkien ja olioiden perusteet}
+
+\subsection{Luokan luominen}
+
+
+
+\subsection{Näkyvyysmääreet}
+
+Muuttujan luominen Javassa tukee tietotyypin määrittelyn lisäksi muuttujan näkyvyyden
+määrittämistä. Tämä määritelmä on nimeltään \neweng{nakyvyysmaare}{access modifier}. Kuten
+oppaassa aiemmin todettiin, yksi olio-ohjelmoinnin ydinideoista on \new{enkapsulaatio}, eli
+koodin osien vastuiden tarkka rajaaminen. Näkyvyysmääreet ovat tärkein työkalu tämän suhteen.
+On
+
+\bigskip
+\begin{center}
+\footnotesize
+\begin{tabular}{ll}
+\toprule
+Avainsana & Ominaisuuden näkevät luokat \\
+\midrule
+\newjava{private} & Vain tämä luokka \\
+\addlinespace
+Ei avainsanaa (default) & Kaikki luokat tässä paketissa \\
+\addlinespace
+\newjava{protected} & Kaikki luokat tässä paketissa ja kaikki tämän luokan perivät luokat \\
+\addlinespace
+\newjava{public} & Kaikki luokat kaikkialla \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\printglossary[title=Sanasto, toctitle=Sanasto]
+\printglossary[type=java, title=Javan avainsanat, toctitle=Javan avainsanat]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
