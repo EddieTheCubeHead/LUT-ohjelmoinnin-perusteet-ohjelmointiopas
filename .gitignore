@@ -18,6 +18,8 @@
 *.fot
 *.cb
 *.cb2
+*.jvd
+*.jvg
 .*.lb
 
 ## Intermediate documents:

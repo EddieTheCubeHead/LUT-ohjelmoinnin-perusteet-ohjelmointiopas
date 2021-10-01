@@ -45,7 +45,7 @@ Erno Vanhalalle.}}
 \usepackage{makeidx}
 \makeindex
 
-\usepackage[toc]{glossaries}
+\usepackage[toc, automake]{glossaries}
 \newglossary[jvg]{java}{jvd}{jvn}{Javan avainsanat}
 \makeglossaries
 
@@ -241,7 +241,7 @@ oliopohjaisen ohjelmoinnin nimi olioon sidotulle funktiolle, termiä \gls{funkti
 käytetä.
 
 \newthought{Ohjelmisto luo} kaikki käyttämänsä oliot ohjelmoijan tekemien muottien pohjalta.
-Tälläinen muotti, eli \neweng{luokka}{class} voi luoda itsetään yleensä rajattoman määrän olioita
+Tälläinen muotti, eli \neweng{luokka}{class} voi luoda itsestään yleensä rajattoman määrän olioita
 ajon aikana. Luokan ja olion ero on yksi oliopohjaisen ohjelmoinnin tärkeimmistä käsitteistä ja
 sen ymmärtäminen alusta lähtien on kriittistä oliopohjaisen ohjelmoinnin opiskelussa.
 
@@ -412,9 +412,14 @@ hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määr
 
 \section{Luokkien ja olioiden perusteet}
 
-\subsection{Luokan luominen}
+\subsection{Luokkien käyttötarkoitus}
 
-
+\newthought{Luokat ovat} Javan ydin ja kaiken koodin rakennuspala. Kaikki koodi Javassa on
+suljettava luokan sisään. Ohjelmistot koostuvat pääluokasta, joka sisältää main-metodin. Tämä
+metodi määritellään avainsanoilla \java{public} \java{static} \java{void}. Void-avainsana
+selitetään myöhemmin kappaleessa ja static-avainsana kappaleessa *x*. $ TODO: lisää kappale $
+Toistaiseksi riittää sisällyttää nämä avainsanat annetussa järjestyksessä main-metodin
+määritelmään.
 
 \subsection{Näkyvyysmääreet}
 
@@ -422,7 +427,6 @@ Muuttujan luominen Javassa tukee tietotyypin määrittelyn lisäksi muuttujan n�
 määrittämistä. Tämä määritelmä on nimeltään \neweng{nakyvyysmaare}{access modifier}. Kuten
 oppaassa aiemmin todettiin, yksi olio-ohjelmoinnin ydinideoista on \new{enkapsulaatio}, eli
 koodin osien vastuiden tarkka rajaaminen. Näkyvyysmääreet ovat tärkein työkalu tämän suhteen.
-On
 
 \bigskip
 \begin{center}
