@@ -412,14 +412,18 @@ hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määr
 
 \section{Luokkien ja olioiden perusteet}
 
-\subsection{Luokkien käyttötarkoitus}
+\subsection{Oliopohjaisen ohjelman ajaminen}
 
 \newthought{Luokat ovat} Javan ydin ja kaiken koodin rakennuspala. Kaikki koodi Javassa on
-suljettava luokan sisään. Ohjelmistot koostuvat pääluokasta, joka sisältää main-metodin. Tämä
-metodi määritellään avainsanoilla \java{public} \java{static} \java{void}. Void-avainsana
-selitetään myöhemmin kappaleessa ja static-avainsana kappaleessa *x*. $ TODO: lisää kappale $
+suljettava luokan sisään, niin myös ohjelman ajon aloittava koodi. Tästä syystä jokaisessa
+Java-ohjelmistossa on yksi erikseen määritelty pääluokka, joka sisältää main-metodin. Tämä
+metodi määritellään avainsanoilla \java{public} \java{static} \java{void} ja sen 
+\neweng{signatuuri}{signature} on \java{main}(\java{String} args[]). Void-avainsana selitetään
+myöhemmin kappaleessa ja static-avainsana kappaleessa *x*. % TODO: lisää kappaleen numero
 Toistaiseksi riittää sisällyttää nämä avainsanat annetussa järjestyksessä main-metodin
 määritelmään.
+
+\newthought{}
 
 \subsection{Näkyvyysmääreet}
 
