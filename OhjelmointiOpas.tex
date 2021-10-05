@@ -349,7 +349,6 @@ aloittaa "//"-merkkiparilla, kun taas monen rivin kommentti suljetaan "/*"- ja "
 väliin. Seuraava esimerkki esittää kommentointisyntaksin vielä tarkemmin. Älä välitä vielä itse
 koodista, sen tehtävä on vain selventää miten kommenttien sijoittelu vaikuttaa koodin toimintaan.
 
-\newpage
 \code{week2}{CommentingExample}{Kommentointi Javassa}
 \newpage
 
@@ -394,7 +393,6 @@ Avainsana & Oletusarvo & Arvojoukko \\
 \end{tabular}
 \end{center}
 
-\newpage
 \code{week2}{BasicDataTypes}{Primitiiviset tietotyypit Javassa}
 
 \newthought{Näiden tietotyyppien} lisäksi Javasta löytyy monta valmiiksi määriteltyä luokkaa datan
@@ -407,7 +405,6 @@ Javan opiskelun alussa.
 muuttujalle toivottu merkkijono suljettuna normaalien lainausmerkkien (") sisään. Yksittäiset 
 hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määrittämiseen.
 
-\newpage
 \code{week2}{BasicString}{String-tyypin muuttujan määrittäminen}
 
 \section{Luokkien ja olioiden perusteet}
@@ -418,39 +415,83 @@ hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määr
 suljettava luokan sisään, niin myös ohjelman ajon aloittava koodi. Tästä syystä jokaisessa
 Java-ohjelmistossa on yksi erikseen määritelty pääluokka, joka sisältää main-metodin. Tämä
 metodi määritellään avainsanoilla \java{public} \java{static} \java{void} ja sen 
-\neweng{signatuuri}{signature} on \java{main}(\java{String} args[]). Void-avainsana selitetään
+\neweng{signatuuri}{signature} on \java{main}(\java{String}[] args). Void-avainsana selitetään
 myöhemmin kappaleessa ja static-avainsana kappaleessa *x*. % TODO: lisää kappaleen numero
 Toistaiseksi riittää sisällyttää nämä avainsanat annetussa järjestyksessä main-metodin
-määritelmään.
+määritelmään. Pääluokan ei tarvitse olla ainoa main-metodin sisältävä luokka, mutta vain yhden
+ennalta määritellyn luokan main-metodi ajetaan ohjelman käynnistyksen yhteydessä.
 
-\newthought{}
+\subsection{Luokan luomisen syntaksi}
+
+\newthought{Luokka luodaan} Javassa luokat luodaan \newjava{class} avainsanalla. Avainsana
+tarkistaa edestään myös näkyvyysmääreen (käsitellään seuraavassa alakappaleessa). Yleisin tapa
+luoda luokka on näkyvyysmääreellä \java{public}. Koko määritelmä koostuu näkyvyysmääreestä,
+\java{class} -avainsanasta ja luokan nimestä, jota seuraa luokan käyttäytymisen määrittävä koodi
+hakasulkeisiin suljettuna. Seuraavassa koodiesimerkissä on kommentoitu auki yksinkertaisen
+pääluokan luonti (huomaa pääluokan nimeämisen vapaus) ja sen sisään "Hello world!" tulostavan
+main-funktion lisääminen.
+
+\code{week2}{HelloWorld}{Yksinkertaisen pääluokan ja main-funktion luominen Javassa}
 
 \subsection{Näkyvyysmääreet}
 
-Muuttujan luominen Javassa tukee tietotyypin määrittelyn lisäksi muuttujan näkyvyyden
-määrittämistä. Tämä määritelmä on nimeltään \neweng{nakyvyysmaare}{access modifier}. Kuten
-oppaassa aiemmin todettiin, yksi olio-ohjelmoinnin ydinideoista on \new{enkapsulaatio}, eli
-koodin osien vastuiden tarkka rajaaminen. Näkyvyysmääreet ovat tärkein työkalu tämän suhteen.
+\newthought{Lähes kaikkien} koodin osien, kuten muuttujan, metodin, interface-luokan tai luokan
+luominen Javassa tukee kyseisen koodin osan näkyvyyden määrittämistä. Tämä määritelmä on nimeltään 
+\neweng{nakyvyysmaare}{access modifier}. Kuten oppaassa aiemmin todettiin, yksi olio-ohjelmoinnin
+ydinideoista on \new{enkapsulaatio}, eli koodin osien vastuiden tarkka rajaaminen. Näkyvyysmääreet
+ovat tärkein työkalu tämän suhteen. Näkyvyysmääre rajoittaa ohjelmiston osan, kuten luokan tai
+luokan ominaisuuden näkyvyyttä muulle ohjelmalle seuraavan taulukon mukaisesti:
 
 \bigskip
 \begin{center}
 \footnotesize
-\begin{tabular}{ll}
+\begin{tabular}{lll}
 \toprule
-Avainsana & Ominaisuuden näkevät luokat \\
+Avainsana & Näkyvyys & Käyttökohteet \\
 \midrule
-\newjava{private} & Vain tämä luokka \\
+\newjava{private} & Vain tämä luokka & Luokkien ominaisuudet \\
 \addlinespace
-Ei avainsanaa (default) & Kaikki luokat tässä paketissa \\
+Ei avainsanaa (default) & Kaikki luokat tässä paketissa & Luokat ja luokkien ominaisuudet \\
 \addlinespace
-\newjava{protected} & Kaikki luokat tässä paketissa ja kaikki tämän luokan perivät luokat \\
+\newjava{protected} & Kaikki luokat tässä paketissa ja kaikki tämän luokan perivät luokat &
+Luokkien ominaisuudet \\
 \addlinespace
-\newjava{public} & Kaikki luokat kaikkialla \\
+\newjava{public} & Kaikki luokat kaikkialla & Luokat ja luokkien ominaisuudet \\
 \bottomrule
 \end{tabular}
 \end{center}
 
+\newthought{Private ja protected} ovat siis näkyvyysmääreitä, jotka toimivat vain luokan
+ominaisuuksien näkyvyyden rajaamisessa, kun taas public ja oletusnäkyvyys toimivat myös luokkien
+näkyvyyden määrittämisessä. Tämä johtuu siitä, että private ja protected ovat suoraan sidottuja
+luokkaan, jossa ominaisuus sijaitsee. Protected on lisäksi tiukasti sidoksissa periytymiseen, joka
+käsitellään myöhemmin oppaan luvussa *x*, % TODO: lisää luku 
+joten sen toiminnallisuuden ymmärtäminen ei ole vielä ajankohtaista.
 
+\newthought{Tähän mennessä} oppaassa on vältetty näkyvyysmääreiden käyttöä, eli niitä on käytetty
+vain main-metodien määrittelemisen yhteydessä. Tällöin Java-kääntäjä asettaa näkyvyydeksi
+automaattisesti oletusnäkyvyyden (default), jossa luokka, tai sen ominaisuus näkyy kaikkialle
+sen määrittelypaketin sisällä, muttei muualle. Tämä ei ole suositeltavaa, vaan jokaisen luokan
+ja luokkien jokaisen ominaisuuden näkyvyyden tarve pitäisi arvioida erikseen ja asettaa kullekin
+tiukin mahdollinen näkyvyysmääre. Tämä tyyli paitsi takaa mahdollisimman korkean enkapsulaation,
+myös tekee ohjelmistosta tehokkaamman, koska vain luokan sisällä näkyvät metodit voidaan optimoida
+tehokkaammin ohjelman kääntämisen yhteydessä.
+
+\newthought{Seuraava koodiesimerkki} sisältää pääluokan ja kaksi apuluokkaa ja esittelee näin
+\java{public} ja \java{private} avainsanojen toimivuuden. Avainsana \java{protected} on esitelty
+koodiesimerkissä periytyvyyden yhteydessä kappaleessa *x*. % TODO: lisää luku
+
+\code{week2}{AccessModifierExampleFirstChild}{Ensimmäinen näkyvyysmääre-esimerkin luokka}
+\code{week2}{AccessModifierExampleSecondChild}{Toinen näkyvyysmääre-esimerkin luokka}
+\code{week2}{AccessModifierExampleMain}{Näkyvyysmääre-esimerkin pääluokka}
+
+\subsection{Noutajat ja asettajat}
+
+\newthought{Java neuvoo} käyttäjiään alustamaan kaikki muuttujat \java{private} näkyvyysmääreellä.
+Tämä tarkoittaa, että koodatessa virallisten suositusten mukaista Javaa ohjelmoija tuottaa vain
+luokkia, joiden muuttujat näkyvät ainoastaan kunkin luokan sisällä. Kuitenkin monesti luokan
+säilömää dataa tarvitaan luokan ulkopuolella. Tämä ei ole suunnitteluvirhe, vaan yksinkertainen
+ohjelmoinnin totuus. Tätä varten Javaan on vakiintunut kaksi tärkeää metodityyppiä.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
