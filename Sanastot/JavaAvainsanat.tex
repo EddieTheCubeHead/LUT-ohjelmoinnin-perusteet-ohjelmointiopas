@@ -94,7 +94,7 @@ käsittelyä ja muokkausta helpottavia metodeja}
 	type=java,
 	name=private,
 	description={Näkyvyysmääre, joka määrittää ominaisuuden olevan käytettävissä vain ominaisuuden
-omistaman luokan sisällä.}
+omistaman luokan sisällä}
 }
 
 \newglossaryentry{java:protected}
@@ -103,7 +103,7 @@ omistaman luokan sisällä.}
 	name=protected,
 	description={Näkyvyysmääre, joka määrittää ominaisuuden olevan käytettävissä ominaisuuden
 omistavan luokan sisältävässä packagessa ja kaikissa ominaisuuden omistavan luokan perivissä
-luokissa.}
+luokissa}
 }
 
 \newglossaryentry{java:public}
@@ -111,7 +111,7 @@ luokissa.}
 	type=java,
 	name=public,
 	description={Näkyvyysmääre, joka määrittää ominaisuuden olevan käytettävissä kaikkialla
-ohjelmistossa.}
+ohjelmistossa}
 }
 
 \newglossaryentry{java:static}
@@ -119,14 +119,14 @@ ohjelmistossa.}
 	type=java,
 	name=static,
 	description={Staattinen metodi tai muuttuja näkyy kaikille sen omistavan luokan instansseille
-jaetusti. Tunnetaan luokkamuuttujana tai luokkametodina.}
+jaetusti. Tunnetaan luokkamuuttujana tai luokkametodina}
 }
 
 \newglossaryentry{java:void}
 {
 	type=java,
 	name=void,
-	description={Muuttujan paluuarvotyyppi muuttujalle, joka ei palauta mitään.}
+	description={Muuttujan paluuarvotyyppi muuttujalle, joka ei palauta mitään}
 }
 
 \newglossaryentry{java:main}
@@ -135,7 +135,8 @@ jaetusti. Tunnetaan luokkamuuttujana tai luokkametodina.}
 	name=main,
 	description={Varattu metodinimi metodille, jonka Java ajaa ensimmäisenä ajaessaan ohjelmistoa.
 Ohjelmistossa voi olla useampi-main niminen metodi, mutta vain määritellyn juuriluokan main-metodi
-ajetaan. Metodin täytyy olla muotoa public static void ja ottaa yhden taulukon String-luokan instansseja.}
+ajetaan. Metodin täytyy olla muotoa public static void ja ottaa yhden taulukon String-luokan
+instansseja}
 }
 
 \newglossaryentry{java:class}
@@ -143,4 +144,34 @@ ajetaan. Metodin täytyy olla muotoa public static void ja ottaa yhden taulukon 
 	type=java,
 	name=class,
 	description={Avainsana, joka aloittaa luokan määritelmän.}
+}
+
+\newglossaryentry{java:if}
+{
+	type=java,
+	name=if,
+	description={Avainsana, jota seuraa normaaleihin sulkuihin suljettu totuusarvo ja
+kaarisulkuihin suljettu koodin osa. Tämä koodin osa ajetaan vain jos annettu totuusarvo on
+tosi. Voidaan yhdistää else-lauseeseen},
+	see=java:else
+}
+
+\newglossaryentry{java:else}
+{
+	type=java,
+	name=else,
+	description={Avainsana, joka voi seurata if-lauseella määriteltyä ehdollista koodin osaa.
+Else-lausetta seuraa kaarisulkuihin suljettu koodin osa. Tämä koodin osa ajetaan vain, jos
+else-lausetta edeltänyttä ehdollista koodin osaa ei ajettu},
+	see=java:if
+}
+
+\newglossaryentry{java:new}
+{
+	type=java,
+	name=new,
+	description={Avainsana, joka luo uuden instanssin luokasta. Avainsanaa seuraa aina toivotun
+luokan nimi, jonka perässä on sulkuihin suljettuna toivotut rakentajalle annettavat parametrit,
+metodikutsun tapaan.},
+	see=rakentaja
 }

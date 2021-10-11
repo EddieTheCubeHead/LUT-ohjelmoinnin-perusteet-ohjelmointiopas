@@ -122,7 +122,7 @@ tietotyypit Javassa, jotka eivät ole jonkin luokan instansseja},
 {
     name=näkyvyysmääre,
     description={(access modifier) Muuttujan näkyvyyden määrittävä avainsana},
-    see={muuttuja}
+    see=muuttuja
 }
 
 \newglossaryentry{muuttuja}
@@ -143,5 +143,50 @@ esiintyvän muuttujan tietotyypin koko ajan}
 {
 	name=signatuuri,
 	description={(signature) Metodin määritelmä, joka sisältää sekä metodin nimen, että sen
-ottamien argumenttien tyypit.}
+ottamien argumenttien tyypit}
+}
+
+\newglossaryentry{noutaja}
+{
+	name=noutaja,
+	description={(getter) Metodi, jonka tehtävänä on tarjota rajoitettu saatavuus johonkin
+luokan yksityiseen muuttujan. Ei yleensä ota argumentteja ja palauttaa luokan omistaman toivotun
+muuttujan. Nimetään camelCase-tyylillä sijoittamalla muuttujan nimen eteen "get" ("getVariable").
+Parantaa enkapsulaatiota ja mahdollistaa esimerkiksi laiskan alustuksen muuttujille}
+}
+
+\newglossaryentry{asettaja}
+{
+	name=asettaja,
+	description={(setter) Metodi, jonka tehtävänä on tarjota luokan ulkopuolisille toimijoille
+mahdollisuus asettaa arvoja luokan yksityiseen muuttujaan. Ottaa yleensä arvoksi muuttujan toivotun
+arvon, eikä palauta mitään. Nimetään camelCase-tyylillä sijoittamalla muuttujan nimen eteen "set"
+("setVariable"). Parantaa enkapsulaatiota ja mahdollistaa esimerkiksi uusien arvojen validoinnin
+ennen niiden asettamista}
+}
+
+\newglossaryentry{rakentaja}
+{
+	name=rakentaja,
+	description={(constructor) Luokkametodi, joka määritellään ja kutsutaan luokan nimellä ja nimensä
+mukaisesti rakentaa ja palauttaa uuden luokan instanssin},
+	see={luokkametodi,instanssi,java:new}
+}
+
+\newglossaryentry{luokkametodi}
+{
+	name=luokkametodi,
+	description={(class method) Metodi, joka on luokan instanssin sijaan sidottu itse luokkaan.
+Ei voida käyttää instanssiin sidottuja muuttujia, mutta voi käyttää luokkamuuttujia. Määritellään
+yleensä static-avainsanalla ja kutsutaan luokan nimen pistenotaatiolla},
+	see={luokkamuuttuja,java:static}
+}
+
+\newglossaryentry{luokkamuuttuja}
+{
+	name=luokkamuuttuja,
+	description={(class variable) Muuttuja, joka on luokan instanssin sijaan sidottu itse luokkaan.
+Muokattavissa ja tarkasteltavissa jokaisesta luokan instanssista jaetusti. Määritellään yleensä
+static-avainsanalla},
+	see=java:static
 }

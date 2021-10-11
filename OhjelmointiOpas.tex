@@ -47,6 +47,7 @@ Erno Vanhalalle.}}
 
 \usepackage[toc, automake]{glossaries}
 \newglossary[jvg]{java}{jvd}{jvn}{Javan avainsanat}
+\glsaddall
 \makeglossaries
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -324,9 +325,7 @@ tuotetun koodin laatua huomaamattomasti.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
-\section{Javan syntaksin alkeet}
-
-\subsection{Java ohjelmointikielenä}
+\section{Java ohjelmointikielenä}
 
 \newthought{Java} on staattisesti tyypitetty korkean tason oliopohjainen ohjelmointikieli, joka
 pyrkii standardisoimaan ohjelmien kirjoittamisen alustasta riippumatta. Java-ohjelmat käännetään
@@ -341,6 +340,8 @@ ohella on tehnyt Javasta yhden käytetyimmistä ohjelmointikielistä teollisessa
 käyttö koodin osien erotteluun ja suurin osa ohjausrakenteiden nimistä on suoraan C-kielestä
 kopioitua.
 
+\section{Javan syntaksin alkeet}
+
 \subsection{Kommentointi}
 
 \newthought{Suurin osa} ohjelmointikielistä tukee ainakin yhtä kommentointisyntaksia. Javassa on
@@ -350,7 +351,6 @@ väliin. Seuraava esimerkki esittää kommentointisyntaksin vielä tarkemmin. Ä
 koodista, sen tehtävä on vain selventää miten kommenttien sijoittelu vaikuttaa koodin toimintaan.
 
 \code{week2}{CommentingExample}{Kommentointi Javassa}
-\newpage
 
 \subsection{Primitiiviset tietotyypit ja String}
 
@@ -407,9 +407,9 @@ hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määr
 
 \code{week2}{BasicString}{String-tyypin muuttujan määrittäminen}
 
-\section{Luokkien ja olioiden perusteet}
+\section{Toimivan ohjelman perusteet}
 
-\subsection{Oliopohjaisen ohjelman ajaminen}
+\subsection{Oliopohjaisen ohjelman ajaminen: main-metodi}
 
 \newthought{Luokat ovat} Javan ydin ja kaiken koodin rakennuspala. Kaikki koodi Javassa on
 suljettava luokan sisään, niin myös ohjelman ajon aloittava koodi. Tästä syystä jokaisessa
@@ -432,6 +432,43 @@ pääluokan luonti (huomaa pääluokan nimeämisen vapaus) ja sen sisään "Hell
 main-funktion lisääminen.
 
 \code{week2}{HelloWorld}{Yksinkertaisen pääluokan ja main-funktion luominen Javassa}
+
+\subsection{Metodin määrittelemisen syntaksi}
+
+\newthought{Metodin määritelmä} koostuu Javassa metodin paluuarvon tyypistä, metodin nimestä
+ja sitä seuraavasta sulkuihin suljetusta parametrien määritelmästä ja lopulta kaarisulkuihin
+suljetusta metodin koodista. Metodin parametrit vaativat pythonista poiketen parametrin nimen
+määritelmän lisäksi myös parametrin tyypin määrittämistä. Vastaavasti metodia kutsuttaessa on
+argumenttien, jolla metodia kutsutaan oltava metodin yhteydessä määriteltyä tyyppiä.
+
+\newthought{Metodien nimeämisessä} suositellaan Javassa vahvasti niin sanottua camel case-
+nimeämistapaa. Tavassa kaikki nimen sanat kirjoitetaan yhteen niin, että nimi aloitetaan
+pienellä kirjaimella ja seuraavat sanat aloitetaan isolla alukirjaimella. Täten esimerkiksi
+"parse user name"-metodin nimi on muotoa "parseUserName". On m
+
+\subsection{If-lause ja else-lause}
+
+\newthought{Ohjelmointi on} pohjimmiltaan logiikkaa. Ohjelman ajon muokkaaminen olosuheiden
+mukaan tekee ohjelmasta älykkään. Yksinkertaisin tapa muokata ohjelman toimintaa on
+\newjava{if}-lause ja sen kanssa toimiva \newjava{else}-lause. Lauseet mahdollistavat ennalta
+määriteltyjen koodin osien ajamisen annetun lauseen totuusarvon mukaan.
+
+\newthought{If-lause} alkaa if-avainsanalla, jota seuraa suluilla ympäröity lause, joka saa
+totuusarvon true tai false. Tätä ehtolausetta seuraa kaarisulkuihin ympäröitynä itse if-lauseen
+runko, eli koodi, joka ajetaan jos ehtolause on tosi.
+
+\newthought{Else-lause} on mahdollinen jatko if-lauseelle ja sijaitsee aina if-lauseen
+ehdollisesti ajettavan koodiosan jälkeen. Lause alkaa else-avainsanalla. Tämän jälkeen on
+mahdollista kirjoittaa uusi if-lause, tai aloittaa suoraan ehdollisen koodin määrittely. If-
+else -lauseita voi tarvittaessa ketjuttaa niin monta kuin tarvitaan, joskin pitkät if-else
+-ketjut ovat yleensä merkki huonosta arkkitehtuurista ohjelmistossa.
+
+\newthought{Seuraava koodiesimerkki} esittelee if- ja else-lauseiden käytön perusteet. Huomioi,
+että normaalisti ehtolauseiden arvoa ei tiedetä ennen ohjelman ajoa, vaan se muuttuu dynaamisesti.
+
+\code{week2}{BasicIfElse}{Esimerkki if- ja else-lauseiden käytöstä}
+
+\section{Javan ominaispiirteitä}
 
 \subsection{Näkyvyysmääreet}
 
@@ -491,7 +528,39 @@ koodiesimerkissä periytyvyyden yhteydessä kappaleessa *x*. % TODO: lisää luk
 Tämä tarkoittaa, että koodatessa virallisten suositusten mukaista Javaa ohjelmoija tuottaa vain
 luokkia, joiden muuttujat näkyvät ainoastaan kunkin luokan sisällä. Kuitenkin monesti luokan
 säilömää dataa tarvitaan luokan ulkopuolella. Tämä ei ole suunnitteluvirhe, vaan yksinkertainen
-ohjelmoinnin totuus. Tätä varten Javaan on vakiintunut kaksi tärkeää metodityyppiä.
+ohjelmoinnin totuus. Tätä varten Javaan on vakiintunut kaksi tärkeää metodityyppiä:
+\neweng{noutaja}{getter} ja \neweng{asettaja}{setter}.
+
+\newthought{Noutaja, eli getter} on funktio, jonka tehtävä on noutaa luokan sisällä yksityiseksi
+määritelty muuttuja luokan ulkopuoliseen käyttöön. Noutaja nimetään camelCase-tyylisesti
+lisäämällä noudettavan muuttujan nimen eteen "get". Tällöin muuttujan "privateVariable"
+noutajafunktion nimi on "getPrivateVariable". Noutajafunktio ei yleensä ota argumentteja ja
+palauttaa vain noudettavan muuttujan. Noutajan tehtävä on tarjota rajattu pääsy luokan
+säilömään dataan luokan ulkopuolelle. Noutajien käyttö mahdollistaa myös esimerkiksi laiskan
+alustamisen muuttujille, joiden alustaminen on raskasta, muttei aina tarpeellista.
+
+\newthought{Asettaja, eli setter} puolestaan on funktio, jonka tehtävä on asettaa luokan
+ulkopuolelta saatava arvo luokan sisällä yksityiseksi määriteltyyn muuttujaan. Asettaja nimetään
+noutajan tapaan camelCase-tyylisesti lisäämällä muuttujan nimen eteen "set". Täten edellä mainitun
+"privateVariable"-muuttujan asettajan nimi on "setPrivateVariable". Asettajafunktio ottaa yleensä
+asetettavan muuttujan tyyppiä olevan instanssin eikä palauta mitään. Samoin kuin noutajat,
+asettajat rajoittavat luokan ulkopuolista pääsyä luokan säilömään dataan. Lisäksi asettajat
+vastaavat usein luokan ulkopuolelta tulevan datan validoinnista ennen sen tallentamista
+muuttujaan.
+
+\newthought{Noutajien ja asettajien} käytön perusteet on esitetty seuraavassa koodiesimerkissä.
+Huomaa setPositiveNumber-metodissa toteutettava muuttujan validointi, joka ei olisi mahdollista,
+jos muuttuja positiveNumber olisi julkinen Javan suositteleman yksityinen muuttuja, noutaja ja
+asettaja -mallin sijaan.
+
+\code{week2}{GetterSetterChild}{Ensimmäinen noutaja/asettajaesimerkin luokka}
+\code{week2}{GetterSetterMain}{Noutaja/asettajaesimerkin pääluokka}
+
+\section{Syötteen vastaanottamisen ja tulostamisen perusteet}
+
+\subsection{Tulostaminen Javassa}
+
+\subsection{Käyttäjän syötteen vastaanottaminen Javassa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
