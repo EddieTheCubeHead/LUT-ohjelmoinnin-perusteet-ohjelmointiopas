@@ -444,7 +444,14 @@ argumenttien, jolla metodia kutsutaan oltava metodin yhteydessä määriteltyä 
 \newthought{Metodien nimeämisessä} suositellaan Javassa vahvasti niin sanottua camel case-
 nimeämistapaa. Tavassa kaikki nimen sanat kirjoitetaan yhteen niin, että nimi aloitetaan
 pienellä kirjaimella ja seuraavat sanat aloitetaan isolla alukirjaimella. Täten esimerkiksi
-"parse user name"-metodin nimi on muotoa "parseUserName". On m
+"parse user name"-metodin nimi on muotoa "parseUserName". On myös vahvasti suositeltua käyttää
+verbiä metodin nimessä. Tämä helpottaa metodien ja muuttujien erottamista ja pakottaa
+myös ajattelemaan koodin laatua: hyvä metodi tekee vain yhden asian, joten jos nimeäminen
+simppelissä verbimuodossa ei onnistu, olisi ehkä syytä jakaa metodi useampaan pienempään
+metodiin.
+
+\code{week2}{BasicMethodChild}{Metodin luominen Javassa}
+\code{week2}{BasicMethod}{Metodin kutsuminen Javassa}
 
 \subsection{If-lause ja else-lause}
 
