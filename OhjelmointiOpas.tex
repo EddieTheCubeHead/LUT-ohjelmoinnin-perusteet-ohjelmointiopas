@@ -433,7 +433,7 @@ main-funktion lisääminen.
 
 \code{week2}{HelloWorld}{Yksinkertaisen pääluokan ja main-funktion luominen Javassa}
 
-\subsection{Metodin määrittelemisen syntaksi}
+\subsection{Metodin määritteleminen ja kutsuminen}
 
 \newthought{Metodin määritelmä} koostuu Javassa metodin paluuarvon tyypistä, metodin nimestä
 ja sitä seuraavasta sulkuihin suljetusta parametrien määritelmästä ja lopulta kaarisulkuihin
@@ -449,6 +449,12 @@ verbiä metodin nimessä. Tämä helpottaa metodien ja muuttujien erottamista ja
 myös ajattelemaan koodin laatua: hyvä metodi tekee vain yhden asian, joten jos nimeäminen
 simppelissä verbimuodossa ei onnistu, olisi ehkä syytä jakaa metodi useampaan pienempään
 metodiin.
+
+\newthought{Metodia kutsutaan} Javassa pistenotaatiolla metodin omistavasta oliosta. Tämä
+olio on yleensä tallennettuna muuttujaan jonkin toisen luokan sisällä. Esimerkiksi jos olio
+on tallennettu muuttujaan "object" ja omistaa metodin "doStuff(int number)", kutsuttaisiin
+metodi notaatiolla "object.doStuff(322)". Jos metodille on määritelty paluuarvon tyyppi, kutsu
+palauttaa tämän tyypin muuttujan, jota voidaan käyttää koodissa.
 
 \code{week2}{BasicMethodChild}{Metodin luominen Javassa}
 \code{week2}{BasicMethod}{Metodin kutsuminen Javassa}
@@ -567,7 +573,20 @@ asettaja -mallin sijaan.
 
 \subsection{Tulostaminen Javassa}
 
+\newthought{Tekstin tulostaminen} komentoikkunaan on varmasti tuttua aiemmasta
+ohjelmointikokemuksesta. Javassa tulostukseen käytetääyleensä standardikirjaston System-luokan
+out-muuttujassa tallennettuna olevaa PrintStream-luokan instanssia, joka edustaa
+oletustulostevirtaa. Jos et ymmärtänyt edellistä lausetta, se ei haittaa. Tärkeintä on tietää,
+että Javassa helpoin tapa tulostaa on kutsua "System.out" - sijainnista sopivaa tulostusmetodia.
+Opas on käyttänyt tähän mennessä "println"-metodia, joka ottaa merkkijonon ja tulostaa sen, sekä
+rivinvaihdon. On huomioitavaa, että println, samoin kuin muutkin System.out:sta löytyvät
+tulostusmetodit ovat todella monipuolisia ja tukevat monenlaisia tapoja tulostaa toivottua
+tekstiä. Toistaiseksi nämä ominaisuudet eivät kuitenkaan ole ajankohtaisia ja opas käyttää
+"System.out.println" metodia tulostukseen.
+
 \subsection{Käyttäjän syötteen vastaanottaminen Javassa}
+
+\newthought{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
