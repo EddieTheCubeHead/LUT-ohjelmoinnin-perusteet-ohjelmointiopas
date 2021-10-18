@@ -172,6 +172,44 @@ else-lausetta edeltänyttä ehdollista koodin osaa ei ajettu},
 	name=new,
 	description={Avainsana, joka luo uuden instanssin luokasta. Avainsanaa seuraa aina toivotun
 luokan nimi, jonka perässä on sulkuihin suljettuna toivotut rakentajalle annettavat parametrit,
-metodikutsun tapaan.},
+metodikutsun tapaan},
 	see=rakentaja
+}
+
+\newglossaryentry{java:Scanner}
+{
+	type=java,
+	name=Scanner,
+	description={Javan standardikirjaston luokka halutun lähteen lukemiseen ja parsimiseen.
+Rakentaja ottaa parsittavan stream-olion. Sisältää metodeja eri tietotyyppien parsimiseen annetusta
+stream-oliosta}
+}
+
+\newglossaryentry{java:BufferedReader}
+{
+	type=java,
+	name=BufferedReader,
+	description={Javan standardikirjaston luokka puskuroitua merkkijonostream-olion lukemista
+varten. Rakentaja ottaa luettavan stream-olion ja vapaaehtoisena argumenttina puskurin koon.
+Käytetään isompien syötteiden lukemiseen, koska syötteen kääriminen BufferedReader-olioon
+luettaessa vähentää turhia lukuoperaatioita. Scanner-luokka on suositellumpi esimerkiksi
+lyhyen käyttäjäsyötteen lukemiseen},
+	see=java:Scanner
+}
+
+\newglossaryentry{java:InputStreamReader}
+{
+	type=java,
+	name=InputStreamReader,
+	description={Javan standardikirjaston luokka tavujonon merkkijonoksi muuttamista varten.
+Rakentaja ottaa muutettavan stream-olion ja vapaaehtoisesti merkkisetin}
+}
+
+\newglossaryentry{java:System}
+{
+	type=java,
+	name=System,
+	description={Javan standardikirjaston luokka, joka sisältää luokkametodeja ja luokkamuuttuja
+systeemirajapintojen, kuten ympäristömuuttujien, tulosteen ja syötteen käyttöön},
+	see={luokkamuuttuja,luokkametodi}
 }

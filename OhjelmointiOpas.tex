@@ -574,19 +574,54 @@ asettaja -mallin sijaan.
 \subsection{Tulostaminen Javassa}
 
 \newthought{Tekstin tulostaminen} komentoikkunaan on varmasti tuttua aiemmasta
-ohjelmointikokemuksesta. Javassa tulostukseen käytetääyleensä standardikirjaston System-luokan
-out-muuttujassa tallennettuna olevaa PrintStream-luokan instanssia, joka edustaa
-oletustulostevirtaa. Jos et ymmärtänyt edellistä lausetta, se ei haittaa. Tärkeintä on tietää,
-että Javassa helpoin tapa tulostaa on kutsua "System.out" - sijainnista sopivaa tulostusmetodia.
-Opas on käyttänyt tähän mennessä "println"-metodia, joka ottaa merkkijonon ja tulostaa sen, sekä
-rivinvaihdon. On huomioitavaa, että println, samoin kuin muutkin System.out:sta löytyvät
-tulostusmetodit ovat todella monipuolisia ja tukevat monenlaisia tapoja tulostaa toivottua
-tekstiä. Toistaiseksi nämä ominaisuudet eivät kuitenkaan ole ajankohtaisia ja opas käyttää
-"System.out.println" metodia tulostukseen.
+ohjelmointikokemuksesta. Javassa tulostukseen käytetääyleensä standardikirjaston 
+\newjava{System}-luokan out-muuttujassa tallennettuna olevaa PrintStream-luokan instanssia, joka
+edustaa oletustulostevirtaa. Jos et ymmärtänyt edellistä lausetta, se ei haittaa. Tärkeintä on
+tietää, että Javassa helpoin tapa tulostaa on kutsua "\java{System}.out" - sijainnista sopivaa
+tulostusmetodia. Opas on käyttänyt tähän mennessä "println"-metodia, joka ottaa merkkijonon ja
+tulostaa sen, sekä rivinvaihdon. On huomioitavaa, että println, samoin kuin muutkin
+\java{System}.out:sta löytyvät tulostusmetodit ovat todella monipuolisia ja tukevat monenlaisia
+tapoja tulostaa toivottua tekstiä. Toistaiseksi nämä ominaisuudet eivät kuitenkaan ole
+ajankohtaisia ja opas käyttää "\java{System}.out.println" metodia tulostukseen.
 
 \subsection{Käyttäjän syötteen vastaanottaminen Javassa}
 
-\newthought{}
+\newthought{Komentoriviin perustuvan} ohjelman tuottaminen vaatii kuitenkin paitsi kykyä tulostaa
+komentoriville tekstiä, myös kykyä kerätä käyttäjältä syötettä. Tätä varten Javasta löytyy
+useampi luokka, joiden avulla voidaan kerätä haluttu syöte juuri ohjelmistolle sopivalla tavalla.
+Näistä tärkeimmät ovat \newjava{Scanner}-lukka, \newjava{BufferedReader}- ja
+\newjava{InputStreamReader}-luokat. Koska Java, kuten moni muu ohjelmointikieli, käsittelee
+konsolisyötettä ja tiedostosyötettä samoin kaikkia näitä luokkia voi käyttää myös tiedostojen
+lukemiseen, käyttäjäsyötteen lukemisen lisäksi. Huomioi, että syötteen pyytäminen on matalan
+tason tapahtuma, jonka täyden toiminnallisuuden ymmärtäminen ei ole tarpeellista oppaan
+käyttämiseksi. Seuraavat kappaleet avaavat koko syötteennoutoprosessin, mutta voit halutessasi
+hypätä suoraan seuraavaan koodiesimerkkiin, jos haluat vain opiskella tarvittavan syntaksin.
+
+\newthought{\java{Scanner}-luokka} ottaa sisäänsä jonkin luettavan olion ja mahdollistaa sen
+parsimisen. Käyttäjän syöte tulee oletuksena standardikirjaston System-luokan in-muuttujaan,
+joten Scanner-luokan rakentaminen System.in-argumentilla on helpoin tapa muodostaa käyttäjältä
+syötettä keräävä olio. Tältä oliolta voi pyytää monia eri parsintametodeja, kuten seuraavan rivin
+parsimista, tai seuraavan numeron parsimista. Todennäköisesti yleisin parsintametodi on rivin
+parsiminen, joka tapahtuu Scanner-olion "nextLine()"-metodilla.
+
+\newthought{\java{Scanner}}, joka on koottu suoraan System.in-streamin
+päälle on helppo tapa vastaanotta käyttäjäsyötettä, mutta raa'a stream-olion lukeminen on
+kohtalaisen raskas toimenpide. Java suosittelee puskuroimaan useasti luetut syötteet, olivat ne
+tiedostoja tai konsolisyötteitä. Tätä varten on olemassa \java{BufferedReader}-luokka. Se ottaa
+rakennettaessa puskuroitavan merkkijonovirran. BufferedReader voidaan antaa suoraan argumenttina
+Scanner-oliolle luettavaksi syötteeksi.
+
+\newthought{Ikävä kyllä} \java{System}.in ei ole merkkijonovirta, vaan tavuvirta. Sitä ei siis
+voida käyttää raakana \java{BufferedReader}-olion rakentamiseen. Tavuvirta voidaan muuttaa
+merkkijonovirraksi \java{InputStreamReader}-luokalla. Rakentamalla \java{InputStreamReader}
+ja käyttämällä \java{System}.in-virtaa argumenttina, saadaan merkkijonovirta, joka sisältää
+käyttäjän syötteen.
+
+\newthought{Syötteen noutaminen} on ikävä kyllä Javassa monimutkainen prosessi. Seuraava
+koodiesimerkki sisältää kuitenkin tarvittavan syntaksin toimivan Scanner-luokan instanssin
+luomiseen. Kun instanssi on luotu kerran on sen käyttäminen onneksi simppeliä.
+
+\code{week2}{BasicUserInput}{Käyttäjän syötteen noutaminen Javassa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
