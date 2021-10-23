@@ -340,6 +340,8 @@ ohella on tehnyt Javasta yhden käytetyimmistä ohjelmointikielistä teollisessa
 käyttö koodin osien erotteluun ja suurin osa ohjausrakenteiden nimistä on suoraan C-kielestä
 kopioitua.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Javan syntaksin alkeet}
 
 \subsection{Kommentointi}
@@ -397,15 +399,17 @@ Avainsana & Oletusarvo & Arvojoukko \\
 
 \newthought{Näiden tietotyyppien} lisäksi Javasta löytyy monta valmiiksi määriteltyä luokkaa datan
 säilömistä varten. Näistä tärkein kielen opettelua aloitettaessa on ehdottomasti merkkijonoja
-säilövä \newjava{String}-luokka. Tämä luokka mahdollistaa dynaamisten merkkijonojen helpon luomisen
-ja manipulaation. String-luokka on voimakas työkalu ja sen toimintaan kannattaa kiinnittää huomiota
-Javan opiskelun alussa.
+säilövä \newjava{String}-luokka. Tämä luokka mahdollistaa dynaamisten merkkijonojen helpon
+luomisen ja manipulaation. String-luokka on voimakas työkalu ja sen toimintaan kannattaa
+kiinnittää huomiota Javan opiskelun alussa.
 
 \newthought{String-tyyppisen} muuttujan arvo kerrotaan ohjelmalle antamalla String-tyypin
 muuttujalle toivottu merkkijono suljettuna normaalien lainausmerkkien (") sisään. Yksittäiset 
 hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määrittämiseen.
 
 \code{week2}{BasicString}{String-tyypin muuttujan määrittäminen}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Toimivan ohjelman perusteet}
 
@@ -430,6 +434,19 @@ luoda luokka on näkyvyysmääreellä \java{public}. Koko määritelmä koostuu 
 hakasulkeisiin suljettuna. Seuraavassa koodiesimerkissä on kommentoitu auki yksinkertaisen
 pääluokan luonti (huomaa pääluokan nimeämisen vapaus) ja sen sisään "Hello world!" tulostavan
 main-funktion lisääminen.
+
+\subsection{Tulostaminen Javassa}
+
+\newthought{Tekstin tulostaminen} komentoikkunaan on varmasti tuttua aiemmasta
+ohjelmointikokemuksesta. Javassa tulostukseen käytetään yleensä standardikirjaston 
+\newjava{System}-luokan out-muuttujassa tallennettuna olevaa PrintStream-luokan instanssia, joka
+edustaa oletustulostevirtaa. Jos et ymmärtänyt edellistä lausetta, se ei haittaa. Tärkeintä on
+tietää, että Javassa helpoin tapa tulostaa on kutsua "\java{System}.out" - sijainnista sopivaa
+tulostusmetodia. Opas on käyttää suurimmaksi osaksi "println"-metodia, joka ottaa merkkijonon ja
+tulostaa sen, sekä rivinvaihdon. On huomioitavaa, että println, samoin kuin muutkin
+\java{System}.out:sta löytyvät tulostusmetodit ovat todella monipuolisia ja tukevat monenlaisia
+tapoja tulostaa toivottua tekstiä. Toistaiseksi nämä ominaisuudet eivät kuitenkaan ole
+ajankohtaisia ja opas käyttää "\java{System}.out.println" metodia tulostukseen.
 
 \code{week2}{HelloWorld}{Yksinkertaisen pääluokan ja main-funktion luominen Javassa}
 
@@ -480,6 +497,8 @@ else -lauseita voi tarvittaessa ketjuttaa niin monta kuin tarvitaan, joskin pitk
 että normaalisti ehtolauseiden arvoa ei tiedetä ennen ohjelman ajoa, vaan se muuttuu dynaamisesti.
 
 \code{week2}{BasicIfElse}{Esimerkki if- ja else-lauseiden käytöstä}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Javan ominaispiirteitä}
 
@@ -569,20 +588,9 @@ asettaja -mallin sijaan.
 \code{week2}{GetterSetterChild}{Ensimmäinen noutaja/asettajaesimerkin luokka}
 \code{week2}{GetterSetterMain}{Noutaja/asettajaesimerkin pääluokka}
 
-\section{Syötteen vastaanottamisen ja tulostamisen perusteet}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Tulostaminen Javassa}
-
-\newthought{Tekstin tulostaminen} komentoikkunaan on varmasti tuttua aiemmasta
-ohjelmointikokemuksesta. Javassa tulostukseen käytetääyleensä standardikirjaston 
-\newjava{System}-luokan out-muuttujassa tallennettuna olevaa PrintStream-luokan instanssia, joka
-edustaa oletustulostevirtaa. Jos et ymmärtänyt edellistä lausetta, se ei haittaa. Tärkeintä on
-tietää, että Javassa helpoin tapa tulostaa on kutsua "\java{System}.out" - sijainnista sopivaa
-tulostusmetodia. Opas on käyttänyt tähän mennessä "println"-metodia, joka ottaa merkkijonon ja
-tulostaa sen, sekä rivinvaihdon. On huomioitavaa, että println, samoin kuin muutkin
-\java{System}.out:sta löytyvät tulostusmetodit ovat todella monipuolisia ja tukevat monenlaisia
-tapoja tulostaa toivottua tekstiä. Toistaiseksi nämä ominaisuudet eivät kuitenkaan ole
-ajankohtaisia ja opas käyttää "\java{System}.out.println" metodia tulostukseen.
+\section{Syötteen vastaanottamisen perusteet}
 
 \subsection{Käyttäjän syötteen vastaanottaminen Javassa}
 
@@ -622,6 +630,56 @@ koodiesimerkki sisältää kuitenkin tarvittavan syntaksin toimivan Scanner-luok
 luomiseen. Kun instanssi on luotu kerran on sen käyttäminen onneksi simppeliä.
 
 \code{week2}{BasicUserInput}{Käyttäjän syötteen noutaminen Javassa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Tietorakenteet, toistorakenteet ja lisää oliopohjaista ajattelua}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Kokoelmarakenteet}
+
+
+
+\subsection{Taulukot}
+
+\subsection{Listat}
+
+\subsection{Hajautustaulut}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Toistorakenteet}
+
+\subsection{For-looppi}
+
+\subsection{While-looppi}
+
+\subsection{Foreach-looppi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Javan ajamisen teoriaa}
+
+\subsection{Tulkkaus vastaan kompilointi}
+
+\subsection{Muistinhallinta ja garbage collector}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lisää Javan konsepteja}
+
+\subsection{Luokkamuuttujat, luokkafunktiot ja static}
+
+\subsection{Tyyppimuunnokset (casting)}
+
+\subsection{Vakiot ja final}
+
+\subsection{Luetellut tyypit (enum)}
+
+\subsection{Aritmeettiset- ja bittioperaatiot}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
