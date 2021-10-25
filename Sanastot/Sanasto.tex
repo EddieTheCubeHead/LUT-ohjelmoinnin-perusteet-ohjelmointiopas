@@ -81,9 +81,11 @@ ja matala taas suurta määrää julkisia metodeja ja datakenttiä}
 \newglossaryentry{rajapinta}
 {
     name=rajapinta,
-    description={(interface) Termi ohjelmistossa toteutuvalle sopimukselle,
-jonka jokin metodi, luokka tmv. toteuttaa. Myös kahden ohjelmiston osan välinen
-taso. Myös Javan Interface-avainsana},
+    description={(interface) Yleisessä käytössä termi ohjelmistossa toteutuvalle sopimukselle,
+jonka jokin metodi, luokka tmv. toteuttaa tai kahden ohjelmiston osan välinen taso. Javan
+yhteydessä luokka, joka luodaan interface-avainsanalla ja joka sisältää vain
+luokan implementoimien metodien signatuurit. Rajapintaluokka ei yleensä sisällä ollenkaan
+toiminnallista koodia},
     see={java:interface}
 }
 
@@ -189,4 +191,17 @@ yleensä static-avainsanalla ja kutsutaan luokan nimen pistenotaatiolla},
 Muokattavissa ja tarkasteltavissa jokaisesta luokan instanssista jaetusti. Määritellään yleensä
 static-avainsanalla},
 	see=java:static
+}
+
+\newglossaryentry{taulukko}
+{
+	name=taulukko,
+	description={(array) Tietorakenne, jossa yksittäiset alkiot on säilötty vierekkäisiin
+muistipaikkoihin. Vie vähän muistitilaa ja mahdollistaa nopeat haut ja lisäykset jos alkion
+indeksi on tiedossa etukäteen. Yleensä taulukon koko on määriteltävä sen luomisen yhteydessä,
+tämä on totta myös Javassa. Javassa taulukko luodaan new-avainsanalla lisäämällä taulukon
+säilömän tietotyypin perään hakasulkeet, joiden sisään suljetaan taulukon koon määrittelevä
+numero. Taulukkotyyppinen muuttuja määritellään lisäämällä muuttujan tietotyypin määritelmän
+perään hakasulkeet. Tällöin esimerkiksi int-tyypin kymmenen alkion taulukko, joka on säilötty
+"intArray"-muuttujaan määriteltäisiin seuraavasti:\newline{} "int[] intArray = new int[10]"}
 }

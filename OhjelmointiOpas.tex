@@ -650,9 +650,32 @@ kokoelmat.
 
 \subsection{Taulukot}
 
-\newthought{}
+\newthought{Yksinkertaisin kokoelmarakenteista} on \neweng{taulukko}{array}, joka löytyy
+simppeliytensä vuoksi useasta ohjelmointikielestä. Taulukko on tehokas rakenne indeksipohjaisissa
+hauissa ja lisäyksissä ja sen ylimääräinen muistijalanjälki on pieni verrattuna muihin
+tietorakenteisiin. Oppaassa on jo näkynyt taulukkomuuttujia, sillä \java{main}-funktio ottaa
+komentoriviargumentit muodossa String[], eli merkkijonoista koostuvana taulukkona. On huomioitava,
+että Java vaatii kaikkien taulukon alkioiden olevan samaa tyyppiä.
+
+\newthought{Taulukko alustetaan} \java{new}-avainsanalla. Avainsanan jälkeen annetaan taulukon
+alkoiden tietotyyppi, jonka perään kirjoitetaan välittömästi hakasulkujen sisään taulukon koko.
+Muuttuja, joka sisältää taulukon määritellään puolestaan normaalin muuttujan määrittelyn tapaan,
+mutta muuttujan tietotyypin perään lisätään tyhjä pari hakasulkuja. Taulukon alkoihin viittaaminen
+puolestaan tapahtuu kirjoittamalla viitattavan alkion indeksi hakasulkuihin taulukon sisältävän
+muuttujan perään. Viittaus toimii samoin sekä alkion tallennuksessa, että alkion noutamisessa.
+
+\newthought{Seuraava esimerkki} näyttää esimerkin taulukkojen luomisesta ja tallettamisesta
+muuttujaan, sekä arvojen tallentamisesta olemassa olevaan taulukkoon ja arvojen noutamisesta
+olemassa olevasta taulukosta.
+
+\code{week2}{BasicArrayDataPoint}{Dataluokka käytettäväksi taulukkoesimerkissä}
+\code{week2}{BasicArray}{Taulukkojen käyttö Javassa}
 
 \subsection{Listat}
+
+\newthought{Todennäköisesti yleisin} tietorakenne datajoukkojen säilömiseen on lista. Javan
+standardikirjasto sisältää useamman listamaisen implementaation, mutta niistä yleisimmin käytetty 
+ja monikäyttöisin on \newjava{ArrayList}. Se muistuttaa pythonin listaa
 
 \subsection{Hajautustaulut}
 

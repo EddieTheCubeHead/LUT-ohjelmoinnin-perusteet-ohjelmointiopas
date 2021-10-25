@@ -1,13 +1,3 @@
-\newglossaryentry{java:interface}
-{
-    type=java,
-    name=interface,
-    description={Luo abstraktin rajapinnan, jonka luokka voi implementoida. Näin luotu
-rajapintapohja ei voi sisältää datakenttiä eikä sitä voi käyttää olion muottina. Sen sijaan luokka
-voi implementoida rajapinnan jolloin luokka lupaa muulle ohjelmistolle tarjoavansa rajapinnan
-määrittelemät funktiot}
-}
-
 \newglossaryentry{java:bool}
 {
     type=java,
@@ -135,8 +125,9 @@ jaetusti. Tunnetaan luokkamuuttujana tai luokkametodina}
 	name=main,
 	description={Varattu metodinimi metodille, jonka Java ajaa ensimmäisenä ajaessaan ohjelmistoa.
 Ohjelmistossa voi olla useampi-main niminen metodi, mutta vain määritellyn juuriluokan main-metodi
-ajetaan. Metodin täytyy olla muotoa public static void ja ottaa yhden taulukon String-luokan
-instansseja}
+ajetaan. Metodin täytyy olla muotoa public static void ja ottaa yksi taulukko String-luokan
+instansseja},
+	see={metodi,taulukko}
 }
 
 \newglossaryentry{java:class}
@@ -181,8 +172,8 @@ metodikutsun tapaan},
 	type=java,
 	name=Scanner,
 	description={Javan standardikirjaston luokka halutun lähteen lukemiseen ja parsimiseen.
-Rakentaja ottaa parsittavan stream-olion. Sisältää metodeja eri tietotyyppien parsimiseen annetusta
-stream-oliosta}
+Rakentaja ottaa parsittavan stream-olion. Sisältää metodeja eri tietotyyppien parsimiseen
+annetusta stream-oliosta}
 }
 
 \newglossaryentry{java:BufferedReader}
@@ -212,4 +203,53 @@ Rakentaja ottaa muutettavan stream-olion ja vapaaehtoisesti merkkisetin}
 	description={Javan standardikirjaston luokka, joka sisältää luokkametodeja ja luokkamuuttuja
 systeemirajapintojen, kuten ympäristömuuttujien, tulosteen ja syötteen käyttöön},
 	see={luokkamuuttuja,luokkametodi}
+}
+
+\newglossaryentry{java:ArrayList}
+{
+	type=java,
+	name=ArrayList,
+	description={Javan standardikirjaston luokka, joka toteuttaa List-rajapinnan. Geneerinen
+säilötyn luokan suhteen, eli voi säilöä minkä tahansa luokan olioita, kunhan säilötyt oliot ovat
+kaikki saman luokan instansseja. Ei voi säilöä primitiivisiä tietotyyppejä. Luodaan
+new-avainsanalla sulkemalla normaalin geneerisen luokan määritelmän tapaan säilöttävä luokka
+pienempi kuin- ja suurempi kuin -merkkien väliin. Tällöin merkkijonoja säilövä ArrayList-instanssi
+voidaan luoda seuraavalla koodinpätkällä:\newline{}"new ArrayList<String>();"},
+	see={java:List,geneerisyys,java:new}
+}
+
+\newglossaryentry{java:List}
+{
+	type=java,
+	name=List,
+	description={Javan standardikirjaston rajapinta, jonka instanssit ovat järjestettyjä
+kokoelmia. Kaikki List-rajapinnan toteuttavat luokat tukevat iterointia, indeksipohjaista hakua
+ja lisäystä ja vertailua. Yleisimmin käytetty List-rajapinnan toteuttava luokka on ArrayList,
+mutta esimerkiksi myös LinkedList ja ArrayQueue toteuttavat rajapinnan},
+	see={java:ArrayList,java:interface,rajapinta}
+}
+
+\newglossaryentry{java:interface}
+{
+	type=java,
+	name=interface,
+	description={Avainsana, joka aloittaa rajapintaluokan määritelmän Javassa normaalin class-
+avainsanan sijaan. Rajapintaluokka määrittää signatuurit metodeille, jotka kaikkien rajapinnan
+implementoivien luokkien on toteutettava. Näin luotu rajapintaluokka ei voi sisältää datakenttiä
+eikä sitä voi käyttää olion muottina. Sen sijaan toinen luokka voi implementoida rajapinnan
+jolloin implementoiva luokka lupaa muulle ohjelmistolle tarjoavansa rajapinnan määrittelemät
+funktiot osana toiminnallisuuttaan},
+	see={rajapinta,java:implements}
+}
+
+\newglossaryentry{java:implements}
+{
+	type=java,
+	name=implements,
+	description={Avainsana, joka määrittää luokan implementoivan jonkin rajapinnan. Tällöin
+kyseiseen luokkaan on määriteltävä metodit, jotka vastaavat kyseisessä rajapinnassa määriteltyjä
+metodeja signatuuriltaan. Esimerkiksi luokka "PasswordLogin", joka implementoi
+"Authenticator"-rajapinnan määritellään seuraavasti:\newline{}
+"class PasswordLogin implements Authenticator..."},
+	see={java:class,java:interface}
 }
