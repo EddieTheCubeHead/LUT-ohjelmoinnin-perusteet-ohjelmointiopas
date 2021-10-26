@@ -212,9 +212,8 @@ systeemirajapintojen, kuten ympäristömuuttujien, tulosteen ja syötteen käytt
 	description={Javan standardikirjaston luokka, joka toteuttaa List-rajapinnan. Geneerinen
 säilötyn luokan suhteen, eli voi säilöä minkä tahansa luokan olioita, kunhan säilötyt oliot ovat
 kaikki saman luokan instansseja. Ei voi säilöä primitiivisiä tietotyyppejä. Luodaan
-new-avainsanalla sulkemalla normaalin geneerisen luokan määritelmän tapaan säilöttävä luokka
-pienempi kuin- ja suurempi kuin -merkkien väliin. Tällöin merkkijonoja säilövä ArrayList-instanssi
-voidaan luoda seuraavalla koodinpätkällä:\newline{}"new ArrayList<String>();"},
+new-avainsanalla  normaalin geneerisen luokan tapaan. Merkkijonoja säilövä ArrayList-instanssi
+voidaan siis luoda seuraavalla koodinpätkällä:\newline{}"new ArrayList<String>();"},
 	see={java:List,geneerinen luokka,java:new}
 }
 
@@ -252,4 +251,16 @@ metodeja signatuuriltaan. Esimerkiksi luokka "PasswordLogin", joka implementoi
 "Authenticator"-rajapinnan määritellään seuraavasti:\newline{}
 "class PasswordLogin implements Authenticator..."},
 	see={java:class,java:interface}
+}
+
+\newglossaryentry{java:HashMap}
+{
+	type=java,
+	name=HashMap,
+	description={Javan standardikirjaston luokka, joka toteuttaa hajautuskartta-tietorakenteen.
+Geneerinen luokka, joka ottaa erikseen avaimen ja arvon tietotyypin. Osaa säilöä myös null-arvoja
+avaimeen tai arvoon. Luodaan new-avainsanalla normaalin geneerisen luokan tapaan. HashMap, jossa
+on merkkijonoavaimet ja kokonaislukuarvot voidaan siis luoda seuraavalla koodinpätkällä:
+\newline{}"new HashMap<String, int>"\newline{}Huomioi, että avaimen tyyppi annetaan ensimmäisenä},
+	see={geneerinen luokka,hajautustaulu}
 }

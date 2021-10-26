@@ -696,6 +696,17 @@ ja poistamisen.
 
 \subsection{Hajautustaulut}
 
+\newthought{Välillä kokoelman} sisältämää dataa on tarve yhdistää muuhun dataan. Vaikka
+olio-ohjelmoinnin hengen mukaisesti datan yhdistäminen tapahtuu luomalla uusi luokka tai
+muokkaamalla olemassa olevaa luokkaa ei tämä ole aina mahdollista tai järkevää. Erityisesti
+tilanteissa, joissa dataa haetaan jonkin avaimen avulla ei ole järkevää käyttää listaa, jossa on
+tämän avaimen omaavia alkioita hitaan ja hankalan hakuoperaation vuoksi. Tämän vuoksi Javassa
+on olemassa \newjava{HashMap}-luokka jonka perustana on \neweng{hajautustaulu}{hash table}
+-tietorakenne.
+
+\newthought{\java{HashMap}-luokka} säilöö avain-arvopareja ja on verrattavissa pythonin
+dict-rakenteeseen.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Toistorakenteet}
