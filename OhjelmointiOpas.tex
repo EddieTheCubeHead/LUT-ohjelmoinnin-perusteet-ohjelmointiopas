@@ -678,7 +678,8 @@ standardikirjasto sisältää useamman listamaisen implementaation, mutta niist�
 ja monikäyttöisin on \newjava{ArrayList}. Se muistuttaa pythonin listaa toiminnaltaan, mutta
 pystyy Javan staattisen tyypityksen vuoksi säilömään vain yhden tyyppisiä muuttujia. Toisaalta on
 huomioitava, että mikäli ohjelmassa nousee ikinä tarve säilöä usean tyyppisiä muuttujia samaan
-listaan, on ohjelma luultavasti epäoptimaalisesti suunniteltu.
+listaan, on ohjelma luultavasti epäoptimaalisesti suunniteltu. ArrayList ei kykene säilömään
+primitiivisiä tietotyyppejä.
 
 \newthought{\java{ArrayList} tukee} pythonin listan tapaan indeksipohjaista hakua ja lisäystä,
 alkoiden hakua kriteeripohjaisesti ja iterointia. Toisin kuin taulukko se on kooltaan dynaaminen
@@ -705,7 +706,17 @@ on olemassa \newjava{HashMap}-luokka jonka perustana on \neweng{hajautustaulu}{h
 -tietorakenne.
 
 \newthought{\java{HashMap}-luokka} säilöö avain-arvopareja ja on verrattavissa pythonin
-dict-rakenteeseen.
+dict-rakenteeseen, mutta vaatii kaikkien avainten olevan samaa tyyppiä ja kaikkien arvojen olevan
+samaa tyyppiä, eikä takaa arvojen keskeneräisen järjestyksen säilymistä. Se on 
+\java{ArrayList}-luokan tapaan geneerinen, mutta toisin kuin ArrayList, HashMap tarvitsee kaksi
+luokkaa määritelmänsä yhteydessä. HashMap tukee avain-arvo -parin lisäämistä, arvon hakemista ja
+postamista avaimen perusteella ja iterointia joko avainjoukon, arvojoukon tai avain-arvo -parien
+yli. HashMap pystyy säilömään identtisiä arvoja, mutta jokaisen avaimen on oltava uniikki.
+Seuraava esimerkki esittelee HashMap-instanssin luomisen, avain-arvo -parin lisäämisen ja
+arvon hakemisen sekä poistamisen avaimen perusteella. ArrayListin tapaan HashMap ei tue
+primitiivisten tietotyyppien säilömistä.
+
+\code{week3}{BasicHashMap}{HashMap-luokan käyttö Javassa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
