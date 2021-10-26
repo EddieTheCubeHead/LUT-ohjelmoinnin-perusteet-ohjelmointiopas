@@ -668,14 +668,31 @@ muuttujan perään. Viittaus toimii samoin sekä alkion tallennuksessa, että al
 muuttujaan, sekä arvojen tallentamisesta olemassa olevaan taulukkoon ja arvojen noutamisesta
 olemassa olevasta taulukosta.
 
-\code{week2}{BasicArrayDataPoint}{Dataluokka käytettäväksi taulukkoesimerkissä}
-\code{week2}{BasicArray}{Taulukkojen käyttö Javassa}
+\code{week3}{BasicArrayDataPoint}{Dataluokka käytettäväksi taulukkoesimerkissä}
+\code{week3}{BasicArray}{Taulukkojen käyttö Javassa}
 
 \subsection{Listat}
 
 \newthought{Todennäköisesti yleisin} tietorakenne datajoukkojen säilömiseen on lista. Javan
 standardikirjasto sisältää useamman listamaisen implementaation, mutta niistä yleisimmin käytetty 
-ja monikäyttöisin on \newjava{ArrayList}. Se muistuttaa pythonin listaa
+ja monikäyttöisin on \newjava{ArrayList}. Se muistuttaa pythonin listaa toiminnaltaan, mutta
+pystyy Javan staattisen tyypityksen vuoksi säilömään vain yhden tyyppisiä muuttujia. Toisaalta on
+huomioitava, että mikäli ohjelmassa nousee ikinä tarve säilöä usean tyyppisiä muuttujia samaan
+listaan, on ohjelma luultavasti epäoptimaalisesti suunniteltu.
+
+\newthought{\java{ArrayList} tukee} pythonin listan tapaan indeksipohjaista hakua ja lisäystä,
+alkoiden hakua kriteeripohjaisesti ja iterointia. Toisin kuin taulukko se on kooltaan dynaaminen
+eikä sen kokoa siksi määritellä sen luonnin yhteydessä. Luonti tapahtuu \java{new}-avainsanalla,
+mutta koska Javan täytyy tietää paitsi listan tyyppi, myös listan säilömien olioiden tyyppi, on
+luomisen yhteydessä määriteltävä tämäkin. ArrayList on siis
+\neweng{geneerinen luokka}{generic class}. Geneeristen luokkien luominen ja toimintaperiaate
+ei ole tämän luvun aiheena, vaan ne käsitellään oppaan luvussa *x*. % TODO: lisää luku
+Tässä kohtaa opasta ArrayListin geneerisyys on huomioitava vain uuden instanssin luonnin
+yhteydessä, jolloin listan säilömä tyyppi on suljettava pienempi kuin- ja suurempi kuin -merkkien
+väliin. Seuraava esimerkki näyttää ArrayList-instanssin luomisen, alkioiden lisäämisen, hakemisen
+ja poistamisen.
+
+\code{week3}{BasicArrayList}{ArrayList-luokan käyttö Javassa}
 
 \subsection{Hajautustaulut}
 

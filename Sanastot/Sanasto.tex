@@ -205,3 +205,16 @@ numero. Taulukkotyyppinen muuttuja määritellään lisäämällä muuttujan tie
 perään hakasulkeet. Tällöin esimerkiksi int-tyypin kymmenen alkion taulukko, joka on säilötty
 "intArray"-muuttujaan määriteltäisiin seuraavasti:\newline{} "int[] intArray = new int[10]"}
 }
+
+\newglossaryentry{geneerinen luokka}
+{
+	name=geneerinen luokka,
+	description={(generic class) Luokan ominaisuus, joka määrittää luokan instanssien täyden
+tyyppisignatuurin olevan riippuvainen toisesta luokasta. Tämä toinen luokka voidaan määrittää
+jokaisen luokan instanssin kohdalla erikseen pienempi kuin- ja suurempi kuin -merkkien väliin
+suljetulla notaatiolla. Esimerkiksi kokoelmat tarvitsevat tietoa sisältämiensä olioiden
+tyypityksestä. Merkkijonoja sisältävä ArrayList-kokoelma voitaisiin siis luoda seuraavalla 
+notaatiolla:\newline{}"new ArrayList<String>()"\newline{}Geneerinen luokka voi olla myös geneerinen useamman luokan suhteen, jolloin luokat erotetaan pilkulla tai riippuvainen toisesta
+geneerisestä luokasta, jolloin geneerisyyden notaatiot kirjoitetaan
+sisäkkäin:\newline{}"new HashMap<String, ArrayList<Int>>()"}
+}
