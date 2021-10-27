@@ -757,14 +757,61 @@ loopin sisällä. Seuraava koodiesimerkki esittelee for-loopin luomisen ja käyt
 
 \code{week3}{BasicForLoop}{For-loopin käyttö Javassa}
 
+\subsection{For-each-looppi}
+
+\newthought{Edellisessä kappaleessa} mainittiin, että kokoelmien yli iterointi on Javassa
+helpompaa foreach-rakenteella, kuin for-rakenteella. Rakenteet muistuttavat toisiaan siinä
+mielessä, että molemmat määritellään \java{for}-avainsanalla. Foreach-rakenteessa kuitenkin
+avainsanaa seuraa iteroitavan kokoelman määritelmä sulkuihin suljettuna. Määritelmä koostuu
+kahdesta puolipisteellä erotetusta osasta. Ensimmäinen osa kertoo, minkä tyyppiseen ja nimiseen
+muuttujaan iteroitavat arvot sidotaan ja toinen, mistä kokoelmasta muuttujat haetaan. Looppi
+iteroi koko kokoelman yli, sitoen annettuun muuttujaan jokaisen yksittäisen arvon kokoelmasta.
+Tämä käyttäytyminen muistuttaa pythonin for-looppia. Seuraava koodiesimerkki näyttää kokoelman
+yli iteroimisen for-each -loopilla.
+
+\code{week3}{BasicForEachLoop}{For-each -loopin käyttö Javassa}
+
 \subsection{While-looppi}
 
 \newthought{While-looppi} on toistorakenne, jossa \java{for}-loopin tapaan sidotaan toistoehto
 johonkin totuusarvoon, yleensä tietyn muuttujan suhteen. Toisin kuin for-loopissa, while loopissa
 toisto ei tapahdu iterointimaisesti yhden muuttujan sijaan. Sen sijaan looppi luodaan
-\newjava{while}-avainsanalla
+\newjava{while}-avainsanalla, jota seuraa loopin toistoehto sulkuihin suljettuna. Toistoehto
+voi olla mikä tahansa totuusarvo ja looppia toistetaan niin kauan, kuin toistoehto on totta.
+While-looppi on yleinen ohjausrakenteena ohjelman ytimessä: ohjelmaa tai ohjelman osaa ajetaan
+niin kauan kuin ennalta määritelty ehto on totta. Seuraava koodiesimerkki esittelee while-loopin
+käytön.
 
-\subsection{Foreach-looppi}
+\code{week3}{BasicWhileLoop}{While-loopin käyttö Javassa}
+
+\subsection{Do-while -looppi}
+
+\newthought{Välillä ilmenee} tarve käyttää while-loopin kaltaista toistorakennetta, mutta
+tarkistaa toistoehdon totuusarvo vasta jokaisen toiston jälkeen. Tätä varten Javasta löytyy 
+do-while -looppi. Looppi aloitetaan \newjava{do}-avainsanalla, jota seuraa saman tien loopin
+runko suljettuna kaarisulkeisiin. Vasta rungon jälkeen määritellään toistoehto käyttämällä
+\java{while}-avainsanaa, jonka jälkeen toistoehto suljetaan sulkeisiin. Looppi käyttäytyy
+toistoehdon tarkastushetkeä lukuunottamatta tismalleen samoin kuin while-looppi. Yleisimmin tätä
+looppia käytetään, kun halutaan loopin rungon tulevan ajetuksi ainakin kerran. Seuraava
+koodiesimerkki esittelee tällaisen tilanteen: toistoehto on koko ohjelman ajan epätosi, mutta
+loopin runko ajetaan kuitenkin kerran, koska toistoehto tarkastetaan vasta ajon jälkeen. Tämä ei
+olisi mahdollista while-loopilla.
+
+\code{week3}{BasicDoWhileLoop}{Do while -loopin käyttö Javassa}
+
+\subsection{Avainsanat break ja continue}
+
+\newthought{Looppeja käyttäessä} on yleensä tarve ohittaa osa loopin rungon ajosta tai keskeyttää
+loopin ajo ennen kuin toistoehto täyttyy tai iteroitava joukko on käyty kokonaan läpi. Esimerkiksi
+hakuoperaatiossa on toivottavaa poistua toistorakenteesta heti kun toivottu alkio löytyy. Tätä
+varten Javassa on kaksi avainsanaa: \newjava{break} ja \newjava{continue}. \java{break}-avainsana
+keskeyttää loopin toistamisen ja poistuu toistorakenteesta, kun taas \java{continue} keskeyttää
+yhden toiston ja aloittaa seuraavan toiston saman tien. Avainsanat mahdollistavat toistorakenteen
+tarkemman ohjauksen. Seuraava esimerkki esittelee molempien avainsanojen käytön toistorakenteessa,
+joka luettelee parillisia lukuja nollasta alkaen maxNumber-muuttujassa määriteltyyn
+maksimiarvoon asti.
+
+\code{week3}{BasicBreakContinue}{Break- ja continue-avainsanojen käyttö Javassa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
