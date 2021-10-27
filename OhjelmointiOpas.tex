@@ -722,9 +722,47 @@ primitiivisten tietotyyppien säilömistä.
 
 \section{Toistorakenteet}
 
+\newthought{Edellä esitellyiden} kokoelmarakenteiden esimerkkikoodista oli ehkä jo havaittavissa
+toistuvat samankaltaiset kutsut, jotka aiheuttivat rumaa koodia ja pidensivät esimerkkejä turhaan.
+Kuten missä tahansa itseään kunnioittavassa ohjelmointikielessä, myös Javassa on olemassa
+toistorakenteita, joilla kokoelmien käsittely ja muut monesti toteutettavat koodin osat saadaan
+kirjoitettua järkevämpään, luettavampaan ja helpommin muokattavaan muotoon.
+
 \subsection{For-looppi}
 
+\newthought{For-looppi} luodaan \newjava{for}-avainsanalla. Se poikkeaa pythonin for-loopista
+ja muistuttaa sen sijaan c:n for-looppia. Pythonin for-looppi tunnetaan Javassa foreach-looppina
+ja käsitellään myöhemmin. For-avainsanan jälkeen for-loopissa seuraa iterointiehto sulkujen
+sisällä. Iterointiehto jaetaan kolmeen osaan kahdella puolipilkulla. Ensimmäinen osa kertoo,
+mikä muuttuja toimii iterointiehtona, toinen millä kyseisen muuttujan arvoilla iterointia
+jatketaan ja kolmas mitä muuttujalle tehdään jokaisen iteraation jälkeen. Yksi yleisimmistä
+iterointiehdoista on "(int i = 0; i < n; i++)". Auki luettuna tämä tarkoittaa:
+
+1: Määritä iterointimuuttuja "i", joka on tyyppiä "int" joka on alustettu arvoksi 0
+
+2: Iteroi niin kauan, kun i on pienempi kuin tavoiteluku n
+
+3: Jokaisen iteraation jälkeen kasvata i:n arvoa yhdellä
+
+++ on Javan iterointioperaattori joka käydään tarkemmin läpi tämän luvun lopussa. Se kasvattaa
+muuttujan arvoa yhdellä. Käytännössä koko iterointiehto siis tarkoittaa "Toista loopin rungossa
+olevaa koodia n kertaa, niin että muuttujaan i on sidottu lukuarvo, joka kertoo mones iteraatio
+on kyseessä." Muuttujaa i voidaan käyttää loopin ruumiin sisällä. 
+
+\newthought{For-looppia} käytetään yleensä lukujoukkojen iteroimiseen esimerkiksi taulukkojen
+alustuksessa. On huomioitavaa, että kokoelmien iterointi on yleensä helpompaa foreach-loopilla.
+For-loopin iterointiehtona voi myös toimia jo olemassa oleva muuttuja, iterointiehdoksi ei ole
+aina pakko luoda uutta muuttujaa. Jos iterointiehdoksi luodaan uusi muuttuja, se näkyy vain
+loopin sisällä. Seuraava koodiesimerkki esittelee for-loopin luomisen ja käytön perusteet käytännössä.
+
+\code{week3}{BasicForLoop}{For-loopin käyttö Javassa}
+
 \subsection{While-looppi}
+
+\newthought{While-looppi} on toistorakenne, jossa \java{for}-loopin tapaan sidotaan toistoehto
+johonkin totuusarvoon, yleensä tietyn muuttujan suhteen. Toisin kuin for-loopissa, while loopissa
+toisto ei tapahdu iterointimaisesti yhden muuttujan sijaan. Sen sijaan looppi luodaan
+\newjava{while}-avainsanalla
 
 \subsection{Foreach-looppi}
 

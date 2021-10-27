@@ -264,3 +264,96 @@ on merkkijonoavaimet ja kokonaislukuarvot voidaan siis luoda seuraavalla koodinp
 \newline{}"new HashMap<String, int>"\newline{}Huomioi, että avaimen tyyppi annetaan ensimmäisenä},
 	see={geneerinen luokka,hajautustaulu}
 }
+
+\newglossaryentry{java:for}
+{
+	type=java,
+	name=for,
+	description={Avainsana, joka alustaa for-loopin tai foreach-loopin. Avainsanaa seuraa loopin
+toistoehto sulkuihin suljettuna. Toistoehto määrittää miten kauan looppia ajetaan. For-loopissa
+ehto on kolmiosainen: ensimmäinen osa kertoo mikä muuttuja määrittää toistoehdon, toinen millä
+kyseisen muuttujan arvoilla toistoa jatketaan ja kolmas mitä muuttujalle tehdään jokaisen toiston
+jälkeen. Foreach-loopissa toistoehto määrittää kokoelman, jonka yli looppi iteroi. Kummassakin
+looppityypissä toistoehdon jälkeen seuraa loopin runko suljettuna kaarisulkuihin. Molemmat loopit
+tukevat continue- ja break-avainsanoja},
+	see={java:continue,java:break}
+}
+
+\newglossaryentry{java:while}
+{
+	type=java,
+	name=while,
+	description={Avainsana, joka luo while-loopin. Avainsanaa seuraa loopin toistoehto sulkuihin
+suljettuna totuusarvona. Tämän jälkeen annetaan loopin runko kaarisulkeisiin suljettuna. Runkoa
+toistetaan niin kauan, kunnes annettu totuusarvo on epätosi. Tukee continue- ja 
+break-avainsanoja. Määrittää toistoehdon do-loopissa},
+	see={java:continue,java:break,java:do}
+}
+
+\newglossaryentry{java:do}
+{
+	type=java,
+	name=do,
+	description={Avainsana, joka luo do-while -loopin. Avainsanaa seuraa loopin runko
+kaarisulkuihin suljettuna. Rungon jälkee määritellään loopin toistoehto while-avainsanalla, niin,
+että avainsana kirjoitetaan rungon perään ja toistoehto suljetaan avainsanan jälkeen sulkuihin.
+Toisin kuin while-looppi, joka tarkistaa toistoehdon ennen jokaista toistoa, do-while tarkistaa
+toistoehdon jokaisen toiston jälkeen. Tukee continue- ja break-avainsanoja},
+	see={java:while,java:continue,java:break}
+}
+
+\newglossaryentry{java:switch}
+{
+	type=java,
+	name=switch,
+	description={Avainsana, joka aloittaa valikkorakenteen. Avainsanaa seuraa valintaehto
+sulkuihin suljettuna. Valikkorakenne koostuu case-avainsanalla määritellyistä haaroista ja
+mahdollisesta default-avainsanalla määritellystä oletushaarasta. Koko valikkorakenne suljetaan
+kaarisulkuihin. Valikkoehto lasketaan rakenteen alussa ja kaikki haarat, joiden arvo vastaa
+laskettua ehtoa ajetaan järjestyksessä. Valikkorakenteesta voi poistua break-avainsanalla, mutta
+se ei tue continue-avainsanaa. On normaalia päättää jokainen haara break-avainsanalla, jotta
+haaroja ei ajettaisi vahingossa useampaa, ellei useamman haaran ajaminen ole
+tarkoituksenmukaista},
+	see={java:case,java:default,java:break}
+}
+
+\newglossaryentry{java:case}
+{
+	type=java,
+	name=case,
+	description={Avainsana, joka määrittää yksittäisen haaran switch-avainsanalla luodun
+valikkorakenteen sisällä. Avainsanaa seuraa välilyönnillä erotettu haaran arvo, jota verrataan
+switch-avainsanan määrittämään valintaehtoon. Haarat, joiden arvo toteutuu valintaehdossa ajetaan
+järjestyksessä. On normaalia päättää haara break-avainsanaan, joka lopettaa koko rakenteen
+ajamisen, ellei tavoitteena ole ajaa useampaa haaraa peräkkäin. Oletushaara, joka ajetaan, mikäli
+mikään haara ei vastaa valintaehtoa voidaan määrittää default-avainsanalla},
+	see={java:switch,java:break,java:default}
+}
+
+\newglossaryentry{java:default}
+{
+	type=java,
+	name=default,
+	description={Avainsana, joka määrittää oletushaaran switch-avainsanalla luodussa
+valikkorakenteessa. Oletushaara ajetaan, jos valikkorakenteen valintaehto ei täsmää mitääm muuta
+rakenteessa määriteltyä haaraa},
+	see=java:switch
+}
+
+\newglossaryentry{java:break}
+{
+	type=java,
+	name=break,
+	description={Avainsana, joka lopettaa toistorakenteen toiston kokonaan tai poistuu
+switch-rakenteesta. Käytettävissä kaikissa loopeissa ja switch-valintarakenteessa},
+	see={java:for,java:while,java:do,java:switch}
+}
+
+\newglossaryentry{java:continue}
+{
+	type=java,
+	name=continue,
+	description={Avainsana, joka lopettaa toistorakenteen toiston ja aloittaa seuraavan toiston
+saman tien. Käytettävissä kaikissa loopeissa},
+	see={java:for,java:while,java:do}
+}
