@@ -20,6 +20,7 @@
 *.cb2
 *.jvd
 *.jvg
+*.tks
 .*.lb
 
 ## Intermediate documents:

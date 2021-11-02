@@ -28,6 +28,8 @@ Erno Vanhalalle.}}
 % For nicely typeset tabular material
 \usepackage{booktabs}
 
+\usepackage[utf8]{inputenc}
+
 %%
 % Prints a trailing space in a smart way.
 \usepackage{xspace}
@@ -131,6 +133,7 @@ under the License.\index{license}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Esipuhe}
+\label{esipuhe}
 
 \newthought{Tämä opas} on kirjoitettu osaksi \lutin olio-ohjelmoinnin perusteiden kurssin
 kurssimateriaaleja. Opas käy läpi koko kurssin  teoriasisällön lukuunottamatta Android-API:n
@@ -147,6 +150,7 @@ perusteet, jotka käydään läpi esimerkiksi \lutin "Ohjelmoinnin Perusteet"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Oppaan rakenne}
+\label{rakenteesta}
 
 \newthought{Opas on jaettu} kahteentoista sisältölukuun ja kahteentoista bonuslukuun. Sisältöluvut
 käsittelevät kurssilla käsiteltäviä sisältöjä ja sisältävät kaiken kurssin sisältöön kuuluvan
@@ -166,6 +170,7 @@ Niiden lukeminen on siis täysin vapaaehtoista.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Termistö ja kieli oppaassa}
+\label{kielestä}
 
 \newthought{Oppaan pääasiallisena} kielenä koodiesimerkkejä lukuunottamatta toimii suomi muun
 kurssimateriaalin kielivalinnan mukaan. Oppaan käyttämä termistö on tämän vuoksi käännetty Javan
@@ -189,6 +194,7 @@ ja uudestaan mainittu tältä: \javanogls{example}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Koodiesimerkit oppaassa}
+\label{koodiesimerkeistä}
 
 \newthought{Opas tarjoaa} kattavat koodiesimerkit kaikista siinä käsiteltävistä aihealueista.
 Koodiesimerkit ovat lyhyitä, toimivia, koodinpätkiä ja ne sijaitsevat heti esitellyn konseptin
@@ -209,6 +215,7 @@ koodin opetusmaisen luonteen vuoksi monisanaisempaa ja yleisempää kuin suositu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Abstraktio laadukkaan koodin pohjana}
+\label{abstraktiosta}
 
 \newthought{Oliopohjainen ohjelmointi} on ohjelmointiparadigma, joka on kehitetty vastaamaan
 ohjelmistotuotannon peruskysymykseen: kuinka kirjoittaa ymmärrettävää ja ylläpidettävää koodia
@@ -234,6 +241,7 @@ datan ja sitä käsittelevien funktioiden sijainti koodissa?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Oliopohjaisen ajattelun perusteet}
+\label{oliopohjaisesta ajattelusta}
 
 \newthought{Olio-ohjelmoinnissa ohjelmisto} koostuu kokonaan keskenään kommunikoivista yksiköistä.
 Näille yksiköille vakiintunut kutsumanimi on \neweng{olio}{object}. Oliot koostuvat datasta ja
@@ -277,6 +285,7 @@ joten vaikka tiedon määrä voi tuntua nyt kohtuuttomalta ei kannata huolestua 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Koodin laadun mittaamisesta}
+\label{koodin laadusta}
 
 \newthought{Jotta ohjelmistojen} modulaarisuus saadaan toivotulle tasolle on tärkeää miettiä mitä
 metodeja tai dataa luokka paljastaa muulle ohjelmistolle. Oliopohjaiset kielet sisältävätkin
@@ -326,6 +335,7 @@ tuotetun koodin laatua huomaamattomasti.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
 \section{Java ohjelmointikielenä}
+\label{javasta}
 
 \newthought{Java} on staattisesti tyypitetty korkean tason oliopohjainen ohjelmointikieli, joka
 pyrkii standardisoimaan ohjelmien kirjoittamisen alustasta riippumatta. Java-ohjelmat käännetään
@@ -343,8 +353,10 @@ kopioitua.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Javan syntaksin alkeet}
+\label{syntaksin alkeista}
 
 \subsection{Kommentointi}
+\label{kommentointi}
 
 \newthought{Suurin osa} ohjelmointikielistä tukee ainakin yhtä kommentointisyntaksia. Javassa on
 kaksi pääasiallista tapaa merkata koodissa oleva teksti kommentiksi. Yhden rivin kommentti voidaan
@@ -355,6 +367,7 @@ koodista, sen tehtävä on vain selventää miten kommenttien sijoittelu vaikutt
 \code{week2}{CommentingExample}{Kommentointi Javassa}
 
 \subsection{Primitiiviset tietotyypit ja String}
+\label{tietotyypit}
 
 \newthought{Yksiä tärkeimmistä} koodin osista ovat ehdottomasti \textit{\gls{muuttuja}t}
 \eng{variable}. Ne ovat koodissa määriteltyjä tietokenttiä, jotka kykenevät säilömään joko jonkin
@@ -412,20 +425,23 @@ hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Toimivan ohjelman perusteet}
+\label{ohjelman perusteista}
 
 \subsection{Oliopohjaisen ohjelman ajaminen: main-metodi}
+\label{main}
 
 \newthought{Luokat ovat} Javan ydin ja kaiken koodin rakennuspala. Kaikki koodi Javassa on
 suljettava luokan sisään, niin myös ohjelman ajon aloittava koodi. Tästä syystä jokaisessa
 Java-ohjelmistossa on yksi erikseen määritelty pääluokka, joka sisältää main-metodin. Tämä
 metodi määritellään avainsanoilla \java{public} \java{static} \java{void} ja sen 
 \neweng{signatuuri}{signature} on \java{main}(\java{String}[] args). Void-avainsana selitetään
-myöhemmin kappaleessa ja static-avainsana kappaleessa *x*. % TODO: lisää kappaleen numero
+myöhemmin tässä kappaleessa ja static-avainsana kappaleessa \nameref{static}.
 Toistaiseksi riittää sisällyttää nämä avainsanat annetussa järjestyksessä main-metodin
 määritelmään. Pääluokan ei tarvitse olla ainoa main-metodin sisältävä luokka, mutta vain yhden
 ennalta määritellyn luokan main-metodi ajetaan ohjelman käynnistyksen yhteydessä.
 
 \subsection{Luokan luomisen syntaksi}
+\label{luokka}
 
 \newthought{Luokka luodaan} Javassa luokat luodaan \newjava{class} avainsanalla. Avainsana
 tarkistaa edestään myös näkyvyysmääreen (käsitellään seuraavassa alakappaleessa). Yleisin tapa
@@ -436,6 +452,7 @@ pääluokan luonti (huomaa pääluokan nimeämisen vapaus) ja sen sisään "Hell
 main-funktion lisääminen.
 
 \subsection{Tulostaminen Javassa}
+\label{print}
 
 \newthought{Tekstin tulostaminen} komentoikkunaan on varmasti tuttua aiemmasta
 ohjelmointikokemuksesta. Javassa tulostukseen käytetään yleensä standardikirjaston 
@@ -451,12 +468,14 @@ ajankohtaisia ja opas käyttää "\java{System}.out.println" metodia tulostuksee
 \code{week2}{HelloWorld}{Yksinkertaisen pääluokan ja main-funktion luominen Javassa}
 
 \subsection{Metodin määritteleminen ja kutsuminen}
+\label{metodi}
 
 \newthought{Metodin määritelmä} koostuu Javassa metodin paluuarvon tyypistä, metodin nimestä
 ja sitä seuraavasta sulkuihin suljetusta parametrien määritelmästä ja lopulta kaarisulkuihin
 suljetusta metodin koodista. Metodin parametrit vaativat pythonista poiketen parametrin nimen
 määritelmän lisäksi myös parametrin tyypin määrittämistä. Vastaavasti metodia kutsuttaessa on
-argumenttien, jolla metodia kutsutaan oltava metodin yhteydessä määriteltyä tyyppiä.
+argumenttien, jolla metodia kutsutaan oltava metodin yhteydessä määriteltyä tyyppiä. Jos metodi
+ei palauta mitään, määritellään sen paluuarvoksi \newjava{void}.
 
 \newthought{Metodien nimeämisessä} suositellaan Javassa vahvasti niin sanottua camel case-
 nimeämistapaa. Tavassa kaikki nimen sanat kirjoitetaan yhteen niin, että nimi aloitetaan
@@ -465,7 +484,8 @@ pienellä kirjaimella ja seuraavat sanat aloitetaan isolla alukirjaimella. Täte
 verbiä metodin nimessä. Tämä helpottaa metodien ja muuttujien erottamista ja pakottaa
 myös ajattelemaan koodin laatua: hyvä metodi tekee vain yhden asian, joten jos nimeäminen
 simppelissä verbimuodossa ei onnistu, olisi ehkä syytä jakaa metodi useampaan pienempään
-metodiin.
+metodiin. Metodin palautusarvo määritellään \newjava{return}-avainsanalla. Avainsana lopettaa
+metodin ajamisen ja palauttaa avainsanasta välilyönnillä erotetun arvon.
 
 \newthought{Metodia kutsutaan} Javassa pistenotaatiolla metodin omistavasta oliosta. Tämä
 olio on yleensä tallennettuna muuttujaan jonkin toisen luokan sisällä. Esimerkiksi jos olio
@@ -477,6 +497,7 @@ palauttaa tämän tyypin muuttujan, jota voidaan käyttää koodissa.
 \code{week2}{BasicMethod}{Metodin kutsuminen Javassa}
 
 \subsection{If-lause ja else-lause}
+\label{if else}
 
 \newthought{Ohjelmointi on} pohjimmiltaan logiikkaa. Ohjelman ajon muokkaaminen olosuheiden
 mukaan tekee ohjelmasta älykkään. Yksinkertaisin tapa muokata ohjelman toimintaa on
@@ -500,9 +521,60 @@ että normaalisti ehtolauseiden arvoa ei tiedetä ennen ohjelman ajoa, vaan se m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Javan ominaispiirteitä}
+\section{Lisää Javan konsepteja}
+\label{ohjelman perusteista2}
+
+\subsection{Rakentajat, luokan instanssin luominen ja this}
+\label{new this}
+
+\newthought{Olioiden hallinta} on Javalla ohejlmoinnin ytimessä. Koodissa on luotava uusia
+instansseja sekä Javan standardikirjaston luokista, että käyttäjän itse määrittelemistä luokista.
+Uusi instanssi luokasta luodaan \newjava{new}-avainsanalla. Avainsanaa seuraa luotavan luokan
+nimi ja luomisen parametrit sulkuihin suljettuna, tai tyhjä pari sulkuja.
+
+\newthought{Luokan Instanssin} luonti tyhjänä ja alustamattomana on usein kömpelöä ja vaatisi
+useita rivejä manuaalista arvojen asettamista jokaisen uuden instanssin luonnin yhteydessä.
+Instanssien konfiguroimista varten Java tarjoaa \neweng{rakentaja}{constructor} -ominaisuuden.
+Rakentaja on metodi, joka määritellään luokan sisällä erityisellä syntaksilla ja joka palauttaa
+luokan instanssin. Rakentaja määritellään ilman paluuarvoa ja sen nimi on identtinen luokan nimen
+kanssa. Rakentajan voi määritellä ottamaan mitä tahansa argumentteja kyseinen tapaus tarvitsee.
+Rakentajametodi ei tarvitse \java{return}-avainsanaa, vaan palauttaa automaattisesti
+käsittelemänsä instanssin.
+
+\newthought{Rakentajan yhteydessä} on tärkeää puhua \newjava{this}-avainsanasta. This tarjoaa
+ohjelmalle mahdollisuuden viitata luokan instanssiin, jolle jokin metodi kuuluu. This toimii
+vain rakentajassa ja instanssiin sidotussa metodissa, eli konteksteissa, joissa instanssi, johon
+viitataan on tiedossa. Täten rakentajassa voidaan yhdistämällä this-avainsana ja pistenotaatio
+viitata helposti rakennettavaan instanssiin.
+
+\newthought{Seuraava koodiesimerkki} esittelee rakentajan määrittelemisen ja new-avainsanan
+käytön rakentajan kanssa. On huomioitavaa, että seuraavassa alakappaleessa käsiteltävä
+ylikuormittaminen toimii myös rakentajametodeihin, eli luokalla voi olla useampi ylikuormitettu
+rakentajametodi. Koodiesimerkki kuitenkin käyttää vain yhtä rakentajametodia.
+
+\code{week2}{BasicConstructorChild}{Rakentajan luonti Javassa}
+\code{week2}{BasicConstructor}{\java{new}-avainsanan käyttö}
+
+
+\subsection{Metodin ylikuormitus}
+\label{overloading}
+
+\newthought{Joskus on} toivottavaa tukea useampaa eri yhdistelmää argumentteja metodikutsulle.
+Pythonissa tämä onnistuu oletusarvoilla, mutta Java ei tue oletusarvoja argumenteille. Sen
+sijaan Javassa on olemassa konsepti nimeltä \neweng{ylikuormitus}{overloading}.
+Ylikuormittamisessa määritellään koodissa jo käytetty metodinimi uudestaan, erilaisilla
+argumenteilla. Jos argumenttejä on sama määrä kuin ylikuormitettavassa metodissa, pitää vähintään
+yhden argumentin tietotyypin poiketa alkuperäisestä metodista. Jos argumenttejä on eri määrä, ei
+niiden tietotyypeillä ole väliä. Java hakee metodikutsun yhteydessä automaattisesti kutsun
+signatuuria vastaavan version ylikuormitettua metodia kutsuttaessa. Seuraavassa esimerkissä
+esitellään ylikuormitetun metodin käyttö luomalla tulostusmetodi, joka ilmoittaa, onko
+tulostettavan muuttujan tietotyyppi int vai String.
+
+\code{week2}{BasicOverloadingChild}{Lapsiluokka ylikuormittamisesimerkkiin}
+\code{week2}{BasicOverloading}{Ylikuormittaminen Javassa}
 
 \subsection{Näkyvyysmääreet}
+\label{näkyvyysmääreet}
 
 \newthought{Lähes kaikkien} koodin osien, kuten muuttujan, metodin, interface-luokan tai luokan
 luominen Javassa tukee kyseisen koodin osan näkyvyyden määrittämistä. Tämä määritelmä on nimeltään 
@@ -555,6 +627,7 @@ koodiesimerkissä periytyvyyden yhteydessä kappaleessa *x*. % TODO: lisää luk
 \code{week2}{AccessModifierExampleMain}{Näkyvyysmääre-esimerkin pääluokka}
 
 \subsection{Noutajat ja asettajat}
+\label{get set}
 
 \newthought{Java neuvoo} käyttäjiään alustamaan kaikki muuttujat \java{private} näkyvyysmääreellä.
 Tämä tarkoittaa, että koodatessa virallisten suositusten mukaista Javaa ohjelmoija tuottaa vain
@@ -591,8 +664,10 @@ asettaja -mallin sijaan.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Syötteen vastaanottamisen perusteet}
+\label{syötteestä}
 
 \subsection{Käyttäjän syötteen vastaanottaminen Javassa}
+\label{input}
 
 \newthought{Komentoriviin perustuvan} ohjelman tuottaminen vaatii paitsi kykyä tulostaa
 komentoriville tekstiä, myös kykyä kerätä käyttäjältä syötettä. Tätä varten Javasta löytyy
@@ -636,10 +711,12 @@ luomiseen. Kun instanssi on luotu kerran on sen käyttäminen onneksi simppeliä
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Kokoelmarakenteet, toistorakenteet ja lisää oliopohjaista ajattelua}
+\label{perusteet2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Kokoelmarakenteet}
+\label{kokoelmista}
 
 \newthought{Ohjelmistot käsittelevät} yleensä huomattavia määriä dataa. Ei ole mielekästä, eikä
 yleensä edes mahdollista määritellä kaikille mahdollisille datayksiköille omaa muuttujaansa.
@@ -649,6 +726,7 @@ kokoelmarakenteita erityyppisiin tilanteisiin, mutta opas käy läpi vain yleisi
 kokoelmat.
 
 \subsection{Taulukot}
+\label{taulukot}
 
 \newthought{Yksinkertaisin kokoelmarakenteista} on \neweng{taulukko}{array}, joka löytyy
 simppeliytensä vuoksi useasta ohjelmointikielestä. Taulukko on tehokas rakenne indeksipohjaisissa
@@ -672,6 +750,7 @@ olemassa olevasta taulukosta.
 \code{week3}{BasicArray}{Taulukkojen käyttö Javassa}
 
 \subsection{Listat}
+\label{listat}
 
 \newthought{Todennäköisesti yleisin} tietorakenne datajoukkojen säilömiseen on lista. Javan
 standardikirjasto sisältää useamman listamaisen implementaation, mutta niistä yleisimmin käytetty 
@@ -696,6 +775,7 @@ ja poistamisen.
 \code{week3}{BasicArrayList}{ArrayList-luokan käyttö Javassa}
 
 \subsection{Hajautustaulut}
+\label{HashMap}
 
 \newthought{Välillä kokoelman} sisältämää dataa on tarve yhdistää muuhun dataan. Vaikka
 olio-ohjelmoinnin hengen mukaisesti datan yhdistäminen tapahtuu luomalla uusi luokka tai
@@ -721,6 +801,7 @@ primitiivisten tietotyyppien säilömistä.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Toistorakenteet}
+\label{loopeista}
 
 \newthought{Edellä esitellyiden} kokoelmarakenteiden esimerkkikoodista oli ehkä jo havaittavissa
 toistuvat samankaltaiset kutsut, jotka aiheuttivat rumaa koodia ja pidensivät esimerkkejä turhaan.
@@ -729,6 +810,7 @@ toistorakenteita, joilla kokoelmien käsittely ja muut monesti toteutettavat koo
 kirjoitettua järkevämpään, luettavampaan ja helpommin muokattavaan muotoon.
 
 \subsection{For-looppi}
+\label{for}
 
 \newthought{For-looppi} luodaan \newjava{for}-avainsanalla. Se poikkeaa pythonin for-loopista
 ja muistuttaa sen sijaan c:n for-looppia. Pythonin for-looppi tunnetaan Javassa foreach-looppina
@@ -758,6 +840,7 @@ loopin sisällä. Seuraava koodiesimerkki esittelee for-loopin luomisen ja käyt
 \code{week3}{BasicForLoop}{For-loopin käyttö Javassa}
 
 \subsection{For-each-looppi}
+\label{for each}
 
 \newthought{Edellisessä kappaleessa} mainittiin, että kokoelmien yli iterointi on Javassa
 helpompaa foreach-rakenteella, kuin for-rakenteella. Rakenteet muistuttavat toisiaan siinä
@@ -772,6 +855,7 @@ yli iteroimisen for-each -loopilla.
 \code{week3}{BasicForEachLoop}{For-each -loopin käyttö Javassa}
 
 \subsection{While-looppi}
+\label{while}
 
 \newthought{While-looppi} on toistorakenne, jossa \java{for}-loopin tapaan sidotaan toistoehto
 johonkin totuusarvoon, yleensä tietyn muuttujan suhteen. Toisin kuin for-loopissa, while loopissa
@@ -785,6 +869,7 @@ käytön.
 \code{week3}{BasicWhileLoop}{While-loopin käyttö Javassa}
 
 \subsection{Do-while -looppi}
+\label{do while}
 
 \newthought{Välillä ilmenee} tarve käyttää while-loopin kaltaista toistorakennetta, mutta
 tarkistaa toistoehdon totuusarvo vasta jokaisen toiston jälkeen. Tätä varten Javasta löytyy 
@@ -800,6 +885,7 @@ olisi mahdollista while-loopilla.
 \code{week3}{BasicDoWhileLoop}{Do while -loopin käyttö Javassa}
 
 \subsection{Avainsanat break ja continue}
+\label{break continue}
 
 \newthought{Looppeja käyttäessä} on yleensä tarve ohittaa osa loopin rungon ajosta tai keskeyttää
 loopin ajo ennen kuin toistoehto täyttyy tai iteroitava joukko on käyty kokonaan läpi. Esimerkiksi
@@ -816,24 +902,99 @@ maksimiarvoon asti.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Javan ajamisen teoriaa}
+\label{virtuaalikoneesta}
 
-\subsection{Tulkkaus vastaan kompilointi}
+\newthought{Javan ajaminen} perustuu Javan virtuaalikoneeseen, joka luo ohjelmille oman pienen
+hiekkalaatikon käyttöjärjestelmän sisällä ja standardoi täten ohjelmat alustasta riippumatta.
+Tässä kappaleessa kurkataan hieman virtuaalikoneen toimintaan ja käyttöön ohjelmoijan
+näkökulmasta.
+
+\subsection{Tulkkaus vastaan kääntäminen}
+\label{JIT}
+
+\newthought{Ohjelmointikielet} voidaan jakaa karkeasti kahteen ryhmään sen mukaan, miten niillä
+kirjoitettu ohjelma ajetaan. Jos kysessä on \neweng{tulkattu kieli}{intrepeted language},
+ohjelmakoodia luetaan suoraan tekstitiedostosta ajon aikana tarpeen mukaan. Jos kyseessä on taas
+\neweng{kaannetty kieli}{compiled language}, ohjelmakoodi kompiloidaan ennen ajoa. Java on
+mielenkiintoinen tapaus tässä suhteessa, sillä Javaa ajettaessa ohjelmakoodi kompiloidaan
+tavukoodiksi, jota Javan virtuaalikone ajaa. Tavukoodin ajotapa riippuu virtuaalikoneesta, mutta
+yleensä Javan tavukoodin ajotekniikka on
+\neweng{ajonaikainen kaantaminen}{Just-In-Time compiling}.
+
+\newthought{Ajonaikainen kääntäminen} on ohjelman ajamissstrategia, jossa ennalta tuotettua
+tavukoodia käännetää dynaamisesti ohjelman ajon aikana konekieliseen muotoon. Tämä eroaa
+ratkaisevasti tulkkaamisesta, tarjoten paremman, lähes kääntämiseen verrattavan suorituskyvyn
+pienen käynnistysviiveen kustannuksella. Lisäksi älykkäät kääntäjät voivat optimoida koodia
+dynaamisesti ajon aikana. Lisäksi kaikkia tavukooditiedostoja ei tarvitse kääntää uudestaan aina,
+kun koodia muokataan, joten iterointi on nopeampaa kuin aidoissa käännetyissä kielissä.
+
+\newthought{Tämä tarkoittaa}, että Java-ohjelman kääntäminen ja ajaminen vie vähemmän aikaa, kuin
+c:llä tai muulla käännettävällä kielellä. Ohjelman ajaminen ei kuitenkaan tapahdu saman tien niin
+kuin tulkatulla kielellä, vaan bittikoodin kompilointi ja ajonaikaisen kääntämisen aloittaminen
+vie hieman aikaa. Ajonaikaisen kääntämisen suorituskyky on lähellä käännettyjä kieliä, muttei ihan
+samaa tasoa. Suorituskyky on kuitenkin huomattavasti parempi kuin tulkatuilla kielillä.
 
 \subsection{Muistinhallinta ja garbage collector}
+\label{GC}
+
+\newthought{Mikäli olet} ohjelmoinut aiemmin vain pythonin kaltaisilla korkeamman tason kielillä,
+muistinhallinta ei välttämättä ole tuttu asia. Myös Java abstraktoi korkean tason kielenä
+muistinhallinnan pois käyttäjältä, joten toimivan ohjelman luominen ei vaadi muistinhallinnasta
+välittämistä. Ohjelmojen optimoinnin kannalta on kuitenkin hyödyllistä ymmärtää muistinhallinnan
+perusteet.
+
+\newthought{Javan muistinhallinnan} pohjana on niin sanottu
+\neweng{roskankeruu}{garbage collection}. Roskankeruun ideana on ajaa erillinen roskankeruuohjelma
+tietyin väliajoin. Tämä ohjelma käy läpi muistissa olevat muuttujat ja tarkistaa jokaisen
+muuttujan kohdalla, onko ohjelmassa aktiivisia viittauksia kyseiseen muuttujaan. Tämän jälkeen
+ohjelma poistaa kaikki muuttujat, joihin ei ole olemassa aktiivisia viittauksia. Ohjelmien
+suorituskyvyn parantaminen muistijalanjäljen suhteen onnistuu siis Javassa miettimällä tarkkaan,
+miten laajalle alueelle muuttuja näkyy: funktion sisään rajoitettu muuttuja on huomattavasti
+ystävällisempi muistinkäytön kannalta kun luokkaan tallennettu muuttuja.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Lisää Javan konsepteja}
+\label{loput perusteet}
+
+\newthought{Tässä vaiheessa} opasta on käyty läpi onnistuneesti suurin osa Javan
+peruskonsepteista. Reilusti yli kaksikymmentä vuotta vanhassa kielessä on kuitenkin valtava määrä
+avainsanoja, konsepteja ja syntaksikikkoja. Seuraavat alakappaleet käsittelevät muutamia
+tärkeimpiä konsepteja Javan käytössä. Moni avainsana jää tässä käsittelemättä, mutta suurin osa
+ohjelmointikielien oletetusta ominaisuusjoukosta täyttyy seuraavien konseptien avulla.
 
 \subsection{Luokkamuuttujat, luokkafunktiot ja static}
+\label{static}
+
+\newthought{Oppaassa viitattiin} aiemmin jo luokkamuuttujiin/-metodeihin kappaleessa
+\nameref{main}. Luokkamuuttujat ja -metodit on sidottu ne omistavaan luokkaan luokan instanssin
+sijasta. Kaikki luokan instanssit voivat käyttää luokkamuuttujia tai kutsua luokkametodeja, mutta
+luokkametodin sisällä ei voi viitata instanssimuuttujaan, ainoastaan luokkamuuttujiin.
+Luokkametodeja ja -muuttujia voidaan kutsua myös luokan nimen avulla pistenotaatiolla luokan
+ulkopuolella. Esimerkiksi tulostamiseen käytetty \java{System}.out on oikeastaan luokkamuuttuja
+out standardikirjaston System-luokassa.
+
+\newthought{Luokkametodit ja -muuttujat} luodaan \newjava{static}-avainsanalla. Avainsanan
+sijainti voi olla ennen tai jälkeen näkyvyysmääreen, mutta normalisoitu tyyli on kirjoittaa
+näkyvyysmääre ennen static-avainsanaa. Main-metodi on siis luokkametodi ohjelman juuriluokassa.
+Tämä tarkoittaa, ettei Javan tarvitse alustaa juuriluokan instanssia ohjelman ajon aluksi.
+Seuraava esimerkki esittelee luokkametodin luomisen apuriluokkaan ja kutsumisen apuriluokan
+ulkopuolelta ilman apuriluokan instanssia.
+
+\code{week3}{BasicStaticChild}{Luokkametodin luominen \java{static}-avainsanalla}
+\code{week3}{BasicStatic}{Luokkametodin kutsuminen metodin määrittelevän luokan ulkopuolella}
 
 \subsection{Tyyppimuunnokset (casting)}
+\label{casting}
 
 \subsection{Vakiot ja final}
+\label{final}
 
 \subsection{Luetellut tyypit (enum)}
+\label{enum}
 
 \subsection{Aritmeettiset- ja bittioperaatiot}
+\label{operaatiot}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
