@@ -134,7 +134,7 @@ instansseja},
 {
 	type=java,
 	name=class,
-	description={Avainsana, joka aloittaa luokan määritelmän.}
+	description={Avainsana, joka aloittaa luokan määritelmän}
 }
 
 \newglossaryentry{java:if}
@@ -373,4 +373,30 @@ viitata}
 	name=return,
 	description={Avainsana, joka aiheuttaa metodista poistumisen ja palauttaa avainsanaa seuraavan
 arvon. Esimerkiksi "return 4", poistuisi metodista saman tien, palauttaen kokonaislukuarvon 4}
+}
+
+\newglossaryentry{java:final}
+{
+	type=java,
+	name=final,
+	description={Avainsana, joka määrittää muuttujjan olevan vakio, tai luokan olevan mahdoton
+periyttää. Voi sijaita ennen tai jälkeen näkyvyysmääreen ja mahdollisen static-avainsanan.
+Normaalisti viimeinen näistä kolmesta}
+}
+
+\newglossaryentry{java:enum}
+{
+	type=java,
+	name=enum,
+	description={Avainsana, joka määrittää luetellun tyypin. Korvaa class-avainsanan luokan
+määrittelyssä. Luetellun tyypin määritelmä tarvitsee runkoonsa ainakin tyypin arvojoukon. Yleensä
+tämän arvojoukon jäsenet kirjoitetaan CONSTANT\_CASE-tyylillä},
+	see={lueteltu tyyppi,java:class}
+}
+
+\newglossaryentry{java:import}
+{
+	type=java,
+	name=import,
+	description={Avainsana, joka määrittää luokan tuotavaksi tiedoston nimitilaan}
 }

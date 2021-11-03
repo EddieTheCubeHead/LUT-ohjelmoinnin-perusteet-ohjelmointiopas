@@ -749,6 +749,18 @@ olemassa olevasta taulukosta.
 \code{week3}{BasicArrayDataPoint}{Dataluokka käytettäväksi taulukkoesimerkissä}
 \code{week3}{BasicArray}{Taulukkojen käyttö Javassa}
 
+\subsection{Paketit ja import}
+\label{import}
+
+\newthought{Tähän mennessä} oppaan käyttämät eri tiedostossa sijaitsevat luokat ovat aina olleet
+osa samaa pakettia, sillä opas jakaa esimerkit paketteihin kappaleen mukaan. Samassa paketissa
+olevat luokat ovat automaattisesti käytettävissä paketin sisällä, joten luokkia ei ole tarvinnut
+tuoda tiedoston nimitilaan tiedoston alussa. Aina tarvittavat luokat eivät kuitenkaan sijaitse
+samassa paketissa. Tätä varten Javassa on \newjava{import}-avainsana. Import-avainsanalla
+listataan tiedoston alussa tiedoston nimitilaan paketin ulkopuolelta tuotavat luokat. Myös Javan
+standardikirjasto sisältää luokkia, jotka on tuotava nimitilaan import-lauseella. Tästä hyviä
+esimerkkejä ovat seuraavaksi käytävät \java{ArrayList} ja \java{HashMap}-luokat.
+
 \subsection{Listat}
 \label{listat}
 
@@ -987,14 +999,112 @@ ulkopuolelta ilman apuriluokan instanssia.
 \subsection{Tyyppimuunnokset (casting)}
 \label{casting}
 
+\newthought{Staattisesti tyypitetyssä} kielessä voi olla välillä tarvetta vaihtaa tunnetun
+muuttujan tyyppiä. Esimerkiksi lukuja käsiteltäessä saattaa olla tarvetta vaihtaa luvun tyyppi
+kokonaisluvusta (\java{int}) liukuluvuksi (\java{float}) tai toisin päin. Java osaa vaihtaa
+muuttujan tyypin automaattisesti, mikäli tavoitetietotyyppi on laajempi kuin alkuperäinen
+tietotyyppi. Käytännössä esimerkiksi \java{int}-tyypin muuttuja voidaan aina muuttaa
+\java{long}-tyypin muuttujaksi, koska \java{long}-tietotyyppi sisältää aina tarvittavan muistin
+\java{int}-tyypin muuttujan säilömiseen. Kuitenkin välillä ei voida taata datan täydellistä
+säilymistä. Tällöin Java vaatii ohjelmoijaa määrittelemään tyypinmuunnoksen manuaalisesti.
+Tämän operaation nimi on \neweng{pakotettu tyypinmuunnos}{casting}.
+
+\newthought{Pakotettu tyypinmuutos} tapahtuu sulkemalla toivottu tietotyyppi muunnettavan
+muuttujan eteen sulkuihin. Java yrittää pakottaa muuttujan annettuun tietotyyppiin riippumatta
+siitä, onko muutos mahdollista, joten pakotettu tyypinmuunnos huonosti harkitussa paikassa voi
+aiheuttaa ongelmia ohjelman ajovaiheessa. Tyypinmuunnosta käsitellään tarkemmin periytymisen
+yhteydessä. Seuraava koodiesimerkki esittelee tyyppimuunnoksen perussyntaksin muuttamalla
+liukulukumuuttujan kokonaisluvuksi.
+
+\code{week3}{BasicCasting}{Tyyppimuunnos primitiivisestä tietotyypistä toiseen Javassa}
+
 \subsection{Vakiot ja final}
 \label{final}
+
+\newthought{Monet ohjelmat} käyttävät vakioarvoja esimerkiksi asetusten tallentamiseen, tai
+helpottamaan numeraalisten vakioiden lukemista koodissa. Javassa on tätä tarkoitusta varten
+erillinen avainsana \newjava{final}. Final-avainsanalla määriteltyyn muuttujaan asetettua arvoa ei
+voi enää muokata sen asettamisen jälkeen. Muuttujan voi määritellä final-avainsanalla asettamatta
+sille arvoa. Tällöin ensimmäinen muuttujaan asetettu arvo jää vakioksi. Tämä on yleistä
+määrittelemällä vakiomuuttuja luokan ruumiissa ja asettamalla sille arvo rakentajassa. Seuraava
+koodiesimerkki esittelee final-avainsanan käytön perusteet.
+
+\code{week3}{BasicFinal}{\java{final}-avainsanan käyttö Javassa}
 
 \subsection{Luetellut tyypit (enum)}
 \label{enum}
 
+\newthought{Mikäli muuttuja} voi saada arvon vain jostain tarkasti rajatusta joukosta, kuten
+ilmansuunnista, voi ensimmäisenä tulla mieleen kuvata näitä arvoja kokonaisluvuilla tai ennalta
+määritellyillä merkkijonoilla. Molemmat tavat toimivat, mutta kokonaisluvut hankaloittavat koodin
+lukemista, koska ohjelmoijan täytyy muistaa mitä arvoa mikäkin luku edustaa. Merkkijonot taas ovat
+alttiita kirjoitusvirheille ja ovat hitaampia käsitellä ajon aikana. Tätä varten suurimmasta
+osasta ohjelmointikieliä löytyy \neweng{lueteltu tyyppi}{enumerated type} -ominaisuus.
+
+\newthought{Lueteltu tyyppi} luodaan Javassa korvaavalla luokan luomisessa \java{class}-avainsana
+\newjava{enum}-avainsanalla. Yksinkertaisimmillaan lueteltu tyyppi sisältää vain kaikkien tyypin
+mahdollisten arvojen määritelmät. Arvot nimetään yleensä CAPITAL\_CASE -nimeämistyylillä,
+erotetaan toisistaan pilkulla ja erotellaan omille riveilleen. Arvoja voi käyttää joko
+pistenotaatiolla arvoluokan nimestä tai jos lueteltu tyyppi on määritelty samassa nimitilassa
+tai tuotu nimitilaan \java{import}-avainsanalla pelkällä arvon nimellä. Seuraavat koodiesimerkit
+esittelevät luetellun tyypin luomisen ja käytön.
+
+\code{week3}{CompassPoint}{Lueteltu tyyppi ilmansuunnista}
+\code{week3}{BasicEnum}{Lueteltuun tyyppiin viittaaminen}
+
 \subsection{Aritmeettiset- ja bittioperaatiot}
 \label{operaatiot}
+
+\newthought{Java sisältää} monia operaatioita lukujen ja tavumuotoisten tietojen käsittelyyn.
+Seuraava taulukko esittelee Javan perusoperaatiot.
+
+\bigskip
+\begin{center}
+\footnotesize
+\begin{tabular}{llll}
+\toprule
+Operaatio & Nimi & Toiminta & Esimerkki \\
+\midrule
++ & summa & a + b & Laskee muuttujat a ja b yhteen \\
+\addlinespace
+- & erotus & a + b & Vähentää muuttujan b muuttujasta a \\
+\addlinespace
+* & tulo & a * b & Laskee muuttujien a ja b tulon \\
+\addlinespace
+/ & osamäärä & a / b & Laskee muuttujien a ja b osamäärän \\
+\addlinespace
+\% & modulo & a \% b & Laskee muuttujan a modulon (jakojäännös) jakajalla b \\
+\addlinespace
+++ & inkrementti & i++ & Kasvattaa kokonaislukumuuttujan i arvoa yhdellä \\
+\addlinespace
+-- & dekrementti & i-- & Vähentää kokonaislukumuuttujan i arvoa yhdellä \\
+\addlinespace
+== & on yhtä suuri kuin & a == b & Palauttaa tosi, jos a on yhtä suuri kuin b \\
+\addlinespace
+!= & on eri suuri kuin & a != b & Palauttaa tosi, jos a on eri suuri kuin b \\
+\addlinespace
+> & suurmepi kuin & a > b & Palauttaa tosi, jos a on suurempi kuin b \\
+\addlinespace
+< & suurmepi kuin & a < b & Palauttaa tosi, jos a on pienempi kuin b \\
+\addlinespace
+>= & suurmepi tai yhtä suuri kuin & a >= b & Palauttaa tosi, jos a suurempi tai yhtä
+suuri kuin b \\
+<= & pienempi tai yhtä pieni kuin & a <= b & Palauttaa tosi, jos a pienempi tai yhtä
+pieni kuin b \\
+\& & bittikohtainen JA & a \& b & Vertaa a:n ja b:n bittirepresentaatiota ja palauttaa
+binäärinumeron,\newline{} jossa on 1 kohdissa, joissa sekä a:ssa että b:ssä on 1, muualla 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Ensimmäinen esimerkkiohjelma: osoitekirja}
+\label{osoitekirja}
+
+\subsection{Osoitekirjaohjelman toimintaidea ja suunnittelu}
+\label{osoitekirja suunnittelu}
+
+\subsection{Osoitekirjaohjelman koodi}
+\label{osoitekirja koodi}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %

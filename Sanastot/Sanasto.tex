@@ -268,3 +268,23 @@ viittauksia ja poistaa muuttujat, joilla ei ole enää aktiivista viittausta}
 Argumenttejä voi olla sama määrä, mutta eri tyypeillä, tai eri määrä. Java hakee metodikutsun
 yhteydessä automaattisesti kutsuttua signatuuria vastaavan version ylikuormitetusta metodista}
 }
+
+\newglossaryentry{pakotettu tyypinmuunnos}
+{
+	name=pakotettu tyypinmuunnos,
+	description={(casting) Operaatio, jossa muuttujan tyyppi yritetään manuaalisesti muuttaa
+joksikin toiseksi tyypiksi. Voi epäonnistua. Tapahtuu kirjoittamalla toivottu tietotyyppi
+muutettavan muuttujan nimen eteen sulkuihin. Esimerkiksi double-tyypin muuttuja "doubleNumber"
+voitaisiin säilöä int-tyypin muuttujaan "intNumber" pakotetun tyyppimuunnoksen avulla seuraavalla
+koodinpätkällä:\newline{}"int intNumber = (int)doubleNumber"}
+}
+
+\newglossaryentry{lueteltu tyyppi}
+{
+	name=lueteltu tyyppi,
+	description={(enumerated type) Ohjelmoijan määrittelemä tyyppi, joka koostuu rajatusta
+arvojoukosta. Jokaisella arvojoukon arvolla on nimi, jolla siihen viitataan koodissa. Ohjelma
+käsittelee kuitenkin arvoja kokonaislukuina, nopeuttaen ajamista. Javassa lueteltu tyyppi luodaan
+enum-avainsanalla},
+	see={java:enum}
+}
