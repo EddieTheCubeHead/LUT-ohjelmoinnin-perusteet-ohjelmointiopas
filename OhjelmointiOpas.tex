@@ -975,6 +975,28 @@ avainsanoja, konsepteja ja syntaksikikkoja. Seuraavat alakappaleet käsittelevä
 tärkeimpiä konsepteja Javan käytössä. Moni avainsana jää tässä käsittelemättä, mutta suurin osa
 ohjelmointikielien oletetusta ominaisuusjoukosta täyttyy seuraavien konseptien avulla.
 
+\subsection{Valikkorakenne, switch ja case}
+\label{switch}
+
+\newthought{Mikäli ohjelmassa} ilmenee tarve valita useasta rinnakkaisesta vaihtoehdosta pitkä
+ketju \java{if}- ja \java{else}-lauseita ei ole helpoin vaihtoehto. Javasta löytyy tällaiseen
+tilanteeseen erillinen valikkorakenne, joka luodaan \newjava{switch}-avainsanalla. Avainsanaa
+seuraa valikkorakenteen määritelmässä sulkuihin suljettu valintaehto. Valintaehdon jälkeen
+seuraa itse valikkorakenteen runko kaarisulkuihin suljettuna. Runko koostuu haaroista, jotka
+määritellään \newjava{case}-avainsanalla. Avainsanaa seuraa valintaehdon arvo, jolla haara
+ajetaan. Jokainen haara lopetetaan yleensä \java{break}-avainsanaan, joka toistorakenteiden
+tapaan poistuu valikkorakenteesta. Jos \java{break}-avainsana jätetään pois haaran lopusta,
+valikko jatkaa seuraavaan haaraan, sopi valintaehto haaran ehtoon tai ei.
+
+\newthought{Valikkorakenteen viimeiseksi} haaraksi kirjoitetaan yleensä oletushaara, joka
+määritellää \newjava{default}-avainsanalla. Oletushaara ajetaan, mikäli mitään muuta haaraa ei
+ajeta, tai mikäli haaraan jatketaan \java{break}-avainsanan puutteen vuoksi edellisestä haarasta.
+Oletushaaraa voi käyttää esimerkiksi virhetilojen korjaamiseen. Seuraava koodiesimerkki esittelee
+ohjelman, joka muuttaa valintarakenteella kouluarvosanan sanalliseksi arvioksi.
+
+\code{week3}{BasicSwitch}{Valikkorakenne, \java{switch}- ja \java{case} -avainsanojen käyttö
+Javassa}
+
 \subsection{Luokkamuuttujat, luokkafunktiot ja static}
 \label{static}
 
@@ -1056,7 +1078,11 @@ esittelevät luetellun tyypin luomisen ja käytön.
 \label{operaatiot}
 
 \newthought{Java sisältää} monia operaatioita lukujen ja tavumuotoisten tietojen käsittelyyn.
-Seuraava taulukko esittelee Javan perusoperaatiot.
+Seuraava taulukko esittelee Javan perusoperaatiot. Bittikohtaiset operaatiot Javassa ottavat
+kaksi kokonaislukutyypin muuttujaa (\java{byte}, \java{short}, \java{int} tai \java{long}) ja
+suorittavat kyseisen operaation luvun binääriesityksen jokaiselle bitille. Esimerkiksi luvut
+kaksitoista (1100) ja kolme (0011) tuottaisivat bittikohtaisella TAI-operaatiolla tuloksen
+viisitoista (1111).
 
 \bigskip
 \begin{center}
@@ -1077,7 +1103,7 @@ Operaatio & Nimi & Toiminta & Esimerkki \\
 \addlinespace
 ++ & inkrementti & i++ & Kasvattaa kokonaislukumuuttujan i arvoa yhdellä \\
 \addlinespace
--- & dekrementti & i-- & Vähentää kokonaislukumuuttujan i arvoa yhdellä \\
+-{}- & dekrementti & i-{}- & Vähentää kokonaislukumuuttujan i arvoa yhdellä \\
 \addlinespace
 == & on yhtä suuri kuin & a == b & Palauttaa tosi, jos a on yhtä suuri kuin b \\
 \addlinespace
@@ -1091,20 +1117,94 @@ Operaatio & Nimi & Toiminta & Esimerkki \\
 suuri kuin b \\
 <= & pienempi tai yhtä pieni kuin & a <= b & Palauttaa tosi, jos a pienempi tai yhtä
 pieni kuin b \\
-\& & bittikohtainen JA & a \& b & Vertaa a:n ja b:n bittirepresentaatiota ja palauttaa
-binäärinumeron,\newline{} jossa on 1 kohdissa, joissa sekä a:ssa että b:ssä on 1, muualla 0 \\
+\addlinespace
+\& & bittikohtainen JA & a \& b & Palauttaa bittikohtaisen JA-operaation tuloksen luvuille a ja b
+\\
+\addlinespace
+| & bittikohtainen TAI & a | b & Palauttaa bittikohtaisen TAI-operaation tuloksen luvuille a ja b
+\\
+\addlinespace
+\^{} & bittikohtainen XTAI & a \^{} b & Palauttaa bittikohtaisen XTAI-operaation tuloksen luvuille
+a ja b \\
+\addlinespace
+\~{} & Komplementti & \~{} a & Palauttaa a:n yhden komplementin \\
 \bottomrule
 \end{tabular}
 \end{center}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Ensimmäinen esimerkkiohjelma: osoitekirja}
 \label{osoitekirja}
+
+\newthought{Opas on} nyt esitellyt kaiken tarvittavan Javasta simppelien ohjelmien
+kirjoittamiseen. Normaalin ohjelman toiminnan, suunnittelun ja käytön esittelemiseksi tämän
+kappaleen loppu omistetaan toimivalle koodiesimerkille. Koodiesimerkki sisältää
+osoitekirjaohjelman, johon käyttäjä voi tallentaa kontaktidataa ja josta käyttäjä voi hakea dataa
+kontaktin nimellä. Tämä esimerkki ei esittele uusia toiminnallisuuksia, joten sen voi halutessaan
+ohitta ja jatkaa suoraan luvun \nameref{tiedostoista} alkuun. Esimerkki esittelee kuitenkin paitsi
+Javan perusteiden toimintaa laajasti. Myös konkreettisia tapoja lähestyä oliopohjaisen ohjelman
+suunnittelua ja toteuttamista, joten esimerkkiin tutustumista suositellaan lämpimästi.
 
 \subsection{Osoitekirjaohjelman toimintaidea ja suunnittelu}
 \label{osoitekirja suunnittelu}
 
+\newthought{Ohjelman suunnittelu} on aina syytä aloittaa linjaamalla ohjelman tavoitteet. Tällä
+kurssilla ei mennä sen tarkemmin projektinhallintaan, ketterään kehitykseen tai muihin metodeihin,
+joten perustoimintaideoiden listaaminen riittää. Ohjelman perusvaatimukset ovat:
+
+\begin{itemize}
+	\item Ajettavissa komentoikkunassa
+	\item Sisältää ikilooppiin perustuvan tekstipohjaisen käyttöliittymän
+	\item Tallentaa puhelinnumeron nimetylle kontaktille
+	\item Kykenee hakemaan käyttäjän puhelinnumeron nimen perusteella
+\end{itemize}
+
+\newthought{Listan perusteella} voidaan ruveta miettimään ohjelman rakennetta. Toivottu ikilooppi
+voi sijaita pääluokassa ohjelman pienen koon ja yksinkertaisen luonteen vuoksi. Pääluokalle ei ole
+järkevää kasata liikaa vastuita, sillä tämä vaikeuttaa ohjelman laajentamista tulevaisuudessa.
+Olisi siis järkevää luoda luokka, joka hoitaa osoitekirjan manageroinnin. Pääluokka voi sitten
+kutsua tätä luokkaa käyttäjän valintojen mukaan.
+
+\newthought{Päätasolla ohjelman} arkkitehtuuri on siis pääluokka, jossa luodaan
+AdressBookManager-luokan instanssi ja jonka main-metodi pyörittää ikuista looppia. Tämä 
+manager-instanssi sisältää metodeja, jota pääluokasta voidaan kutsua käyttäjän valinnan mukaan.
+Manageri tarvitsee ainakin metodit seuraaviin tarkoituksiin:
+
+\begin{itemize}
+	\item Kontaktin luominen: lisää nimi ja kontaktitiedot kontaktilistaan
+	\item Kontaktin haku: Hae kontaktin tiedot listasta nimen perusteella
+\end{itemize}
+
+\newthought{Listasta nähdään}, että kontaktien hakeminen tapahtuu aina nimen perusteella. Tämä on
+tärkeää ottaa huomioon kontakteja säilövää tietorakennetta suunnitellessa. \java{HashMap} on
+rakenne, josta on nopea hakea tietoa avaimen perusteella, joten ContactManager voi säilöä
+kontaktit \java{HashMap}-instanssiin, jossa on avaimena kontaktin nimi. Kontaktidataa varten
+voitaisiin luoda uusi luokka puhdasta datan säilömistä varten, mutta koska data koostuu kahdesta
+arvosta, joista toinen säilötään avaimena hajautustauluun, on järkevämpää tallentaa data vain
+puhelinnumerona avain-arvo -parin arvoksi.
+
+\newthought{Täten esimerkki} koostuu kahdesta luokasta. AddressBook on pääluokka, joka sisältää
+ohjelman elossa pitävän ikiloopin, joka lukee käyttäjäsyötettä ja kutsuu niiden mukaan metodeja
+ContactManager-luokasta. ContactManager sisältää metodeja osoitekirjan manipulointiin ja
+itse osoitekirjan hajautustaulussa, jonka avaimia ovat merkkijonomuotoiset kontaktien nimet ja
+arvoja merkkijonomuotoiset puhelinnumerot. Puhelinnumeroiden säilöminen kokonaislukuna törmää
+kahteen ongelmaan. Maakoodien säilöminen ei olisi mahdollista ja nollalla alkavat numerot
+typistyisivät alusta.
+
+
 \subsection{Osoitekirjaohjelman koodi}
 \label{osoitekirja koodi}
+
+\code{addressbookexample}{ContactManager}{Osoitekirjamanageri osoitekirjan hallintaan}
+\code{addressbookexample}{AddressBook}{Pääluokka, joka vastaa ohjelman ajamisesta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Tiedostonhallinta}
+\chapter{tiedostoista}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
