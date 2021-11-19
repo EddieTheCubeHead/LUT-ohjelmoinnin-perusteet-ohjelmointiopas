@@ -400,3 +400,72 @@ tämän arvojoukon jäsenet kirjoitetaan CONSTANT\_CASE-tyylillä},
 	name=import,
 	description={Avainsana, joka määrittää luokan tuotavaksi tiedoston nimitilaan}
 }
+
+\newglossaryentry{java:try}
+{
+	type=java,
+	name=try,
+	description={Avainsana, joka määrittää virheenkäsittelyrakenteen osion, joka sisältää
+mahdollisen virhetilan aiheuttavan koodin. Try-osioita täytyy seurata joko yksi tai useampi 
+catch-osio, finally-osio tai molemmat},
+	see={java:catch,java:finally}
+}
+
+\newglossaryentry{java:catch}
+{
+	type=java,
+	name=catch,
+	description={Avainsana, joka määrittää virheenkäsittelyrakenteen virhetilankorjausosion
+Try-avainsanalla aloitetussa virheenkäsittelyrakenteessa. Avainsanaa seuraa sulkuihin suljettuna
+määritelmä muuttujalle, johon mahdollinen kiinni otettu virhe tallennetaan. Määritelmä määrittää
+myös kiinni otettavan virheen tyypin. Jos virhe ei peri määriteltyä virhetyyppiä catch-rakenne ei
+nappaa virhettä. Yhtä try-avainsanalla määriteltyä rakennetta kohden voi olla useampi
+catch-rakenne, kunhan ne nappaavat erityyppisiä virheitä},
+	see={java:try,java:finally}
+}
+
+\newglossaryentry{java:finally}
+{
+	type=java,
+	name=finally,
+	description={Avainsana, joka määrittää virheenkäsittelyrakenteen jaetun lopetusosion.
+Finally-osio on aina try-avainsanalla aloitetun virheenkäsittelyrakenteen viimeinen osio ja se
+ajetaan riippumatta siitä, aiheuttiko try-osion koodi virhetilan vai ei. Finally-osio sisältää
+yleensä koodia, joka varmistaa ohjelmiston olevan jatkamiseen kelpaavassa tilassa
+virheenkäsittelyn jälkeen}
+}
+
+\newglossaryentry{java:FileWriter}
+{
+	type=java,
+	name=FileWriter,
+	description={Standardikirjaston luokka, joka kirjoittaa merkkijonomuotoista dataa rakentajassa
+määriteltyyn tiedostoon. Perii OutputStreamWriter- ja Writer -luokat ja sisältää niistä perityt
+write- ja append -metodit kirjoitusoperaatioita varten}
+}
+
+\newglossaryentry{java:FileReader}
+{
+	type=java,
+	name=FileReader,
+	description={Standardikirjaston luokka, joka lukee merkkijonomuotoista dataa rakentajassa
+määritellystä tiedostosta. Perii InputStreamReader- ja Reader -luokat ja sisältää niistä perityn
+read-metodin lukuoperaatioita varten}
+}
+
+\newglossaryentry{java:FileInputStream}
+{
+	type=java,
+	name=FileInputStream,
+	description={Standardikirjaston luokka, joka sisältää tiedostoa edustavan syötteen tavuina
+esitettynä virtana. Omistaa read-metodin syötteen lukemiseen}
+}
+
+\newglossaryentry{java:FileOutputStream}
+{
+	type=java,
+	name=FileOutputStream,
+	description={Standardikirjaston luokka, joka sisältää tiedostoon kirjoitettavaa dataa
+edustavan tavuina esitetyn virran. Omistaa write-metodin kirjoittamiseen}
+}
+

@@ -1203,8 +1203,125 @@ typistyisivät alusta.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Tiedostonhallinta}
-\chapter{tiedostoista}
+\chapter{Tiedostonhallinta ja virheenkäsittely}
+\label{tiedostoista}
+
+\newthought{Tähän mennessä} oppaassa on käyty läpi suurin osa Javan perustoiminnasta ja kerrytetty
+tarvittava tietotaito simppelien ohjelmistojen luomiseen. Opas ei kuitenkaan ole vielä tarjonnut
+ratkaisuja pysyvään datan säilömiseen, joten kaikki ohjelmien käsittelemä data kuolee ohjelmien
+ajon päätyttyä. Tässä kappaleessa tutustutaan yksinkertaisimpaan tapaan säilöä dataa pysyvästi:
+tiedostonhallintaan. 
+
+\newthought{Linux-maailmasta tuttuun} tapaan Javassa tiedostonhallinta muistuttaa vahvasti
+käyttäjäsyötteen käsittelyä. Tiedostojen lukeminen tapahtuu \newjava{FileReader} tai
+\newjava{FileInputStream} -olioilla ja tiedostoon kirjoittaminen \newjava{FileWriter} tai
+\newjava{FileOutputStream} -olioilla. Seuraavat kappaleissa käydään läpi näiden luokkien käyttö,
+sekä olioiden \neweng{serialisaatio}{serialization}, joka mahdollistaa olioiden esittämisen
+tekstimuotoisena datana, ja täten olioiden tallentamisen tekstitiedostoihin. Tätä ennen käydään
+läpi javan virheenkäsittely, sillä se on olennainen osa tiedostojen turvallista käsittelyä.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Virheenkäsittelyn perusteet, try-catch-finally}
+\label{try-catch}
+
+\newthought{Java sisältää} monipuolisen virhetilajärjestelmän virheenkäsittelyä varten. Virhetilat
+esitetään Exception-luokasta perittyinä erityyppisinä Exception-instansseina. Esimerkiksi jos
+ohjelmisto yrittää hakea tietoa muuttujasta, jossa on säilötty vain null-arvo, nostaa Java
+automaattisesti NullPointerException-virheen. 
+
+\newthought{Virheiden käsittely} tapahtuu sulkemalla virhetilan mahdollisesti aiheuttava koodi
+\newjava{try}-avainsanalla määritellyn kaarisulkeisiin suljetun koodin osan sisään. Tätä seuraa
+virhetilan käsittely, joka määritellään \newjava{catch}-avainsanalla, jota seuraa sulkeissa
+kiinniotettavan virheen määrittely, eli virheluokka, jonka instanssit otetaan kiinni ja
+muuttujanimi, johon virheluokan ilmentymät kiinnitetään. Tätä määritelmää seuraa itse virhetilan
+korjaus suljettuna kaarisulkeisiin. Tämä korjausosio ajetaan vain, jos \java{try}-osassa tapahtuu
+sulkeissa määritellyn tyypin virhe. Viimeinen virheenkäsittelyrakenteen osa on
+\newjava{final}-avainsanaa seuraava kaarisulkeisiin suljettu yleinen sulkemiskoodi, joka ajetaan,
+tapahtui \java{try}-rakenteessa virhettä tai ei. Rakenteen ei tarvitse sisältää sekä \java{catch}-
+että \java{finally}-osioita, mutta vähintään toisen on oltava \java{try}-rakenteen perässä tai
+koodi ei käänny. Seuraava koodiesmerkki esittelee virheenkäsittelyn perusteet.
+
+\code{week4}{BasicTryCatchFinally}{\java{try}-, \java{catch}- ja \java{finally}-avainsanojen
+käyttäminen}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{FileReader ja FileWriter}
+\label{tiedostoapureista}
+
+\newthought{\java{FileReader} ja \java{FileWriter}} ovat merkkijonomuotoisten tiedostojen
+käsittelyyn tarkoitettuja apuriluokkia. \java{FileReader} sisältää read-metodin datan lukemiseen
+ja \java{FileWriter} sisältää write- ja append -metodit datan kirjoittamiseen. Sekä lukeminen,
+että kirjoittaminen voi epäonnistua ohjelmistosta riippumattomista syistä. Tästä syystä nämä
+operaatiot on järkevää sulkea edellä esitellyn \java{try}-rakenteen sisään. 
+
+\newthought{Syötteen lukemisen} tapaan, tiedostojen lukeminen suoraan lukijalla tapahtuu merkki
+kerrallaan. On siis järkevää sulkea \java{FileReader} \java{BufferedReader}-instanssin sijaan,
+kuten kappale \nameref{syötteestä} esittelee. Seuraava esimerkki esittelee tekstimuotoisen datan
+käsittelemisen tiedostoissa luomalla ensin tiedoston ja tallentamalla merkkijonon tähän tiedostoon
+ja lukemalla sen jälkeen tallennetun merkkijonon tiedostosta \java{BufferedReader}-instanssin
+sisään kiedotulla \java{FileReader}-instanssilla.
+
+\code{week4}{BasicFileWriterReader}{Merkkijonodatan käsittely tiedostoissa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{FileInputStream ja FileOutputStream}
+\label{tiedostostreameista}
+
+\newthought{Tiedostot eivät} aina sisällä merkkimuotoista dataa. Tätä varten on olemassa luokat
+\java{FileInputStream} ja \java{FileOutputStream}. Ne käsittelevät tiedostoon suljettua
+tavumuotoista dataa samaan tapaan kuin \java{InputStreamReader} lukee käyttäjäsyötteestä
+tavumuotoista dataa. Toisin kuin \java{FileReader}, ei \java{FileInputStream}-luokkaa tarvitse
+kääriä \java{BufferedReader}-luokan sisään. Seuraava koodiesimerkki esittelee tavumuotoisen datan
+käsittelyn tiedostossa.
+
+\code{week4}{BasicFileInputOutputStream}{Tavumuotoisen datan käsittely tiedostoissa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Serialisaatio}
+\label{serialisaatio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Oliopohjainen suunnittelu}
+\label{suunnittelusta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Periytyminen teoriassa}
+\label{periytyminen1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{UML}
+\label{paskaa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Periytyminen ja Java}
+\label{periytyminen2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Periytymisen perusteet ja extends}
+\label{periytyminen3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lisää periytymisen teoriaa}
+\label{periytyminen4}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Periytymisen rakenteita}
+\label{periytyminen5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
