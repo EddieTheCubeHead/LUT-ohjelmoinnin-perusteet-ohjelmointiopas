@@ -297,3 +297,67 @@ ominaisuus, joka mahdollistaa olioiden esittämisen tekstimuotoisena datana. Tä
 esitettyjä olioita on helpompi käsitellä esimerkiksi tiedostojenhallinnan yhteydessä tai
 verkkoliikenteessä}
 }
+
+\newglossaryentry{periytyminen}
+{
+	name=periytyminen,
+	description={(inheritance) Olio-ohjelmoinnin konsepti, jossa luokat voivat periä toisen luokan
+ominaisuudet. Luokkaa, joka perii toisen luokan kutsutaan lapsiluokaksi ja luokkaa, jolla on
+lapsiluokka kantaluokaksi. Lapsiluokka sisältää automaattisesti kaikki kantaluokan kentät, eli
+muuttujat ja metodit, joiden näkyvyysmääre on protected tai laajempi. Kenttiä voidaan tarvittaessa
+ylikirjoittaa},
+	see={lapsiluokka,kantaluokka,näkyvyysmääre,java:protected,java:extends}
+}
+
+\newglossaryentry{lapsiluokka}
+{
+	name=lapsiluokka,
+	description={(child class) Luokka, joka perii toisen luokan},
+	see={periytyminen,kantaluokka}
+}
+
+\newglossaryentry{kantaluokka}
+{
+	name=kantaluokka,
+	description={(parent class) Luokka, josta on periytetty vähintään yksi toinen luokka},
+	see={periytyminen,lapsiluokka}
+}
+
+\newglossaryentry{UML}
+{
+	name=UML,
+	description={(Unified Modelin Language) Mallinnustekniikka ohjelmistojen rakenteen esittelyyn.
+UML-standardi sisältää monia erilaisia kaavioita, mutta olio-ohjelmoinnin kannalta niistä tärkein
+on luokkakaavio. Muita tärkeitä kaavioita ovat oliokaavio, tilakaavio ja sekvenssikaavio},
+	see=luokkakaavio
+}
+
+\newglossaryentry{luokkakaavio}
+{	
+	name=luokkakaavio,
+	description={(class diagram) UML-standardin kaavio, joka kuvaa luokkien välisiä suhteita
+ohjelmistossa. Koostuu luokkia esittävistä yleensä neliön muotosista soluista. Solut sisältävät
+luokkien tietokentät ja metodit. Luokkia voidaan yhdistää toisiinsa erilaisilla nuolilla
+osoittamaan niiden välisiä suhteita kuten periytymistä, kompositiota ja aggregaatiota},
+	see={periytyminen,kompositio,aggregaatio}
+}
+
+\newglossaryentry{kompositio}
+{
+	name=kompositio,
+	description={(composition) Luokkien suhteita kuvaava termi. Kompositiossa luokka B on sidottu
+luokan A elinikään niin, että jokainen A:n instanssi sisältää vakiomäärän viittauksia B:n
+instansseihin (yleensä 1). Kyseiset B:n instanssit luodaan yhdessä ne omistavan A:n instanssin
+kanssa ja ne tuhotaan yhdessä ne omistavan A:n instanssin kanssa. Kompositiossa siis luokka B on
+riippuvainen luokasta A olemassaolonsa ajan}
+}
+
+\newglossaryentry{aggregaatio}
+{
+	name=aggregaatio,
+	description={(aggregation) Luokkien suhteita kuvaava termi. Aggregaatiossa luokka A omistaa
+viittauksen luokan B instanssiin, mutta tämän instanssin luonti ja tuhoutuminen ei ole sidottu
+luokan A elinkaareen. Esimerkiksi aktiivisia pelaajia säilövän peli-luokan suhde pelaaja-luokkaan
+on aggregaatio, mikäli pelaajat säilötään peli-luokan sisällä listassa, johon jo olemassa oleva
+pelaaja lisätään tämän liittyessä peliin ja josta pelaaja poistetaan tämän poistuessa pelistä}
+}

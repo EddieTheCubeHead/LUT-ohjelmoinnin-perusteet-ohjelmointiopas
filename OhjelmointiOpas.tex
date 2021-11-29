@@ -42,6 +42,8 @@ Erno Vanhalalle.}}
 }
 
 \usepackage{units}
+\usepackage{graphicx}
+\graphicspath{{./Kuvat/}}
 
 % Generates the index
 \usepackage{makeidx}
@@ -1280,26 +1282,143 @@ käsittelyn tiedostossa.
 \code{week4}{BasicFileInputOutputStream}{Tavumuotoisen datan käsittely tiedostoissa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Serialisaatio}
-\label{serialisaatio}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Oliopohjainen suunnittelu}
 \label{suunnittelusta}
 
+\newthought{Oppaassa on} nyt käyty läpi suurin osa Javan perusominaisuuksista. Kurssin tavoitteena
+ei ole kuitenkaan opettaa opiskelija ohjelmoimaan Javaa, vaan opettaa opiskelijalle
+olio-ohjelmoinnin käytänteet. Tämän luvun tavoitteena on avata olio-ohjelmoinnin mahdollistamia,
+sekä muita sille yleisiä suunnittelumalleja. Tällä tavalla luku pyrkii antamaan alkuoppaan vakaan
+käytännön pohjan lisäksi laajan teoriapohjan olio-ohjelmointia aloittevalle opiskelijalle.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Periytyminen teoriassa}
+\section{Aggregaatio ja kompositio}
+\label{aggregaatiokompositio}
+
+\newthought{Oliopohjaisen suunnittelun} osana joudutaan usein puhumaan luokkien välisistä
+suhteista, erityisesti, miten luokat viittaavat toisiin luokkiin ja miten näiden luokkien
+instanssien elinkaaret ohjelmassa eroavat toisistaan. Tätä kuvaavat käsitteet
+\neweng{aggregaatio}{aggregation} ja \neweng{kompositio}{composition}. Molemmat ovat
+omistussuhteita, eli suhteita, joissa luokan A instanssi viittaa luokan B instanssiin "omistaen"
+tämän.
+
+\subsection{Aggregaatio}
+\label{aggregaatio}
+
+\newthought{\Gls{aggregaatio} on} luokkien välinen omistussuhde, jossa luokan A instanssi omistaa
+luokan B instanssin väliaikaisesti. Omistettu instanssi siis luodaan muualla ja ei tuhoudu
+omistavan instanssin mukana. Tällainen rakenne on yleistä kokoelmapohjaisissa rakenteissa.
+Esimerkiksi mallinnettaessa linja-autoa oliopohjaisilla käsitteillä, linja-auto -luokan ja
+matkustaja-luokan välinen suhde olisi aggregaatio: matkustaja on olemassa ennen suhteen luomista
+ja ei tuhoudu suhteen tuhouduttua.
+
+\subsection{Kompositio}
+\label{kompositio}
+
+\newthought{Gls{kompositio} on} luokken välinen omistussuhde, jossa luokan A instanssi omistaa
+luokan B instanssin pysyvästi, niin, että instanssien elinajat on sidottu toisiinsa. Luokan B
+instanssi luodaan sen omistavan luokan A instanssin mukana ja tuhoutuu tämän instanssin kanssa.
+Täten luokan B instansseja ei voi olla olemassa erillään ne omistavasta luokan A instanssista,
+eikä luokan A instansseja ilman niiden omistamia luokan B instansseja. Tälläinen suhde on yleistä
+suurien komponenttien erillisessä luokassa esitettyjen osien kanssa. Esimerkiksi aggregaation
+yhteydessä annetussa linja-auto -esimerkissä linja-auto -luokan ja moottori-luokan välinen suhde
+on kompositiosuhde. Moottori luodaan linja-auton kanssa ja tuhoutuu kun linja-auto tuhoutuu.
+Kompositiossa siis omistettu luokka on vain yksi rakennuspalikka omistavan luokan osana.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Periytymisen alkeet}
 \label{periytyminen1}
+
+\newthought{Yksi laadukkaan} ohjelmiston tärkeimmistä piirteistä on turhan toiston poistaminen
+koodista. Tarkastellaan esimerkkinä pankin tilinhallintaa. Pankit tarjoavat monesti erilaisia
+tilejä eri käyttötarkoituksiin. Käyttötili, säästötili ja yrityksen tili kaikki todennäköisesti
+tarvitsevat eri tietokenttiä ja metodeja täyden toiminnallisuutensa toteuttamiseen. Kun jokaiselle
+näistä kolmesta tilityypistä luodaan oma luokkansa huomataan kuitenkin luokkien sisältävän
+itseään toistavaa koodia. Kaikilla luoduilla luokilla on oltava tietokentät tilinumerolle,
+saldolle ja omistajan kontaktitiedoille. Lisäksi jokaiselta luokalta löytyy todennäköisesti
+metodit tilin saldon tarkastamiseen ja panon ja noston suorittamiseen. Turhan toiston
+eliminoimiseksi tarvitaan siis rakenne, joka antaa luokkien käyttää samaa pohjaa, mutta muokata
+omaa toiminnallisuuttaan tämän pohjan päällä. Tätä varten oliopohjaiset kielet tarjoavat
+ominaisuuden, nimeltä \neweng{periytyminen}{inheritance}
+
+\newthought{Periytymisen perusidea} on mahdollistaa luokkien toiminnallisuuksien uudelleenkäyttö
+ja laajentaminen. Tämä tapahtuu luomalla niin sanottu \neweng{lapsiluokka}{child class}
+laajennettavasta luokasta. Tällä tavalla laajennettua luokkaa sanotaan luodun lapsiluokan
+\neweng{kantaluokka}{parent class}.
+
+\newthought{Lapsiluokka perii} kaikki kantaluokan ominaisuudet ja kykenee muokkaamaan niitä tai
+lisäämään uusia, omia ominaisuuksiaan. Esimerkiksi pankkiohjelmistoa luotaessa voitaisiin kaikki
+erilaiset tilit toteuttaa luomalla normaalia käyttötiliä kuvaava Account-niminen kantaluokka.
+Tämän jälkeen säästötili ja yritystili voidaan esittää tästä kantaluokasta periytyvinä
+lapsiluokkina. Kantaluokka voi sisältää esimerkiksi tietokentät tilinumerolle, tilin saldolle ja
+tilin omistajan kontaktitiedoille. Näiden lisäksi kantaluokalla voi olla metodeja. Account-luokka
+esimerkiksi voi sisältää metodin nostoille ja panoille, sekä metodin tilin saldon tarkastamiseen.
+Lapsiluokat voivat tarpeen vaatiessa ylikirjoittaa näitä metodeja vastaamaan omaa toimintaansa.
+Esimerkiksi säästötilin nostometodiin voidaan lisätä ehto, jossa sitä voi käyttää vain tietyin
+väliajoin. Myös uusien kenttien ja metodien lisääminen lapsiluokkaan on mahdollista. Esimerkiksi
+yritystilille voidaan lisätä tietokenttä tallentamaan yrityksen nimi ja edellä mainitulle
+säästötilille voidaan lisätä metodi kerryttämään korkoa.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{UML}
 \label{paskaa}
+
+\newthought{Välillä ohjelmiston} suunnittelun yhteydessä ilmenee tarve esittää ohjelmiston
+luokkien välisiä suhteita tarkemmin ja selkeämmin kuin sanallisesti on mahdollista. Tätä varten on
+olemassa \neweng{UML}{Unified Modeling Language}. Se on ohjelmistotuotantoa varten kehitetty
+standardi, joka sisältää useita ohjelmistojen suunnittelussa käytettäviä kaavioita. Tässä oppaassa
+käsitellään näistä vain \neweng{luokkakaavio}{class diagram}, sillä se on ehdottomasti tärkein
+kaaviotyyppi oliopohjaisen ohjelman suunnittelussa. Muita UML-standardissa määriteltyjä
+kaaviotyyppejä ovat muun muassa oliokaavio, tilakaavio ja sekvenssikaavio.
+
+\subsection{Luokkakaavio}
+\label{luokkakaavio}
+
+\newthought{\gls{UML}-standardin tapa} ilmaista luokkien välisiä suhteita on \gls{luokkakaavio}
+ohjelmistossa. Kaavio suunniteltiin alun perin tarpeeksi tarkaksi koodin generointiin kaavion
+pohjalta, mutta nykyään kaavion yleisimmin hyväksytty käyttötapa on suunnitteluvaiheessa ideoiden
+kommunikointi ohjelmiston suunnittelijoiden välillä.
+
+\newthought{Luokkakaavio koostuu} luokkia kuvaavista suorakulmion muotoisista soluista ja niiden
+välisistä yhteyksistä. Solu jakautuu yleensä kolmeen osaan. Ylimpänä on solun kuvaaman luokan
+nimi, sen jälkeen luokan tietokentät ja alimpana luokan metodit. Tietokenttien ja metodien
+yhteyteen voidaan lisätä tyyppidata, mutta se ei ole pakollista ja riippuu kaavion
+käyttötarkoituksesta. Seuraava kuva esittää yksinkertaisen luokan kuvauksen luokkakaaviossa.
+Luokan nimi on DataManipulator, se omistaa int-tyypin tietokentän integerDataPoint ja
+String-tyypin tietokentän stringDataPoint sekä metodin ManipulateData, joka ottaa int- ja
+String-tyyppien muuttujat ja palauttaa String-tyypin muuttujan.
+
+\begin{listing}
+    \includegraphics{ClassDiagramExample1}
+    \caption{Yksittäisen luokan esittäminen UML-luokkakaaviossa}
+    \label{luokkakaavioluokka}
+\end{listing}
+
+\newthought{Luokkakaaviossa ohjelmiston} erilaisten luokkien esittäminen on kuitenkin vain pieni
+osa kaavion käyttöä. Tärkein luokkakaavion käyttötarkoitus on luokkien välisten suhteiden
+esittäminen ohjelmistossa. Luokkakaavio sisältää näiden suhteiden kuvaamiseen erilaisia
+yhteystyyppiä, joita luokkien välille voidaan piirtää. Näistä käytetyimmät ovat yleistä
+assosiaatiota, periytymistä, aggregaatiota ja kompositiota kuvaavat yhteydet. Yhteyden tarkka
+tyyli riippuu kaavionpiirto-ohjelmasta. Yleensä assosiaatiota kuvaava yhteys on yksinkertainen
+viiva luokkien välillä, periytymistä kuvaava yhteys on nuoli lapsiluokasta emoluokkaan ja
+aggregaatiota ja kompositiota kuvaavat yhteydet ovat viivoja, jotka päättyvät vinoneliöön
+omistussuhteen omistavan osapuolen päässä. Aggregaatiossa vinoneliö on täyttämätön,
+kompositiossa täytetty. Seuraava kaavio esittelee kaikki neljä yhteystyyppiä.
+
+\begin{listing}
+    \includegraphics{ClassDiagramExample2}
+    \caption{Luokkien välisten suhteiden esittäminen UML-luokkakaaviossa}
+    \label{luokkakaavioluokka}
+\end{listing}
+
+\subsection{Kaavioiden käyttö ohjelmiston suunnittelussa}
+\label{UMLkäyttö}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1322,6 +1441,20 @@ käsittelyn tiedostossa.
 
 \section{Periytymisen rakenteita}
 \label{periytyminen5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Serialisaatio}
+\label{serialisaatio}
+
+\newthought{Javassa ohjelmiston} omistama data on yleensä tallennettu oliomuodossa, mutta olion
+tallentaminen tiedostoon tekstidatana ei ole erityisen helppoa. Se vaatisi kaikkien olion kenttien
+muuttamista tekstiksi manuaalisesti aina oliota tallennettaessa ja tekstimuotoisen datan lukemista
+ja uuden olion rakentamista luetusta tekstidatasta aina oliota ladattaessa. Tähän tarkoitukseen
+Javasta löytyy erikseen \gls{serialisaatio}-niminen tekniikka, joka mahdollistaa olioiden
+automaattisen muuttamisen tallennettavaan muotoon ja tämän muodon muuttamisen takaisin olioksi.
+
+\newthought{Serialisaatio on} mahdollista vain
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
