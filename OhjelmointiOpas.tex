@@ -366,7 +366,7 @@ aloittaa "//"-merkkiparilla, kun taas monen rivin kommentti suljetaan "/*"- ja "
 väliin. Seuraava esimerkki esittää kommentointisyntaksin vielä tarkemmin. Älä välitä vielä itse
 koodista, sen tehtävä on vain selventää miten kommenttien sijoittelu vaikuttaa koodin toimintaan.
 
-\code{week2}{CommentingExample}{Kommentointi Javassa}
+\code{week2/basicexamples}{Commenting}{Kommentointi Javassa}
 
 \subsection{Primitiiviset tietotyypit ja String}
 \label{tietotyypit}
@@ -410,7 +410,7 @@ Avainsana & Oletusarvo & Arvojoukko \\
 \end{tabular}
 \end{center}
 
-\code{week2}{BasicDataTypes}{Primitiiviset tietotyypit Javassa}
+\code{week2/basicexamples}{DataTypes}{Primitiiviset tietotyypit Javassa}
 
 \newthought{Näiden tietotyyppien} lisäksi Javasta löytyy monta valmiiksi määriteltyä luokkaa datan
 säilömistä varten. Näistä tärkein kielen opettelua aloitettaessa on ehdottomasti merkkijonoja
@@ -422,7 +422,7 @@ kiinnittää huomiota Javan opiskelun alussa.
 muuttujalle toivottu merkkijono suljettuna normaalien lainausmerkkien (") sisään. Yksittäiset 
 hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määrittämiseen.
 
-\code{week2}{BasicString}{String-tyypin muuttujan määrittäminen}
+\code{week2/basicexamples}{StringUsage}{String-tyypin muuttujan määrittäminen}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -467,7 +467,7 @@ tulostaa sen, sekä rivinvaihdon. On huomioitavaa, että println, samoin kuin mu
 tapoja tulostaa toivottua tekstiä. Toistaiseksi nämä ominaisuudet eivät kuitenkaan ole
 ajankohtaisia ja opas käyttää "\java{System}.out.println" metodia tulostukseen.
 
-\code{week2}{HelloWorld}{Yksinkertaisen pääluokan ja main-funktion luominen Javassa}
+\code{week2/basicexamples}{HelloWorld}{Yksinkertaisen pääluokan ja main-funktion luominen Javassa}
 
 \subsection{Metodin määritteleminen ja kutsuminen}
 \label{metodi}
@@ -495,8 +495,8 @@ on tallennettu muuttujaan "object" ja omistaa metodin "doStuff(int number)", kut
 metodi notaatiolla "object.doStuff(322)". Jos metodille on määritelty paluuarvon tyyppi, kutsu
 palauttaa tämän tyypin muuttujan, jota voidaan käyttää koodissa.
 
-\code{week2}{BasicMethodChild}{Metodin luominen Javassa}
-\code{week2}{BasicMethod}{Metodin kutsuminen Javassa}
+\code{week2/methodexample}{MethodClass}{Metodin luominen Javassa}
+\code{week2/methodexample}{Main}{Metodin kutsuminen Javassa}
 
 \subsection{If-lause ja else-lause}
 \label{if else}
@@ -519,7 +519,7 @@ else -lauseita voi tarvittaessa ketjuttaa niin monta kuin tarvitaan, joskin pitk
 \newthought{Seuraava koodiesimerkki} esittelee if- ja else-lauseiden käytön perusteet. Huomioi,
 että normaalisti ehtolauseiden arvoa ei tiedetä ennen ohjelman ajoa, vaan se muuttuu dynaamisesti.
 
-\code{week2}{BasicIfElse}{Esimerkki if- ja else-lauseiden käytöstä}
+\code{week2/basicexamples}{IfElse}{Esimerkki if- ja else-lauseiden käytöstä}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -554,8 +554,8 @@ käytön rakentajan kanssa. On huomioitavaa, että seuraavassa alakappaleessa k�
 ylikuormittaminen toimii myös rakentajametodeihin, eli luokalla voi olla useampi ylikuormitettu
 rakentajametodi. Koodiesimerkki kuitenkin käyttää vain yhtä rakentajametodia.
 
-\code{week2}{BasicConstructorChild}{Rakentajan luonti Javassa}
-\code{week2}{BasicConstructor}{\java{new}-avainsanan käyttö}
+\code{week2/constructorexample}{ClassWithConstructor}{Rakentajan luonti Javassa}
+\code{week2/constructorexample}{Main}{\java{new}-avainsanan käyttö}
 
 
 \subsection{Metodin ylikuormitus}
@@ -572,8 +572,8 @@ signatuuria vastaavan version ylikuormitettua metodia kutsuttaessa. Seuraavassa 
 esitellään ylikuormitetun metodin käyttö luomalla tulostusmetodi, joka ilmoittaa, onko
 tulostettavan muuttujan tietotyyppi int vai String.
 
-\code{week2}{BasicOverloadingChild}{Lapsiluokka ylikuormittamisesimerkkiin}
-\code{week2}{BasicOverloading}{Ylikuormittaminen Javassa}
+\code{week2/overloadingexample}{OverloadedPrinter}{Lapsiluokka ylikuormittamisesimerkkiin}
+\code{week2/overloadingexample}{Main}{Ylikuormittaminen Javassa}
 
 \subsection{Näkyvyysmääreet}
 \label{näkyvyysmääreet}
@@ -608,8 +608,8 @@ Luokkien ominaisuudet \\
 ominaisuuksien näkyvyyden rajaamisessa, kun taas public ja oletusnäkyvyys toimivat myös luokkien
 näkyvyyden määrittämisessä. Tämä johtuu siitä, että private ja protected ovat suoraan sidottuja
 luokkaan, jossa ominaisuus sijaitsee. Protected on lisäksi tiukasti sidoksissa periytymiseen, joka
-käsitellään myöhemmin oppaan luvussa *x*, % TODO: lisää luku 
-joten sen toiminnallisuuden ymmärtäminen ei ole vielä ajankohtaista.
+käsitellään myöhemmin oppaan alaluvussa \nameref{protected} joten sen toiminnallisuuden
+ymmärtäminen ei ole vielä ajankohtaista.
 
 \newthought{Tähän mennessä} oppaassa on vältetty näkyvyysmääreiden käyttöä, eli niitä on käytetty
 vain main-metodien määrittelemisen yhteydessä. Tällöin Java-kääntäjä asettaa näkyvyydeksi
@@ -624,9 +624,9 @@ tehokkaammin ohjelman kääntämisen yhteydessä.
 \java{public} ja \java{private} avainsanojen toimivuuden. Avainsana \java{protected} on esitelty
 koodiesimerkissä periytyvyyden yhteydessä kappaleessa *x*. % TODO: lisää luku
 
-\code{week2}{AccessModifierExampleFirstChild}{Ensimmäinen näkyvyysmääre-esimerkin luokka}
-\code{week2}{AccessModifierExampleSecondChild}{Toinen näkyvyysmääre-esimerkin luokka}
-\code{week2}{AccessModifierExampleMain}{Näkyvyysmääre-esimerkin pääluokka}
+\code{week2/accessmodifierexample}{FirstClass}{Ensimmäinen näkyvyysmääre-esimerkin luokka}
+\code{week2/accessmodifierexample}{SecondClass}{Toinen näkyvyysmääre-esimerkin luokka}
+\code{week2/accessmodifierexample}{Main}{Näkyvyysmääre-esimerkin pääluokka}
 
 \subsection{Noutajat ja asettajat}
 \label{get set}
@@ -660,8 +660,8 @@ Huomaa setPositiveNumber-metodissa toteutettava muuttujan validointi, joka ei ol
 jos muuttuja positiveNumber olisi julkinen Javan suositteleman yksityinen muuttuja, noutaja ja
 asettaja -mallin sijaan.
 
-\code{week2}{GetterSetterChild}{Ensimmäinen noutaja/asettajaesimerkin luokka}
-\code{week2}{GetterSetterMain}{Noutaja/asettajaesimerkin pääluokka}
+\code{week2/gettersetterexample}{NumberStorage}{Ensimmäinen noutaja/asettajaesimerkin luokka}
+\code{week2/gettersetterexample}{Main}{Noutaja/asettajaesimerkin pääluokka}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -706,7 +706,7 @@ käyttäjän syötteen.
 koodiesimerkki sisältää kuitenkin tarvittavan syntaksin toimivan Scanner-luokan instanssin
 luomiseen. Kun instanssi on luotu kerran on sen käyttäminen onneksi simppeliä.
 
-\code{week2}{BasicUserInput}{Käyttäjän syötteen noutaminen Javassa}
+\code{week2/basicexamples}{UserInput}{Käyttäjän syötteen noutaminen Javassa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -748,8 +748,8 @@ muuttujan perään. Viittaus toimii samoin sekä alkion tallennuksessa, että al
 muuttujaan, sekä arvojen tallentamisesta olemassa olevaan taulukkoon ja arvojen noutamisesta
 olemassa olevasta taulukosta.
 
-\code{week3}{BasicArrayDataPoint}{Dataluokka käytettäväksi taulukkoesimerkissä}
-\code{week3}{BasicArray}{Taulukkojen käyttö Javassa}
+\code{week3/arrayexample}{DataPoint}{Dataluokka käytettäväksi taulukkoesimerkissä}
+\code{week3/arrayexample}{Main}{Taulukkojen käyttö Javassa}
 
 \subsection{Paketit ja import}
 \label{import}
@@ -786,7 +786,7 @@ yhteydessä, jolloin listan säilömä tyyppi on suljettava pienempi kuin- ja su
 väliin. Seuraava esimerkki näyttää ArrayList-instanssin luomisen, alkioiden lisäämisen, hakemisen
 ja poistamisen.
 
-\code{week3}{BasicArrayList}{ArrayList-luokan käyttö Javassa}
+\code{week3/basicexamples}{ArrayListUsage}{ArrayList-luokan käyttö Javassa}
 
 \subsection{Hajautustaulut}
 \label{HashMap}
@@ -810,7 +810,7 @@ Seuraava esimerkki esittelee HashMap-instanssin luomisen, avain-arvo -parin lis�
 arvon hakemisen sekä poistamisen avaimen perusteella. ArrayListin tapaan HashMap ei tue
 primitiivisten tietotyyppien säilömistä.
 
-\code{week3}{BasicHashMap}{HashMap-luokan käyttö Javassa}
+\code{week3/basicexamples}{HashMapUsage}{HashMap-luokan käyttö Javassa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -851,7 +851,7 @@ For-loopin iterointiehtona voi myös toimia jo olemassa oleva muuttuja, iteroint
 aina pakko luoda uutta muuttujaa. Jos iterointiehdoksi luodaan uusi muuttuja, se näkyy vain
 loopin sisällä. Seuraava koodiesimerkki esittelee for-loopin luomisen ja käytön perusteet käytännössä.
 
-\code{week3}{BasicForLoop}{For-loopin käyttö Javassa}
+\code{week3/basicexamples}{ForLoop}{For-loopin käyttö Javassa}
 
 \subsection{For-each-looppi}
 \label{for each}
@@ -866,7 +866,7 @@ iteroi koko kokoelman yli, sitoen annettuun muuttujaan jokaisen yksittäisen arv
 Tämä käyttäytyminen muistuttaa pythonin for-looppia. Seuraava koodiesimerkki näyttää kokoelman
 yli iteroimisen for-each -loopilla.
 
-\code{week3}{BasicForEachLoop}{For-each -loopin käyttö Javassa}
+\code{week3/basicexamples}{ForEachLoop}{For-each -loopin käyttö Javassa}
 
 \subsection{While-looppi}
 \label{while}
@@ -880,7 +880,7 @@ While-looppi on yleinen ohjausrakenteena ohjelman ytimessä: ohjelmaa tai ohjelm
 niin kauan kuin ennalta määritelty ehto on totta. Seuraava koodiesimerkki esittelee while-loopin
 käytön.
 
-\code{week3}{BasicWhileLoop}{While-loopin käyttö Javassa}
+\code{week3/basicexamples}{WhileLoop}{While-loopin käyttö Javassa}
 
 \subsection{Do-while -looppi}
 \label{do while}
@@ -896,7 +896,7 @@ koodiesimerkki esittelee tällaisen tilanteen: toistoehto on koko ohjelman ajan 
 loopin runko ajetaan kuitenkin kerran, koska toistoehto tarkastetaan vasta ajon jälkeen. Tämä ei
 olisi mahdollista while-loopilla.
 
-\code{week3}{BasicDoWhileLoop}{Do while -loopin käyttö Javassa}
+\code{week3/basicexamples}{DoWhileLoop}{Do while -loopin käyttö Javassa}
 
 \subsection{Avainsanat break ja continue}
 \label{break continue}
@@ -911,7 +911,7 @@ tarkemman ohjauksen. Seuraava esimerkki esittelee molempien avainsanojen käytö
 joka luettelee parillisia lukuja nollasta alkaen maxNumber-muuttujassa määriteltyyn
 maksimiarvoon asti.
 
-\code{week3}{BasicBreakContinue}{Break- ja continue-avainsanojen käyttö Javassa}
+\code{week3/basicexamples}{BreakContinue}{Break- ja continue-avainsanojen käyttö Javassa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -996,8 +996,8 @@ ajeta, tai mikäli haaraan jatketaan \java{break}-avainsanan puutteen vuoksi ede
 Oletushaaraa voi käyttää esimerkiksi virhetilojen korjaamiseen. Seuraava koodiesimerkki esittelee
 ohjelman, joka muuttaa valintarakenteella kouluarvosanan sanalliseksi arvioksi.
 
-\code{week3}{BasicSwitch}{Valikkorakenne, \java{switch}- ja \java{case} -avainsanojen käyttö
-Javassa}
+\code{week3/basicexamples}{Switch}{Valikkorakenne, \java{switch}- ja \java{case} -avainsanojen
+käyttö Javassa}
 
 \subsection{Luokkamuuttujat, luokkafunktiot ja static}
 \label{static}
@@ -1017,8 +1017,9 @@ Tämä tarkoittaa, ettei Javan tarvitse alustaa juuriluokan instanssia ohjelman 
 Seuraava esimerkki esittelee luokkametodin luomisen apuriluokkaan ja kutsumisen apuriluokan
 ulkopuolelta ilman apuriluokan instanssia.
 
-\code{week3}{BasicStaticChild}{Luokkametodin luominen \java{static}-avainsanalla}
-\code{week3}{BasicStatic}{Luokkametodin kutsuminen metodin määrittelevän luokan ulkopuolella}
+\code{week3/staticexample}{StaticPrinter}{Luokkametodin luominen \java{static}-avainsanalla}
+\code{week3/staticexample}{Main}{Luokkametodin kutsuminen metodin määrittelevän luokan
+ulkopuolella}
 
 \subsection{Tyyppimuunnokset (casting)}
 \label{casting}
@@ -1040,7 +1041,7 @@ aiheuttaa ongelmia ohjelman ajovaiheessa. Tyypinmuunnosta käsitellään tarkemm
 yhteydessä. Seuraava koodiesimerkki esittelee tyyppimuunnoksen perussyntaksin muuttamalla
 liukulukumuuttujan kokonaisluvuksi.
 
-\code{week3}{BasicCasting}{Tyyppimuunnos primitiivisestä tietotyypistä toiseen Javassa}
+\code{week3/basicexamples}{Casting}{Tyyppimuunnos primitiivisestä tietotyypistä toiseen Javassa}
 
 \subsection{Vakiot ja final}
 \label{final}
@@ -1053,7 +1054,7 @@ sille arvoa. Tällöin ensimmäinen muuttujaan asetettu arvo jää vakioksi. Tä
 määrittelemällä vakiomuuttuja luokan ruumiissa ja asettamalla sille arvo rakentajassa. Seuraava
 koodiesimerkki esittelee final-avainsanan käytön perusteet.
 
-\code{week3}{BasicFinal}{\java{final}-avainsanan käyttö Javassa}
+\code{week3/basicexamples}{FinalUsage}{\java{final}-avainsanan käyttö Javassa}
 
 \subsection{Luetellut tyypit (enum)}
 \label{enum}
@@ -1073,8 +1074,8 @@ pistenotaatiolla arvoluokan nimestä tai jos lueteltu tyyppi on määritelty sam
 tai tuotu nimitilaan \java{import}-avainsanalla pelkällä arvon nimellä. Seuraavat koodiesimerkit
 esittelevät luetellun tyypin luomisen ja käytön.
 
-\code{week3}{CompassPoint}{Lueteltu tyyppi ilmansuunnista}
-\code{week3}{BasicEnum}{Lueteltuun tyyppiin viittaaminen}
+\code{week3/enumexample}{CompassPoint}{Lueteltu tyyppi ilmansuunnista}
+\code{week3/enumexample}{Main}{Lueteltuun tyyppiin viittaaminen}
 
 \subsection{Aritmeettiset- ja bittioperaatiot}
 \label{operaatiot}
@@ -1198,8 +1199,8 @@ typistyisivät alusta.
 \subsection{Osoitekirjaohjelman koodi}
 \label{osoitekirja koodi}
 
-\code{addressbookexample}{ContactManager}{Osoitekirjamanageri osoitekirjan hallintaan}
-\code{addressbookexample}{AddressBook}{Pääluokka, joka vastaa ohjelman ajamisesta}
+\code{week3/addressbookexample}{ContactManager}{Osoitekirjamanageri osoitekirjan hallintaan}
+\code{week3/addressbookexample}{AddressBook}{Pääluokka, joka vastaa ohjelman ajamisesta}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1455,9 +1456,64 @@ sijoitetaan lapsiluokan määritelmään luokan nimen perään, niin että toivo
 seuraa avainsanaa. Tämän jälkeen luokan määritelmää jatketaan normaalisti. Seuraava koodiesimerkki
 esittelee yksinkertaisen periytymiseen pohjaavan rakenteen luomisen Javassa.
 
-\code{week6}{BasicInheritanceParent}{Periytymisesimerkin kantaluokka}
-\code{week6}{BasicInheritanceChild}{Periytymisesimerkin lapsiluokka}
-\code{week6}{BasicInheritanceMain}{Periytymisesimerkin pääluokka}
+\code{week6/basicinheritanceexample}{Parent}{Periytymisesimerkin kantaluokka}
+\code{week6/basicinheritanceexample}{Child}{Periytymisesimerkin lapsiluokka}
+\code{week6/basicinheritanceexample}{Main}{Periytymisesimerkin pääluokka}
+
+\subsection{Kantaluokan toiminnallisuuksien uudelleenmäärittely}
+\label{overriding}
+
+\newthought{Aina ei} ole toivottavaa, että lapsiluokka perii kaiken kantaluokan toiminnallisuuden.
+Tätä varten Java tarjoaa mahdollisuuden uudelleenmääritellä periytettyjen luokkien perimiä
+metodeja. Tämä metodin \neweng{korvaaminen}{overriding} tapahtuu yksinkertaisesti määrittelemällä
+lapsiluokassa metodi, jonka \gls{signatuuri} on tismalleen sama, kuin kantaluokan korvattavan
+metodin. Tällöin kutsuttaessa lapsiluokan metodia kyseisellä signatuurilla ajetaan lapsiluokassa
+määritelty versio metodista. Seuraava koodiesimerkki esittelee metodin toiminnan korvaamisen
+käytännössä.
+
+\code{week6/overridingexample}{Parent}{Korvaamisesimerkin kantaluokka}
+\code{week6/overridingexample}{Child}{Korvaamisesimerkin lapsiluokka}
+\code{week6/overridingexample}{Main}{Korvaamisesimerkin pääluokka}
+
+\section{Periytyminen ja rakentajat}
+\label{superprotected}
+
+\subsection{Näkyvyysmääre protected}
+\label{protected}
+
+\newthought{Aiemmin oppaan} kappaleessa \nameref{näkyvyysmääreet} käytiin läpi käsite
+\gls{nakyvyysmaare} ja avainsanat \java{public} ja \java{private}. Näiden ja oletusnäkyvyyden
+lisäksi Javassa on olemassa neljäs näkyvyysmääreavainsana \newjava{protected}. Avainsana määrittää
+muuttujan tai metodin olevan näkyvissä vain luokalle itselleen, sekä kaikille luokan periville
+luokille. Näkyvyysmääreen \java{private} omaava muuttuja tai metodi ei siis näy edes luokan
+periville luokille.
+
+\subsection{Periytyminen, rakentajat ja super}
+\label{super}
+
+\newthought{Luotaessa lapsiluokan} instanssia Javassa on aina kutsuttava kantaluokan rakentajaa.
+Mikäli kummallekaan luokalle ei ole määritelty rakentajaa, kutsuu Java automaattisesti kantaluokan
+oletusrakentajaa rakentaessaan lapsiluokan instanssia. Mikäli lapsiluokalla ei ole rakentajaa,
+mutta kantaluokalle halutaan määrittää rakentaja, jota lapsiluokan rakennus käyttää, on tämän
+rakentajan oltava parametritön.
+
+\newthought{Mikäli lapsiluokalle} luodaan itse määritelty rakentaja, on rakentajan kutsuttava
+ensimmäisenä komentona jotain emoluokan rakentajaa. Tämän ei tarvitse olla parametritön
+oletusrakentaja vaan mikä tahansa rakentaja kelpaa.
+
+\newthought{Päästäkseen käsiksi} kantaluokkansa kenttiin, kuten rakentajiin, voi lapsiluokka
+käyttää \newjava{super}-avainsanaa. Avainsana toimii viittauksena kantaluokan instanssiin, jonka
+pohjalle lapsiluokka on luotu. Käyttämällä avainsanaa metodikutsuna päästään käsiksi kantaluokan
+rakentajametodin eri ylikuormituksiin ja käyttämällä pistenotaatiota päästään käsiksi kantaluokan
+muuttujiin ja metodeihin näkyvyysmääreiden salliessa. Seuraavat koodiesimerkit esittelevät
+rakentajien käytön periytymisen yhteydessä, sekä avainsanat \java{super} ja \java{protected}
+
+\code{week6/inheritancewithconstructors}{ParentWithoutConstructor}{Rakentajaton kantaluokka}
+\code{week6/inheritancewithconstructors}{ChildOfConstructorless}{Rakentajattoman kantaluokan
+lapsiluokka, jolle on määritelty rakentaja}
+\code{week6/inheritancewithconstructors}{ParentWithConstructor}{Kantaluokka, jolla on rakentaja}
+\code{week6/inheritancewithconstructors}{ChildOfConstructorParent}{Rakentajallisen kantaluokan
+lapsiluokka, jolle on määritelty erillinen rakentaja}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
