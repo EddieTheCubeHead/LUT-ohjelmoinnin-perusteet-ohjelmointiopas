@@ -370,3 +370,104 @@ Tapahtuu määrittelemällä lapsiluokassa metodin, jonka signatuuri on identtin
 korvattavan metodin kanssa. Tämän metodin toiminnallisuus ajetaan kantaluokan metodin sijaan},
 	see={periytyminen,signatuuri,kantaluokka,lapsiluokka}
 }
+
+\newglossaryentry{SOLID-periaatteet}
+{
+	name=SOLID-periaatteet,
+	description={(SOLID-principles) Viisi oliopohjaisen ohjelmoinnin käyttöön kehitettyä
+periaatetta, joiden tavoitteena on auttaa laadukkaan, siistin, helposti laajennettavan ja helposti
+luettavan oliopohjaisen ohjelmiston tuottamisessa. Periaatteet ovat "yhden vastuun periaate"
+(Single Responsibility Principle - SRP), "avoin/suljettu-periaate" (Open/Closed Principle - OCP),
+"Liskovin korvaavuusperiaate" (Liskov Substitution Principle - LSP), "rajapintojen erottelu
+-periaate" (Interface Segregation Principle - ISP) ja "käänteisten riippuvuuksien periaate"
+(Dependency Injection Principle - DIP)},
+	see={yhden vastuun periaate,  avoin/suljettu-periaate, Liskovin korvaavuusperiaate, 
+	rajapintojen erottelu -periaate, kaanteisten riippuvuuksein periaate}
+}
+
+\newglossaryentry{yhden vastuun periaate}
+{
+	name=yhden vastuun periaate,
+	description={(Single Responsibility Principle - SRP) SOLID-periaatteisiin kuuluva sääntö, joka
+käsittelee koodin jakamista luokkiin. Periaatteen mukaan jokaisella luokalla pitäisi olla yksi ja
+vain yksi vastuu. Esimerkiksi String-luokan vastuu on vain merkkijonotyyppisen datan säilöminen ja
+sen vastuisiin ei kuulu esimerkiksi datan esittäminen},
+	see={SOLID-periaatteet}
+}
+
+\newglossaryentry{avoin/suljettu-periaate}
+{
+	name=avoin/suljettu-periaate,
+	description={(Open/Closed Principle - OCP) SOLID-periaatteisiin kuuluva sääntö, jonka mukaan
+kirjoitetun koodin on oltava suljettu muutoksilta, mutta avoin laajennukselle. Ohjelmiston osien
+on säännön mukaan tapa laajentaa toimintaansa muokkaamatta olemassaolevaa toiminnan määrittelevää
+koodia. Esimerkiksi mikäli ohjelmisto käyttää switch-rakennetta, jonka sisällä suoritetaan
+logiikkaa saapuvan olion tyypin mukaan, ei rakenne ole laajennettavissa toiminnallisuudeltaan,
+ilman että rakenteen koodia muokataan. Sen sijaan rakenne, joka on ohjelmoitu vastaanottamaan
+olio ja kutsumaan oliossa itsessään määriteltyä metodia on laajennettavissa toiminnallisuudeltaan
+muokkaamatta lähdekoodia. Tämä tapahtuu tarjoamalla rakenteelle erilainen olio, joka toteuttaa
+rajapinnan, jossa rakenteen kutsuma metodi on määritelty},
+	see={SOLID-periaatteet}
+}
+
+\newglossaryentry{Liskovin korvaavuusperiaate}
+{
+	name=Liskovin korvaavuusperiaate,
+	description={(Liskov Substitution Principle - LSP) SOLID-periaatteisiin kuuluva sääntö, joka
+käsittelee kanta- ja lapsiluokkien suhdetta. Liskovin korvaavuussäännön mukaan, lapsiluokan
+instanssia pitää pystyä käsittelemään kuin kantaluokan instanssia, eli sen on paljastettava
+vähintään samat metodit ja muuttuvat kuin kantaluokan instanssien. Korvaavuus ei kulje molempiin
+suuntiin, vaan lapsiluokan instanssit saavat säännön mukaan sisältää metodeja ja muuttujia, joita
+kantaluokan instansseista ei löydy},
+	see={SOLID-periaatteet,kantaluokka,lapsiluokka,periytyminen}
+}
+
+\newglossaryentry{rajapintojen erottelu -periaate}
+{
+	name=rajapintojen erottelu -periaate,
+	description={(Interface Segregation Principle - ISP) SOLID-periaatteisiin kuuluva sääntö, joka
+käsittelee rajapintojen toiminnallisuuksien rajaamista. Periaatteen mukaan rajapinnan
+implementoivan luokan ei pitäisi joutua määrittelemään metodeja, joita se ei tarvitse. Käytännössä
+siis jokainen rajapinta pitäisi suunnitella tarpeeksi pieneksi, jotta kaikki sen implementoivat
+luokat käyttävät kaikkia sen metodeja}
+	see={SOLID-periaatteet,rajapinta,java:interface}
+}
+
+\newglossaryentry{kaanteisten riippuvuuksien periaate}
+{
+	name=kaanteisten riippuvuuksien periaate,
+	description={(Dependency Inversion Principle -DIP) SOLID-periaatteisiin kuuluva sääntö, joka
+käsittelee ohjelmiston riippuvuuksien suuntaa. Periaatteen mukaan ohjelmiston korkean tason
+kompinenttien ei pitäisi olla riippuvaisia matalan tason komponenteista vaan molempien olisi
+oltava riippuvainen jaetusta abstraktiosta (toteutettu rajapintaluokkana). Samaan tapaan
+rajapintaluokkien ei tulisi olla riippuvaisia konkreettisista luokista, vaan konkreettisten 
+luokkien tulisi aina olla riippuvaisia rajapintaluokista},
+	see={SOLID-periaatteet,rajapinta,java:import}
+}
+
+\newglossaryentry{abstrakti luokka}
+{
+	name=abstrakti luokka,
+	description={(abstract class) Luokka, joka on määritelty abstract-avainsanalla ja jolle on
+määritelty vähintään yksi abstrakti metodi. Abstraktista luokasta ei voi luoda instanssia, vaan
+luokkaa voi käyttää vain kantaluokkana luokasta luoduille konkreettisille luokille. Näiden
+konkreettisten luokkien on implementoitava kaikki luokan abstraktit metodit},
+	see={kantaluokka,periytyminen,java:abstract,abstrakti metodi,konkreettinen luokka}
+}
+
+\newglossaryentry{abstrakti metodi}
+{
+	name=abstrakti metodi,
+	description={(abstract method) Metodi, joka on määritelty abstract-avainsanalla ja joka
+sijaitsee abstraktissa luokassa. Abstraktin metodin määritelmä ei sisällä metodin runkoa,
+ainoastaan signatuurin. Luokan konkreettisten lapsiluokkien on implementoitava kyseinen metodi},
+	see={abstrakti luokka,signatuuri,java:abstract}
+}
+
+\newglossaryentry{konkreettinen luokka}
+{
+	name=konkreettinen luokka,
+	description={(concrete class) Luokka, joka on abstraktin luokan lapsiluokka eikä ole itse
+abstrakti luokka. Luokan on implementoitava kaikki kantaluokan abstraktit metodit},
+	see={abstrakti luokka,abstrakti metodi}
+}

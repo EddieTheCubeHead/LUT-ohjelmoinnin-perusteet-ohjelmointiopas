@@ -849,7 +849,8 @@ on kyseessä." Muuttujaa i voidaan käyttää loopin ruumiin sisällä.
 alustuksessa. On huomioitavaa, että kokoelmien iterointi on yleensä helpompaa foreach-loopilla.
 For-loopin iterointiehtona voi myös toimia jo olemassa oleva muuttuja, iterointiehdoksi ei ole
 aina pakko luoda uutta muuttujaa. Jos iterointiehdoksi luodaan uusi muuttuja, se näkyy vain
-loopin sisällä. Seuraava koodiesimerkki esittelee for-loopin luomisen ja käytön perusteet käytännössä.
+loopin sisällä. Seuraava koodiesimerkki esittelee for-loopin luomisen ja käytön perusteet
+käytännössä.
 
 \code{week3/basicexamples}{ForLoop}{For-loopin käyttö Javassa}
 
@@ -880,7 +881,7 @@ While-looppi on yleinen ohjausrakenteena ohjelman ytimessä: ohjelmaa tai ohjelm
 niin kauan kuin ennalta määritelty ehto on totta. Seuraava koodiesimerkki esittelee while-loopin
 käytön.
 
-\code{week3/basicexamples}{WhileLoop}{While-loopin käyttö Javassa}
+\code{week3/basicexamples}{BasicWhileLoop}{While-loopin käyttö Javassa}
 
 \subsection{Do-while -looppi}
 \label{do while}
@@ -1517,13 +1518,83 @@ lapsiluokka, jolle on määritelty erillinen rakentaja}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Lisää periytymisen teoriaa}
+\section{Periytymisen oikeaoppinen käyttö}
 \label{periytyminen4}
+
+\newthought{Periytyminen on} monimutkainen rakenne joka tarjoaa ohjemoijalle voimakkaan työkalun.
+Tätä työkalua on helppo käyttää väärin mikäli periytymistä lähdetään käyttämään kaikkialla ja
+siitä yritetään tehdä ratkaisu joka ongelmaan. Periytymiselle on oma paikkansa ohjelmiston
+suunnittelussa ja se ratkaisee jotkin ongelmat erinomaisesti, mutta on olemassa tiettyjä
+lainalaisuuksia, jotka on pidettävä mielessä periytymistä hyödynnettäessä. Näin varmistetaan, että
+ohjelmiston kehittäminen helpottuu periytymisrakenteiden vaikutuksesta, sen sijaan että
+kehittämisprosessia monimutkaistettaisiin turhaan ilman selkeitä hyötyjä periytymisestä.
+
+\subsection{Liskovin korvaavuusperiaate}
+\label{liskov1}
+
+\newthought{Kuten kapppaleen} \nameref{super} koodiesimerkeissä nähtiin, voidaan lapsiluokan olio
+tallentaa muuttujaan, jonka tyypiksi on määritelty emoluokan olio. Tällöin muuttujaan tallennettua
+olioita voidaan kohdella kuin emoluokan oliota. Tämä käyttäytyminen mahdollistaa monia hyödyllisiä
+toiminnallisuuksia, kuten monen eri lapsiluokan instanssien tallentamista samaan \java{ArrayList}-
+instanssiin, kunhan kyseinen \java{ArrayList}-instanssi on geneerinen kantaluokan yli, eikä
+jonkin lapsiluokan yli.
+
+\newthought{Kuitenkin tällainen} luokkien käyttäminen luo velvotteita lapsiluokkien suunnitteluun.
+Jotta edellä kuvailtu käyttötapa sujuisi ongelmitta, kuuluu lapsiluokkien ja emoluokan toteuttaa
+\neweng{Liskovin korvaavuusperiaate}{Liskov Substitution Principle - LSP}. Periaate on osa
+viiden periaatteen muodostamaa \neweng{SOLID-periaatteet}{SOLID-principles} -ryhmää. Periaatteet
+on suunniteltu helpottamaan laadukkaan oliopohjaisen koodin tuottamista ja loput periaatteet
+käsitellään myöhemmin luvussa *x*. % TODO: lisää luku
+
+\newthought{\Gls{Liskovin korvaavuusperiaate}} määrittelee kantaluokan ja lapsiluokkien suhteen
+seuraavasti: "Mikä tahansa emoluokan instanssi pitäisi olla korvattavassa millä tahansa 
+lapsiluokan instanssilla ilman että ohjelman toiminta häiriintyy." Käytännössä tämä tarkoittaa,
+että lapsiluokkien ei pitäisi ylikirjoittaa emoluokkien julkisia kenttiä niin että kentän
+toiminnallisuus ulkoa tarkasteltaessa muuttuu. Esimerkiksi metodin ylikirjoittaminen
+toimimattomalla tyngällä rikkoo täten Liskovin korvaavuusperiaatetta.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Periytymisen rakenteita}
 \label{periytyminen5}
+
+\newthought{Tähän mennessä} oppaassa on käsitelty vain suoraa periytymistä, jossa
+\gls{kantaluokka} ja \gls{lapsiluokka} ovat molemmat normaaleja Javan luokkia. Periytyminen on
+kuitenkin rakenne, jota käytetään monimutkaisten teollisten ohjelmien suunnittelussa ja täten
+suurimpaan osaan oliopohjaisia kieliä on kehitetty rakenteita periytymiseen pohjaavan
+arkkitehtuurin siistimiseen. Näistä tärkeimmät ovat \neweng{abstrakti luokka}{abstract class} ja
+\neweng{rajapinta}{interface}. Tämä kappale käy läpi näiden rakenteiden käytön koodissa ja niiden
+käyttötarkoitukset, sekä puhuu hieman rakenteiden eroista.
+
+\subsection{Abstrakti luokka}
+\label{abstract}
+
+\newthought{\Gls{abstrakti luokka}} on oliopohjainen rakenne, jossa luokan määritelmästä tehdään
+pelkkä muotti, jonka ainoa tehtävä on toimia pohjana kyseisestä luokasta periytyville
+lapsiluokille. Tällaisen rakenteen tehtävänä on varmistaa että jokainen luokka, joka periytyy
+abstraktista kantaluokasta toteuttaa jonkin jaetun toiminnallisuuden ja samalla estää kantaluokan
+suora käyttäminen koodissa, koska sen ei kuulukaan tietää miten tämän toiminnallisuuden 
+implementaatio tapahtuu. Luokasta tehdään abstrakti lisäämällä \newjava{abstract}-avainsana luokan
+määritelmään \java{class}-avainsanan eteen. Abstraktin luokan ei-abstraktin lapsiluokan nimi on
+\neweng{konkreettinen luokka}{concrete class}.
+
+\newthought{Jokaisella abstraktilla} luokalla on oltava vähintään yksi 
+\neweng{abstrakti metodi}{abstract method}. Tämä metodi määritellään luomalla metodi, joka
+sisältää pelkän signatuurin ilman runkoa ja lisäämällä metodin määritelmään \java{abstract}
+-avainsana näkyvyysmääreen jälkeen. Abstrakti metoodi on siis ikään kuin musta laatikko. Sen
+argumentit ja paluuarvo tiedetään, mutta abstrakti kantaluokka, joka määrittelee metodin ei
+kerro, miten metodeista saadaan paluuarvo vaan jokaisen konkreettisen lapsiluokan on
+määriteltävä tämä itse.
+
+\newthought{Abstraktin luokan} käyttö koodissa vaatii yleensä jonkin jaetun toiminnallisuuden
+tarpeen toteamista ja tämän toiminnallisuuden eristämistä abstraktiin luokkaan. Seuraava
+koodiesimerkki *x* % TODO: lisää koodiesimerkki jahka pöytäkoneella
+
+\subsection{Rajapinta}
+\label{interface}
+
+\newthought{Toinen tapa} eristää luokkien jakamaa toiminnallisuuttaa koodissa on rajapintaluokka,
+joka luodaan \java{interface}-avainsanalla.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
