@@ -1594,7 +1594,37 @@ koodiesimerkki *x* % TODO: lisää koodiesimerkki jahka pöytäkoneella
 \label{interface}
 
 \newthought{Toinen tapa} eristää luokkien jakamaa toiminnallisuuttaa koodissa on rajapintaluokka,
-joka luodaan \java{interface}-avainsanalla.
+joka luodaan \java{interface}-avainsanalla. Rajapintaluokan tehtävä on luokan nimen mukaisesti
+määrittää jokin \gls{rajapinta} jonka muut ohjelmiston luokat voivat sitten ilmoittaa täyttävänsä.
+Toisin kuin \gls{abstrakti luokka}, rajapintaluokka voi sisältää ainoastaa julkisia ja staattisia 
+vakiotietokenttiä, eikä rajapintaluokkaa voi käytää kantaluokkana periytymisessä. Tämän sijaan
+mikä tahansa ohjelmiston luokka voi ilmoittaa, että se \neweng{toteuttaa}{implement}
+rajapintaluokan. Luokan, joka toteuttaa rajapintaluokan on määriteltävä jokainen rajapinnassa
+määritelty metodi. Näistä määritelmistä jokaisella pitää olla identtinen \gls{signatuuri}
+rajapintaluokan vastaavan metodin määritelmän kanssa.
+
+\newthought{Rajapintaluokka määritellään} Javassa korvaamalla normaalin luokan määritelmän 
+\java{class}-avainsana \newjava{interface}-avainsanalla. Rajapintaluokkasta ei voi luoda
+instansseja, eikä luokalle voi määrittää rakentajaa. Ainoat tietokentät, jotka ovat hyväksyttyjä
+rajapintaluokassa ovat oletuksena näkyvyydeltään julkisia luokkamuuttujavakioita. Mikäli muuttujan
+määritelmä rajapintaluokassa ei sisällä avainsanoja \java{public}, \java{static} ja \java{final}
+lisätään ne määritelmään automaattisesti. Muiden näkyvyysmääreiden käyttäminen estää ohjelmiston
+rakentamisen.
+
+\newthought{Rajapintaluokan kaikki} metodit ovat automaattisesti abstrakteja metodeja. Myös
+metodien on oltava rajapintaluokassa julkisia muuttujien tapaan. Java tukee metodin
+oletustoiminnallisuuden määrittelemistä \newjava{default}-avainsanalla, mutta mikäli ohjelmiston
+kehitysvaiheessa huomataan tälle olevan tarvetta kannattaa miettiä tarkkaan, käytetäänkö
+rajapintaluokkaa oikein; Avainsana on olemassa lähinnä mahdollistamaan myöhemmät laajennukset
+yleisesti käytettyihin rajapintoihin eikä siihen kannata tukeutua. Tästä syystä oppaassa ei
+myöskään käydä avainsanan käyttöä tämän tarkemmin läpi.
+
+\newthought{Seuraava koodiesimerkki} esittelee... *x* % TODO: hoida pöytäkoneelta
+
+\subsection{Rajapinta vai abstrakti luokka?}
+\label{interface v abstract}
+
+\newthought{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
