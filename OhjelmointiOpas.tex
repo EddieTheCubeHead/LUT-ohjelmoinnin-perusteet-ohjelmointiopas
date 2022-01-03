@@ -1588,7 +1588,16 @@ määriteltävä tämä itse.
 
 \newthought{Abstraktin luokan} käyttö koodissa vaatii yleensä jonkin jaetun toiminnallisuuden
 tarpeen toteamista ja tämän toiminnallisuuden eristämistä abstraktiin luokkaan. Seuraava
-koodiesimerkki *x* % TODO: lisää koodiesimerkki jahka pöytäkoneella
+koodiesimerkki esittelee abstraktin kantaluokan ja konkreettisen lapsiluokan luomisen. Esimerkissä
+luodaan "AbstractLogger"-kantaluokka, joka sisältää \java{protected}-metodin "formatLogString" ja
+abstraktin julkisen metodin "logString". Sen jälkeen kantaluokasta tehdään konkreettinen
+lapsiluokka "CommandLineLogger", joka sisältää määritelmän kantaluokan "logString"-metodille.
+Huomaa, kuinka lapsiluokka pystyy käyttämään "formatLogString"-metodia, joka on määritelty
+kantaluokassa.
+
+\code{week6/abstractexample}{AbstractLogger}{Abstrakti loggaajapohja}
+\code{week6/abstractexample}{CommandLineLogger}{Loggaajaan konkreettinen implementaatio, joka
+tulostaa saadun tekstidatan komentoriville}
 
 \subsection{Rajapinta}
 \label{interface}
@@ -1619,12 +1628,57 @@ rajapintaluokkaa oikein; Avainsana on olemassa lähinnä mahdollistamaan myöhem
 yleisesti käytettyihin rajapintoihin eikä siihen kannata tukeutua. Tästä syystä oppaassa ei
 myöskään käydä avainsanan käyttöä tämän tarkemmin läpi.
 
-\newthought{Seuraava koodiesimerkki} esittelee... *x* % TODO: hoida pöytäkoneelta
+\newthought{Seuraava koodiesimerkki} esittelee simppelin "TextProvider"-rajapinnan luomisen ja
+kyseisen rajapintaluokan implementoimisen konkreettiseen luokkaan.
+
+\code{week6/interfaceexample}{TextProvider}{TextProvider rajapintaluokka}
+\code{week6/interfaceexample}{FunctionalClass}{Luokka, joka implementoi TextProvider-rajapinnan}
 
 \subsection{Rajapinta vai abstrakti luokka?}
 \label{interface v abstract}
 
-\newthought{}
+\newthought{Rajapintaluokka ja} abstrakti luokka muistuttavat toisiaan toiminnallisuuksiltaan ja
+osin käyttötavoiltaankin. Niille molemmille löytyvät kuitenkin omat erilliset käyttökohteensa ja
+syvempi ymmärrys luokkatyyppien toiminnallisuuksien eroista auttaa käsittämään nämä erilaiset
+käyttökohteet.
+
+\newthought{Koska Java} \neweng{moniperinta}{multiple inheritance} ei ole tuettua Javassa, ei
+abstrakteja luokkia voi käyttää lisäämään yhdelle luokalle useamman eri luokan toiminnallisuuksia.
+Tällainen on rajapintaluokkien tehtävä. Sen sijaan abstrakti luokka voi määritellä valmiiksi
+toiminnallisuuksia ja datakenttiä itselleen, helpottaen lapsiluokkien kirjoittamista. Abstraktin
+luokan pääkäyttötarkoitus onkin luoda koodiin jokin palvelu, kuten logien kirjoittaminen, jonka
+yleinen toiminnallisuus on tiedossa, mutta toteutus riippuu käytettävästä kirjastosta. Esimerkiksi
+tässä logiesimerkissä, voitaisiin luoda abstrakti luokka, jolle implementoidaan valmiiksi funktiot
+logien muotoiluun, mutta jonka loginkirjoitusfunktiot määritellään abstrakteina, jolloin kutakin
+logikirjastoa käyttävä abstraktin luokan implementaatio määrittelee kirjastoon nojaavan
+rajapintansa itse.
+
+\newthought{Rajapintaluokkien tehtävä} puolestaan on yleensä luoda pieniä, selkeitä
+toiminnallisuussopimuksia koodissa. Mikäli myöhemmin ilmenee tarve lisätä johonkin luokkaan jo
+valmiiksi määritellyn rajapinnan toiminnallisuudet, voidaan luokan määritelmään lisätä tämä
+rajapinta \java{implements}-avainsanalla. Esimerkiksi pelinkehityksessä saatetaan tarvita
+tuhoutuvia objekteja, joita varten voitaisiin luoda "Destructable"-rajapintaluokka jolle on
+määritelty "destroyObject"-metodi. Koodi voi sitten tarkistaa implementoiko jokin luokka tämä
+rajapinnan \newjava{instanceof}-avainsanalla ja jos luokka implementoi "Destructable"-rajapinnan,
+koodi voi kutsua "destroyObject"-metodia luokan instanssista tuhoten objektin.
+
+\newthought{Rajapintaluokan ja} abstraktin luokan käyttötarkoitukset siis eroavat toisistaan
+hieman. Yleisesti rajapintaluokan tehtävä on määrittää laajemmin käytössä oleva sopimus, joka
+voidaan implementoida eri kohdissa koodia eri luokille. Tästä hyvä esimerkki on
+\nameref{serialisaatio}-kappaleessa käsiteltävä \java{Serializable}-rajapintaluokka. Abstrakti
+luokka taas määrittää yhden toiminnallisuudeltaan rajatun luokkatyypin, mutta antaa tämän
+toiminnallisuuden toteutusvastuun eteenpäin kantaluokan lapsiluokille. Mahtava esimerkki tästä
+ovat Minecraft-pelin kuutiot. Jokainen kuutiotyyppi on abstraktin "Block"-luokan konkreettinen
+lapsiluokka, joka määrittää yksittäisen kuutiotyypin tarkemmat toiminnallisuudet.
+
+\newthought{Samaan tapaan} oppaan koodiesimerkeissä kappaleissa \nameref{abstract} ja
+\nameref{interface} abstraktin luokan esimerkissä hyödynnetään abstraktin kantaluokan kykyä
+määritellä konkreettisia metodeja kantaluokkaan: oletettavasti kaikki lapsiluokat hyödyntävät
+"formatLogString"-metodia. Rajapintaluokkaesimerkissä puolestaan luotu "TextProvider"-rajapinta
+on vain yksinkertainen rajapinta, jonka mikä tahansa ohjelmiston luokka saattaa toteuttaa
+tarvittaessa. Abstraktilla luokalla on yksi suunniteltu käyttötarkoitus, jonka toteutustapa
+määritellään lapsiluokan implementaatiossa, kun taas rajapintaluokan käyttötarkoitus ei ole niin
+tarkkaan rajattu ja rajapintaa voidaan implementoida useammassa paikassa koodissa.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1638,7 +1692,31 @@ ja uuden olion rakentamista luetusta tekstidatasta aina oliota ladattaessa. Täh
 Javasta löytyy erikseen \gls{serialisaatio}-niminen tekniikka, joka mahdollistaa olioiden
 automaattisen muuttamisen tallennettavaan muotoon ja tämän muodon muuttamisen takaisin olioksi.
 
-\newthought{Serialisaatio on} mahdollista vain
+\newthought{Serialisaatio on} mahdollista vain luokille, jotka implementoivat
+\newjava{Serializable}-rajapinnan. Tämän lisäksi kaikkien luokan muuttujien on myös oltava
+tietotyyppiä, joka implementoi tämän rajapinnan. Suurimmaksi osaksi tämä koskee vain käyttäjän
+määrittelemiä luokkia, sillä kaikki primitiiviset tietotyypit ja suurin osa standardikirjaston
+yleisesti käytetyistä luokista, kuten kokoelmat, implementoivat \java{Serializable}-rajapinnan.
+
+\newthought{Jos luokka} ja kaikki luokan muuttujat implementoivat \java{Serializable}-rajapinnan,
+voidaan luokan instanssi muuttaa tekstimuotoon \newjava{ObjectOutputStream}-luokan avulla.
+Luokan julkinen rakentaja ottaa \java{OutputStream}-olion, joka edustaa datakuluttajaa, johon
+serialisoitava objekti kirjoitetaan. Luodusta instanssista voidaan kutsua instanssin writeObject-
+metodia serialisoitavalla oliolla. Tämä kirjoitaa olion serialisoidun tavudataversion
+\java{ObjectOutputStream}-rakentajassa määriteltyyn \java{OutputStream}-olioon.
+
+\newthought{Luokan deserialisaatio} tapahtuu \newjava{ObjectInputStream}-luokan avulla. Luokan
+julkinen rakentaja ottaa \java{InputStream}-olion, joka edustaa datasyötettä, josta
+deserialisoitava objekti on luettavissa. Luodusta instassista voidaan kutsua instanssin
+readObject-metodia ilman argumentteja. Tämä palauttaa deserialisoidun olion luetun tavudatan
+pohjalta.
+
+\newthought{Seuraava koodiesimerkki} esittelee serialisoitavan luokan luomisen, serialisaation
+tiedostoon ja deserialisaation tiedostosta. Huomioi, että mikäli serialisoituja olioita
+tallennetaan tiedostoon, on normaalia nimetä tiedosto ".ser"-päätteellä.
+
+\code{week6/serializationexample}{SerializableData}{Serialisoitava luokka}
+\code{week6/serializationexample}{Main}{Serialisaatioesimerkin pääluokka}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %

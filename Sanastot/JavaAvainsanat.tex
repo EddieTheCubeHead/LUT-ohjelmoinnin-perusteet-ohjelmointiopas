@@ -458,7 +458,8 @@ read-metodin lukuoperaatioita varten}
 	type=java,
 	name=FileInputStream,
 	description={Standardikirjaston luokka, joka sisältää tiedostoa edustavan syötteen tavuina
-esitettynä virtana. Omistaa read-metodin syötteen lukemiseen}
+esitettynä virtana. Omistaa read-metodin syötteen lukemiseen. InputStream-luokan konkreettinen
+lapsiluokka}
 }
 
 \newglossaryentry{java:FileOutputStream}
@@ -466,7 +467,27 @@ esitettynä virtana. Omistaa read-metodin syötteen lukemiseen}
 	type=java,
 	name=FileOutputStream,
 	description={Standardikirjaston luokka, joka sisältää tiedostoon kirjoitettavaa dataa
-edustavan tavuina esitetyn virran. Omistaa write-metodin kirjoittamiseen}
+edustavan tavuina esitetyn virran. Omistaa write-metodin kirjoittamiseen. OutputStream-luokan
+konkreettinen lapsiluokka},
+	see={java:OutputStream,lapsiluokka}
+}
+
+\newglossaryentry{java:InputStream}
+{
+	type=java,
+	name=InputStream,
+	description={Abstrakti kantaluokka, joka lukee tavudataa lapsiluokassa määritellystä
+lähteestä},
+	see={abstrakti luokka,java:FileInputStream}
+}
+
+\newglossaryentry{java:OutputStream}
+{
+	type=java,
+	name=OutputStream,
+	description={Abstrakti kantaluokka, joka vastaanottaa tavudataa ja syöttää sen	
+datankuluttajaan, joka määritellään lapsiluokassa},
+	see={abstrakti luokka,java:FileOutputStream}
 }
 
 \newglossaryentry{java:extends}
@@ -496,4 +517,47 @@ avainsanaa käytetään funktiokutsuna ("super()" tai "super(args)")},
 	name=abstract,
 	description={Avainsana, joka luo abstraktin luokan tai abstraktin metodin},
 	see={abstrakti luokka,abstrakti metodi}
+}
+
+\newglossaryentry{java:Serializable}
+{
+	type=java,
+	name=Serializable,
+	description={Rajapintaluokka, joka määrittelee luokan olevan serialisoitavissa. Jotta luokka
+voi implementoida Serializable-rajapinnan täytyy kaikkien luokan muuttujien olla myös
+serialisoitavia. Suurin osa standardikirjaston luokista, sekä kaikki primitiiviset tietotyypit
+ovat serialisoitavia, joten tämä rajoitus koskee lähinnä muuttujia, joiden tietotyyppi on jokin
+käyttäjän määrittelemä luokka, tai jotka ovat geneerisiä käyttäjän määrittelemän luokan yli},
+	see={primitiivinen tietotyyppi,geneerisyys}
+}
+
+\newglossaryentry{java:instanceof}
+{
+	type=java,
+	name=instanceof,
+	description={Avainsana, joka tarkistaa onko olio annetun luokan instanssi. Käyttö tapahtuu
+muodossa "olio instanceof luokka"}
+}
+
+\newglossaryentry{java:ObjectOutputStream}
+{
+	type=java,
+	name=ObjectOutputStream,
+	description={Javan standardikirjaston luokka, jota käytetään Serializable-rajapinnan
+implementoivien luokkien serialisaatioon. Luokan rakentaja ottaa vastaan OutputStream-luokan
+konkreettisen lapsiluokan. Instanssista voidaan kutsua writeObject-metodia serialisoitavalla
+oliolla, jolloin luokka kirjoittaa annetun olion serialisoidun tekstimuodon annettuun
+OutputStream-olioon},
+	see={java:OutputStream,java:Serializable,serialisaatio}
+}
+
+\newglossaryentry{java:ObjectInputStream}
+{
+	type=java,
+	name=ObjectInputStream,
+	description={Javan standardikirjaston luokka, jota käytetään Serializable-rajapinnan
+implementoivien luokkien deserialisaatioon. Luokan rakentaja ottaa vastaan InputStream-luokan
+konkreettisen lapsiluokan. Instanssista voidaan kutsua readObject-metodia, joka palauttaa
+annetusta InputStream-oliosta luetusta tavudatasta deserialisoidun olion},
+	see={java:InputStream,java:Serializable,serialisaatio}
 }
