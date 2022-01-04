@@ -491,3 +491,30 @@ useampi kantaluokka. Suora moniperintä ei ole tuettua javassa, mutta useamman r
 implementoiti yhteen luokkaan onnistuu rajapintaluokilla},
 	see={periytyminen,lapsiluokka,kantaluokka,rajapinta,implements,interface}
 }
+
+\newglossaryentry{singleton}
+{
+	name=singleton,
+	description={(singleton) Singleton viittaa sekä singleton-suunnittelumalliin ja
+suunnittelumallin toteuttavaan luokkaan. Suunnittelumallissa luokka säilyttää itsetään yhtä
+instanssia yksityisessä luokkamuuttujassa ja sisältää julkisen getInstance-metodin, joka joko luo
+uuden instanssin, mikäli luokasta ei ole vielä olemassa instanssia, tai noutaa olemassa olevan
+instanssin. Luokkaa, joka toteuttaa tämä suunnittelumallin sanotaan myös singletoniksi.
+Suunnittelumallia on kritisoitu, koska se luo ohjelmalle jaetun globaalin tilan ja on hankala
+testata, mutta sillä on meriittinsä esimerkiksi loggaamisessa},
+	see=luokkamuuttuja
+}
+
+\newglossaryentry{strategia}
+{
+	name=strategia,
+	description={(strategy) Suunnittelumalli, jossa jokin abstrakti kantaluokka tai
+rajapintaluokka määrittelee jonkin metodin, jonka useampi lapsiluokka toteuttaa. Tätä metodia
+kutsutaan sitten koodissa sen määrittelemän abstraktin kantaluokan tai rajapintaluokan tyyppiseksi
+määritellystä muuttujasta. Tällöin muuttujan tyyppi määrittelee, miten metodi käyttäytyy, sillä
+jokainen abstraktin kantaluokan konkreettinen lapsiluokka, tai rajapintaluokan implementoiva
+luokka on määritellyt itse oman tapansa toteuttaa metodi. Käytännössä kaikki abstraktit metodit,
+niin abstrakteissa luokissa kuin rajapintaluokissa täyttävät strategia-suunnittelumallin
+määritelmät},
+	see={abstrakti luokka,rajapinta,abstrakti metodi}
+}

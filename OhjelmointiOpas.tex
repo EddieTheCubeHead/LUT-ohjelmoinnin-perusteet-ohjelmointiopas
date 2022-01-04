@@ -1530,7 +1530,7 @@ ohjelmiston kehittäminen helpottuu periytymisrakenteiden vaikutuksesta, sen sij
 kehittämisprosessia monimutkaistettaisiin turhaan ilman selkeitä hyötyjä periytymisestä.
 
 \subsection{Liskovin korvaavuusperiaate}
-\label{liskov1}
+\label{LSP}
 
 \newthought{Kuten kapppaleen} \nameref{super} koodiesimerkeissä nähtiin, voidaan lapsiluokan olio
 tallentaa muuttujaan, jonka tyypiksi on määritelty emoluokan olio. Tällöin muuttujaan tallennettua
@@ -1544,7 +1544,7 @@ Jotta edellä kuvailtu käyttötapa sujuisi ongelmitta, kuuluu lapsiluokkien ja 
 \neweng{Liskovin korvaavuusperiaate}{Liskov Substitution Principle - LSP}. Periaate on osa
 viiden periaatteen muodostamaa \neweng{SOLID-periaatteet}{SOLID-principles} -ryhmää. Periaatteet
 on suunniteltu helpottamaan laadukkaan oliopohjaisen koodin tuottamista ja loput periaatteet
-käsitellään myöhemmin luvussa *x*. % TODO: lisää luku
+käsitellään myöhemmin luvussa \nameref{solid}.
 
 \newthought{\Gls{Liskovin korvaavuusperiaate}} määrittelee kantaluokan ja lapsiluokkien suhteen
 seuraavasti: "Mikä tahansa emoluokan instanssi pitäisi olla korvattavassa millä tahansa 
@@ -1717,6 +1717,106 @@ tallennetaan tiedostoon, on normaalia nimetä tiedosto ".ser"-päätteellä.
 
 \code{week6/serializationexample}{SerializableData}{Serialisoitava luokka}
 \code{week6/serializationexample}{Main}{Serialisaatioesimerkin pääluokka}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Singleton-suunnittelumalli}
+\label{singletonkappale}
+
+\newthought{Välillä ohjelmistoa} luodessa on tarve luoda luokka, josta on olemassa vain yksi
+instanssi, jota muu ohjelma voi kutsua tarvittaessa. Tähän käyttötarkoitukseen on kehitettu
+suunnittelumalli nimeltä \neweng{singleton}{singleton}. Suunnittelumallin ideana on tallentaa
+luokan instanssi yksityiseen luokkamuuttujaan ja tarjota julkinen "getInstance"-luokkametodi,
+joka joko hakee olemassaolevan instanssin luokkamuuttujasta tai luo uuden instanssin
+luokkamuuttujaan, mikäli instanssia ei vielä ole olemassa. Seuraava koodiesimerkki esittelee
+tämän toteutuksen käytännössä.
+
+\code{week8/singletonexample}{SimpleSingleton}{Singleton-suunnittelumallin toteuttava luokka}
+
+\newthought{\Gls{singleton}-suunnittelumallia} on kritisoitu, sillä se luo ohjelmistolle jaetun
+julkisen tilan toimien käytännössä glorifioituna globaalina muuttujana. Mallille on kuitenkin
+olemassa selkeitä hyödyllisiä käyttökohteita, kuten tietokantayhteyden standardointi. Nämä
+käyttökohteet ovat yleensä jaettuja palveluita, jotka ovat joko lähes tai täysin tilattomia.
+Vahvasti tilallisen olion tallentaminen singleton-luokkaan on valtava virheriski, koska olioon
+pääse käsiksi mistä tahansa koodissa ja siten sen tila on erittäin helppo muuttaa epähuomiossa
+virheelliseksi.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{SOLID-periaatteet, käyttäjän määrittelemät virheluokat}
+\label{solid+exceptions}
+
+\section{SOLID-periaatteet}
+\label{solid}
+
+\newthought{Tässä vaiheessa} opasta oppaan käyttäjä osaa jo toivottavasti tuottaa toimivaa
+oliopohjaista koodia. Ikävä kyllä toimiva koodi ei tarkoita suoraan laadukasta koodia. Laadukas
+koodi on uusiokäytettävää, helppolukuista ja laajennettavaa. Yksi laadukkaan koodin tuottamista
+helpottamaan kehitetty menetelmä ovat \neweng{SOLID-periaatteet}{SOLID-principles}. Periaatteet
+eivät ole kiveen hakattuja, mutta niiden noudattaminen tuottaa yleensä vähintään kohtalaisen
+laadukasta koodia. Periaatteita on viisi: \neweng{yhden vastuun periaate}{Single Responsibility
+Principle}, \neweng{avoin/suljettu-periaate}{Open Closed Principle}, aiemmin käsitelty
+\gls{Liskovin korvaavuusperiaate} (kappale \nameref{LSP}), \neweng{rajapintojen erottelu
+-periaate}{Interface Segregation Principle} ja \neweng{kaanteisten riippuvuuksien periaate}
+{Dependency Inversion Principle}. SOLID-lyhenne syntyy periaatteiden englanninkielisten nimien
+ensimmäisistä kirjaimista. Periaatteiden seuraaminen ei ole pakollista, mutta se yleensä helpottaa
+koko ohjelmointiprosessia pidemmällä aikavälillä.
+
+\subsection{Yhden vastuun periaate}
+\label{SRP}
+
+\newthought{Ensimmäinen periaate} on \gls{yhden vastuun periaate}. Se käsittelee luokkien
+suunnittelua ja käyttöä. Periaatteen mukaan jokaisella luokalla pitäisi olla yksi, ja vain yksi
+vastuu. Mikäli luokan käyttötarkoitus ei ole kuvailtavissa yhdellä melko yksinkertaisella
+lauseella, rikkoo luokka todennäköisesti yhden vastuun periaatetta.
+
+\subsection{Avoin/suljettu-periaate}
+\label{OCP}
+
+\newthought{Toinen SOLID-periaate} on \gls{avoin/suljettu-periaate}. Sen mukaan ohjelmiston
+koodin tulisi olla avoin laajennuksille, mutta suljettu muutoksille. Käytännössä tämä tarkoittaa,
+että toteutettujen toiminnallisuuksien koodin tulisi olla suunniteltu olettaen, että sama koodi
+säilyy ohjelmistossa koko sen elinkaaren läpi. Toisaalta taas koodin tulisi olla helposti
+laajennettavissa. Käytännössä periaatteen tavoitteena on rohkaista suunnittelemaan ohjelmistoja
+niin, että ensisijainen tapa lisätä toiminnallisuuksia ei olisi vanhojen luokkien muokkaaminen,
+vaan uusien lisääminen.
+
+\newthought{Käytännössä esimerkiksi} \java{switch}-rakenteiden käyttö monesti rikkoo 
+avoin/suljettu periaatetta. Mikäli rakenteeseen tarvitsee lisätä uusi haara, täytyy ohjelmoijan
+käydä muokkaamassa vanhaa koodia, mikä altistaa ohjelmiston virhetiloille, kun kertaalleen
+toimivaksi todettua koodia muokataan myöhemmin. Oliopohjaisessa ohjelmoinnissa kannustetaan
+korvaamaan switch rakenteet \neweng{strategia}{strategy}-suunnittelumallilla. Seuraava
+koodiesimerkki havainnollistaa saman rakenteen toteuttamisen enum-switch yhdistelmällä, ja
+strategia-suunnittelumallilla. Huomaa, kuinka paljon helpompaa jälkimmäisen laajentaminen on,
+rakenteen sisäistä koodia ei tarvitse muuttaa ollenkaan, vaikka esimerkkiin lisättäisiin
+väli-ilmansuunnat tai muita suuntia. Jokainen suuntaluokka voisi määritellä hahmon liikkeen
+omassa moveCharacter-metodissaan. Sen sijaan ensimmäisen esimerkin laajentaminen vaatii jo valmiin
+koodin muokkaamista aina, kun rakenteeseen halutaan lisätä uusi suunta.
+
+\code{week9/openclosedexample}{Player}{Pelaaja-luokka, jonka koordinaatteja esimerkissä pyritään
+muuttamaan}
+\code{week3/enumexample}{CompassPoint}{Ilmansuunnat \java{enum}-luokalla esiteltynä}
+\code{week9/openclosedexample}{MoveSwitch}{Hahmon liikuttaminen \java{switch}-rakenteella ja
+ilmansuuntia esittävällä \java{enum}-rakenteella}
+\code{week9/openclosedexample}{MovementCommand}{Rajapintaluokka hahmon liikkuttamiseen
+\gls{strategia}-suunnittelumallilla}
+\code{week9/openclosedexample}{MoveNorth}{Liikkumiskomento pohjoiseen}
+\code{week9/openclosedexample}{MoveEast}{Liikkumiskomento itään}
+\code{week9/openclosedexample}{MoveSouth}{Liikkumiskomento etelään}
+\code{week9/openclosedexample}{MoveWest}{Liikkumiskomento länteen}
+\code{week9/openclosedexample}{MoveStrategy}{Hahmon liikuttaminen 
+\gls{strategia}-suunnittelumallilla}
+
+\subsection{Rajapintojen erottelu -periaate}
+\label{ISP}
+
+\newthought{SOLID-periaatteista} neljäs on \gls{rajapintojen erottelu -periaate}. Se käsittelee
+rajapintaluokkien käyttöä ja luokkien kokoa. Periaatteen mukaan 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
