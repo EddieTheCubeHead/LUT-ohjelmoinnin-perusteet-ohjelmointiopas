@@ -561,3 +561,33 @@ konkreettisen lapsiluokan. Instanssista voidaan kutsua readObject-metodia, joka 
 annetusta InputStream-oliosta luetusta tavudatasta deserialisoidun olion},
 	see={java:InputStream,java:Serializable,serialisaatio}
 }
+
+\newglossaryentry{java:throw}
+{
+	type=java,
+	name=throw,
+	description={Avainsana, joka aiheuttaa virhetilan. Käytetään antamalla nostettava
+virhetilainstanssi avainsana jälkeen. Esimerkiksi "throw new NullPointerException("oops")"
+aiheuttaa NullPointerException-luokan virhetilan, jonka viestiksi on määritelty "oops"},
+	see={java:try,java:catch,java:finally,java:throws}
+}
+
+\newglossaryentry{java:throws}
+{
+	type=java,
+	name=throws,
+	description={Avainsana, joka ilmoittaa metodin määritelmässä metodin voivan aiheuttaa jonkin
+virhetilan. Avainsana sijaitsee metodin nimen ja parametrien määritelmän jälkeen ja
+virhetilaluokka tai luokat listataan avainsanan jälkeen. Esimerkiksi "public void doStuff(String
+arg) throws NullPointerException" luo metodin nimeltä doStuff, joka ilmoittaa voivansa aiheuttaa
+NullPointerException-luokan virhetilan},
+	see={java:try,java:catch,java:finally,java:throw,metodi}
+}
+
+\newglossaryentry{java:Exception}
+{
+	type=java,
+	name=Exception,
+	description={Standardikirjaston luokka, joka toimii kaikkien korjattavissa olevien
+virhetilojen kantaluokkana}
+}

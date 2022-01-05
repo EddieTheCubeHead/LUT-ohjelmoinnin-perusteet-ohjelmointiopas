@@ -1750,6 +1750,8 @@ virheelliseksi.
 \chapter{SOLID-periaatteet, käyttäjän määrittelemät virheluokat}
 \label{solid+exceptions}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{SOLID-periaatteet}
 \label{solid}
 
@@ -1794,7 +1796,7 @@ koodiesimerkki havainnollistaa saman rakenteen toteuttamisen enum-switch yhdiste
 strategia-suunnittelumallilla. Huomaa, kuinka paljon helpompaa jälkimmäisen laajentaminen on,
 rakenteen sisäistä koodia ei tarvitse muuttaa ollenkaan, vaikka esimerkkiin lisättäisiin
 väli-ilmansuunnat tai muita suuntia. Jokainen suuntaluokka voisi määritellä hahmon liikkeen
-omassa moveCharacter-metodissaan. Sen sijaan ensimmäisen esimerkin laajentaminen vaatii jo valmiin
+omassa movePlayer-metodissaan. Sen sijaan ensimmäisen esimerkin laajentaminen vaatii jo valmiin
 koodin muokkaamista aina, kun rakenteeseen halutaan lisätä uusi suunta.
 
 \code{week9/openclosedexample}{Player}{Pelaaja-luokka, jonka koordinaatteja esimerkissä pyritään
@@ -1815,8 +1817,120 @@ ilmansuuntia esittävällä \java{enum}-rakenteella}
 \label{ISP}
 
 \newthought{SOLID-periaatteista} neljäs on \gls{rajapintojen erottelu -periaate}. Se käsittelee
-rajapintaluokkien käyttöä ja luokkien kokoa. Periaatteen mukaan 
+rajapintaluokkien käyttöä ja luokkien kokoa. Periaatteen mukaan, jos luokka implementoi
+rajapintaluokan, täytyisi luokan tarvita kaikkia rajapinnan metodeja. Rajapintaluokkien pitäisi
+olla siis tarpeeksi hyvin rajattuja, jotta niiden kaikki metodit kuuluvat yhteen
+toiminnallisuuspakettiin. Periaate kannustaa siis luomaan monta pientä rajapintaa ja
+implementoimaan niistä tarvittavat yhden valtavan rajapinnan sijaan. Tämä helpottaa jo luotujen
+rajapintaluokkien uudelleenkäyttöä.
 
+\subsection{Käänteisten riippuvuuksien periaate}
+\label{DIP}
+
+\newthought{Viimeinen on} SOLID-periaate on \gls{kaanteisten riippuvuuksien periaate}. Se
+käsittelee riippuvuuksien suuntaa ohjelmistossa. Periaate perustuu toiveeseen korkean
+abstraktiotason komponenttien uusiokäytöstä ja vastustuskyvystä muutoksille. Molemmat ominaisuudet
+vaativat, että kyseiset komponentit eivät ole suoraan riippuvaisia käyttämistään alemman tason
+komponenteista. Periaate on yleensä esitetty kahtena perusideana:
+
+\begin{enumerate}
+	\item Korkean tason komponenttien ei pitäisi olla riippuvaisia matalan tason komponenteista. Molempien pitäisi olla riippuvaisia abstraktioista.
+	\item Abstraktioiden ei pitäisi olla riippuvaisia yksityiskohdista. Yksityiskohtien pitäisi olla riippuvaisia abstraktioista.
+\end{enumerate}
+
+\newthought{Käytännössä tämä} tarkoittaa, että seuratakseen käänteisten riippuvuuksien periaatetta
+korkean tason luokka ei saa luoda itse tarvitsemiaan alemman tason riippuvuuksia, vaan sen on
+pyydettävä ne muulta ohjelmistolta rakentajassaan. Täten täytetään ensimmäisen säännön ensimmäinen
+puoli. Säännön toinen puoli puolestaan täyttyy, kun korkean tason komponentti ei pyydä
+rakentajassaan konkreettista luokkaa riippuvuutena, vaan rajapintaluokkaa, jonka alemman tason
+komponentti toteuttaa. Seuraava kuvapari havainnollistaa tämän suorat riippuvuudet rikkovan
+arkkitehtuurin \gls{UML}-luokkakaaviona. Huomaa HighLevelService-luokan assosiaationuolen tyypin
+muuttuminen. Ensimmäisessä kuvassa luokkien välinen suhde on \gls{kompositio}, kun taas toisessa
+suhteen tyyppi on \gls{aggregaatio}. Tämä johtuu teoreettisesta LowLevelServiceInterface-luokan
+vastaanottamisesta luokan rakentajassa konkreettisen LowLevelService luokan luonnin sijaan.
+Täten LowLevelServiceInterface luokan elinikä ei enää ole sidottu HighLevelService-luokan
+elinikään.
+
+\begin{listing}
+    \includegraphics{NoDIPExample}
+    \caption{Luokkakaavio suorasta riippuvuudesta korkean ja matalan tason luokan välillä}
+    \label{luokkakaavioluokka}
+\end{listing}
+
+\begin{listing}
+    \includegraphics{DIPExample}
+    \caption{Luokkakaavio rajapintaluokalla piilotetusta riippuvuudesta korkean ja matalan tason luokan välillä}
+    \label{luokkakaavioluokka}
+\end{listing}
+
+\newthought{Käänteisten riippuvuuksien} periaatteeseen sitoutuminen tuottaa yleensä jonkin verran
+ylimääräistä koodia riippuvuuskohtien rajapintojen luonnissa. Lisäksi ohjelmistoon on luotava
+luokka tai luokkia, joiden vastuulla on ohjelmiston riippuvuuksien rakentaminen käynnistyksen
+yhteydessä, koska korkean tason luokat eivät enää osaa itse rakentaa tarvitsemiaan matalan tason
+palveluita. Periaate saattaa vaikuttaa turhalta teoreettiselta näpertelyltä ja sitä se
+todennäköisesti onkin pienemmissä projekteissa. Periaatteella on kuitenkin valtava jalansija
+teollisessa koodintuotannossa, eikä tämä ole sattumaa. Käänteisten riippuvuuksien periaatetta
+noudattavaa koodia on uskomattoman helppo testata, koska jokainen palvelu voidaan irrottaa lopun
+ohjelmiston kontekstista ja palvelua voidaan testata puhtaasti oman toiminnallisuutensa suhteen.
+Opas ei siis suosittele kaikkia oppaan lukijoita toteuttamaan omia projektejaan käänneteisten
+riippuvuuksien periaatteen mukaan. Periaate kannattaa kuitenkin opetella, sillä siirryttäessä
+työelämään koodikantojen koko ja testaamisen merkitys molemmat moninkertaistuvat ja silloin
+käänteisten riippuvuuksien periaate kohoaa todennäköisesti tärkeimmäksi kaikista 
+SOLID-periaatteista.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Käyttäjän määrittelemät virhetilat}
+\label{exception}
+
+\newthought{Aiemmin oppaan} luvussa \nameref{try-catch} käytiin läpi Javan
+virhetilanhallintasyntaksi. Luvussa käsiteltiin standardikirjaston toimintojen aiheuttamia
+virhetiloja, mutta standardikirjaston ei omista yksinoikeutta virhetilojen aiheuttamiseen.
+Käyttäjä itse voi myös nostaa ja jopa luoda uusia virhetilaluokkia. Virhetilaluokka nostetaan
+\newjava{throw}-avainsanalla ja käyttäjä voi luoda omia virhetilaluokkiaan periyttämällä luokan
+\newjava{Exception}-luokasta.
+
+\subsection{Käyttäjän määrittelemä virhetilaluokka}
+\label{exception}
+
+\newthought{Ohjelmistolla voi} olla monia syitä käyttää käyttäjän itse määrittelemiä virhetiloja.
+Perimmäinen syy virhetilalle on aina mahdollistaa jostakin ajonaikaisesta ongelmasta toipuminen.
+Java tarjoaa virhetilaluokat laitteiston ja standardikirjaston toiminnasta riippuville ongelmille,
+mutta se ei pysty tarjoamaan ohjelmiston suunnittelusta aiheutuville mahdollisille ongelmille
+erikseen määriteltyjä virheitä. Esimerkiksi virheellinen käyttäjäsyöte voi aiheuttaa tilanteen,
+jossa ohjelman ajoa ei voida jatkaa normaalisti. Tätä varten Java tarjoaa käyttäjälle
+mahdollisuuden luoda omia virhetilaluokkiaan. Tämä tapahtuu yksinkertaisesti periyttämällä
+toivotun virhetilaluokan \java{Exception}-luokasta.
+
+\subsection{Manuaalinen virhetilan aiheuttaminen}
+\label{throws}
+
+\newthought{Oman virhetilaluokan} luominen ei hyödytä ohjelmistoa, ellei ohjelmointikieli tarjoa
+työkaluja käyttää luotua virhetilaluokkaa. Tätä varten Java tarjoaa \java{throw}-avainsanan.
+Avainsanaa käytetään lisäämällä avainsanan perään jonkin virhetilan instanssi, tai luomalla uusi
+virhetilaluokan instanssi \java{new}-avainsanalla. Tämä aiheuttaa koodin siirtymisen
+virhetilanhallintaan, josta aiheutettu virhetila voidaan hallitusti napata ylemmällä tasolla. Tämä
+mahdollistaa siistin virhetilasta palautumisen tasolla, jossa se on mahdollista. 
+
+\newthought{Pelkkä virhetilan} nosto ei kuitenkaan riitä, mikäli virhetilan palautuminen ei
+tapahdu saman metodin sisällä. Java vaatii käyttäjää määrittelemään metodit, jotka voivat
+aiheuttaa käsittelemättömiä virhetiloja \newjava{throws}-avainsanalla. Avainsana lisätään metodin
+määritelmään nimen ja parametrien jälkeen ja avainsanan perään lisätään virhetilaluokka tai 
+-luokat, joita metodi saattaa aiheuttaa. Javan kääntäjä vaatii käyttäjää käsittelemään kaikki
+virhetilat jota kutsuttu metodi voi aiheuttaa. Tämän vaatimuksen voi kiertää määrittelemällä
+metodin, joka kutsuu virhetilan aiheuttavaa metodia, myös kyseisen virhetilan aiheuttavaksi. Tämä
+siirtää vastuun virhetilan käsittelystä yhtä kooditasoa ylemmäksi. Yleensä virhetilat kannattaa
+kuitenkin käsitellä alimmalla tasolla, jolla puhdas palautuminen virhetilasta on mahdollista.
+
+\newthought{Seuraava koodiesimerkki} esittelee käyttäjän määrittelemän virhetilaluokan luomisen,
+sekä virhetilan aiheuttavan metodin määrittelemisen. Virhetila johtuu käyttäjän virheellisestä
+syötteestä, joten se käsitellään alimalla tasolla, jolla täydellinen toipuminen on mahdollista:
+käyttäjärajapinnassa.
+
+\code{week9/exceptionexample}{NoDatabaseEntyException}{Itse määritelty virhetilaluokka}
+\code{week9/exceptionexample}{DatabaseConnection}{Yksinkertaistettu tietokantayhteyttä matkiva
+luokka, joka nostaa luodun virhetilan jos annettua esinettä ei löydy}
+\code{week9/exceptionexample}{Main}{Pääluokka, joka kutsuu luotua valetietokantaa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
