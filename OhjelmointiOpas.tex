@@ -2143,9 +2143,54 @@ vanhan muuttujan tila muuttuu. Näin luodun kopion nimi on \neweng{viitekopio}{r
 
 \newthought{Mikäli halutaan} luoda aidosti uusi kopio "MyObject"-instanssista tarvitaan Javassa
 \newjava{Object}-luokan clone-metodia. Jota olio voisi hyödyntää metodia, täytyy sen implementoida
-\newjava{Clonable}-rajapintaluokka ja ylikirjoitettava \java{Object}-luokasta peritty
+\newjava{Cloneable}-rajapintaluokka ja ylikirjoitettava \java{Object}-luokasta peritty
 clone-metodi. Tässä vaiheessa on tehtävä päätös onko toivottu kopioinnin tulos \neweng{matala
-kopio}{shallow copy} vai \neweng{syva kopio}{deep copy}
+kopio}{shallow copy} vai \neweng{syva kopio}{deep copy}. 
+
+\newthought{\Gls{matala kopio}} kopioi kaikki luokan muuttujat viittauskopioina, mikäli muuttuja
+on jonkin luokan instanssi ja suorittaa arvokopion vain jos muuttujan tyyppi on primitiivinen
+tietotyyppi. Näin kopiointi on melko nopea toimenpide ja uusi ja alkuperäinen instanssi eivät ole
+suoraan riippuvaisia toisistaan. Kuitenkin luodun uuden instanssin ei-primitiivisen tietotyypin
+muuttujat viittavaat samoihin olioihin kuin alkuperäisen instanssin vastaavat muuttujat. Täten
+uuden ja alkuperäisen kopion tilat ovat edelleen jossain määrin riippuvaisia toisistaan. Tämä
+kopiointityyli on Javan oletuskopiointi ja voidaan täten saavuttaa clone-metodin sisällä
+kutsumalla super().clone -metodia.
+
+\newthought{\Gls{syva kopio}} puolestaan kopioi kaikki alkuperäisen luokan muuttujat syväkopioina
+rekursiivisesti. Tällainen kopiointi kuluttaa huomattavasti enemmän resursseja kuin viitekopion
+tai matalan kopion luominen, etenkin pitkissä riippuvuusketjuissa. Kopiointityylin etuna on, että
+se luo kopioidun instanssin, jonka tila on täysin riippumaton alkuperäisen instanssin tilasta.
+Syvää kopiointia ei ole mahdollista implementoida yhden luokan clone-metodissa. Sen sijaan luokan
+on manuaalisesti kutsuttava clone-metodissaan kaikkien muuttujiensa clone-metodia, eli myös
+kaikkien luokan muuttujien on toteutettava \java{Cloneable}-rajapinta. Tämä syväkopioiva
+clone-metodi on sitten implementoitava jokaiseen luokkaan, jonka instanssin luokka omistaa ja niin
+edelleen täydellisen syväkopion saavuttamiseksi. Kopioinnin voi kuitenkin suorittaa jollain
+tasolla matalan kopion ja täydellisen syväkopion välillä.
+
+\newthought{Seuraava koodiesimerkki} esittelee luokan A, joka tukee matalan kopion luomista
+itsestään ja luokan, joka sisältää luokan A instanssin ja jonka kopiointimetodi luo
+matalan kopion instanssin omistamasta luokan A instanssista ja muuten kopio luokan B normaalina
+matalana kopiona.
+
+\code{week11/cloningexample}{DataPoint}{Matalan kopion luomista tukeva luokka}
+\code{week11/cloningexample}{ComplexDataPoint}{Monimutkaisemman clone-määritelmän omaava luokka}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Loppusanat}
+\label{theEnd}
+
+\newthought{Mikäli luet} tätä, olet oletettavasti opiskellut oppaan sisällön. Vilpittömät
+onnittelut Javan ja oliopohjaisen ohjelmoinnin perusteiden opiskelusta näin pitkälle ja suuret
+kiitokset mielenkiinnosta opasta kohtaan. Toivon oppaan ja koodiesimerkkien olleen avuksi
+opiskeluissa ja oppaan koodin laadusta muistuttavan tyylin herättäneen kiinnostusta kirjoittaa
+toimivan koodin sijaan laadukasta koodia. Lisäksi toivon oppaan antaman tietotaidon olevan
+hyödyllistä sinulle tulevaisuudessasi. Enemmän tai vähemmän mukavia koodaushetkiä, ja olkoon
+Google (tai muu valitsemasi hakukone) tukenasi.
+
+Eetu "EddieTheCubeHead" Asikainen
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
