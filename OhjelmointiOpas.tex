@@ -778,13 +778,12 @@ primitiivisiä tietotyyppejä.
 alkoiden hakua kriteeripohjaisesti ja iterointia. Toisin kuin taulukko se on kooltaan dynaaminen
 eikä sen kokoa siksi määritellä sen luonnin yhteydessä. Luonti tapahtuu \java{new}-avainsanalla,
 mutta koska Javan täytyy tietää paitsi listan tyyppi, myös listan säilömien olioiden tyyppi, on
-luomisen yhteydessä määriteltävä tämäkin. ArrayList on siis
-\neweng{geneerinen luokka}{generic class}. Geneeristen luokkien luominen ja toimintaperiaate
-ei ole tämän luvun aiheena, vaan ne käsitellään oppaan luvussa *x*. % TODO: lisää luku
-Tässä kohtaa opasta ArrayListin geneerisyys on huomioitava vain uuden instanssin luonnin
-yhteydessä, jolloin listan säilömä tyyppi on suljettava pienempi kuin- ja suurempi kuin -merkkien
-väliin. Seuraava esimerkki näyttää ArrayList-instanssin luomisen, alkioiden lisäämisen, hakemisen
-ja poistamisen.
+luomisen yhteydessä määriteltävä tämäkin. ArrayList on siis \neweng{geneerinen luokka}{generic
+class}. Geneeristen luokkien luominen ja toimintaperiaate ei ole tämän luvun aiheena, vaan ne
+käsitellään oppaan luvussa \nameref{generic} Tässä kohtaa opasta ArrayListin geneerisyys on
+huomioitava vain uuden instanssin luonnin yhteydessä, jolloin listan säilömä tyyppi on suljettava
+pienempi kuin- ja suurempi kuin -merkkien väliin. Seuraava esimerkki näyttää ArrayList-instanssin
+luomisen, alkioiden lisäämisen, hakemisen ja poistamisen.
 
 \code{week3/basicexamples}{ArrayListUsage}{ArrayList-luokan käyttö Javassa}
 
@@ -1927,10 +1926,174 @@ sekä virhetilan aiheuttavan metodin määrittelemisen. Virhetila johtuu käytt�
 syötteestä, joten se käsitellään alimalla tasolla, jolla täydellinen toipuminen on mahdollista:
 käyttäjärajapinnassa.
 
-\code{week9/exceptionexample}{NoDatabaseEntyException}{Itse määritelty virhetilaluokka}
+\code{week9/exceptionexample}{NoDatabaseEntryException}{Itse määritelty virhetilaluokka}
 \code{week9/exceptionexample}{DatabaseConnection}{Yksinkertaistettu tietokantayhteyttä matkiva
 luokka, joka nostaa luodun virhetilan jos annettua esinettä ei löydy}
 \code{week9/exceptionexample}{Main}{Pääluokka, joka kutsuu luotua valetietokantaa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Geneerisyys ja iteraattorit}
+\label{generic+iterator}
+
+\section{Geneerisyys}
+\label{generic}
+
+\newthought{Geneerisyys on} suunniteltu mahdollistamaan laajempi uudelleenkäyttö luokille ja
+metodeille. Esimerkiksi ilman geneerisyyttä kaikista kokoelmatyypeistä pitäisi olla erillinen
+versio jokaikiselle luokalle, jota kokoelmassa säilötään. Oppaassa on sivuttu jo geneerisyyttä
+kappaleessa \nameref{kokoelmista}, mutta konsepti on monimutkainen, joten tarkempi käsittely
+jätettiin silloin välistä. Tämä kappale antaa yleiskatsauksen tähän hyödylliseen, mutta
+monimutkaiseen Javan ominaisuuteen.
+
+\subsection{Geneerisyyden perusteet}
+\label{genericBasics}
+
+\newthought{Oppaan kappaleessa} \nameref{listat} mainittiin käsite \gls{geneerinen luokka}. 
+Geneerinen luokka ja \neweng{geneerinen metodi}{generic method} ovat yleisiä käsitteitä
+staattisesti tyypitetyille kielille ja viittaavat luokkaan ja metodiin, jotka määritellään
+suhteessa johonkin toiseen luokkaan. Tämä geneerinen \new{tyyppiparametri}{type paremeter}
+kirjoitetaan yleensä luokan määritelmän yhteydessä yhdellä kirjaimella, joka on toivottua
+parametria kuvaavan sanan ensimmäinen kirjain; T - Type, E - Element, K -Key, N - Number, V -
+Value. Monta tyyppiparametria omaavassa luokassa voidaan käyttää joko kirjaimia S, U, V, jne. tai
+numeroida parametrit (T1, T2, jne.). Tyyppiparametri sijaitsee luokan määritelmässä luokan nimen
+perässä ja metodin määritelmässä metodin paluuarvotyypin edellä. Molemmissa tapauksissa
+tyyppiparametri suljetaan pienempi kuin- ja suurempi kuin -merkkien väliin. Mikäli luokka tai
+metodi on riippuvainen useammasta tyypistä annetaan kaikki tyypit samojen merkkien välissä,
+pilkulla eroteltuina, metodin parametrien tapaan. 
+
+\newthought{\Gls{tyyppiparametri} voi} olla rajoitettu perintäehdolla, jolloin kaikkien
+geneeristä luokkaa tai metodia kutsuvien koodin osien on toteutettava tämä ehto luokalle tai
+metodille tarjoamissaan tyypeissä. Tämä tapahtuu lisäämällä heti rajattavan tyyppiparametrin
+perään \java{extends}-avainsana ja ylärajaluokka. Rajattu tyyppiparametri vaatii, että parametriin
+annettu tyyppi on joko ylärajaluokan instanssi tai jonkin ylärajaluokasta periytyvän luokan
+instanssi.
+
+\newthought{Kuten kappaleessa} \nameref{listat} opittiin, määriteltäessä geneerisen luokan
+instanssin säilövää muuttujaa täytyy tyyppiparametri antaa samalla notaatiolla kuin luokan
+määritelmässä. Tätä geneerisen luokan tyyppiparametrin määrittelemistä kutsutaan
+parametrisoinniksi. Luotaessa instanssia olemassa olevaan parametrisoituun muuttujaan, voidaan
+Java 7:ssä ja uudemmissa Javan versioissa jättää tyyppiparametrit määrittelemättä: kääntäjä osaa
+tulkita ne muuttujasta, johon instanssia luodaan. Samaan tapaan kutsuttaessa geneeristä metodia
+kääntäjä tulkitsee tyyppiparametrit annettujen muuttujien tyypeistä.
+
+Seuraava koodiesimerkki esittelee
+geneerisen säilöluokan toteuttamisen ja geneerisen metodin toteuttamisen säilöluokalle, sekä
+luokan instanssin luomisen ja metodin kutsumisen.
+
+\code{week10/genericexample}{GenericContainer}{Geneerinen säiliöluokka, jolla on geneerinen metodi
+säiliön sisällön vaihtamiseen}
+\code{week10/genericexample}{Main}{Säiliöluokan instanssin luominen, ja vaihtometodin kutsuminen}
+
+\subsection{Geneerisyys ja perintä}
+\subsection{genericInheritance}
+
+\newthought{Tyyppiparametrin konkreettinen} määrittäminen on mahdollista myös perinnän yhteydessä.
+Generisestä kantaluokasta on mahdollisuus luoda parametrisoitu lapsiluokka ja geneerisestä
+rajapintaluokasta on mahdollista luoda parametrisoitu implementaatio. Tällöin luotu luokka
+ei enää ole geneerinen, sillä sen tyyppiparametria ei voida määrittää luokkaa luotaessa. Tätä
+parametrisointia ei ole pakko toteuttaa, periytymisessä voidaan geneerinen parametri myös
+jättää ennalleen tai sen rajausta voidaan tiukentaa. Rajauksen löysentäminen ei kuitenkaan ole
+mahdollista. Mikäli kantaluokka on geneerinen tyypin T yli ja T on rajattu olemaan tietyn luokan
+tai sen lapsiluokkien instanssi, ei voida ilmoitta T:hen käyvän minkä tahansa olion. Tämä rikkoisi
+kantaluokan toiminnallisuuden ja täten ei seuraa \gls{Liskovin korvaavuusperiaate}tta.
+
+\newthought{Seuraava koodiesimerkki} esittelee geneerisen validointirajapinnan ja kahden
+rajapinnan implementoivan validaatioluokan luomisen. Toinen luokista on parametrisoitu, mutta
+toinen on geneerinen alkuperäisen rajapinnan kanssa identtisin rajoituksin (mikä tahansa olio).
+Huomaa, että parametrisoidun luokan tyyppisen muuttujan luonti ei enää vaadi tyyppiparametria.
+
+\code{week10/genericinheritance}{Validator}{Geneerinen rajapintaluokka validaattoriluokan
+pohjaksi}
+\code{week10/genericinheritance}{StringValidator}{Rajapintaluokan implementaatio, joka on 
+parametrisoitu String-tyypillä}
+\code{week10/genericinheritance}{NonNullValidator}{Rajapintaluokan geneerinen implementaatio
+null-arvojen estämiseksi}
+\code{week10/genericinheritance}{Main}{Parametrisoidun ja geneerisen validaattoriluokan luonti	
+koodissa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Iteraattorit ja kuluttajat}
+\label{iterators+consumers}
+
+\subsection{Iteraattorit}
+\label{iterators}
+
+\newthought{Kokoelmien kanssa} toimittaessa saattaa ilmetä tarvetta kappaleessa \nameref{for each}
+esiteltyä for-each -looppia tarkempaan oliokohtaiseen iterointiin. Tätä varten Java tarjoaa luokat
+\newjava{Iterator} ja \newjava{ListIterator}. Päätös olla tarjoamatta iterointimetodeja suoraan
+kokoelmaluokasta liittyy kokoelmaluokan tehtävään ja \gls{yhden vastuun periaate}
+-SOLID-periaatteen noudattamiseen. Kokoelmaluokan tehtävä on säilöä dataa. Mikäli luokan
+tehtäviin lisättäisiin iterointikohdan muistaminen, luokalla olisi kaksi tehtävää. Tästä syystä
+kokoelmaluokat tarjoavat \newjava{iterator}-metodin ja \java{List}-rajapinnan toteuttavat listat
+\newjava{listIterator}-metodin näiden iterointiluokkien luomiseen. Nimiensä mukaisesti
+\java{iterator}-metodi luo \java{Iterator}-instanssin ja \java{listIterator}-metodi luo
+\java{listIterator}-instanssin.
+
+\newthought{Iteraattorien käyttö} on melko simppeliä. Iteraattoriolio muistaa indeksin, johon
+asti kokoelmaa on iteroitu ja mahdollistaa seuraavan instanssin olemassaolon tarkistamisen
+hasNext-metodilla, joka ei ota argumentteja ja palauttaa totuusarvon seuraavan instanssin
+olemassaolosta. Seuraava instanssi voidaan noutaa metodilla next, joka ei ota argumentteja ja
+palauttaa seuraavan instanssin, sekä korottaa iterointi-indeksiä iteraattoriluokan sisällä
+yhdellä. Mikäli seuraavaa instanssia ei ole, aiheuttaa next-metodi
+NoSuchElementException-virhetilan. \java{ListIterator} omistaa lisäksi hasPrevious ja previous
+-metodit, jotka toimivat samalla tavalla, mutta iteroivat kokoelmaa takaperin. sekä
+\java{Iterator}-oliot että \java{ListIterator}-oliot sisältävät lisäksi mahdollisuuden ajaa
+tietyn funktion kaikille iteraattorissa jäljellä oleville alkioille forEachRemaining-metodilla.
+Metodi ottaa \newjava{Consumer}-rajapinnan implementoivan olion ja kutsuu rajapinnassa
+määriteltyä accept-metodia kaikilla jäljellä olevilla alkioilla. Rajapinnan toiminta käydään
+tarkemmin läpi seuraavassa oppaan osiossa (\nameref{consumers}). Molemmat iteraattorityypit
+kykenevät myös poistamaan viimeisimmän noudetun kokoelman alkion remove-metodilla.
+
+\newthought{Näiden jaettujen} toiminnallisuuksien lisäksi \java{ListIterator}-rajapinta
+määrittelee set- ja add-metodit. Metodit ottavat iteraattorin pohjana olevan 
+\java{List}-instanssin alkiotyypin olion. Metodi set asettaa viimeisimmän noudetun kokoelman
+alkion tilalle annetun alkion ja add-metodi lisää annetun alkion listaan viimeisimmän noudetun
+alkion jälkeiseksi alkioksi. Iteraattorien käyttö koodissa esitellään \nameref{consumers}-osion
+koodiesimerkin yhteydessä.
+
+\subsection{kuluttajat}
+\label{consumers}
+
+\newthought{Viime kappaleessa} (\nameref{iterators}) esiteltiin
+\neweng{kuluttaja}{consumer}-tyyppisen luokan idea. Kuluttaja on metodi, joka ottaa yhden
+määritellyn tyyppisen olion ja ei palauta mitään, periaatteessa kuluttaen vastaanottamansa
+instanssin. Java tarjoaa erillisen geneerisen \java{Consumer}-rajapintaluokan tällaisten
+kuluttajien luomiseen. Rajapintaluokka on geneerinen tyyppiparametrin T yli ja määrittelee kaksi
+metodia; accept(T) ja andThen(Consumer<? super T>). Rajapinnan kuluttajametodi on accept, se ei
+palauta mitään ja ottaa yhden tyypin T instanssin. Toinen rajapinnan tarjoama metodi on
+andThen-joka ottaa toisen kuluttajan, jonka pitää olla parametrisoitu samoin tai tiukemmin rajoin
+kuin metodin omaava kuluttajaimplementaatio ja palauttaa yhdistetyn kuluttajan, joka kutsuu
+molempien kuluttajien accept-metodia vuorotellen.
+
+\newthought{Koska \gls{kuluttaja}-suunnittelumallin} ideana on, ettei kuluttava metodi palauta
+mitään, täytyy kaiken metodin toiminnallisuuden tapahtua muokaten metodin omistavaa luokkaa tai
+jotain jaettua tilaa. Seuraava koodiesimerkki esittelee tekstikuluttajan luomisen simppelimmän
+printtauskomennon kirjoittamiseksi. Tässä tapauksessa globaalin metodin toiminta on syötteen
+antaminen käyttäjälle: koko ohjelmisto jakaa saman terminaalin.
+
+\code{week10}{iteratorexample}{Printer}{Kuluttajaluokka, joka tulostaa merkkijonoargumentin}
+\code{week10}{iteratorexample}{Main}{Merkkijonolistan iteraattorin luominen, ensimmäisen alkion
+kuluttaminen ja loppujen tulostaminen luodulla tulostinluokalla}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Sisäiset luokat ja anonyymit luokat, kopiointi}
+\label{innerClasses+copying}
+
+\section{Sisäiset ja anonyymit luokat}
+\label{innerClasses}
+
+\newthought{Java tarjoaa} koodin selkeyden vuoksi mahdollisuuden määritellä luokan toisen luokan
+sisällä. Tämän luokan nimi on \neweng{sisaluokka}{inner class}. Sisäluokka näkee kaikki muuttujat
+luokasta, jonka sisällä se on määritelty. Lisäksi sisäluokka voidaan normaalin luokan sijaan
+määritellä näkyvyysmääreellä \java{protected} tai \java{private}. Tarvittaessa sisäluokka voidaan
+m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %

@@ -222,9 +222,9 @@ voidaan siis luoda seuraavalla koodinpätkällä:\newline{}"new ArrayList<String
 	type=java,
 	name=List,
 	description={Javan standardikirjaston rajapinta, jonka instanssit ovat järjestettyjä
-kokoelmia. Kaikki List-rajapinnan toteuttavat luokat tukevat iterointia, indeksipohjaista hakua
-ja lisäystä ja vertailua. Yleisimmin käytetty List-rajapinnan toteuttava luokka on ArrayList,
-mutta esimerkiksi myös LinkedList ja ArrayQueue toteuttavat rajapinnan},
+kokoelmia. Kaikki List-rajapinnan toteuttavat luokat tukevat iteraattorin luontia, instanssien
+vertailua ja indeksipohjaista hakua ja lisäystä. Yleisimmin käytetty List-rajapinnan toteuttava
+luokka on ArrayList, mutta esimerkiksi myös LinkedList ja ArrayQueue toteuttavat rajapinnan},
 	see={java:ArrayList,java:interface,rajapinta}
 }
 
@@ -497,8 +497,11 @@ datankuluttajaan, joka määritellään lapsiluokassa},
 	description={Avainsana, joka määrittää luokan kantaluokan periytymisessä. Sijoitetaan luokan
 nimen määritelmän perään niin, että avainsanaa seuraa kantaluokan nimi. Esimerkiksi luotaessa
 luokkaa "ChildClass", joka halutaan periyttää kantaluokasta "ParentClass", kirjoitettaisiin luokan
-määritelmä seuraavasti:\newline{}"public class ChildClass extends ParentClass..."},
-	see={periytyminen,lapsiluokka,kantaluokka}
+määritelmä seuraavasti:\newline{}"public class ChildClass extends ParentClass..."\newline{}
+Lisäksi avainsana toimii geneerisen luokan tai metodin tyyppiparametrin rajaamisessa syntaksilla
+\newline{}"<T extends UpperBoundClass>"\newline{}Tällöin kaikkien tyyppien T pitää olla joko
+UpperBoundClass luokan, tai siitä periytyvien luokkien instansseja},
+	see={periytyminen,lapsiluokka,kantaluokka,tyyppiparametri}
 }
 
 \newglossaryentry{java:super}
@@ -590,4 +593,57 @@ NullPointerException-luokan virhetilan},
 	name=Exception,
 	description={Standardikirjaston luokka, joka toimii kaikkien korjattavissa olevien
 virhetilojen kantaluokkana}
+}
+
+\newglossaryentry{java:Iterator}
+{
+	type=java,
+	name=Iterator,
+	description={Standardikirjaston rajapintaluokka, joka mahdollistaa iteroinnin jonkin kokoelman
+yli. Luodaan kutsumalla iterator-metodia iteroitavasta kokoelmasta. Tarjoaa metodit next, hasNext,
+remove ja forEachRemaining},
+	see={java:iterator,java:ListIterator,java:listIterator}
+}
+
+\newglossaryentry{java:iterator}
+{
+	type=java,
+	name=iterator,
+	description={Standardikirjaton kokoelmien omistama metodi, joka luo Iterator-olion kyseisestä
+kokoelmasta},
+	see={java:Iterator}
+}
+
+\newglossaryentry{java:ListIterator}
+{
+	type=java,
+	name=ListIterator,
+	description={Standardikirjaston rajapintaluokka, joka mahdollistaa iteroinnin jonkin
+List-rajapinnan implementoivan kokoelman yli. Rajapinnan implementoivan luokan instanssi saadaan
+kutsumalla listIterator metodia iteroitavasta List-instanssista. Rajapinta tarjoaa metodit, next,
+hasNext, nextIndex, previous, hasPrevious, previousIndex, remove, add(E element) ja set(E
+element)},
+	see={java:listIterator,java:Iterator,java:iterator}
+}
+
+\newglossaryentry{java:listIterator}
+{
+	type=java,
+	name=iterator,
+	description={Standardikirjaston List-rajapintaluokan olioiden omistama metodi, joka luo
+ListIterator-olion kyseisestä List-instanssista},
+	see={java:ListIterator,java:List}
+}
+
+\newglossaryentry{java:Consumer}
+{
+	type=java,
+	name=Consumer,
+	description={Standardikirjaston rajapintaluokka, joka määrittelee niin sanotun kuluttajan.
+Kuluttaja on geneerinen olio, joka on parametrisoitu tyypillä T ja jolla on yksi metodi, joka ei
+palauta mitään ja ottaa argumentiksi yhden tyypin T instanssin. Tämän metodin nimi rajapinnassa on
+accept. Rajapinta tarjoaa lisäksi andThen-metodin, joka ottaa toisen kuluttajan, jonka täytyy myös
+olla parametrisoitu tyypillä T. Metodi yhdistää kuluttajien kutsut ja palauttaa kutsut yhdistävän
+kuluttajainstanssin, joka kutsuu vuorotellen kummankin kuluttajan accept-metodit},
+	see={kuluttaja,java:interface,geneerinen luokka,tyyppiparametri}
 }

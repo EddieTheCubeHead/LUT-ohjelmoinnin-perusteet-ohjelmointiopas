@@ -124,7 +124,7 @@ tietotyypit Javassa, jotka eivät ole jonkin luokan instansseja},
 {
     name=näkyvyysmääre,
     description={(access modifier) Muuttujan näkyvyyden määrittävä avainsana},
-    see=muuttuja
+    see={muuttuja,java:public,java:protected,java:private}
 }
 
 \newglossaryentry{muuttuja}
@@ -214,10 +214,23 @@ tyyppisignatuurin olevan riippuvainen toisesta luokasta. Tämä toinen luokka vo
 jokaisen luokan instanssin kohdalla erikseen pienempi kuin- ja suurempi kuin -merkkien väliin
 suljetulla notaatiolla. Esimerkiksi kokoelmat tarvitsevat tietoa sisältämiensä olioiden
 tyypityksestä. Merkkijonoja sisältävä ArrayList-kokoelma voitaisiin siis luoda seuraavalla 
-notaatiolla:\newline{}"new ArrayList<String>()"\newline{}Geneerinen luokka voi olla myös geneerinen useamman luokan suhteen, jolloin luokat erotetaan pilkulla tai riippuvainen toisesta
+notaatiolla:\newline{}"new ArrayList<String>()"\newline{}Geneerinen luokka voi olla myös
+geneerinen useamman luokan suhteen, jolloin luokat erotetaan pilkulla tai riippuvainen toisesta
 geneerisestä luokasta, jolloin geneerisyyden notaatiot kirjoitetaan
 sisäkkäin:\newline{}"new HashMap<String, ArrayList<Int>>()"},
 	see={java:ArrayList,java:HashMap}
+}
+
+\newglossaryentry{geneerinen metodi}
+{
+	name=geneerinen metodi,
+	description={(generic method) Metodin ominaisuus, joka määrittää metodin signatuurin olevan
+riippuvainen toisesta luokasta. Tämä toinen luokka voidaan määrittää jokaisen metodikutsun
+yhteydessä erikseen pienempi kuin- ja suurempi kuin -metkkien suljetulla notaatiolla. Esimerkiksi
+kokoelmia käsittelevät metodit saattavat kyetä käsittelemään kokoelmia niiden tallentamasta
+tietotyypistä riippumatta. Tämänlainen metodi voitaisiin luoda notaatiolla:\newline{}
+"public <T> void processList(ArrayList<T> list)"\newline{}Notaatiossa "T" on geneerinen
+tyyppiparametri ("Type")}
 }
 
 \newglossaryentry{hajautustaulu}
@@ -517,4 +530,31 @@ luokka on määritellyt itse oman tapansa toteuttaa metodi. Käytännössä kaik
 niin abstrakteissa luokissa kuin rajapintaluokissa täyttävät strategia-suunnittelumallin
 määritelmät},
 	see={abstrakti luokka,rajapinta,abstrakti metodi}
+}
+
+\newglossaryentry{tyyppiparametri}
+{
+	name=tyyppiparametri,
+	description={(type parameter) Geneerisen luokan tai metodin tyypin määrittävä parametri.
+Annetaan pienmpi kuin- ja suurempi kuin -metkkien välissä},
+	see={geneerinen luokka, geneerinen metodi}
+}
+
+\newglossaryentry{kuluttaja}
+{
+	name=kuluttaja,
+	description={(consumer) Metodi, joka ottaa yhden argumentin eikä palauta mitään, tai kyseisen
+metodin mukaisen rajapinnan tarjoava luokka. Javassa kuluttaja-suunnittelumallille on olemassa
+erillinen standardikirjastossa määritelty rajapintaluokka Consumer},
+	see={rajapinta,java:Consumer}
+}
+
+\newglossaryentry{sisaluokka}
+{
+	name=sisaluokka,
+	description={(inner class) Toisen luokan rungon sisällä määritelty luokka. Luokka näkee
+kaikki ulomman luokan muuttujat. Toisin kuin normaali luokka, sisäluokka voidaan määritellä myös
+protected tai private näkyvyysmääreellä, jolloin vain luokka, jonka rungossa sisäluokka on
+määritelty ja mahdollisesti luokan lapsiluokat näkevät sisäluokan},
+	see={java:protected,java:private,nakyvyysmaare}
 }
