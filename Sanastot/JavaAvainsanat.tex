@@ -647,3 +647,23 @@ olla parametrisoitu tyypillä T. Metodi yhdistää kuluttajien kutsut ja palautt
 kuluttajainstanssin, joka kutsuu vuorotellen kummankin kuluttajan accept-metodit},
 	see={kuluttaja,java:interface,geneerinen luokka,tyyppiparametri}
 }
+
+\newglossaryentry{java:Object}
+{
+	type=java,
+	name=Object,
+	description={Standardikirjaston luokka, josta kaikki muut Javan oliot periytyvät. Sisältää
+fundamentaalisia, kaikille olioille saatavilla olevia metodeja, kuten hashCode, jota käytetään
+HashMap-luokkaa luotaessa ja equals(Object), jota käytetään vertailussa},
+	see=java:HashMap
+}
+
+\newglossaryentry{java:Clonable}
+{
+	type=java,
+	name=Clonable,
+	description={Standardikirjaston rajapintaluokka, joka määrittää implementoivan olion olevan
+kloonattavissa clone-metodilla. Rajapinnan implementoivan luokan on ylikirjoitettava Object-luokan
+määrittelemä clone-metodi},
+	see={rajapinta,java:Object}
+}

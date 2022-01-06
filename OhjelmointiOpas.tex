@@ -2075,8 +2075,8 @@ jotain jaettua tilaa. Seuraava koodiesimerkki esittelee tekstikuluttajan luomise
 printtauskomennon kirjoittamiseksi. Tässä tapauksessa globaalin metodin toiminta on syötteen
 antaminen käyttäjälle: koko ohjelmisto jakaa saman terminaalin.
 
-\code{week10}{iteratorexample}{Printer}{Kuluttajaluokka, joka tulostaa merkkijonoargumentin}
-\code{week10}{iteratorexample}{Main}{Merkkijonolistan iteraattorin luominen, ensimmäisen alkion
+\code{week10/iteratorexample}{Printer}{Kuluttajaluokka, joka tulostaa merkkijonoargumentin}
+\code{week10/iteratorexample}{Main}{Merkkijonolistan iteraattorin luominen, ensimmäisen alkion
 kuluttaminen ja loppujen tulostaminen luodulla tulostinluokalla}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2090,10 +2090,62 @@ kuluttaminen ja loppujen tulostaminen luodulla tulostinluokalla}
 \label{innerClasses}
 
 \newthought{Java tarjoaa} koodin selkeyden vuoksi mahdollisuuden määritellä luokan toisen luokan
-sisällä. Tämän luokan nimi on \neweng{sisaluokka}{inner class}. Sisäluokka näkee kaikki muuttujat
-luokasta, jonka sisällä se on määritelty. Lisäksi sisäluokka voidaan normaalin luokan sijaan
-määritellä näkyvyysmääreellä \java{protected} tai \java{private}. Tarvittaessa sisäluokka voidaan
-m
+sisällä. Tämän luokan nimi on \neweng{sisaluokka}{inner class}. Sisäluokka käyttäytyy kuin mikä
+tahansa luokan sisällä määritelty kenttä. Se näkee kaikki muuttujat luokasta, jonka sisällä se on 
+määritelty ja se voidaan normaalin luokan sijaan määritellä näkyvyysmääreellä \java{protected} tai
+\java{private}. Tarvittaessa sisäluokka voidaan myös luoda \java{static}-avainsanalla, jolloin
+siihen voidaan viitata luomatta sen omistavan luokan instanssia.
+
+\newthought{Sisäluokkien käyttötarve} perustuu lähinnä puhtaamman koodin tuottamiseen: ne eivät
+tarjoa valtavaa toiminnallista etua, vaan mahdollistavat koodin jäsentämisen tavalla, joka on
+joskus luonnollisempi ja luettavampi. Esimerkiksi jossain \gls{kompositio}rakenteissa vain
+yksi luokka tarvitsee toista luokkaa. Jos tämä toinen luokka on tarpeeksi pieni, voi olla
+järkevämpää määritellä tämä luokka sisäluokkana. Lisäksi sisäluokkien uniikki kyky nähdä kaikki 
+ulomman luokan muuttujat ja metodit, mukaan lukien yksityiset muuttujat ja metodit, saattaa auttaa
+enkapsulaation parantamisessa. Mikäli luokka A paljastaa jonkin metodin tai luo noutajan jollekin
+muuttujalle vain luokkaa B varten, voi olla syytä muuttaa luokka B luokan A sisäluokaksi. Näin
+aiemmin julkiset kentät voidaan muuttaa yksityisyksi. Seuraava koodiesimerkki esittelee
+sisäluokan luomisen ja käytön perusteet.
+
+\code{week11/innerclassexample}{OuterClass}{Luokka, jolla on sisäluokka}
+\code{week11/innerclassexample}{Main}{Sisäluokan instanssin luominen ja käyttö}
+
+\newthought{Sisäluokka} ei ole sama asia kuin \neweng{anonyymi luokka}{anonymous class}. Siinä
+missä sisäluokka on toiminnallisuuksiltaan täysi luokka, joka vaan sattuu sijaitsemaan toisen 
+luokan sisällä, on anonyymi luokka vain kertakäyttöinen tynkäimplementaatio jollekin
+rajapintaluokalle. Anonyymi luokka luodaan tallentamalla rajapintaluokan tyyppiseen muuttujaan
+implementoitavan rajapintaluokan \java{new}-avainsanalla luotu parametriton rakentajaakutsu. Tätä
+kutsua on seurattava anonyymin luokan rungon määritelmä suljettuna aaltosulkeisiin. Runkoon
+voidaan määritellä muuttujia, mutta luokkaa ei voi nimetä, vaan luotu luokka rakennetaan saman
+tien ja luokan ainut instanssi sidotaan annettuun muuttujaan. Seuraava koodiesimerkki esittelee
+\nameref{consumers}-kappaleen koodiesimerkin toteuttamisen luomalla Printer-kuluttajaa vastaava
+luokka anonyymina luokkana Main-luokassa. Huomaa myös kuinka anonyymi luokka voi olla
+määritelty \java{static}-avainsanalla tarvittaessa.
+
+\code{week11/anonymousclassexample}{Main}{Anonyymin luokan luominen ja käyttö}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Kopionti}
+\label{copying}
+
+\newthought{Toisin kuin} C:n kaltaiset matalan tason kielet, jotka säilövät muuttujat oletuksena
+arvoina, oliopohjaiset kielet kuten Java säilövät kaikki muuttujat paitsi primitiiviset
+tietotyypit viittauksina. Tämä tarkoittaa, että annettaessa muuttujaa argumenttina jollekin
+metodille, Java ei kerro "käytä arvoa 'MyObject'". Tämän sijaan Java kertoo "käytä arvoa, joka
+löytyy tästä osasta muistia". Tämä helpottaa kielen käyttöä normaalitilanteissa, sillä kieli ei
+tarvitse C:n kaltaista osoitinsyntaksia antaakseen metodeille viittauksia. Toisaalta muuttujien
+kopioiminen muuttuu tämän takia hankalammaksi, sillä jos käyttäjä vain tallentaa "MyObject"
+instanssin uuteen muuttujaan tämä ei kopioi instanssin arvoja. Sen sijaan tällainen tallennus luo
+uuden viittauksen samaan "MyObject"-instanssiin. Jos tämän uuden muuttujan tilaa muokataan, myös
+vanhan muuttujan tila muuttuu. Näin luodun kopion nimi on \neweng{viitekopio}{reference copy}
+
+
+\newthought{Mikäli halutaan} luoda aidosti uusi kopio "MyObject"-instanssista tarvitaan Javassa
+\newjava{Object}-luokan clone-metodia. Jota olio voisi hyödyntää metodia, täytyy sen implementoida
+\newjava{Clonable}-rajapintaluokka ja ylikirjoitettava \java{Object}-luokasta peritty
+clone-metodi. Tässä vaiheessa on tehtävä päätös onko toivottu kopioinnin tulos \neweng{matala
+kopio}{shallow copy} vai \neweng{syva kopio}{deep copy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %

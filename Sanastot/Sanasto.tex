@@ -558,3 +558,42 @@ protected tai private näkyvyysmääreellä, jolloin vain luokka, jonka rungossa
 määritelty ja mahdollisesti luokan lapsiluokat näkevät sisäluokan},
 	see={java:protected,java:private,nakyvyysmaare}
 }
+
+\newglossaryentry{anonyymi luokka}
+{
+	name=anonyymi luokka,
+	description={(anonymous class) Toisen luokan sisällä luotu kertakäyttöinen rajapintaluokan
+implementaatio, joka sisältää vain ylikirjoitetut abstraktit metodit implementoidusta
+rajapintaluokasta},
+	see={rajapinta,java:interface}
+}
+
+\newglossaryentry{viitekopio}
+{
+	name=viitekopio,
+	description={(reference copy) Kopio, joka on tehty luomalla uusi viittaus kopioitavaan olioon.
+Viittauskopion ja alkuperäisen olion tilat ovat sidottuja toisiinsa: mikäli toista muokataan,
+toinen muuttuu},
+	see={matala kopio,syva kopio}
+}
+
+\newglossaryentry{matala kopio}
+{
+	name=matala kopio,
+	description={(shallow copy) Kopio, joka on tehty luomalla uusi kopioitavan luokan instanssi
+ja kopioimalla kaikki muuttujat viitekopioina uuden instanssin muuttujiin. Näin luodun uuden olion
+tila ei ole suoraan riippuvainen vanhan olion tilasta, mutta niillä on yhteysiä viittauskopioita,
+joten vanhan olion omistaman olion tilan muutos voi vaikuttaa vastaavan olion tilaan uudessa
+oliossa ja toisin päin},
+	see={viittauskopia,syva kopio}
+}
+
+\newglossaryentry{syva kopio}
+{
+	name=syva kopio,
+	description={(deep copy) Kopio, joka on tehty luomalla uusi kopioitavan luokan instanssi ja
+kopiomalla kaikki muuttujat rekursiivisesti syvinä kopioina uuden instanssin muuttujiin. Riippuen
+riippuvuusketjun pituudesta, voi tällainen kopiointi olla raskasta, mutta tuloksena on kopio,
+jonka tila on aidosti riippumaton alkuperäisen olion tilasta},
+	see={viittauskopio,matala kopio}
+}
