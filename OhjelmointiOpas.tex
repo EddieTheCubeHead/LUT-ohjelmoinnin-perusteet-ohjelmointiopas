@@ -865,9 +865,9 @@ yli iteroimisen for-each -loopilla.
 
 \newthought{While-looppi} on toistorakenne, jossa \java{for}-loopin tapaan sidotaan toistoehto
 johonkin totuusarvoon, yleensä tietyn muuttujan suhteen. Toisin kuin for-loopissa, while loopissa
-toisto ei tapahdu iterointimaisesti yhden muuttujan sijaan. Sen sijaan looppi luodaan
+toisto ei tapahdu iterointimaisesti yhden muuttujan suhteen. Sen sijaan looppi luodaan
 \newjava{while}-avainsanalla, jota seuraa loopin toistoehto sulkuihin suljettuna. Toistoehto
-voi olla mikä tahansa totuusarvo ja looppia toistetaan niin kauan, kuin toistoehto on totta.
+voi olla mikä tahansa totuusarvo ja looppia toistetaan niin kauan, kun toistoehto on totta.
 While-looppi on yleinen ohjausrakenteena ohjelman ytimessä: ohjelmaa tai ohjelman osaa ajetaan
 niin kauan kuin ennalta määritelty ehto on totta. Seuraava koodiesimerkki esittelee while-loopin
 käytön.
@@ -930,15 +930,17 @@ yleensä Javan tavukoodin ajotekniikka on
 \newthought{Ajonaikainen kääntäminen} on ohjelman ajamissstrategia, jossa ennalta tuotettua
 tavukoodia käännetää dynaamisesti ohjelman ajon aikana konekieliseen muotoon. Tämä eroaa
 ratkaisevasti tulkkaamisesta, tarjoten paremman, lähes kääntämiseen verrattavan suorituskyvyn
-pienen käynnistysviiveen kustannuksella. Lisäksi älykkäät kääntäjät voivat optimoida koodia
-dynaamisesti ajon aikana. Lisäksi kaikkia tavukooditiedostoja ei tarvitse kääntää uudestaan aina,
-kun koodia muokataan, joten iterointi on nopeampaa kuin aidoissa käännetyissä kielissä.
+pienen käynnistysviiveen kustannuksella. Yksi tekniikan eduista on älykkäiden kääntäjien kyky
+optimoida koodia dynaamisesti ajon aikana. Lisäksi kaikkia tavukooditiedostoja ei tarvitse kääntää
+uudestaan aina, kun koodia muokataan, joten kehitysvaiheen versioiden iterointi on nopeampaa kuin
+aidoissa käännetyissä kielissä.
 
-\newthought{Tämä tarkoittaa}, että Java-ohjelman kääntäminen ja ajaminen vie vähemmän aikaa, kuin
-c:llä tai muulla käännettävällä kielellä. Ohjelman ajaminen ei kuitenkaan tapahdu saman tien niin
-kuin tulkatulla kielellä, vaan bittikoodin kompilointi ja ajonaikaisen kääntämisen aloittaminen
-vie hieman aikaa. Ajonaikaisen kääntämisen suorituskyky on lähellä käännettyjä kieliä, muttei ihan
-samaa tasoa. Suorituskyky on kuitenkin huomattavasti parempi kuin tulkatuilla kielillä.
+\newthought{Tämä tarkoittaa}, että Java-ohjelman kääntäminen ja ajamisen aloittaminen vie vähemmän
+aikaa, kuin c:llä tai muulla käännettävällä kielellä. Ohjelman ajaminen ei kuitenkaan tapahdu
+saman tien niin kuin tulkatulla kielellä, vaan bittikoodin kompilointi ja ajonaikaisen kääntämisen
+aloittaminen vie hieman aikaa. Ajonaikaisen kääntämisen suorituskyky on lähellä käännettyjä
+kieliä, muttei ihan samaa tasoa. Suorituskyky on kuitenkin huomattavasti parempi kuin tulkatuilla
+kielillä.
 
 \subsection{Muistinhallinta ja garbage collector}
 \label{GC}
@@ -1210,10 +1212,9 @@ tiedostonhallintaan.
 \newthought{Linux-maailmasta tuttuun} tapaan Javassa tiedostonhallinta muistuttaa vahvasti
 käyttäjäsyötteen käsittelyä. Tiedostojen lukeminen tapahtuu \newjava{FileReader} tai
 \newjava{FileInputStream} -olioilla ja tiedostoon kirjoittaminen \newjava{FileWriter} tai
-\newjava{FileOutputStream} -olioilla. Seuraavat kappaleissa käydään läpi näiden luokkien käyttö,
-sekä olioiden \neweng{serialisaatio}{serialization}, joka mahdollistaa olioiden esittämisen
-tekstimuotoisena datana, ja täten olioiden tallentamisen tekstitiedostoihin. Tätä ennen käydään
-läpi javan virheenkäsittely, sillä se on olennainen osa tiedostojen turvallista käsittelyä.
+\newjava{FileOutputStream} -olioilla. Tässä kappaleissa käydään läpi näiden luokkien käyttö. Tätä
+ennen on kuitenkin opeteltava Javan virheenkäsittelyn syntaksi, sillä virhetilojen hallinta on
+olennainen osa tiedostojen turvallista käsittelyä.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1312,7 +1313,7 @@ ja ei tuhoudu suhteen tuhouduttua.
 \subsection{Kompositio}
 \label{kompositio}
 
-\newthought{Gls{kompositio} on} luokken välinen omistussuhde, jossa luokan A instanssi omistaa
+\newthought{\Gls{kompositio} on} luokken välinen omistussuhde, jossa luokan A instanssi omistaa
 luokan B instanssin pysyvästi, niin, että instanssien elinajat on sidottu toisiinsa. Luokan B
 instanssi luodaan sen omistavan luokan A instanssin mukana ja tuhoutuu tämän instanssin kanssa.
 Täten luokan B instansseja ei voi olla olemassa erillään ne omistavasta luokan A instanssista,
@@ -1341,7 +1342,7 @@ ominaisuuden, nimeltä \neweng{periytyminen}{inheritance}
 
 \newthought{Periytymisen perusidea} on mahdollistaa luokkien toiminnallisuuksien uudelleenkäyttö
 ja laajentaminen. Tämä tapahtuu luomalla niin sanottu \neweng{lapsiluokka}{child class}
-laajennettavasta luokasta. Tällä tavalla laajennettua luokkaa sanotaan luodun lapsiluokan
+laajennettavasta luokasta. Tällä tavalla laajennetun luokan sanotaan olevan luodun lapsiluokan
 \neweng{kantaluokka}{parent class}.
 
 \newthought{Lapsiluokka perii} kaikki kantaluokan ominaisuudet ja kykenee muokkaamaan niitä tai
@@ -1373,8 +1374,8 @@ kaaviotyyppejä ovat muun muassa oliokaavio, tilakaavio ja sekvenssikaavio.
 \subsection{Luokkakaavio}
 \label{luokkakaavio}
 
-\newthought{\gls{UML}-standardin tapa} ilmaista luokkien välisiä suhteita on \gls{luokkakaavio}
-ohjelmistossa. Kaavio suunniteltiin alun perin tarpeeksi tarkaksi koodin generointiin kaavion
+\newthought{\gls{UML}-standardin tapa} ilmaista luokkien välisiä suhteita ohjelmistossa on
+\gls{luokkakaavio}. Kaavio suunniteltiin alun perin tarpeeksi tarkaksi koodin generointiin kaavion
 pohjalta, mutta nykyään kaavion yleisimmin hyväksytty käyttötapa on suunnitteluvaiheessa ideoiden
 kommunikointi ohjelmiston suunnittelijoiden välillä.
 
