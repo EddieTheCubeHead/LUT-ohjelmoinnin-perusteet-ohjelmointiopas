@@ -1528,8 +1528,8 @@ kehittämisprosessia monimutkaistettaisiin turhaan ilman selkeitä hyötyjä per
 tallentaa muuttujaan, jonka tyypiksi on määritelty emoluokan olio. Tällöin muuttujaan tallennettua
 olioita voidaan kohdella kuin emoluokan oliota. Tämä käyttäytyminen mahdollistaa monia hyödyllisiä
 toiminnallisuuksia, kuten monen eri lapsiluokan instanssien tallentamista samaan \java{ArrayList}-
-instanssiin, kunhan kyseinen \java{ArrayList}-instanssi on geneerinen kantaluokan yli, eikä
-jonkin lapsiluokan yli.
+instanssiin, kunhan kyseinen \java{ArrayList}-instanssi on luotu viitaten kantaluokkaan, eikä
+lapsiluokkaan.
 
 \newthought{Kuitenkin tällainen} luokkien käyttäminen luo velvotteita lapsiluokkien suunnitteluun.
 Jotta edellä kuvailtu käyttötapa sujuisi ongelmitta, kuuluu lapsiluokkien ja emoluokan toteuttaa
@@ -1634,16 +1634,16 @@ osin käyttötavoiltaankin. Niille molemmille löytyvät kuitenkin omat erillise
 syvempi ymmärrys luokkatyyppien toiminnallisuuksien eroista auttaa käsittämään nämä erilaiset
 käyttökohteet.
 
-\newthought{Koska Java} \neweng{moniperinta}{multiple inheritance} ei ole tuettua Javassa, ei
+\newthought{Koska luokkien} \neweng{moniperinta}{multiple inheritance} ei ole tuettua Javassa, ei
 abstrakteja luokkia voi käyttää lisäämään yhdelle luokalle useamman eri luokan toiminnallisuuksia.
 Tällainen on rajapintaluokkien tehtävä. Sen sijaan abstrakti luokka voi määritellä valmiiksi
 toiminnallisuuksia ja datakenttiä itselleen, helpottaen lapsiluokkien kirjoittamista. Abstraktin
-luokan pääkäyttötarkoitus onkin luoda koodiin jokin palvelu, kuten logien kirjoittaminen, jonka
-yleinen toiminnallisuus on tiedossa, mutta toteutus riippuu käytettävästä kirjastosta. Esimerkiksi
-tässä logiesimerkissä, voitaisiin luoda abstrakti luokka, jolle implementoidaan valmiiksi funktiot
-logien muotoiluun, mutta jonka loginkirjoitusfunktiot määritellään abstrakteina, jolloin kutakin
-logikirjastoa käyttävä abstraktin luokan implementaatio määrittelee kirjastoon nojaavan
-rajapintansa itse.
+luokan pääkäyttötarkoitus onkin luoda koodiin jokin palvelu, kuten edellä sivuttu logien	
+kirjoittaminen, jonka yleinen toiminnallisuus on tiedossa, mutta toteutus riippuu käytettävästä
+kirjastosta. Esimerkiksi tässä logiesimerkissä, voitaisiin luoda abstrakti luokka, jolle
+implementoidaan valmiiksi funktiot logien muotoiluun, mutta jonka loginkirjoitusfunktiot
+määritellään abstrakteina, jolloin kutakin logikirjastoa käyttävä abstraktin luokan implementaatio
+määrittelee kirjastoon nojaavan rajapintansa itse.
 
 \newthought{Rajapintaluokkien tehtävä} puolestaan on yleensä luoda pieniä, selkeitä
 toiminnallisuussopimuksia koodissa. Mikäli myöhemmin ilmenee tarve lisätä johonkin luokkaan jo
@@ -1663,8 +1663,8 @@ toiminnallisuuden toteutusvastuun eteenpäin kantaluokan lapsiluokille. Mahtava 
 ovat Minecraft-pelin kuutiot. Jokainen kuutiotyyppi on abstraktin "Block"-luokan konkreettinen
 lapsiluokka, joka määrittää yksittäisen kuutiotyypin tarkemmat toiminnallisuudet.
 
-\newthought{Samaan tapaan} oppaan koodiesimerkeissä kappaleissa \nameref{abstract} ja
-\nameref{interface} abstraktin luokan esimerkissä hyödynnetään abstraktin kantaluokan kykyä
+\newthought{Oppaan koodiesimerkeissä} tämä käyttötapojen ero näkyy kappaleissa \nameref{abstract}
+ja \nameref{interface}. Abstraktin luokan esimerkissä hyödynnetään abstraktin kantaluokan kykyä
 määritellä konkreettisia metodeja kantaluokkaan: oletettavasti kaikki lapsiluokat hyödyntävät
 "formatLogString"-metodia. Rajapintaluokkaesimerkissä puolestaan luotu "TextProvider"-rajapinta
 on vain yksinkertainen rajapinta, jonka mikä tahansa ohjelmiston luokka saattaa toteuttaa
@@ -1775,11 +1775,11 @@ lauseella, rikkoo luokka todennäköisesti yhden vastuun periaatetta.
 koodin tulisi olla avoin laajennuksille, mutta suljettu muutoksille. Käytännössä tämä tarkoittaa,
 että toteutettujen toiminnallisuuksien koodin tulisi olla suunniteltu olettaen, että sama koodi
 säilyy ohjelmistossa koko sen elinkaaren läpi. Toisaalta taas koodin tulisi olla helposti
-laajennettavissa. Käytännössä periaatteen tavoitteena on rohkaista suunnittelemaan ohjelmistoja
-niin, että ensisijainen tapa lisätä toiminnallisuuksia ei olisi vanhojen luokkien muokkaaminen,
-vaan uusien lisääminen.
+laajennettavissa. Periaatteen tavoitteena on rohkaista suunnittelemaan ohjelmistoja niin, että
+ensisijainen tapa lisätä toiminnallisuuksia ei olisi vanhojen luokkien muokkaaminen, vaan uusien
+lisääminen.
 
-\newthought{Käytännössä esimerkiksi} \java{switch}-rakenteiden käyttö monesti rikkoo 
+\newthought{Normaalisti esimerkiksi} \java{switch}-rakenteiden käyttö monesti rikkoo 
 avoin/suljettu periaatetta. Mikäli rakenteeseen tarvitsee lisätä uusi haara, täytyy ohjelmoijan
 käydä muokkaamassa vanhaa koodia, mikä altistaa ohjelmiston virhetiloille, kun kertaalleen
 toimivaksi todettua koodia muokataan myöhemmin. Oliopohjaisessa ohjelmoinnissa kannustetaan
@@ -1812,18 +1812,18 @@ ilmansuuntia esittävällä \java{enum}-rakenteella}
 rajapintaluokkien käyttöä ja luokkien kokoa. Periaatteen mukaan, jos luokka implementoi
 rajapintaluokan, täytyisi luokan tarvita kaikkia rajapinnan metodeja. Rajapintaluokkien pitäisi
 olla siis tarpeeksi hyvin rajattuja, jotta niiden kaikki metodit kuuluvat yhteen
-toiminnallisuuspakettiin. Periaate kannustaa siis luomaan monta pientä rajapintaa ja
+toiminnallisuuspakettiin. Periaate kannustaa täten luomaan monta pientä rajapintaa ja
 implementoimaan niistä tarvittavat yhden valtavan rajapinnan sijaan. Tämä helpottaa jo luotujen
 rajapintaluokkien uudelleenkäyttöä.
 
 \subsection{Käänteisten riippuvuuksien periaate}
 \label{DIP}
 
-\newthought{Viimeinen on} SOLID-periaate on \gls{kaanteisten riippuvuuksien periaate}. Se
+\newthought{Viimeinen SOLID-periaate} on \gls{kaanteisten riippuvuuksien periaate}. Se
 käsittelee riippuvuuksien suuntaa ohjelmistossa. Periaate perustuu toiveeseen korkean
-abstraktiotason komponenttien uusiokäytöstä ja vastustuskyvystä muutoksille. Molemmat ominaisuudet
-vaativat, että kyseiset komponentit eivät ole suoraan riippuvaisia käyttämistään alemman tason
-komponenteista. Periaate on yleensä esitetty kahtena perusideana:
+abstraktiotason komponenttien helposta uusiokäytöstä ja niiden vastustuskyvystä muutoksille.
+Molemmat ominaisuudet vaativat, että kyseiset komponentit eivät ole suoraan riippuvaisia
+käyttämistään alemman tason komponenteista. Periaate on yleensä esitetty kahtena perusideana:
 
 \begin{enumerate}
 	\item Korkean tason komponenttien ei pitäisi olla riippuvaisia matalan tason komponenteista. Molempien pitäisi olla riippuvaisia abstraktioista.
@@ -1866,7 +1866,7 @@ noudattavaa koodia on uskomattoman helppo testata, koska jokainen palvelu voidaa
 ohjelmiston kontekstista ja palvelua voidaan testata puhtaasti oman toiminnallisuutensa suhteen.
 Opas ei siis suosittele kaikkia oppaan lukijoita toteuttamaan omia projektejaan käänneteisten
 riippuvuuksien periaatteen mukaan. Periaate kannattaa kuitenkin opetella, sillä siirryttäessä
-työelämään koodikantojen koko ja testaamisen merkitys molemmat moninkertaistuvat ja silloin
+työelämään sekä koodikantojen koko että testaamisen merkitys moninkertaistuvat ja silloin
 käänteisten riippuvuuksien periaate kohoaa todennäköisesti tärkeimmäksi kaikista 
 SOLID-periaatteista.
 
@@ -1877,8 +1877,8 @@ SOLID-periaatteista.
 
 \newthought{Aiemmin oppaan} luvussa \nameref{try-catch} käytiin läpi Javan
 virhetilanhallintasyntaksi. Luvussa käsiteltiin standardikirjaston toimintojen aiheuttamia
-virhetiloja, mutta standardikirjaston ei omista yksinoikeutta virhetilojen aiheuttamiseen.
-Käyttäjä itse voi myös nostaa ja jopa luoda uusia virhetilaluokkia. Virhetilaluokka nostetaan
+virhetiloja, mutta standardikirjasto ei omista yksinoikeutta virhetilojen aiheuttamiseen. Käyttäjä
+voi myös itse nostaa ja jopa luoda uusia virhetilaluokkia. Virhetilaluokka nostetaan
 \newjava{throw}-avainsanalla ja käyttäjä voi luoda omia virhetilaluokkiaan periyttämällä luokan
 \newjava{Exception}-luokasta.
 
@@ -1947,7 +1947,7 @@ monimutkaiseen Javan ominaisuuteen.
 \newthought{Oppaan kappaleessa} \nameref{listat} mainittiin käsite \gls{geneerinen luokka}. 
 Geneerinen luokka ja \neweng{geneerinen metodi}{generic method} ovat yleisiä käsitteitä
 staattisesti tyypitetyille kielille ja viittaavat luokkaan ja metodiin, jotka määritellään
-suhteessa johonkin toiseen luokkaan. Tämä geneerinen \new{tyyppiparametri}{type paremeter}
+suhteessa johonkin toiseen luokkaan. Tämä geneerinen \neweng{tyyppiparametri}{type paremeter}
 kirjoitetaan yleensä luokan määritelmän yhteydessä yhdellä kirjaimella, joka on toivottua
 parametria kuvaavan sanan ensimmäinen kirjain; T - Type, E - Element, K -Key, N - Number, V -
 Value. Monta tyyppiparametria omaavassa luokassa voidaan käyttää joko kirjaimia S, U, V, jne. tai
@@ -2025,7 +2025,7 @@ tehtäviin lisättäisiin iterointikohdan muistaminen, luokalla olisi kaksi teht
 kokoelmaluokat tarjoavat \newjava{iterator}-metodin ja \java{List}-rajapinnan toteuttavat listat
 \newjava{listIterator}-metodin näiden iterointiluokkien luomiseen. Nimiensä mukaisesti
 \java{iterator}-metodi luo \java{Iterator}-instanssin ja \java{listIterator}-metodi luo
-\java{listIterator}-instanssin.
+\java{ListIterator}-instanssin.
 
 \newthought{Iteraattorien käyttö} on melko simppeliä. Iteraattoriolio muistaa indeksin, johon
 asti kokoelmaa on iteroitu ja mahdollistaa seuraavan instanssin olemassaolon tarkistamisen
@@ -2034,7 +2034,7 @@ olemassaolosta. Seuraava instanssi voidaan noutaa metodilla next, joka ei ota ar
 palauttaa seuraavan instanssin, sekä korottaa iterointi-indeksiä iteraattoriluokan sisällä
 yhdellä. Mikäli seuraavaa instanssia ei ole, aiheuttaa next-metodi
 NoSuchElementException-virhetilan. \java{ListIterator} omistaa lisäksi hasPrevious ja previous
--metodit, jotka toimivat samalla tavalla, mutta iteroivat kokoelmaa takaperin. sekä
+-metodit, jotka toimivat samalla tavalla, mutta iteroivat kokoelmaa takaperin. Sekä
 \java{Iterator}-oliot että \java{ListIterator}-oliot sisältävät lisäksi mahdollisuuden ajaa
 tietyn funktion kaikille iteraattorissa jäljellä oleville alkioille forEachRemaining-metodilla.
 Metodi ottaa \newjava{Consumer}-rajapinnan implementoivan olion ja kutsuu rajapinnassa
@@ -2059,7 +2059,7 @@ instanssin. Java tarjoaa erillisen geneerisen \java{Consumer}-rajapintaluokan t�
 kuluttajien luomiseen. Rajapintaluokka on geneerinen tyyppiparametrin T yli ja määrittelee kaksi
 metodia; accept(T) ja andThen(Consumer<? super T>). Rajapinnan kuluttajametodi on accept, se ei
 palauta mitään ja ottaa yhden tyypin T instanssin. Toinen rajapinnan tarjoama metodi on
-andThen-joka ottaa toisen kuluttajan, jonka pitää olla parametrisoitu samoin tai tiukemmin rajoin
+andThen-joka ottaa toisen kuluttajan, jonka pitää olla parametrisoitu samoin tai löysemmin rajoin
 kuin metodin omaava kuluttajaimplementaatio ja palauttaa yhdistetyn kuluttajan, joka kutsuu
 molempien kuluttajien accept-metodia vuorotellen.
 
@@ -2132,7 +2132,7 @@ tarvitse C:n kaltaista osoitinsyntaksia antaakseen metodeille viittauksia. Toisa
 kopioiminen muuttuu tämän takia hankalammaksi, sillä jos käyttäjä vain tallentaa "MyObject"
 instanssin uuteen muuttujaan tämä ei kopioi instanssin arvoja. Sen sijaan tällainen tallennus luo
 uuden viittauksen samaan "MyObject"-instanssiin. Jos tämän uuden muuttujan tilaa muokataan, myös
-vanhan muuttujan tila muuttuu. Näin luodun kopion nimi on \neweng{viitekopio}{reference copy}
+vanhan muuttujan tila muuttuu. Näin luodun kopion nimi on \neweng{viitekopio}{reference copy}.
 
 
 \newthought{Mikäli halutaan} luoda aidosti uusi kopio "MyObject"-instanssista tarvitaan Javassa
@@ -2147,8 +2147,8 @@ tietotyyppi. Näin kopiointi on melko nopea toimenpide ja uusi ja alkuperäinen 
 suoraan riippuvaisia toisistaan. Kuitenkin luodun uuden instanssin ei-primitiivisen tietotyypin
 muuttujat viittavaat samoihin olioihin kuin alkuperäisen instanssin vastaavat muuttujat. Täten
 uuden ja alkuperäisen kopion tilat ovat edelleen jossain määrin riippuvaisia toisistaan. Tämä
-kopiointityyli on Javan oletuskopiointi ja voidaan täten saavuttaa clone-metodin sisällä
-kutsumalla super().clone -metodia.
+kopiointityyli on Javan oletuskopiointi ja voidaan täten saavuttaa ylikirjoitetun clone-metodin
+sisällä kutsumalla super().clone -metodia.
 
 \newthought{\Gls{syva kopio}} puolestaan kopioi kaikki alkuperäisen luokan muuttujat syväkopioina
 rekursiivisesti. Tällainen kopiointi kuluttaa huomattavasti enemmän resursseja kuin viitekopion
