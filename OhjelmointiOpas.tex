@@ -599,21 +599,21 @@ Luokkien ominaisuudet \\
 ominaisuuksien näkyvyyden rajaamisessa, kun taas public ja oletusnäkyvyys toimivat myös luokkien
 näkyvyyden määrittämisessä. Tämä johtuu siitä, että private ja protected ovat suoraan sidottuja
 luokkaan, jossa ominaisuus sijaitsee. Protected on lisäksi tiukasti sidoksissa periytymiseen, joka
-käsitellään myöhemmin oppaan alaluvussa \nameref{protected} joten sen toiminnallisuuden
+käsitellään myöhemmin oppaan alaluvussa \nameref{periytyminen2} joten sen toiminnallisuuden
 ymmärtäminen ei ole vielä ajankohtaista.
 
 \newthought{Tähän mennessä} oppaassa on vältetty näkyvyysmääreiden käyttöä, eli niitä on käytetty
 vain main-metodien määrittelemisen yhteydessä. Tällöin Java-kääntäjä asettaa näkyvyydeksi
-automaattisesti oletusnäkyvyyden (default), jossa luokka, tai sen ominaisuus näkyy kaikkialle
-sen määrittelypaketin sisällä, muttei muualle. Tämä ei ole suositeltavaa, vaan jokaisen luokan
-ja luokkien jokaisen ominaisuuden näkyvyyden tarve pitäisi arvioida erikseen ja asettaa kullekin
-tiukin mahdollinen näkyvyysmääre. Tämä tyyli paitsi takaa mahdollisimman korkean enkapsulaation,
-myös tekee ohjelmistosta tehokkaamman, koska vain luokan sisällä näkyvät metodit voidaan optimoida
-tehokkaammin ohjelman kääntämisen yhteydessä.
+automaattisesti oletusnäkyvyyden (default/package-private), jossa luokka, tai sen ominaisuus näkyy
+kaikkialle sen määrittelypaketin sisällä, muttei muualle. Tämä ei ole suositeltavaa, vaan jokaisen
+luokan ja luokkien jokaisen ominaisuuden näkyvyyden tarve pitäisi arvioida erikseen ja asettaa
+kullekin tiukin mahdollinen näkyvyysmääre. Tämä tyyli paitsi takaa mahdollisimman korkean
+enkapsulaation, myös tekee ohjelmistosta tehokkaamman, koska vain luokan sisällä näkyvät metodit
+voidaan optimoida tehokkaammin ohjelman kääntämisen yhteydessä.
 
 \newthought{Seuraava koodiesimerkki} sisältää pääluokan ja kaksi apuluokkaa ja esittelee näin
 \java{public} ja \java{private} avainsanojen toimivuuden. Avainsana \java{protected} on esitelty
-koodiesimerkissä periytyvyyden yhteydessä kappaleessa *x*. % TODO: lisää luku
+koodiesimerkissä periytyvyyden yhteydessä kappaleessa \nameref{protected}.
 
 \code{week2/accessmodifierexample}{FirstClass}{Ensimmäinen näkyvyysmääre-esimerkin luokka}
 \code{week2/accessmodifierexample}{SecondClass}{Toinen näkyvyysmääre-esimerkin luokka}
