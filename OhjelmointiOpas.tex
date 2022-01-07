@@ -200,7 +200,7 @@ lajiteltuina.
 \newthought{Koodiesimerkit on kirjoitettu} Javan virallisen tyylioppaan suosittelemien
 ohjelinjojen mukaisesti. Kaikki muuttujat, luokat ja metodit on nimetty englanniksi, mutta koodi
 on kommentoitu suomeksi. Kommentointi ei noudata hyvää ohjelmointityyliä vaan kommentit ovat
-koodin opetusmaisen luonteen vuoksi monisanaisempaa ja yleisempää kuin suosituksissa.
+koodin opetusmaisen luonteen vuoksi monisanaisempia ja yleisempiä kuin suosituksissa.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -208,8 +208,6 @@ koodin opetusmaisen luonteen vuoksi monisanaisempaa ja yleisempää kuin suositu
 
 \chapter{Oliopohjainen ajattelu}
 \label{olioista}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Abstraktio laadukkaan koodin pohjana}
 \label{abstraktiosta}
@@ -242,7 +240,7 @@ datan ja sitä käsittelevien funktioiden sijainti koodissa?
 
 \newthought{Olio-ohjelmoinnissa ohjelmisto} koostuu kokonaan keskenään kommunikoivista yksiköistä.
 Näille yksiköille vakiintunut kutsumanimi on \neweng{olio}{object}. Oliot koostuvat datasta ja
-sitä manipuloivista käskysarjoista, jotka tunnetaan nimellä \neweng{metodi}{method}. Se on
+sitä manipuloivista käskysarjoista, jotka tunnetaan nimellä \neweng{metodi}{method}. Metodi on
 oliopohjaisen ohjelmoinnin nimi olioon sidotulle funktiolle, termiä \gls{funktio} ei juuri
 käytetä.
 
@@ -294,7 +292,7 @@ näkyvyyden rajaaminen ja tarkkojen vastuiden määrittäminen tunnetaan nimell�
 luokasta luodut oliot voivat tehdä ja mitä niiltä voi odottaa. Tämä muodostaa sopimuksen luokan ja
 muiden luokan paljastamia metodeja tai datakenttiä käyttävien luokkien välillä. Tätä sopimusta
 kutsutaan nimellä \neweng{rajapinta}{interface}. Rajapinnan abstraktia käsitettä ei pidä sekoittaa
-Javan samankaltaiseen "interface"-avainsanaan, joka esitellään myöhemmin.
+Javan samankaltaiseen \newjava{interface}-avainsanaan, joka esitellään myöhemmin.
 
 \newthought{Yksi olio-ohjelmoinnin nyrkkisäännöistä} on pitää huolta, että jokainen luokka
 suorittaa yhden ja vain yhden tehtävän. Tämä tarkoittaa luokan rajapinnan pitämistä minimaalisena,
@@ -327,9 +325,7 @@ tuotetun koodin laatua huomaamattomasti.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Javan perusteet}
-\label{perusteet}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\label{perusteet}	
 
 \section{Java ohjelmointikielenä}
 \label{javasta}
@@ -491,7 +487,7 @@ metodi notaatiolla "object.doStuff(322)". Jos metodille on määritelty paluuarv
 palauttaa tämän tyypin muuttujan, jota voidaan käyttää koodissa.
 
 \code{week2/methodexample}{MethodClass}{Metodin luominen Javassa}
-\code{week2/methodexample}{Main}{Metodin kutsuminen Javassa}
+\code{week2/methodexample}{MethodExample}{Metodin kutsuminen Javassa}
 
 \subsection{If-lause ja else-lause}
 \label{if else}
@@ -550,7 +546,7 @@ ylikuormittaminen toimii myös rakentajametodeihin, eli luokalla voi olla useamp
 rakentajametodi. Koodiesimerkki kuitenkin käyttää vain yhtä rakentajametodia.
 
 \code{week2/constructorexample}{ClassWithConstructor}{Rakentajan luonti Javassa}
-\code{week2/constructorexample}{Main}{\java{new}-avainsanan käyttö}
+\code{week2/constructorexample}{ConstructorExample}{\java{new}-avainsanan käyttö}
 
 
 \subsection{Metodin ylikuormitus}
@@ -568,7 +564,7 @@ esitellään ylikuormitetun metodin käyttö luomalla tulostusmetodi, joka ilmoi
 tulostettavan muuttujan tietotyyppi int vai String.
 
 \code{week2/overloadingexample}{OverloadedPrinter}{Lapsiluokka ylikuormittamisesimerkkiin}
-\code{week2/overloadingexample}{Main}{Ylikuormittaminen Javassa}
+\code{week2/overloadingexample}{OverloadingExample}{Ylikuormittaminen Javassa}
 
 \subsection{Näkyvyysmääreet}
 \label{näkyvyysmääreet}
@@ -621,7 +617,7 @@ koodiesimerkissä periytyvyyden yhteydessä kappaleessa *x*. % TODO: lisää luk
 
 \code{week2/accessmodifierexample}{FirstClass}{Ensimmäinen näkyvyysmääre-esimerkin luokka}
 \code{week2/accessmodifierexample}{SecondClass}{Toinen näkyvyysmääre-esimerkin luokka}
-\code{week2/accessmodifierexample}{Main}{Näkyvyysmääre-esimerkin pääluokka}
+\code{week2/accessmodifierexample}{AccessModifierExample}{Näkyvyysmääre-esimerkin pääluokka}
 
 \subsection{Noutajat ja asettajat}
 \label{get set}
@@ -656,7 +652,7 @@ jos muuttuja positiveNumber olisi julkinen Javan suositteleman yksityinen muuttu
 asettaja -mallin sijaan.
 
 \code{week2/gettersetterexample}{NumberStorage}{Ensimmäinen noutaja/asettajaesimerkin luokka}
-\code{week2/gettersetterexample}{Main}{Noutaja/asettajaesimerkin pääluokka}
+\code{week2/gettersetterexample}{GetterSetterExample}{Noutaja/asettajaesimerkin pääluokka}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -744,7 +740,7 @@ muuttujaan, sekä arvojen tallentamisesta olemassa olevaan taulukkoon ja arvojen
 olemassa olevasta taulukosta.
 
 \code{week3/arrayexample}{DataPoint}{Dataluokka käytettäväksi taulukkoesimerkissä}
-\code{week3/arrayexample}{Main}{Taulukkojen käyttö Javassa}
+\code{week3/arrayexample}{ArrayExample}{Taulukkojen käyttö Javassa}
 
 \subsection{Paketit ja import}
 \label{import}
@@ -1013,7 +1009,7 @@ Seuraava esimerkki esittelee luokkametodin luomisen apuriluokkaan ja kutsumisen 
 ulkopuolelta ilman apuriluokan instanssia.
 
 \code{week3/staticexample}{StaticPrinter}{Luokkametodin luominen \java{static}-avainsanalla}
-\code{week3/staticexample}{Main}{Luokkametodin kutsuminen metodin määrittelevän luokan
+\code{week3/staticexample}{StaticExample}{Luokkametodin kutsuminen metodin määrittelevän luokan
 ulkopuolella}
 
 \subsection{Tyyppimuunnokset (casting)}
@@ -1070,7 +1066,7 @@ tai tuotu nimitilaan \java{import}-avainsanalla pelkällä arvon nimellä. Seura
 esittelevät luetellun tyypin luomisen ja käytön.
 
 \code{week3/enumexample}{CompassPoint}{Lueteltu tyyppi ilmansuunnista}
-\code{week3/enumexample}{Main}{Lueteltuun tyyppiin viittaaminen}
+\code{week3/enumexample}{EnumExample}{Lueteltuun tyyppiin viittaaminen}
 
 \subsection{Aritmeettiset- ja bittioperaatiot}
 \label{operaatiot}
@@ -1453,7 +1449,7 @@ esittelee yksinkertaisen periytymiseen pohjaavan rakenteen luomisen Javassa.
 
 \code{week6/basicinheritanceexample}{Parent}{Periytymisesimerkin kantaluokka}
 \code{week6/basicinheritanceexample}{Child}{Periytymisesimerkin lapsiluokka}
-\code{week6/basicinheritanceexample}{Main}{Periytymisesimerkin pääluokka}
+\code{week6/basicinheritanceexample}{BasicInheritanceExample}{Periytymisesimerkin pääluokka}
 
 \subsection{Kantaluokan toiminnallisuuksien uudelleenmäärittely}
 \label{overriding}
@@ -1468,7 +1464,7 @@ käytännössä.
 
 \code{week6/overridingexample}{Parent}{Korvaamisesimerkin kantaluokka}
 \code{week6/overridingexample}{Child}{Korvaamisesimerkin lapsiluokka}
-\code{week6/overridingexample}{Main}{Korvaamisesimerkin pääluokka}
+\code{week6/overridingexample}{OverridingExample}{Korvaamisesimerkin pääluokka}
 
 \section{Periytyminen ja rakentajat}
 \label{superprotected}
@@ -1710,7 +1706,7 @@ tiedostoon ja deserialisaation tiedostosta. Huomioi, että mikäli serialisoituj
 tallennetaan tiedostoon, on normaalia nimetä tiedosto ".ser"-päätteellä.
 
 \code{week6/serializationexample}{SerializableData}{Serialisoitava luokka}
-\code{week6/serializationexample}{Main}{Serialisaatioesimerkin pääluokka}
+\code{week6/serializationexample}{SerializationExample}{Serialisaatioesimerkin pääluokka}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1727,7 +1723,7 @@ joka joko hakee olemassaolevan instanssin luokkamuuttujasta tai luo uuden instan
 luokkamuuttujaan, mikäli instanssia ei vielä ole olemassa. Seuraava koodiesimerkki esittelee
 tämän toteutuksen käytännössä.
 
-\code{week8/singletonexample}{SimpleSingleton}{Singleton-suunnittelumallin toteuttava luokka}
+\code{week8}{SingletonExample}{Singleton-suunnittelumallin toteuttava luokka}
 
 \newthought{\Gls{singleton}-suunnittelumallia} on kritisoitu, sillä se luo ohjelmistolle jaetun
 julkisen tilan toimien käytännössä glorifioituna globaalina muuttujana. Mallille on kuitenkin
@@ -1924,7 +1920,7 @@ käyttäjärajapinnassa.
 \code{week9/exceptionexample}{NoDatabaseEntryException}{Itse määritelty virhetilaluokka}
 \code{week9/exceptionexample}{DatabaseConnection}{Yksinkertaistettu tietokantayhteyttä matkiva
 luokka, joka nostaa luodun virhetilan jos annettua esinettä ei löydy}
-\code{week9/exceptionexample}{Main}{Pääluokka, joka kutsuu luotua valetietokantaa}
+\code{week9/exceptionexample}{ExceptionExample}{Pääluokka, joka kutsuu luotua valetietokantaa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1980,7 +1976,8 @@ luokan instanssin luomisen ja metodin kutsumisen.
 
 \code{week10/genericexample}{GenericContainer}{Geneerinen säiliöluokka, jolla on geneerinen metodi
 säiliön sisällön vaihtamiseen}
-\code{week10/genericexample}{Main}{Säiliöluokan instanssin luominen, ja vaihtometodin kutsuminen}
+\code{week10/genericexample}{GenericExample}{Säiliöluokan instanssin luominen, ja vaihtometodin
+kutsuminen}
 
 \subsection{Geneerisyys ja perintä}
 \subsection{genericInheritance}
@@ -2006,8 +2003,8 @@ pohjaksi}
 parametrisoitu String-tyypillä}
 \code{week10/genericinheritance}{NonNullValidator}{Rajapintaluokan geneerinen implementaatio
 null-arvojen estämiseksi}
-\code{week10/genericinheritance}{Main}{Parametrisoidun ja geneerisen validaattoriluokan luonti	
-koodissa}
+\code{week10/genericinheritance}{GenericInheritanceExample}{Parametrisoidun ja geneerisen
+validaattoriluokan luonti koodissa}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2071,8 +2068,8 @@ printtauskomennon kirjoittamiseksi. Tässä tapauksessa globaalin metodin toimin
 antaminen käyttäjälle: koko ohjelmisto jakaa saman terminaalin.
 
 \code{week10/iteratorexample}{Printer}{Kuluttajaluokka, joka tulostaa merkkijonoargumentin}
-\code{week10/iteratorexample}{Main}{Merkkijonolistan iteraattorin luominen, ensimmäisen alkion
-kuluttaminen ja loppujen tulostaminen luodulla tulostinluokalla}
+\code{week10/iteratorexample}{IteratorExample}{Merkkijonolistan iteraattorin luominen, ensimmäisen
+alkion kuluttaminen ja loppujen tulostaminen luodulla tulostinluokalla}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -2103,7 +2100,7 @@ aiemmin julkiset kentät voidaan muuttaa yksityisyksi. Seuraava koodiesimerkki e
 sisäluokan luomisen ja käytön perusteet.
 
 \code{week11/innerclassexample}{OuterClass}{Luokka, jolla on sisäluokka}
-\code{week11/innerclassexample}{Main}{Sisäluokan instanssin luominen ja käyttö}
+\code{week11/innerclassexample}{InnerClassesExample}{Sisäluokan instanssin luominen ja käyttö}
 
 \newthought{Sisäluokka} ei ole sama asia kuin \neweng{anonyymi luokka}{anonymous class}. Siinä
 missä sisäluokka on toiminnallisuuksiltaan täysi luokka, joka vaan sattuu sijaitsemaan toisen 
@@ -2117,7 +2114,7 @@ tien ja luokan ainut instanssi sidotaan annettuun muuttujaan. Seuraava koodiesim
 luokka anonyymina luokkana Main-luokassa. Huomaa myös kuinka anonyymi luokka voi olla
 määritelty \java{static}-avainsanalla tarvittaessa.
 
-\code{week11/anonymousclassexample}{Main}{Anonyymin luokan luominen ja käyttö}
+\code{week11/anonymousclassexample}{AnonymousClassesExample}{Anonyymin luokan luominen ja käyttö}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
