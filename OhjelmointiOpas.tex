@@ -154,13 +154,12 @@ perusteet, jotka käydään läpi esimerkiksi \lutin "Ohjelmoinnin Perusteet"
 \section{Oppaan rakenne}
 \label{rakenteesta}
 
-\newthought{Opas on jaettu} yhteentoista sisältölukuu. Luvut käsittelevät kurssilla käsiteltäviä
-sisältöjä ja sisältävät kaiken kurssin sisältöön kuuluvan materiaalin. Luvut on numeroitu välillä
-0-11 niin, että luvun numero vastaa viikkoa, jolla luvun sisältöä käsitellään kurssilla ja luku 0
-käsittelee itse opasta ja sen käyttöä. Näin opasta on helppo seurata kurssin edetessä. Viikolla
-7 käsitellään vain Androidin API:a, joten oppaassa ei ole lukua 7. Android API:n käsittely on
-jätetty oppaasta pois, koska API muuttuu ja kehittyy niin nopeasti, että sitä käsittelevät osat
-todennäköisesti vanhenisivat vuodessa tai kahdessa.
+\newthought{Opas on jaettu} yhteentoista sisältölukuun. Luvut on numeroitu välillä 0-11 niin, että
+luvun numero vastaa viikkoa, jolla luvun sisältöä käsitellään kurssilla ja luku 0 käsittelee itse
+opasta ja sen käyttöä. Näin opasta on helppo seurata kurssin edetessä. Viikolla 7 käsitellään vain
+Androidin API:a, joten oppaassa ei ole lukua 7. Android API:n käsittely on jätetty oppaasta pois,
+koska API muuttuu ja kehittyy niin nopeasti, että sitä käsittelevät osat todennäköisesti
+vanhenisivat vuodessa tai kahdessa.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -217,10 +216,10 @@ ohjelmistotuotannon peruskysymykseen: kuinka kirjoittaa ymmärrettävää ja yll
 helposti?
 
 \newthought{Yksi helpoimmista} ja yleisimmistä tavoista selkeyttää koodikantaa on
-\neweng{abstraktio}{abstraction}: yleisten toimintojen ja kutsusarjojen eristäminen ennalta
+\neweng{abstraktio}{abstraction}: yleisten toimintojen ja käskysarjojen eristäminen ennalta
 määriteltyihin koodipaloihin. Nämä palat tunnetaan nimellä \neweng{funktio}{function}. Tällä
-tavalla jaettuja kutsusarjoja voidaan uusiokäyttää ja ohjelman muokkaaminen helpottuu, kun
-kutsusarjan päivittäminen tapahtuu vain yhdessä keskitetyssä paikassa.
+tavalla jaettuja käskysarjoja voidaan uusiokäyttää ja ohjelman muokkaaminen helpottuu, kun
+käskysarjan päivittäminen tapahtuu vain yhdessä keskitetyssä paikassa.
 
 \newthought{Käskysarjat ovat} kuitenkin vain puolikas toimivasta ohjelmistosta. Toinen ja aivan
 yhtä tärkeä puoli on data, jota käskysarjoilla käsitellään. Myös tämän datan abstraktio on
@@ -292,7 +291,8 @@ näkyvyyden rajaaminen ja tarkkojen vastuiden määrittäminen tunnetaan nimell�
 luokasta luodut oliot voivat tehdä ja mitä niiltä voi odottaa. Tämä muodostaa sopimuksen luokan ja
 muiden luokan paljastamia metodeja tai datakenttiä käyttävien luokkien välillä. Tätä sopimusta
 kutsutaan nimellä \neweng{rajapinta}{interface}. Rajapinnan abstraktia käsitettä ei pidä sekoittaa
-Javan samankaltaiseen \newjava{interface}-avainsanaan, joka esitellään myöhemmin.
+Javan samannimiseen \newjava{interface}-avainsanaan, joka esitellään myöhemmin oppaan osiossa
+\nameref{interface}.
 
 \newthought{Yksi olio-ohjelmoinnin nyrkkisäännöistä} on pitää huolta, että jokainen luokka
 suorittaa yhden ja vain yhden tehtävän. Tämä tarkoittaa luokan rajapinnan pitämistä minimaalisena,
@@ -428,17 +428,17 @@ suljettava luokan sisään, niin myös ohjelman ajon aloittava koodi. Tästä sy
 Java-ohjelmistossa on yksi erikseen määritelty pääluokka, joka sisältää main-metodin. Tämä
 metodi määritellään avainsanoilla \java{public} \java{static} \java{void} ja sen 
 \neweng{signatuuri}{signature} on \java{main}(\java{String}[] args). Void-avainsana selitetään
-myöhemmin tässä kappaleessa ja static-avainsana kappaleessa \nameref{static}.
-Toistaiseksi riittää sisällyttää nämä avainsanat annetussa järjestyksessä main-metodin
-määritelmään. Pääluokan ei tarvitse olla ainoa main-metodin sisältävä luokka, mutta vain yhden
-ennalta määritellyn luokan main-metodi ajetaan ohjelman käynnistyksen yhteydessä.
+myöhemmin tässä kappaleessa osiossa \nameref{metodi} ja static-avainsana kappaleessa
+\nameref{static}. Toistaiseksi riittää sisällyttää nämä avainsanat annetussa järjestyksessä
+main-metodin määritelmään. Pääluokan ei tarvitse olla ainoa main-metodin sisältävä luokka, mutta
+vain yhden ennalta määritellyn luokan main-metodi ajetaan ohjelman käynnistyksen yhteydessä.
 
 \subsection{Luokan luomisen syntaksi}
 \label{luokka}
 
-\newthought{Luokka luodaan} Javassa luokat luodaan \newjava{class} avainsanalla. Avainsana
-tarkistaa edestään myös näkyvyysmääreen (käsitellään seuraavassa alakappaleessa). Yleisin tapa
-luoda luokka on näkyvyysmääreellä \java{public}. Koko määritelmä koostuu näkyvyysmääreestä,
+\newthought{Luokka luodaan} Javassa \newjava{class} avainsanalla. Avainsana tarkistaa edestään
+myös näkyvyysmääreen (käsitellään alakappaleessa \nameref{näkyvyysmääreet}). Yleisin tapa luoda
+luokka on näkyvyysmääreellä \java{public}. Koko määritelmä koostuu näkyvyysmääreestä,
 \java{class} -avainsanasta ja luokan nimestä, jota seuraa luokan käyttäytymisen määrittävä koodi
 hakasulkeisiin suljettuna. Seuraavassa koodiesimerkissä on kommentoitu auki yksinkertaisen
 pääluokan luonti (huomaa pääluokan nimeämisen vapaus) ja sen sisään "Hello world!" tulostavan
@@ -452,7 +452,7 @@ ohjelmointikokemuksesta. Javassa tulostukseen käytetään yleensä standardikir
 \newjava{System}-luokan out-muuttujassa tallennettuna olevaa PrintStream-luokan instanssia, joka
 edustaa oletustulostevirtaa. Jos et ymmärtänyt edellistä lausetta, se ei haittaa. Tärkeintä on
 tietää, että Javassa helpoin tapa tulostaa on kutsua "\java{System}.out" - sijainnista sopivaa
-tulostusmetodia. Opas on käyttää suurimmaksi osaksi "println"-metodia, joka ottaa merkkijonon ja
+tulostusmetodia. Opas käyttää suurimmaksi osaksi "println"-metodia, joka ottaa merkkijonon ja
 tulostaa sen, sekä rivinvaihdon. On huomioitavaa, että println, samoin kuin muutkin
 \java{System}.out:sta löytyvät tulostusmetodit ovat todella monipuolisia ja tukevat monenlaisia
 tapoja tulostaa toivottua tekstiä. Toistaiseksi nämä ominaisuudet eivät kuitenkaan ole
@@ -563,7 +563,7 @@ signatuuria vastaavan version ylikuormitettua metodia kutsuttaessa. Seuraavassa 
 esitellään ylikuormitetun metodin käyttö luomalla tulostusmetodi, joka ilmoittaa, onko
 tulostettavan muuttujan tietotyyppi int vai String.
 
-\code{week2/overloadingexample}{OverloadedPrinter}{Lapsiluokka ylikuormittamisesimerkkiin}
+\code{week2/overloadingexample}{OverloadedPrinter}{Tulostajaluokka ylikuormittamisesimerkkiin}
 \code{week2/overloadingexample}{OverloadingExample}{Ylikuormittaminen Javassa}
 
 \subsection{Näkyvyysmääreet}
@@ -625,9 +625,9 @@ koodiesimerkissä periytyvyyden yhteydessä kappaleessa \nameref{protected}.
 \newthought{Java neuvoo} käyttäjiään alustamaan kaikki muuttujat \java{private} näkyvyysmääreellä.
 Tämä tarkoittaa, että koodatessa virallisten suositusten mukaista Javaa ohjelmoija tuottaa vain
 luokkia, joiden muuttujat näkyvät ainoastaan kunkin luokan sisällä. Kuitenkin monesti luokan
-säilömää dataa tarvitaan luokan ulkopuolella. Tämä ei ole suunnitteluvirhe, vaan yksinkertainen
-ohjelmoinnin totuus. Tätä varten Javaan on vakiintunut kaksi tärkeää metodityyppiä:
-\neweng{noutaja}{getter} ja \neweng{asettaja}{setter}.
+säilömää dataa tarvitaan luokan ulkopuolella. Tämä laajemman näkyvyyden tarve ei ole
+suunnitteluvirhe ohjelmistossa, vaan yksinkertainen ohjelmoinnin totuus. Tätä varten Javaan on
+vakiintunut kaksi tärkeää metodityyppiä: \neweng{noutaja}{getter} ja \neweng{asettaja}{setter}.
 
 \newthought{Noutaja, eli getter} on funktio, jonka tehtävä on noutaa luokan sisällä yksityiseksi
 määritelty muuttuja luokan ulkopuoliseen käyttöön. Noutaja nimetään camelCase-tyylisesti
@@ -654,6 +654,19 @@ asettaja -mallin sijaan.
 \code{week2/gettersetterexample}{NumberStorage}{Ensimmäinen noutaja/asettajaesimerkin luokka}
 \code{week2/gettersetterexample}{GetterSetterExample}{Noutaja/asettajaesimerkin pääluokka}
 
+\subsection{Paketit ja import}
+\label{import}
+
+\newthought{Tähän mennessä} oppaan käyttämät eri tiedostossa sijaitsevat luokat ovat aina olleet
+osa samaa pakettia, sillä opas jakaa esimerkit paketteihin kappaleen ja aiheen mukaan. Samassa
+paketissa olevat luokat ovat automaattisesti käytettävissä paketin sisällä, joten luokkia ei ole
+tarvinnut tuoda tiedoston nimitilaan tiedoston alussa. Aina tarvittavat luokat eivät kuitenkaan
+sijaitse samassa paketissa. Tätä varten Javassa on \newjava{import}-avainsana. Import-avainsanalla
+listataan tiedoston alussa tiedoston nimitilaan paketin ulkopuolelta tuotavat luokat. Myös Javan
+standardikirjasto sisältää luokkia, jotka on tuotava nimitilaan import-lauseella. Tästä hyviä
+esimerkkejä ovat seuraavaksi käytävät \java{Scanner}, \java{InputStreamReader} ja
+\java{BufferedReader}-luokat.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Syötteen vastaanottamisen perusteet}
@@ -666,8 +679,8 @@ asettaja -mallin sijaan.
 komentoriville tekstiä, myös kykyä kerätä käyttäjältä syötettä. Tätä varten Javasta löytyy
 useampi luokka, joiden avulla voidaan kerätä haluttu syöte juuri ohjelmistolle sopivalla tavalla.
 Näistä tärkeimmät ovat \newjava{Scanner}-lukka, \newjava{BufferedReader}- ja
-\newjava{InputStreamReader}-luokat. Koska Java, kuten moni muu ohjelmointikieli, käsittelee
-konsolisyötettä ja tiedostosyötettä samoin kaikkia näitä luokkia voi käyttää myös tiedostojen
+\newjava{InputStreamReader}-luokat. Koska Java monen muun ohjelmointikielen tapaan käsittelee
+konsolisyötettä ja tiedostosyötettä samoin, kaikkia näitä luokkia voi käyttää myös tiedostojen
 lukemiseen, käyttäjäsyötteen lukemisen lisäksi. Huomioi, että syötteen pyytäminen on matalan
 tason tapahtuma, jonka täyden toiminnallisuuden ymmärtäminen ei ole tarpeellista oppaan
 käyttämiseksi. Seuraavat kappaleet avaavat koko syötteennoutoprosessin, mutta voit halutessasi
@@ -741,18 +754,6 @@ olemassa olevasta taulukosta.
 
 \code{week3/arrayexample}{DataPoint}{Dataluokka käytettäväksi taulukkoesimerkissä}
 \code{week3/arrayexample}{ArrayExample}{Taulukkojen käyttö Javassa}
-
-\subsection{Paketit ja import}
-\label{import}
-
-\newthought{Tähän mennessä} oppaan käyttämät eri tiedostossa sijaitsevat luokat ovat aina olleet
-osa samaa pakettia, sillä opas jakaa esimerkit paketteihin kappaleen mukaan. Samassa paketissa
-olevat luokat ovat automaattisesti käytettävissä paketin sisällä, joten luokkia ei ole tarvinnut
-tuoda tiedoston nimitilaan tiedoston alussa. Aina tarvittavat luokat eivät kuitenkaan sijaitse
-samassa paketissa. Tätä varten Javassa on \newjava{import}-avainsana. Import-avainsanalla
-listataan tiedoston alussa tiedoston nimitilaan paketin ulkopuolelta tuotavat luokat. Myös Javan
-standardikirjasto sisältää luokkia, jotka on tuotava nimitilaan import-lauseella. Tästä hyviä
-esimerkkejä ovat seuraavaksi käytävät \java{ArrayList} ja \java{HashMap}-luokat.
 
 \subsection{Listat}
 \label{listat}
