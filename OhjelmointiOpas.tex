@@ -818,17 +818,17 @@ kirjoitettua järkevämpään, luettavampaan ja helpommin muokattavaan muotoon.
 
 \newthought{For-looppi} luodaan \newjava{for}-avainsanalla. Se poikkeaa pythonin for-loopista
 ja muistuttaa sen sijaan c:n for-looppia. Pythonin for-looppi tunnetaan Javassa foreach-looppina
-ja käsitellään myöhemmin. For-avainsanan jälkeen for-loopissa seuraa iterointiehto sulkujen
-sisällä. Iterointiehto jaetaan kolmeen osaan kahdella puolipilkulla. Ensimmäinen osa kertoo,
-mikä muuttuja toimii iterointiehtona, toinen millä kyseisen muuttujan arvoilla iterointia
-jatketaan ja kolmas mitä muuttujalle tehdään jokaisen iteraation jälkeen. Yksi yleisimmistä
-iterointiehdoista on "(int i = 0; i < n; i++)". Auki luettuna tämä tarkoittaa:
+ja käsitellään myöhemmin osiossa \nameref{for each}. For-avainsanan jälkeen for-loopissa seuraa
+iterointiehto sulkujen sisällä. Iterointiehto jaetaan kolmeen osaan kahdella puolipilkulla.
+Ensimmäinen osa kertoo, mikä muuttuja toimii iterointiehtona, toinen millä kyseisen muuttujan
+arvoilla iterointia jatketaan ja kolmas mitä muuttujalle tehdään jokaisen iteraation jälkeen. Yksi
+yleisimmistä iterointiehdoista on "(int i = 0; i < n; i++)". Auki luettuna tämä tarkoittaa:
 
-1: Määritä iterointimuuttuja "i", joka on tyyppiä "int" joka on alustettu arvoksi 0
-
-2: Iteroi niin kauan, kun i on pienempi kuin tavoiteluku n
-
-3: Jokaisen iteraation jälkeen kasvata i:n arvoa yhdellä
+\begin{enumerate}
+	\item{}Määritä iterointimuuttuja "i", joka on tyyppiä "int" joka on alustettu arvoksi 0
+	\item{}Iteroi niin kauan, kun i on pienempi kuin tavoiteluku n
+	\item{}Jokaisen iteraation jälkeen kasvata i:n arvoa yhdellä
+\end{enumerate}
 
 ++ on Javan iterointioperaattori joka käydään tarkemmin läpi tämän luvun lopussa. Se kasvattaa
 muuttujan arvoa yhdellä. Käytännössä koko iterointiehto siis tarkoittaa "Toista loopin rungossa
