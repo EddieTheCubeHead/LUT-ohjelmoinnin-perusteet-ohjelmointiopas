@@ -1,6 +1,7 @@
 \documentclass[a4paper,justified,notoc]{tufte-book}
 
 \setcounter{secnumdepth}{2}
+\renewcommand{\contentsname}{Sisältö}
 
 \titleformat{\chapter}{\Huge\rmfamily\scshape}{\thechapter}{18pt}{\Huge\rmfamily\scshape}
 \titleformat{\section}{\huge\rmfamily}{\thesection}{12pt}{\huge\rmfamily}
@@ -82,6 +83,8 @@ Erno Vanhalalle.}}
 	\end{code_example}
 }
 
+\renewcommand*{\listlistingname}{Oppaan koodiesimerkit}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,9 +126,9 @@ License for the specific language governing permissions and limitations
 under the License.\index{license}
 
 \par\textit{First printing, \monthyear}
-\end{fullwidth}
 
 \tableofcontents
+\listoflistings
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -153,7 +156,6 @@ perusteet, jotka käydään läpi esimerkiksi \lutin "Ohjelmoinnin Perusteet"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\mainmatter
 \section{Oppaan rakenne}
 \label{rakenteesta}
 
@@ -206,8 +208,9 @@ koodin opetusmaisen luonteen vuoksi monisanaisempia ja yleisempiä kuin suosituk
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
+\mainmatter
 \chapter{Oliopohjainen ajattelu}
 \label{olioista}
 
@@ -1989,7 +1992,7 @@ säiliön sisällön vaihtamiseen}
 kutsuminen}
 
 \subsection{Geneerisyys ja perintä}
-\subsection{genericInheritance}
+\label{genericInheritance}
 
 \newthought{Tyyppiparametrin konkreettinen} määrittäminen on mahdollista myös perinnän yhteydessä.
 Generisestä kantaluokasta on mahdollisuus luoda parametrisoitu lapsiluokka ja geneerisestä
@@ -2207,4 +2210,5 @@ Google (tai muu valitsemasi hakukone) tukenasi.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\end{fullwidth}
 \end{document}
