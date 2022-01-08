@@ -1,5 +1,9 @@
 \documentclass[a4paper,justified]{tufte-book}
 
+\titleformat{\chapter}{\Huge\rmfamily\scshape}{\thechapter}{0pt}{\Huge\rmfamily\scshape}
+\titleformat{\section}{\huge\rmfamily}{\thesection}{0pt}{\huge\rmfamily}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{0pt}{\Large\bfseries}
+
 \hypersetup{colorlinks}
 
 %%
@@ -1390,6 +1394,7 @@ String-tyyppien muuttujat ja palauttaa String-tyypin muuttujan.
     \includegraphics{ClassDiagramExample1}
     \caption{Yksittäisen luokan esittäminen UML-luokkakaaviossa}
     \label{luokkakaavioluokka}
+    \setfloatalignment{b}
 \end{listing}
 
 \newthought{Luokkakaaviossa ohjelmiston} erilaisten luokkien esittäminen on kuitenkin vain pieni
@@ -1407,6 +1412,7 @@ kompositiossa täytetty. Seuraava kaavio esittelee kaikki neljä yhteystyyppiä.
     \includegraphics{ClassDiagramExample2}
     \caption{Luokkien välisten suhteiden esittäminen UML-luokkakaaviossa}
     \label{luokkakaavioluokka}
+    \setfloatalignment{b}
 \end{listing}
 
 \subsection{Kaavioiden käyttö ohjelmiston suunnittelussa}
@@ -1845,12 +1851,14 @@ elinikään.
     \includegraphics{NoDIPExample}
     \caption{Luokkakaavio suorasta riippuvuudesta korkean ja matalan tason luokan välillä}
     \label{luokkakaavioluokka}
+    \setfloatalignment{b}
 \end{listing}
 
 \begin{listing}
     \includegraphics{DIPExample}
     \caption{Luokkakaavio rajapintaluokalla piilotetusta riippuvuudesta korkean ja matalan tason luokan välillä}
     \label{luokkakaavioluokka}
+    \setfloatalignment{b}
 \end{listing}
 
 \newthought{Käänteisten riippuvuuksien} periaatteeseen sitoutuminen tuottaa yleensä jonkin verran
