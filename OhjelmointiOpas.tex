@@ -1,4 +1,11 @@
-\documentclass[a4paper,justified]{tufte-book}
+\documentclass[a4paper,justified,notoc]{tufte-book}
+
+\setcounter{secnumdepth}{2}
+\renewcommand{\contentsname}{Sisältö}
+
+\titleformat{\chapter}{\Huge\rmfamily\scshape}{\thechapter}{18pt}{\Huge\rmfamily\scshape}
+\titleformat{\section}{\huge\rmfamily}{\thesection}{12pt}{\huge\rmfamily}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{9pt}{\Large\bfseries}
 
 \hypersetup{colorlinks}
 
@@ -49,6 +56,10 @@ Erno Vanhalalle.}}
 \usepackage{makeidx}
 \makeindex
 
+\usepackage{titletoc}
+\usepackage{etoolbox}
+\setcounter{tocdepth}{2}
+
 \usepackage[toc, automake]{glossaries}
 \newglossary[jvg]{java}{jvd}{jvn}{Javan avainsanat}
 \glsaddall
@@ -71,6 +82,8 @@ Erno Vanhalalle.}}
 		\inputminted{java}{OhjelmointiopasEsimerkit/src/#1/#2.java}
 	\end{code_example}
 }
+
+\renewcommand*{\listlistingname}{Oppaan koodiesimerkit}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -113,15 +126,9 @@ License for the specific language governing permissions and limitations
 under the License.\index{license}
 
 \par\textit{First printing, \monthyear}
-\end{fullwidth}
 
 \tableofcontents
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\mainmatter
+\listoflistings
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -201,8 +208,9 @@ koodin opetusmaisen luonteen vuoksi monisanaisempia ja yleisempiä kuin suosituk
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
+\mainmatter
 \chapter{Oliopohjainen ajattelu}
 \label{olioista}
 
@@ -1390,6 +1398,7 @@ String-tyyppien muuttujat ja palauttaa String-tyypin muuttujan.
     \includegraphics{ClassDiagramExample1}
     \caption{Yksittäisen luokan esittäminen UML-luokkakaaviossa}
     \label{luokkakaavioluokka}
+    \setfloatalignment{b}
 \end{listing}
 
 \newthought{Luokkakaaviossa ohjelmiston} erilaisten luokkien esittäminen on kuitenkin vain pieni
@@ -1407,6 +1416,7 @@ kompositiossa täytetty. Seuraava kaavio esittelee kaikki neljä yhteystyyppiä.
     \includegraphics{ClassDiagramExample2}
     \caption{Luokkien välisten suhteiden esittäminen UML-luokkakaaviossa}
     \label{luokkakaavioluokka}
+    \setfloatalignment{b}
 \end{listing}
 
 \subsection{Kaavioiden käyttö ohjelmiston suunnittelussa}
@@ -1845,12 +1855,14 @@ elinikään.
     \includegraphics{NoDIPExample}
     \caption{Luokkakaavio suorasta riippuvuudesta korkean ja matalan tason luokan välillä}
     \label{luokkakaavioluokka}
+    \setfloatalignment{b}
 \end{listing}
 
 \begin{listing}
     \includegraphics{DIPExample}
     \caption{Luokkakaavio rajapintaluokalla piilotetusta riippuvuudesta korkean ja matalan tason luokan välillä}
     \label{luokkakaavioluokka}
+    \setfloatalignment{b}
 \end{listing}
 
 \newthought{Käänteisten riippuvuuksien} periaatteeseen sitoutuminen tuottaa yleensä jonkin verran
@@ -1980,7 +1992,7 @@ säiliön sisällön vaihtamiseen}
 kutsuminen}
 
 \subsection{Geneerisyys ja perintä}
-\subsection{genericInheritance}
+\label{genericInheritance}
 
 \newthought{Tyyppiparametrin konkreettinen} määrittäminen on mahdollista myös perinnän yhteydessä.
 Generisestä kantaluokasta on mahdollisuus luoda parametrisoitu lapsiluokka ja geneerisestä
@@ -2171,6 +2183,7 @@ matalana kopiona.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\backmatter
 \chapter{Loppusanat}
 \label{theEnd}
 
@@ -2197,4 +2210,5 @@ Google (tai muu valitsemasi hakukone) tukenasi.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\end{fullwidth}
 \end{document}
