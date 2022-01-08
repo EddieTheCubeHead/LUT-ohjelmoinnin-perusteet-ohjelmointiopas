@@ -1,8 +1,10 @@
-\documentclass[a4paper,justified]{tufte-book}
+\documentclass[a4paper,justified,notoc]{tufte-book}
 
-\titleformat{\chapter}{\Huge\rmfamily\scshape}{\thechapter}{0pt}{\Huge\rmfamily\scshape}
-\titleformat{\section}{\huge\rmfamily}{\thesection}{0pt}{\huge\rmfamily}
-\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{0pt}{\Large\bfseries}
+\setcounter{secnumdepth}{2}
+
+\titleformat{\chapter}{\Huge\rmfamily\scshape}{\thechapter}{18pt}{\Huge\rmfamily\scshape}
+\titleformat{\section}{\huge\rmfamily}{\thesection}{12pt}{\huge\rmfamily}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{9pt}{\Large\bfseries}
 
 \hypersetup{colorlinks}
 
@@ -52,6 +54,10 @@ Erno Vanhalalle.}}
 % Generates the index
 \usepackage{makeidx}
 \makeindex
+
+\usepackage{titletoc}
+\usepackage{etoolbox}
+\setcounter{tocdepth}{2}
 
 \usepackage[toc, automake]{glossaries}
 \newglossary[jvg]{java}{jvd}{jvn}{Javan avainsanat}
@@ -125,12 +131,6 @@ under the License.\index{license}
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\mainmatter
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \chapter{Oppaasta ja sen käytöstä}
 \label{oppaasta}
 
@@ -153,6 +153,7 @@ perusteet, jotka käydään läpi esimerkiksi \lutin "Ohjelmoinnin Perusteet"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\mainmatter
 \section{Oppaan rakenne}
 \label{rakenteesta}
 
@@ -2179,6 +2180,7 @@ matalana kopiona.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\backmatter
 \chapter{Loppusanat}
 \label{theEnd}
 
