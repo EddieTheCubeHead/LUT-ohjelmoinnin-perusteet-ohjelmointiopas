@@ -823,16 +823,17 @@ Kuten missä tahansa itseään kunnioittavassa ohjelmointikielessä, myös Javas
 toistorakenteita, joilla kokoelmien käsittely ja muut monesti toteutettavat koodin osat saadaan
 kirjoitettua järkevämpään, luettavampaan ja helpommin muokattavaan muotoon.
 
-\subsection{For-looppi}
+\subsection{For-silmukka}
 \label{for}
 
-\newthought{For-looppi} luodaan \newjava{for}-avainsanalla. Se poikkeaa pythonin for-loopista
-ja muistuttaa sen sijaan c:n for-looppia. Pythonin for-looppi tunnetaan Javassa foreach-looppina
-ja käsitellään myöhemmin osiossa \nameref{for each}. For-avainsanan jälkeen for-loopissa seuraa
-iterointiehto sulkujen sisällä. Iterointiehto jaetaan kolmeen osaan kahdella puolipilkulla.
-Ensimmäinen osa kertoo, mikä muuttuja toimii iterointiehtona, toinen millä kyseisen muuttujan
-arvoilla iterointia jatketaan ja kolmas mitä muuttujalle tehdään jokaisen iteraation jälkeen. Yksi
-yleisimmistä iterointiehdoista on "(int i = 0; i < n; i++)". Auki luettuna tämä tarkoittaa:
+\newthought{For-silmukka} luodaan \newjava{for}-avainsanalla. Se poikkeaa pythonin for-silmukasta
+ja muistuttaa sen sijaan c:n for-silmukka. Pythonin for-silmukka tunnetaan Javassa
+for-each-silmukkana ja käsitellään myöhemmin osiossa \nameref{for each}. For-avainsanan jälkeen
+for-loopissa seuraa iterointiehto sulkujen sisällä. Iterointiehto jaetaan kolmeen osaan kahdella
+puolipilkulla. Ensimmäinen osa kertoo, mikä muuttuja toimii iterointiehtona, toinen millä kyseisen
+muuttujan arvoilla iterointia jatketaan ja kolmas mitä muuttujalle tehdään jokaisen iteraation
+jälkeen. Yksi yleisimmistä iterointiehdoista on "(int i = 0; i < n; i++)". Auki luettuna tämä
+tarkoittaa:
 
 \begin{enumerate}
 	\item{}Määritä iterointimuuttuja "i", joka on tyyppiä "int" joka on alustettu arvoksi 0
@@ -841,76 +842,76 @@ yleisimmistä iterointiehdoista on "(int i = 0; i < n; i++)". Auki luettuna täm
 \end{enumerate}
 
 ++ on Javan iterointioperaattori joka käydään tarkemmin läpi tämän luvun lopussa. Se kasvattaa
-muuttujan arvoa yhdellä. Käytännössä koko iterointiehto siis tarkoittaa "Toista loopin rungossa
+muuttujan arvoa yhdellä. Käytännössä koko iterointiehto siis tarkoittaa "Toista silmuk rungossa
 olevaa koodia n kertaa, niin että muuttujaan i on sidottu lukuarvo, joka kertoo mones iteraatio
 on kyseessä." Muuttujaa i voidaan käyttää loopin ruumiin sisällä. 
 
-\newthought{For-looppia} käytetään yleensä lukujoukkojen iteroimiseen esimerkiksi taulukkojen
-alustuksessa. On huomioitavaa, että kokoelmien iterointi on yleensä helpompaa foreach-loopilla.
+\newthought{For-silmukkaa} käytetään yleensä lukujoukkojen iteroimiseen esimerkiksi taulukkojen
+alustuksessa. On huomioitavaa, että kokoelmien iterointi on yleensä helpompaa foreach-silmukalla.
 For-loopin iterointiehtona voi myös toimia jo olemassa oleva muuttuja, iterointiehdoksi ei ole
 aina pakko luoda uutta muuttujaa. Jos iterointiehdoksi luodaan uusi muuttuja, se näkyy vain
-loopin sisällä. Seuraava koodiesimerkki esittelee for-loopin luomisen ja käytön perusteet
+silmukka sisällä. Seuraava koodiesimerkki esittelee for-silmukan luomisen ja käytön perusteet
 käytännössä.
 
-\code{week3/basicexamples}{ForLoop}{For-loopin käyttö Javassa}
+\code{week3/basicexamples}{ForLoop}{For-silmukan käyttö Javassa}
 
-\subsection{For-each-looppi}
+\subsection{For-each-silmukka}
 \label{for each}
 
 \newthought{Edellisessä kappaleessa} mainittiin, että kokoelmien yli iterointi on Javassa
-helpompaa foreach-rakenteella, kuin for-rakenteella. Rakenteet muistuttavat toisiaan siinä
-mielessä, että molemmat määritellään \java{for}-avainsanalla. Foreach-rakenteessa kuitenkin
+helpompaa for-each-silmukalla, kuin for-silmukalla. Rakenteet muistuttavat toisiaan siinä
+mielessä, että molemmat määritellään \java{for}-avainsanalla. For-each-silmukassa kuitenkin
 avainsanaa seuraa iteroitavan kokoelman määritelmä sulkuihin suljettuna. Määritelmä koostuu
 kahdesta puolipisteellä erotetusta osasta. Ensimmäinen osa kertoo, minkä tyyppiseen ja nimiseen
-muuttujaan iteroitavat arvot sidotaan ja toinen, mistä kokoelmasta muuttujat haetaan. Looppi
+muuttujaan iteroitavat arvot sidotaan ja toinen, mistä kokoelmasta muuttujat haetaan. Silmukka
 iteroi koko kokoelman yli, sitoen annettuun muuttujaan jokaisen yksittäisen arvon kokoelmasta.
-Tämä käyttäytyminen muistuttaa pythonin for-looppia. Seuraava koodiesimerkki näyttää kokoelman
-yli iteroimisen for-each -loopilla.
+Tämä käyttäytyminen muistuttaa pythonin for-silmukkaa. Seuraava koodiesimerkki näyttää kokoelman
+yli iteroimisen for-each-silmukalla.
 
-\code{week3/basicexamples}{ForEachLoop}{For-each -loopin käyttö Javassa}
+\code{week3/basicexamples}{ForEachLoop}{For-each-silmukan käyttö Javassa}
 
-\subsection{While-looppi}
+\subsection{While-silmukka}
 \label{while}
 
-\newthought{While-looppi} on toistorakenne, jossa \java{for}-loopin tapaan sidotaan toistoehto
-johonkin totuusarvoon, yleensä tietyn muuttujan suhteen. Toisin kuin for-loopissa, while loopissa
-toisto ei tapahdu iterointimaisesti yhden muuttujan suhteen. Sen sijaan looppi luodaan
-\newjava{while}-avainsanalla, jota seuraa loopin toistoehto sulkuihin suljettuna. Toistoehto
-voi olla mikä tahansa totuusarvo ja looppia toistetaan niin kauan, kun toistoehto on totta.
-While-looppi on yleinen ohjausrakenteena ohjelman ytimessä: ohjelmaa tai ohjelman osaa ajetaan
-niin kauan kuin ennalta määritelty ehto on totta. Seuraava koodiesimerkki esittelee while-loopin
-käytön.
+\newthought{While-silmukka} on toistorakenne, jossa \java{for}-silmukan tapaan sidotaan toistoehto
+johonkin totuusarvoon, yleensä tietyn muuttujan suhteen. Toisin kuin for-silmukassa,
+while-silmukassa toisto ei tapahdu iterointimaisesti yhden muuttujan suhteen. Sen sijaan silmukka
+luodaan \newjava{while}-avainsanalla, jota seuraa silmukan toistoehto sulkuihin suljettuna.
+Toistoehto voi olla mikä tahansa totuusarvo ja silmukkaa toistetaan niin kauan, kun toistoehto on
+totta. While-silmukka on yleinen ohjausrakenteena ohjelman ytimessä: ohjelmaa tai ohjelman osaa
+ajetaan niin kauan kuin ennalta määritelty ehto on totta. Seuraava koodiesimerkki esittelee
+while-silmukan käytön.
 
-\code{week3/basicexamples}{BasicWhileLoop}{While-loopin käyttö Javassa}
+\code{week3/basicexamples}{BasicWhileLoop}{While-silmukan käyttö Javassa}
 
-\subsection{Do-while -looppi}
+\subsection{Do-while-silmukka}
 \label{do while}
 
-\newthought{Välillä ilmenee} tarve käyttää while-loopin kaltaista toistorakennetta, mutta
+\newthought{Välillä ilmenee} tarve käyttää while-silmukan kaltaista toistorakennetta, mutta
 tarkistaa toistoehdon totuusarvo vasta jokaisen toiston jälkeen. Tätä varten Javasta löytyy 
-do-while -looppi. Looppi aloitetaan \newjava{do}-avainsanalla, jota seuraa saman tien loopin
+do-while-silmukka. Silmukka aloitetaan \newjava{do}-avainsanalla, jota seuraa saman tien silmukan
 runko suljettuna kaarisulkeisiin. Vasta rungon jälkeen määritellään toistoehto käyttämällä
-\java{while}-avainsanaa, jonka jälkeen toistoehto suljetaan sulkeisiin. Looppi käyttäytyy
-toistoehdon tarkastushetkeä lukuunottamatta tismalleen samoin kuin while-looppi. Yleisimmin tätä
-looppia käytetään, kun halutaan loopin rungon tulevan ajetuksi ainakin kerran. Seuraava
-koodiesimerkki esittelee tällaisen tilanteen: toistoehto on koko ohjelman ajan epätosi, mutta
-loopin runko ajetaan kuitenkin kerran, koska toistoehto tarkastetaan vasta ajon jälkeen. Tämä ei
-olisi mahdollista while-loopilla.
+\java{while}-avainsanaa, jonka jälkeen toistoehto suljetaan sulkeisiin. Silmukka käyttäytyy
+toistoehdon tarkastushetkeä lukuunottamatta tismalleen samoin kuin while-silmukka. Yleisimmin tätä
+silmukkaa käytetään, kun halutaan silmukan rungon tulevan varmasti ajetuksi ainakin kerran.
+Seuraava koodiesimerkki esittelee tällaisen tilanteen: toistoehto on koko ohjelman ajan epätosi,
+mutta silmukan runko ajetaan kuitenkin kerran, koska toistoehto tarkastetaan vasta ajon jälkeen.
+Tämä ei olisi mahdollista while-silmukalla.
 
-\code{week3/basicexamples}{DoWhileLoop}{Do while -loopin käyttö Javassa}
+\code{week3/basicexamples}{DoWhileLoop}{Do while-silmukan käyttö Javassa}
 
 \subsection{Avainsanat break ja continue}
 \label{break continue}
 
-\newthought{Looppeja käyttäessä} on yleensä tarve ohittaa osa loopin rungon ajosta tai keskeyttää
-loopin ajo ennen kuin toistoehto täyttyy tai iteroitava joukko on käyty kokonaan läpi. Esimerkiksi
-hakuoperaatiossa on toivottavaa poistua toistorakenteesta heti kun toivottu alkio löytyy. Tätä
-varten Javassa on kaksi avainsanaa: \newjava{break} ja \newjava{continue}. \java{break}-avainsana
-keskeyttää loopin toistamisen ja poistuu toistorakenteesta, kun taas \java{continue} keskeyttää
-yhden toiston ja aloittaa seuraavan toiston saman tien. Avainsanat mahdollistavat toistorakenteen
-tarkemman ohjauksen. Seuraava esimerkki esittelee molempien avainsanojen käytön toistorakenteessa,
-joka luettelee parillisia lukuja nollasta alkaen maxNumber-muuttujassa määriteltyyn
-maksimiarvoon asti.
+\newthought{Toistorakenteita käyttäessä} on yleensä tarve ohittaa osa silmukan rungon ajosta tai
+keskeyttää silmukan ajo ennen kuin toistoehto täyttyy tai iteroitava joukko on käyty kokonaan
+läpi. Esimerkiksi hakuoperaatiossa on toivottavaa poistua toistorakenteesta heti kun toivottu
+alkio löytyy. Tätä varten Javassa on kaksi avainsanaa: \newjava{break} ja \newjava{continue}.
+\java{break}-avainsana keskeyttää silmukan toistamisen ja poistuu toistorakenteesta, kun taas	
+\java{continue} keskeyttää yhden toiston ja aloittaa seuraavan toiston saman tien. Avainsanat
+mahdollistavat toistorakenteen tarkemman ohjauksen. Seuraava esimerkki esittelee molempien
+avainsanojen käytön toistorakenteessa, joka luettelee parillisia lukuja nollasta alkaen
+maxNumber-muuttujassa määriteltyyn maksimiarvoon asti.
 
 \code{week3/basicexamples}{BreakContinue}{Break- ja continue-avainsanojen käyttö Javassa}
 
@@ -930,14 +931,14 @@ näkökulmasta.
 \newthought{Ohjelmointikielet} voidaan jakaa karkeasti kahteen ryhmään sen mukaan, miten niillä
 kirjoitettu ohjelma ajetaan. Jos kysessä on \neweng{tulkattu kieli}{intrepeted language},
 ohjelmakoodia luetaan suoraan tekstitiedostosta ajon aikana tarpeen mukaan. Jos kyseessä on taas
-\neweng{kaannetty kieli}{compiled language}, ohjelmakoodi kompiloidaan ennen ajoa. Java on
-mielenkiintoinen tapaus tässä suhteessa, sillä Javaa ajettaessa ohjelmakoodi kompiloidaan
+\neweng{kaannetty kieli}{compiled language}, ohjelmakoodi käännetään konekielelle ennen ajoa. Java
+on mielenkiintoinen tapaus tässä suhteessa, sillä Javaa ajettaessa ohjelmakoodi käännetään
 tavukoodiksi, jota Javan virtuaalikone ajaa. Tavukoodin ajotapa riippuu virtuaalikoneesta, mutta
 yleensä Javan tavukoodin ajotekniikka on
 \neweng{ajonaikainen kaantaminen}{Just-In-Time compiling}.
 
-\newthought{Ajonaikainen kääntäminen} on ohjelman ajamissstrategia, jossa ennalta tuotettua
-tavukoodia käännetää dynaamisesti ohjelman ajon aikana konekieliseen muotoon. Tämä eroaa
+\newthought{Ajonaikainen kääntäminen} on ohjelman ajamisstrategia, jossa ennalta tuotettua
+tavukoodia käännetään dynaamisesti ohjelman ajon aikana konekieliseen muotoon. Tämä eroaa
 ratkaisevasti tulkkaamisesta, tarjoten paremman, lähes kääntämiseen verrattavan suorituskyvyn
 pienen käynnistysviiveen kustannuksella. Yksi tekniikan eduista on älykkäiden kääntäjien kyky
 optimoida koodia dynaamisesti ajon aikana. Lisäksi kaikkia tavukooditiedostoja ei tarvitse kääntää
@@ -945,11 +946,10 @@ uudestaan aina, kun koodia muokataan, joten kehitysvaiheen versioiden iterointi 
 aidoissa käännetyissä kielissä.
 
 \newthought{Tämä tarkoittaa}, että Java-ohjelman kääntäminen ja ajamisen aloittaminen vie vähemmän
-aikaa, kuin c:llä tai muulla käännettävällä kielellä. Ohjelman ajaminen ei kuitenkaan tapahdu
-saman tien niin kuin tulkatulla kielellä, vaan bittikoodin kompilointi ja ajonaikaisen kääntämisen
-aloittaminen vie hieman aikaa. Ajonaikaisen kääntämisen suorituskyky on lähellä käännettyjä
-kieliä, muttei ihan samaa tasoa. Suorituskyky on kuitenkin huomattavasti parempi kuin tulkatuilla
-kielillä.
+aikaa, kuin c:llä tai muulla konekieleksi käännettävällä kielellä. Ohjelman ajaminen ei kuitenkaan
+tapahdu saman tien niin kuin tulkatulla kielellä, vaan lähdekoodin kääntäminen tavukoodiksi ja
+ajonaikaisen kääntämisen aloittaminen vie hieman aikaa. Etu tulkattuihin kieliin verrattuna on
+ajonaikainen suorituskyky joka lähentelee konekielelle käännettävien kielien suorituskykyä.
 
 \subsection{Muistinhallinta ja garbage collector}
 \label{GC}
@@ -957,7 +957,7 @@ kielillä.
 \newthought{Mikäli olet} ohjelmoinut aiemmin vain pythonin kaltaisilla korkeamman tason kielillä,
 muistinhallinta ei välttämättä ole tuttu asia. Myös Java abstraktoi korkean tason kielenä
 muistinhallinnan pois käyttäjältä, joten toimivan ohjelman luominen ei vaadi muistinhallinnasta
-välittämistä. Ohjelmojen optimoinnin kannalta on kuitenkin hyödyllistä ymmärtää muistinhallinnan
+välittämistä. Ohjelmien optimoinnin kannalta on kuitenkin hyödyllistä ymmärtää muistinhallinnan
 perusteet.
 
 \newthought{Javan muistinhallinnan} pohjana on niin sanottu
@@ -966,7 +966,7 @@ tietyin väliajoin. Tämä ohjelma käy läpi muistissa olevat muuttujat ja tark
 muuttujan kohdalla, onko ohjelmassa aktiivisia viittauksia kyseiseen muuttujaan. Tämän jälkeen
 ohjelma poistaa kaikki muuttujat, joihin ei ole olemassa aktiivisia viittauksia. Ohjelmien
 suorituskyvyn parantaminen muistijalanjäljen suhteen onnistuu siis Javassa miettimällä tarkkaan,
-miten laajalle alueelle muuttuja näkyy: funktion sisään rajoitettu muuttuja on huomattavasti
+miten laajalle alueelle muuttuja näkyy: metodin sisään rajoitettu muuttuja on huomattavasti
 ystävällisempi muistinkäytön kannalta kun luokkaan tallennettu muuttuja.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1034,15 +1034,15 @@ muuttujan tyypin automaattisesti, mikäli tavoitetietotyyppi on laajempi kuin al
 tietotyyppi. Käytännössä esimerkiksi \java{int}-tyypin muuttuja voidaan aina muuttaa
 \java{long}-tyypin muuttujaksi, koska \java{long}-tietotyyppi sisältää aina tarvittavan muistin
 \java{int}-tyypin muuttujan säilömiseen. Kuitenkin välillä ei voida taata datan täydellistä
-säilymistä. Tällöin Java vaatii ohjelmoijaa määrittelemään tyypinmuunnoksen manuaalisesti.
-Tämän operaation nimi on \neweng{pakotettu tyypinmuunnos}{casting}.
+säilymistä. Tällöin Java vaatii ohjelmoijaa määrittelemään tyyppimuunnoksen manuaalisesti.
+Tämän operaation nimi on \neweng{pakotettu tyyppimuunnos}{casting}.
 
-\newthought{Pakotettu tyypinmuutos} tapahtuu sulkemalla toivottu tietotyyppi muunnettavan
+\newthought{Pakotettu tyyppimuunnos} tapahtuu sulkemalla toivottu tietotyyppi muunnettavan
 muuttujan eteen sulkuihin. Java yrittää pakottaa muuttujan annettuun tietotyyppiin riippumatta
-siitä, onko muutos mahdollista, joten pakotettu tyypinmuunnos huonosti harkitussa paikassa voi
-aiheuttaa ongelmia ohjelman ajovaiheessa. Tyypinmuunnosta käsitellään tarkemmin periytymisen
-yhteydessä. Seuraava koodiesimerkki esittelee tyyppimuunnoksen perussyntaksin muuttamalla
-liukulukumuuttujan kokonaisluvuksi.
+siitä, onko muutos mahdollista, joten pakotettu tyyppimuunnos huonosti harkitussa paikassa voi
+aiheuttaa ongelmia ohjelman ajovaiheessa. Tyyppimuunnosta käsitellään tarkemmin periytymisen
+yhteydessä oppaan osiossa \nameref{casting2}. Seuraava koodiesimerkki esittelee tyyppimuunnoksen
+perussyntaksin muuttamalla liukulukumuuttujan kokonaisluvuksi.
 
 \code{week3/basicexamples}{Casting}{Tyyppimuunnos perustietotyypistä toiseen Javassa}
 
@@ -1054,7 +1054,7 @@ helpottamaan numeraalisten vakioiden lukemista koodissa. Javassa on tätä tarko
 erillinen avainsana \newjava{final}. Final-avainsanalla määriteltyyn muuttujaan asetettua arvoa ei
 voi enää muokata sen asettamisen jälkeen. Muuttujan voi määritellä final-avainsanalla asettamatta
 sille arvoa. Tällöin ensimmäinen muuttujaan asetettu arvo jää vakioksi. Tämä on yleistä
-määrittelemällä vakiomuuttuja luokan ruumiissa ja asettamalla sille arvo rakentajassa. Seuraava
+määrittelemällä vakiomuuttuja luokan rungossa ja asettamalla sille arvo rakentajassa. Seuraava
 koodiesimerkki esittelee final-avainsanan käytön perusteet.
 
 \code{week3/basicexamples}{FinalUsage}{\java{final}-avainsanan käyttö Javassa}
@@ -1148,9 +1148,9 @@ kirjoittamiseen. Normaalin ohjelman toiminnan, suunnittelun ja käytön esittele
 kappaleen loppu omistetaan toimivalle koodiesimerkille. Koodiesimerkki sisältää
 osoitekirjaohjelman, johon käyttäjä voi tallentaa kontaktidataa ja josta käyttäjä voi hakea dataa
 kontaktin nimellä. Tämä esimerkki ei esittele uusia toiminnallisuuksia, joten sen voi halutessaan
-ohitta ja jatkaa suoraan luvun \nameref{tiedostoista} alkuun. Esimerkki esittelee kuitenkin paitsi
-Javan perusteiden toimintaa laajasti. Myös konkreettisia tapoja lähestyä oliopohjaisen ohjelman
-suunnittelua ja toteuttamista, joten esimerkkiin tutustumista suositellaan lämpimästi.
+ohittaa ja jatkaa suoraan luvun \nameref{tiedostoista} alkuun. Esimerkki esittelee kuitenkin
+paitsi Javan perusteiden toimintaa laajasti, myös konkreettisia tapoja lähestyä oliopohjaisen
+ohjelman suunnittelua ja toteuttamista. Täten esimerkkiin tutustumista suositellaan lämpimästi.
 
 \subsection{Osoitekirjaohjelman toimintaidea ja suunnittelu}
 \label{osoitekirja suunnittelu}
@@ -1161,7 +1161,7 @@ joten perustoimintaideoiden listaaminen riittää. Ohjelman perusvaatimukset ova
 
 \begin{itemize}
 	\item Ajettavissa komentoikkunassa
-	\item Sisältää ikilooppiin perustuvan tekstipohjaisen käyttöliittymän
+	\item Sisältää loputtomaan silmukkaan (ns. ikilooppiin) perustuvan tekstipohjaisen käyttöliittymän
 	\item Tallentaa puhelinnumeron nimetylle kontaktille
 	\item Kykenee hakemaan käyttäjän puhelinnumeron nimen perusteella
 \end{itemize}
@@ -1169,13 +1169,13 @@ joten perustoimintaideoiden listaaminen riittää. Ohjelman perusvaatimukset ova
 \newthought{Listan perusteella} voidaan ruveta miettimään ohjelman rakennetta. Toivottu ikilooppi
 voi sijaita pääluokassa ohjelman pienen koon ja yksinkertaisen luonteen vuoksi. Pääluokalle ei ole
 järkevää kasata liikaa vastuita, sillä tämä vaikeuttaa ohjelman laajentamista tulevaisuudessa.
-Olisi siis järkevää luoda luokka, joka hoitaa osoitekirjan manageroinnin. Pääluokka voi sitten
-kutsua tätä luokkaa käyttäjän valintojen mukaan.
+Olisi siis järkevää luoda luokka, joka hoitaa osoitekirjan hallinnoinnin, ja toinen, joka vastaa
+valikkopohjaisesta käyttäjärajapinnasta.
 
 \newthought{Päätasolla ohjelman} arkkitehtuuri on siis pääluokka, jossa luodaan
-AdressBookManager-luokan ilmentymä ja jonka main-metodi pyörittää ikuista looppia. Tämä 
-manager-ilmentymä sisältää metodeja, jota pääluokasta voidaan kutsua käyttäjän valinnan mukaan.
-Manageri tarvitsee ainakin metodit seuraaviin tarkoituksiin:
+AdressBookManager-luokan ilmentymä, AddressBookUI-luokan ilmentymä ja jonka main-metodi pyörittää
+ikuista silmukkaa. Manager-ilmentymä sisältää metodeja, joita UI-luokan ilmentymästä voidaan
+kutsua käyttäjän valinnan mukaan. Manageri tarvitsee ainakin metodit seuraaviin tarkoituksiin:
 
 \begin{itemize}
 	\item Kontaktin luominen: lisää nimi ja kontaktitiedot kontaktilistaan
@@ -1190,9 +1190,9 @@ voitaisiin luoda uusi luokka puhdasta datan säilömistä varten, mutta koska da
 arvosta, joista toinen säilötään avaimena hajautustauluun, on järkevämpää tallentaa data vain
 puhelinnumerona avain-arvo -parin arvoksi.
 
-\newthought{Täten esimerkki} koostuu kahdesta luokasta. AddressBook on pääluokka, joka sisältää
-ohjelman elossa pitävän ikiloopin, joka lukee käyttäjäsyötettä ja kutsuu niiden mukaan metodeja
-ContactManager-luokasta. ContactManager sisältää metodeja osoitekirjan manipulointiin ja
+\newthought{Täten esimerkki} koostuu kolmesta luokasta. AddressBook on pääluokka, joka sisältää
+ohjelman elossa pitävän silmukan. AddressBookUI lukee käyttäjäsyötettä ja kutsuu niiden mukaan
+metodeja ContactManager-luokasta. ContactManager sisältää metodeja osoitekirjan manipulointiin ja
 itse osoitekirjan hajautustaulussa, jonka avaimia ovat merkkijonomuotoiset kontaktien nimet ja
 arvoja merkkijonomuotoiset puhelinnumerot. Puhelinnumeroiden säilöminen kokonaislukuna törmää
 kahteen ongelmaan. Maakoodien säilöminen ei olisi mahdollista ja nollalla alkavat numerot
@@ -1203,7 +1203,9 @@ typistyisivät alusta.
 \label{osoitekirja koodi}
 
 \code{week3/addressbookexample}{ContactManager}{Osoitekirjamanageri osoitekirjan hallintaan}
-\code{week3/addressbookexample}{AddressBook}{Pääluokka, joka vastaa ohjelman ajamisesta}
+\code{week3/addressbookexample}{AddressBookUI}{Käyttäjälle näytettävästä valintapohjaisesta UI:sta
+vastaava luokka}
+\code{week3/addressbookexample}{AddressBook}{Pääluokka, joka vastaa ohjelman pääsilmukan ajamisesta}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1478,6 +1480,24 @@ käytännössä.
 \code{week6/overridingexample}{Parent}{Korvaamisesimerkin kantaluokka}
 \code{week6/overridingexample}{Child}{Korvaamisesimerkin lapsiluokka}
 \code{week6/overridingexample}{OverridingExample}{Korvaamisesimerkin pääluokka}
+
+\subsection{Periytyminen ja tyypitys}
+\label{casting2}
+
+\newthought{Oppaan luvussa} \nameref{casting} kerrottiin Javan
+\gls{pakotettu tyyppimuunnos}-operaatiosta, jolla jonkin tyypin muuttuja voidaan koittaa pakottaa
+jonkin toisen tyypin muuttujaan. Luvussa annettiin esimerkki perustietotyyppien kohdalla, mutta
+luokkiin kohdistuvat tapaukset jätettiin huomioimatta, koska niiden ymmärtäminen vaatii
+perusymmärryksen periytymisen toiminnasta Javassa. Vaikka Java on vahvasti tyypitetty kieli, ei se
+vaadi aina muuttujan ja muuttujaan tallennetun tiedon olevan yksi yhteen samaa tietotyyppiä:
+minkä tahansa muuttujan arvoksi Javassa kelpaa paitsi muuttujan tietotyypin ilmentymä, myös mikä
+tahansa tietotyypin lapsiluokan ilmentymä. Tässä tapauksessa Java suorittaa automaattisen
+tyyppimuunnoksen lapsiluokasta kantaluokaksi viitatessaan lapsiluokan olioon: koska lapsiluokka
+perii kantaluokan toiminnallisuudet, sisältää se aina vähintään samat kentät kuin kantaluokka.
+Joskus ilmenee kuitenkin tarve käsitellä tällä tavalla säilöttyä lapsiluokan ilmentymää aidosti
+oman luokkansa ilmentymänä. Tällöin voidaan suorittaa \gls{pakotettu tyyppimuunnos} luokasta
+toiseen. Pakotettu tyyppimuunnos kahden luokan välillä onnistuu vain, jos luokka, joksi muuttuja
+halutaan pakottaa, on periytetty muuttujan määritellystä luokasta.
 
 \section{Periytyminen ja rakentajat}
 \label{superprotected}
