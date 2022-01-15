@@ -1315,7 +1315,7 @@ tämän.
 \label{aggregaatio}
 
 \newthought{\Gls{aggregaatio} on} luokkien välinen omistussuhde, jossa luokan A ilmentymä omistaa
-luokan B ilmentymän väliaikaisesti. Omistettu ilmentymä siis luodaan muualla ja ei tuhoudu
+luokan B ilmentymän väliaikaisesti. Omistettu ilmentymä siis luodaan muualla ja se ei tuhoudu
 omistavan ilmentymän mukana. Tällainen rakenne on yleistä kokoelmapohjaisissa rakenteissa.
 Esimerkiksi mallinnettaessa linja-autoa oliopohjaisilla käsitteillä, linja-auto -luokan ja
 matkustaja-luokan välinen suhde olisi aggregaatio: matkustaja on olemassa ennen suhteen luomista
@@ -1354,7 +1354,9 @@ ominaisuuden, nimeltä \neweng{periytyminen}{inheritance}
 \newthought{Periytymisen perusidea} on mahdollistaa luokkien toiminnallisuuksien uudelleenkäyttö
 ja laajentaminen. Tämä tapahtuu luomalla niin sanottu \neweng{lapsiluokka}{child class}
 laajennettavasta luokasta. Tällä tavalla laajennetun luokan sanotaan olevan luodun lapsiluokan
-\neweng{kantaluokka}{parent class}.
+\neweng{kantaluokka}{parent class}. Kanta- ja lapsiluokilla on suomeksi ja englanniksi useampia
+nimiä. Englanniksi ne tunnetaan myös termeillä superclass ja subclass ja suomeksi kantaluokkaa
+saatetaan jossain kutsua emoluokaksi.
 
 \newthought{Lapsiluokka perii} kaikki kantaluokan ominaisuudet ja kykenee muokkaamaan niitä tai
 lisäämään uusia, omia ominaisuuksiaan. Esimerkiksi pankkiohjelmistoa luotaessa voitaisiin kaikki
@@ -1397,7 +1399,7 @@ yhteyteen voidaan lisätä tyyppidata, mutta se ei ole pakollista ja riippuu kaa
 käyttötarkoituksesta. Seuraava kuva esittää yksinkertaisen luokan kuvauksen luokkakaaviossa.
 Luokan nimi on DataManipulator, se omistaa int-tyypin tietokentän integerDataPoint ja
 String-tyypin tietokentän stringDataPoint sekä metodin ManipulateData, joka ottaa int- ja
-String-tyyppien muuttujat ja palauttaa String-tyypin muuttujan.
+String-tyyppiset muuttujat ja palauttaa String-tyypin muuttujan.
 
 \begin{listing}
     \includegraphics{ClassDiagramExample1}
