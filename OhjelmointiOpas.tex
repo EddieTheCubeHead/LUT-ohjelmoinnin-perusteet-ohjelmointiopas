@@ -244,17 +244,17 @@ datan ja sitä käsittelevien funktioiden sijainti koodissa?
 Näille yksiköille vakiintunut kutsumanimi on \neweng{olio}{object}. Oliot koostuvat datasta ja
 sitä manipuloivista käskysarjoista, jotka tunnetaan nimellä \neweng{metodi}{method}. Metodi on
 oliopohjaisen ohjelmoinnin nimi olioon sidotulle funktiolle, termiä \gls{funktio} ei juuri
-käytetä.
+käytetä. Suomessa metodeita kutsutaan välillä jäsenfunktioiksi, mutta opas käyttää termiä metodi.
 
 \newthought{Ohjelmisto luo} kaikki käyttämänsä oliot ohjelmoijan tekemien muottien pohjalta.
 Tälläinen muotti, eli \neweng{luokka}{class} voi luoda itsestään yleensä rajattoman määrän olioita
 ajon aikana. Luokan ja olion ero on yksi oliopohjaisen ohjelmoinnin tärkeimmistä käsitteistä ja
 sen ymmärtäminen alusta lähtien on kriittistä oliopohjaisen ohjelmoinnin opiskelussa.
 
-\newthought{Jokainen olio} on jonkin luokan \neweng{instanssi}{instance}. Saman luokan eri
-instanssit omistavat identtiset metodit, mutta instansseihin säilötty data on uniikki jokaiselle
-instansille ja instanssin metodit käsittelevät tätä uniikkia dataa. Luokka määrittää nämä metodit
-ja kertoo minkä tyyppiset datakentät jokaiselta luokan instanssilta löytyvät. Tästä lähtien
+\newthought{Jokainen olio} on jonkin luokan \neweng{ilmentyma}{instance}. Saman luokan eri
+ilmentymät omistavat identtiset metodit, mutta ilmentymiin säilötty data on uniikki jokaiselle
+ilmentymälle ja ilmentymän metodit käsittelevät tätä uniikkia dataa. Luokka määrittää nämä metodit
+ja kertoo minkä tyyppiset datakentät jokaiselta luokan ilmentymältä löytyvät. Tästä lähtien
 opas käyttää termiä "luokka" viitatessaan ohjelmoijan määrittämään olio muottiin eli puhuttaessa
 suunnitteluperiaatteista ja koodin kirjoittamisesta ja termiä "olio" vain puhuessaan selkeästi
 koodissa sijaitsevasta luokan ilmentymästä.
@@ -270,7 +270,7 @@ osista, jotka kommunikoivat keskenään vain selkeästi määriteltyjä rajapint
 \newthought{Käytännössä laadukasta} oliopohjaista ohjelmistoa voidaan täten verrata esimerkiksi
 moderniin modulaarisesti suunniteltuun autoon. Siinä missä auton moottori, pyörät tai verhoilu
 ovat muokattavissa asiakkaan toiveiden ja budjetin mukaan, on laadukkaan oliopohjaisen ohjelmiston
-osien, kuten vaikka autorisaatiomoduulin tai tietokantayhteyden laajentaminen ja muokkaaminen
+osien, kuten vaikka kirjautumismoduulin tai tietokantayhteyden laajentaminen ja muokkaaminen
 mahdollista koskematta muuhun ohjelmistoon.
 
 \newthought{Tämä kuulostaa} kunnianhimoiselta ja monimutkaiselta tavoitteelta, joten on tärkeää
@@ -288,7 +288,7 @@ joten vaikka tiedon määrä voi tuntua nyt kohtuuttomalta ei kannata huolestua 
 metodeja tai dataa luokka paljastaa muulle ohjelmistolle. Oliopohjaiset kielet sisältävätkin
 yleensä jonkin keinon rajoittaa datakenttien ja metodien näkyvyyttä luokan ulkopuolelle. Tämä
 näkyvyyden rajaaminen ja tarkkojen vastuiden määrittäminen tunnetaan nimellä
-\neweng{enkapsulaatio}{encapsulation}.
+\neweng{kapselointi}{encapsulation}.
 
 \newthought{Luokan paljastamat} datakentät ja metodit kertovat ulkopuoliselle ohjelmistolle, mitä
 luokasta luodut oliot voivat tehdä ja mitä niiltä voi odottaa. Tämä muodostaa sopimuksen luokan ja
@@ -299,15 +299,15 @@ Javan samannimiseen \newjava{interface}-avainsanaan, joka esitellään myöhemmi
 
 \newthought{Yksi olio-ohjelmoinnin nyrkkisäännöistä} on pitää huolta, että jokainen luokka
 suorittaa yhden ja vain yhden tehtävän. Tämä tarkoittaa luokan rajapinnan pitämistä minimaalisena,
-eli korkeaa enkapsulaatiota. Tämän lisäksi ohjelmiston peruslaatua voidaan arvioida käsitteillä
+eli korkeaa kapselointia. Tämän lisäksi ohjelmiston peruslaatua voidaan arvioida käsitteillä
 \neweng{koheesio}{cohesion} ja \neweng{pariutuminen}{coupling}.
 
 \newthought{Koheesio voidaan arvioida} luokkakohtaisesti luokan metodien ja datakenttien
 yhteistoiminnan perusteella. Mitä tiiviimmin metodit ja datakentät ovat yhteistyössä ja mitä
 vähemmän luokassa on metodeja ja datakenttiä, jotka eivät ole vuorovaikutuksissa muun luokan
 kanssa, sitä korkeampi koheesio luokalla on. Korkea koheesio kulkee siis pitkälti käsi kädessä
-tiukan enkapsulaation kanssa. Mitä vähemmän luokka paljastaa itsestään muulle ohjelmistolle, sitä
-tiukemmin sen metodit ja datakentät yleensä komminkoivat keskenään.
+tiukan kapseloinnin kanssa. Mitä vähemmän luokka paljastaa itsestään muulle ohjelmistolle, sitä
+tiukemmin sen metodit ja datakentät yleensä kommunikoivat keskenään.
 
 \newthought{Pariutuminen tarkoittaa} ohjelmiston luokkien riippuvuutta toisista ohjelmiston
 luokista. Siitä puhutaan usein asteikolla \newengnogls{löysä}{loose}-\newengnogls{tiukka}{tight}.
@@ -315,13 +315,14 @@ Löysästi pariutineessa ohjelmistossa jokainen luokka on riippuvainen vain muut
 luokasta ja riippuvaisuudet muistuttavat usein enemmän ketjua tai puuta kuin verkkoa.
 
 \newthought{Koheesio ja pariutuminen} kulkevat usein käsi kädessä: Korkea koheesio johtaa löysään
-pariutumiseen ja matala koheesio tiukkaan pariutumiseen. Enkapsulaatio mukailee yleensä koheesiota
-niin että korkeasta koheesiosta seuraa korkea enkapsulaatio ja toisin päin. Kaikki kolme ovat
+pariutumiseen ja matala koheesio tiukkaan pariutumiseen. Kapselointi mukailee yleensä koheesiota
+niin että korkeasta koheesiosta seuraa korkea kapselointi ja toisin päin. Kaikki kolme ovat
 tärkeitä mittareita puhuttaessa oliopohjaisen ohjelmiston laadusta. Vaikka oppaan tärkein tehtävä
-onkin opettaa lukija koodaamaan Javalla, eikä niinkään koodaamaan huipputason koodia, on näiden
-käsitteiden olemassaolo ja merkitys hyvä tiedostaa. Tämä auttaa ymmärtääkseen oliopohjaisten
-kielten suunnittelua ja etuja suhteessa muihin ohjelmointikieliin ja saattaa myös parantaa
-tuotetun koodin laatua huomaamattomasti.
+onkin opettaa lukija ymmärtämään olio-ohjelmoinnin käsitteet ja soveltamaan niitä
+Java-kielellä ohjelmointiin, eikä niinkään koodaamaan huipputason koodia, on näiden käsitteiden
+olemassaolo ja merkitys hyvä tiedostaa. Tämä auttaa ymmärtääkseen oliopohjaisten kielten
+suunnittelua ja etuja suhteessa muihin ohjelmointikieliin ja saattaa myös parantaa tuotetun koodin
+laatua huomaamattomasti.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -367,7 +368,7 @@ koodista, sen tehtävä on vain selventää miten kommenttien sijoittelu vaikutt
 
 \newthought{Yksiä tärkeimmistä} koodin osista ovat ehdottomasti \textit{\gls{muuttuja}t}
 \eng{variable}. Ne ovat koodissa määriteltyjä tietokenttiä, jotka kykenevät säilömään joko jonkin
-luokan instanssin, tai kokonaislukumuodossa esitetyn simppelin datayksikön. Koska Java on 
+luokan ilmentymän, tai kokonaislukumuodossa esitetyn simppelin datayksikön. Koska Java on 
 \neweng{staattinen kieli}{statically typed language}, täytyy siinä jokaisen muuttujan tietotyyppi
 määritellä muuttujan määrittelyn yhteydessä. Muuttujan tyyppi voi olla joko jokin käyttäjän
 määrittelemä luokka, jokin Javan standardikirjaston luokka, tai jokin \neweng{primitiivinen
@@ -452,7 +453,7 @@ main-funktion lisääminen.
 
 \newthought{Tekstin tulostaminen} komentoikkunaan on varmasti tuttua aiemmasta
 ohjelmointikokemuksesta. Javassa tulostukseen käytetään yleensä standardikirjaston 
-\newjava{System}-luokan out-muuttujassa tallennettuna olevaa PrintStream-luokan instanssia, joka
+\newjava{System}-luokan out-muuttujassa tallennettuna olevaa PrintStream-luokan ilmentymää, joka
 edustaa oletustulostevirtaa. Jos et ymmärtänyt edellistä lausetta, se ei haittaa. Tärkeintä on
 tietää, että Javassa helpoin tapa tulostaa on kutsua "\java{System}.out" - sijainnista sopivaa
 tulostusmetodia. Opas käyttää suurimmaksi osaksi "println"-metodia, joka ottaa merkkijonon ja
@@ -520,28 +521,28 @@ että normaalisti ehtolauseiden arvoa ei tiedetä ennen ohjelman ajoa, vaan se m
 \section{Lisää Javan konsepteja}
 \label{ohjelman perusteista2}
 
-\subsection{Rakentajat, luokan instanssin luominen ja this}
+\subsection{Rakentajat, luokan ilmentymän luominen ja this}
 \label{new this}
 
 \newthought{Olioiden hallinta} on Javalla ohejlmoinnin ytimessä. Koodissa on luotava uusia
-instansseja sekä Javan standardikirjaston luokista, että käyttäjän itse määrittelemistä luokista.
-Uusi instanssi luokasta luodaan \newjava{new}-avainsanalla. Avainsanaa seuraa luotavan luokan
+ilmentymiä sekä Javan standardikirjaston luokista, että käyttäjän itse määrittelemistä luokista.
+Uusi ilmentymä luokasta luodaan \newjava{new}-avainsanalla. Avainsanaa seuraa luotavan luokan
 nimi ja luomisen parametrit sulkuihin suljettuna, tai tyhjä pari sulkuja.
 
-\newthought{Luokan Instanssin} luonti tyhjänä ja alustamattomana on usein kömpelöä ja vaatisi
-useita rivejä manuaalista arvojen asettamista jokaisen uuden instanssin luonnin yhteydessä.
-Instanssien konfiguroimista varten Java tarjoaa \neweng{rakentaja}{constructor} -ominaisuuden.
+\newthought{Luokan ilmentymän} luonti tyhjänä ja alustamattomana on usein kömpelöä ja vaatisi
+useita rivejä manuaalista arvojen asettamista jokaisen uuden ilmentymän luonnin yhteydessä.
+Ilmentymien konfiguroimista varten Java tarjoaa \neweng{rakentaja}{constructor} -ominaisuuden.
 Rakentaja on metodi, joka määritellään luokan sisällä erityisellä syntaksilla ja joka palauttaa
-luokan instanssin. Rakentaja määritellään ilman paluuarvoa ja sen nimi on identtinen luokan nimen
+luokan ilmentymän. Rakentaja määritellään ilman paluuarvoa ja sen nimi on identtinen luokan nimen
 kanssa. Rakentajan voi määritellä ottamaan mitä tahansa argumentteja kyseinen tapaus tarvitsee.
 Rakentajametodi ei tarvitse \java{return}-avainsanaa, vaan palauttaa automaattisesti
-käsittelemänsä instanssin.
+käsittelemänsä ilmentymän.
 
 \newthought{Rakentajan yhteydessä} on tärkeää puhua \newjava{this}-avainsanasta. This tarjoaa
-ohjelmalle mahdollisuuden viitata luokan instanssiin, jolle jokin metodi kuuluu. This toimii
-vain rakentajassa ja instanssiin sidotussa metodissa, eli konteksteissa, joissa instanssi, johon
+ohjelmalle mahdollisuuden viitata luokan ilmentymää, jolle jokin metodi kuuluu. This toimii
+vain rakentajassa ja ilmentymään sidotuissa metodeissa, eli konteksteissa, joissa ilmentymä, johon
 viitataan on tiedossa. Täten rakentajassa voidaan yhdistämällä this-avainsana ja pistenotaatio
-viitata helposti rakennettavaan instanssiin.
+viitata helposti rakennettavaan ilmentymään.
 
 \newthought{Seuraava koodiesimerkki} esittelee rakentajan määrittelemisen ja new-avainsanan
 käytön rakentajan kanssa. On huomioitavaa, että seuraavassa alakappaleessa käsiteltävä
@@ -574,10 +575,11 @@ tulostettavan muuttujan tietotyyppi int vai String.
 
 \newthought{Lähes kaikkien} koodin osien, kuten muuttujan, metodin, interface-luokan tai luokan
 luominen Javassa tukee kyseisen koodin osan näkyvyyden määrittämistä. Tämä määritelmä on nimeltään 
-\neweng{nakyvyysmaare}{access modifier}. Kuten oppaassa aiemmin todettiin, yksi olio-ohjelmoinnin
-ydinideoista on \new{enkapsulaatio}, eli koodin osien vastuiden tarkka rajaaminen. Näkyvyysmääreet
-ovat tärkein työkalu tämän suhteen. Näkyvyysmääre rajoittaa ohjelmiston osan, kuten luokan tai
-luokan ominaisuuden näkyvyyttä muulle ohjelmalle seuraavan taulukon mukaisesti:
+\neweng{nakyvyysmaare}{access modifier}. Kuten oppaan luvussa \nameref{koodin laadusta} todettiin,
+yksi olio-ohjelmoinnin ydinideoista on \gls{kapselointi}, eli koodin osien vastuiden tarkka
+rajaaminen. Näkyvyysmääreet ovat tärkein työkalu tämän suhteen. Näkyvyysmääre rajoittaa
+ohjelmiston osan, kuten luokan tai luokan ominaisuuden näkyvyyttä muulle ohjelmalle seuraavan
+taulukon mukaisesti:
 
 \bigskip
 \begin{center}
@@ -611,7 +613,7 @@ automaattisesti oletusnäkyvyyden (default/package-private), jossa luokka, tai s
 kaikkialle sen määrittelypaketin sisällä, muttei muualle. Tämä ei ole suositeltavaa, vaan jokaisen
 luokan ja luokkien jokaisen ominaisuuden näkyvyyden tarve pitäisi arvioida erikseen ja asettaa
 kullekin tiukin mahdollinen näkyvyysmääre. Tämä tyyli paitsi takaa mahdollisimman korkean
-enkapsulaation, myös tekee ohjelmistosta tehokkaamman, koska vain luokan sisällä näkyvät metodit
+kapseloinnin, myös tekee ohjelmistosta tehokkaamman, koska vain luokan sisällä näkyvät metodit
 voidaan optimoida tehokkaammin ohjelman kääntämisen yhteydessä.
 
 \newthought{Seuraava koodiesimerkki} sisältää pääluokan ja kaksi apuluokkaa ja esittelee näin
@@ -644,7 +646,7 @@ alustamisen muuttujille, joiden alustaminen on raskasta, muttei aina tarpeellist
 ulkopuolelta saatava arvo luokan sisällä yksityiseksi määriteltyyn muuttujaan. Asettaja nimetään
 noutajan tapaan camelCase-tyylisesti lisäämällä muuttujan nimen eteen "set". Täten edellä mainitun
 "privateVariable"-muuttujan asettajan nimi on "setPrivateVariable". Asettajafunktio ottaa yleensä
-asetettavan muuttujan tyyppiä olevan instanssin eikä palauta mitään. Samoin kuin noutajat,
+asetettavan muuttujan tyyppiä olevan ilmentymän eikä palauta mitään. Samoin kuin noutajat,
 asettajat rajoittavat luokan ulkopuolista pääsyä luokan säilömään dataan. Lisäksi asettajat
 vastaavat usein luokan ulkopuolelta tulevan datan validoinnista ennen sen tallentamista
 muuttujaan.
@@ -710,8 +712,8 @@ ja käyttämällä \java{System}.in-virtaa argumenttina, saadaan merkkijonovirta
 käyttäjän syötteen.
 
 \newthought{Syötteen noutaminen} on ikävä kyllä Javassa monimutkainen prosessi. Seuraava
-koodiesimerkki sisältää kuitenkin tarvittavan syntaksin toimivan Scanner-luokan instanssin
-luomiseen. Kun instanssi on luotu kerran on sen käyttäminen onneksi simppeliä.
+koodiesimerkki sisältää kuitenkin tarvittavan syntaksin toimivan Scanner-luokan ilmentymän
+luomiseen. Kun ilmentymä on luotu kerran on sen käyttäminen onneksi simppeliä.
 
 \code{week2/basicexamples}{UserInput}{Käyttäjän syötteen noutaminen Javassa}
 
@@ -776,8 +778,8 @@ mutta koska Javan täytyy tietää paitsi listan tyyppi, myös listan säilömie
 luomisen yhteydessä määriteltävä tämäkin. ArrayList on siis \neweng{geneerinen luokka}{generic
 class}. Geneeristen luokkien luominen ja toimintaperiaate ei ole tämän luvun aiheena, vaan ne
 käsitellään oppaan luvussa \nameref{generic} Tässä kohtaa opasta ArrayListin geneerisyys on
-huomioitava vain uuden instanssin luonnin yhteydessä, jolloin listan säilömä tyyppi on suljettava
-pienempi kuin- ja suurempi kuin -merkkien väliin. Seuraava esimerkki näyttää ArrayList-instanssin
+huomioitava vain uuden ilmentymän luonnin yhteydessä, jolloin listan säilömä tyyppi on suljettava
+pienempi kuin- ja suurempi kuin -merkkien väliin. Seuraava esimerkki näyttää ArrayList-ilmentymän
 luomisen, alkioiden lisäämisen, hakemisen ja poistamisen.
 
 \code{week3/basicexamples}{ArrayListUsage}{ArrayList-luokan käyttö Javassa}
@@ -800,7 +802,7 @@ samaa tyyppiä, eikä takaa arvojen keskeneräisen järjestyksen säilymistä. S
 luokkaa määritelmänsä yhteydessä. HashMap tukee avain-arvo -parin lisäämistä, arvon hakemista ja
 postamista avaimen perusteella ja iterointia joko avainjoukon, arvojoukon tai avain-arvo -parien
 yli. HashMap pystyy säilömään identtisiä arvoja, mutta jokaisen avaimen on oltava uniikki.
-Seuraava esimerkki esittelee HashMap-instanssin luomisen, avain-arvo -parin lisäämisen ja
+Seuraava esimerkki esittelee HashMap-ilmentymän luomisen, avain-arvo -parin lisäämisen ja
 arvon hakemisen sekä poistamisen avaimen perusteella. ArrayListin tapaan HashMap ei tue
 primitiivisten tietotyyppien säilömistä.
 
@@ -1000,9 +1002,9 @@ käyttö Javassa}
 \label{static}
 
 \newthought{Oppaassa viitattiin} aiemmin jo luokkamuuttujiin/-metodeihin kappaleessa
-\nameref{main}. Luokkamuuttujat ja -metodit on sidottu ne omistavaan luokkaan luokan instanssin
-sijasta. Kaikki luokan instanssit voivat käyttää luokkamuuttujia tai kutsua luokkametodeja, mutta
-luokkametodin sisällä ei voi viitata instanssimuuttujaan, ainoastaan luokkamuuttujiin.
+\nameref{main}. Luokkamuuttujat ja -metodit on sidottu ne omistavaan luokkaan luokan ilmentymän
+sijasta. Kaikki luokan ilmentymät voivat käyttää luokkamuuttujia tai kutsua luokkametodeja, mutta
+luokkametodin sisällä ei voi viitata jäsenmuuttujaan, ainoastaan luokkamuuttujiin.
 Luokkametodeja ja -muuttujia voidaan kutsua myös luokan nimen avulla pistenotaatiolla luokan
 ulkopuolella. Esimerkiksi tulostamiseen käytetty \java{System}.out on oikeastaan luokkamuuttuja
 out standardikirjaston System-luokassa.
@@ -1010,9 +1012,9 @@ out standardikirjaston System-luokassa.
 \newthought{Luokkametodit ja -muuttujat} luodaan \newjava{static}-avainsanalla. Avainsanan
 sijainti voi olla ennen tai jälkeen näkyvyysmääreen, mutta normalisoitu tyyli on kirjoittaa
 näkyvyysmääre ennen static-avainsanaa. Main-metodi on siis luokkametodi ohjelman juuriluokassa.
-Tämä tarkoittaa, ettei Javan tarvitse alustaa juuriluokan instanssia ohjelman ajon aluksi.
+Tämä tarkoittaa, ettei Javan tarvitse alustaa juuriluokan ilmentymää ohjelman ajon aluksi.
 Seuraava esimerkki esittelee luokkametodin luomisen apuriluokkaan ja kutsumisen apuriluokan
-ulkopuolelta ilman apuriluokan instanssia.
+ulkopuolelta ilman apuriluokan ilmentymää.
 
 \code{week3/staticexample}{StaticPrinter}{Luokkametodin luominen \java{static}-avainsanalla}
 \code{week3/staticexample}{StaticExample}{Luokkametodin kutsuminen metodin määrittelevän luokan
@@ -1167,8 +1169,8 @@ Olisi siis järkevää luoda luokka, joka hoitaa osoitekirjan manageroinnin. Pä
 kutsua tätä luokkaa käyttäjän valintojen mukaan.
 
 \newthought{Päätasolla ohjelman} arkkitehtuuri on siis pääluokka, jossa luodaan
-AdressBookManager-luokan instanssi ja jonka main-metodi pyörittää ikuista looppia. Tämä 
-manager-instanssi sisältää metodeja, jota pääluokasta voidaan kutsua käyttäjän valinnan mukaan.
+AdressBookManager-luokan ilmentymä ja jonka main-metodi pyörittää ikuista looppia. Tämä 
+manager-ilmentymä sisältää metodeja, jota pääluokasta voidaan kutsua käyttäjän valinnan mukaan.
 Manageri tarvitsee ainakin metodit seuraaviin tarkoituksiin:
 
 \begin{itemize}
@@ -1179,7 +1181,7 @@ Manageri tarvitsee ainakin metodit seuraaviin tarkoituksiin:
 \newthought{Listasta nähdään}, että kontaktien hakeminen tapahtuu aina nimen perusteella. Tämä on
 tärkeää ottaa huomioon kontakteja säilövää tietorakennetta suunnitellessa. \java{HashMap} on
 rakenne, josta on nopea hakea tietoa avaimen perusteella, joten ContactManager voi säilöä
-kontaktit \java{HashMap}-instanssiin, jossa on avaimena kontaktin nimi. Kontaktidataa varten
+kontaktit \java{HashMap}-ilmentymään, jossa on avaimena kontaktin nimi. Kontaktidataa varten
 voitaisiin luoda uusi luokka puhdasta datan säilömistä varten, mutta koska data koostuu kahdesta
 arvosta, joista toinen säilötään avaimena hajautustauluun, on järkevämpää tallentaa data vain
 puhelinnumerona avain-arvo -parin arvoksi.
@@ -1225,14 +1227,14 @@ olennainen osa tiedostojen turvallista käsittelyä.
 \label{try-catch}
 
 \newthought{Java sisältää} monipuolisen virhetilajärjestelmän virheenkäsittelyä varten. Virhetilat
-esitetään Exception-luokasta perittyinä erityyppisinä Exception-instansseina. Esimerkiksi jos
+esitetään Exception-luokasta perittyinä erityyppisinä Exception-ilmentyminä. Esimerkiksi jos
 ohjelmisto yrittää hakea tietoa muuttujasta, jossa on säilötty vain null-arvo, nostaa Java
 automaattisesti NullPointerException-virheen. 
 
 \newthought{Virheiden käsittely} tapahtuu sulkemalla virhetilan mahdollisesti aiheuttava koodi
 \newjava{try}-avainsanalla määritellyn kaarisulkeisiin suljetun koodin osan sisään. Tätä seuraa
 virhetilan käsittely, joka määritellään \newjava{catch}-avainsanalla, jota seuraa sulkeissa
-kiinniotettavan virheen määrittely, eli virheluokka, jonka instanssit otetaan kiinni ja
+kiinniotettavan virheen määrittely, eli virheluokka, jonka ilmentymät otetaan kiinni ja
 muuttujanimi, johon virheluokan ilmentymät kiinnitetään. Tätä määritelmää seuraa itse virhetilan
 korjaus suljettuna kaarisulkeisiin. Tämä korjausosio ajetaan vain, jos \java{try}-osassa tapahtuu
 sulkeissa määritellyn tyypin virhe. Viimeinen virheenkäsittelyrakenteen osa on
@@ -1256,11 +1258,11 @@ että kirjoittaminen voi epäonnistua ohjelmistosta riippumattomista syistä. T�
 operaatiot on järkevää sulkea edellä esitellyn \java{try}-rakenteen sisään. 
 
 \newthought{Syötteen lukemisen} tapaan, tiedostojen lukeminen suoraan lukijalla tapahtuu merkki
-kerrallaan. On siis järkevää sulkea \java{FileReader} \java{BufferedReader}-instanssin sijaan,
+kerrallaan. On siis järkevää sulkea \java{FileReader} \java{BufferedReader}-ilmentymän sijaan,
 kuten kappale \nameref{syötteestä} esittelee. Seuraava esimerkki esittelee tekstimuotoisen datan
 käsittelemisen tiedostoissa luomalla ensin tiedoston ja tallentamalla merkkijonon tähän tiedostoon
-ja lukemalla sen jälkeen tallennetun merkkijonon tiedostosta \java{BufferedReader}-instanssin
-sisään kiedotulla \java{FileReader}-instanssilla.
+ja lukemalla sen jälkeen tallennetun merkkijonon tiedostosta \java{BufferedReader}-ilmentymän
+sisään kiedotulla \java{FileReader}-ilmentymällä.
 
 \code{week4}{BasicFileWriterReader}{Merkkijonodatan käsittely tiedostoissa}
 
@@ -1298,17 +1300,17 @@ käytännön pohjan lisäksi laajan teoriapohjan olio-ohjelmointia aloittevalle 
 
 \newthought{Oliopohjaisen suunnittelun} osana joudutaan usein puhumaan luokkien välisistä
 suhteista, erityisesti, miten luokat viittaavat toisiin luokkiin ja miten näiden luokkien
-instanssien elinkaaret ohjelmassa eroavat toisistaan. Tätä kuvaavat käsitteet
+ilmentymien elinkaaret ohjelmassa eroavat toisistaan. Tätä kuvaavat käsitteet
 \neweng{aggregaatio}{aggregation} ja \neweng{kompositio}{composition}. Molemmat ovat
-omistussuhteita, eli suhteita, joissa luokan A instanssi viittaa luokan B instanssiin "omistaen"
+omistussuhteita, eli suhteita, joissa luokan A ilmentymä viittaa luokan B ilmentymään "omistaen"
 tämän.
 
 \subsection{Aggregaatio}
 \label{aggregaatio}
 
-\newthought{\Gls{aggregaatio} on} luokkien välinen omistussuhde, jossa luokan A instanssi omistaa
-luokan B instanssin väliaikaisesti. Omistettu instanssi siis luodaan muualla ja ei tuhoudu
-omistavan instanssin mukana. Tällainen rakenne on yleistä kokoelmapohjaisissa rakenteissa.
+\newthought{\Gls{aggregaatio} on} luokkien välinen omistussuhde, jossa luokan A ilmentymä omistaa
+luokan B ilmentymän väliaikaisesti. Omistettu ilmentymä siis luodaan muualla ja ei tuhoudu
+omistavan ilmentymän mukana. Tällainen rakenne on yleistä kokoelmapohjaisissa rakenteissa.
 Esimerkiksi mallinnettaessa linja-autoa oliopohjaisilla käsitteillä, linja-auto -luokan ja
 matkustaja-luokan välinen suhde olisi aggregaatio: matkustaja on olemassa ennen suhteen luomista
 ja ei tuhoudu suhteen tuhouduttua.
@@ -1316,11 +1318,11 @@ ja ei tuhoudu suhteen tuhouduttua.
 \subsection{Kompositio}
 \label{kompositio}
 
-\newthought{\Gls{kompositio} on} luokken välinen omistussuhde, jossa luokan A instanssi omistaa
-luokan B instanssin pysyvästi, niin, että instanssien elinajat on sidottu toisiinsa. Luokan B
-instanssi luodaan sen omistavan luokan A instanssin mukana ja tuhoutuu tämän instanssin kanssa.
-Täten luokan B instansseja ei voi olla olemassa erillään ne omistavasta luokan A instanssista,
-eikä luokan A instansseja ilman niiden omistamia luokan B instansseja. Tälläinen suhde on yleistä
+\newthought{\Gls{kompositio} on} luokken välinen omistussuhde, jossa luokan A ilmentymä omistaa
+luokan B ilmentymän pysyvästi, niin, että ilmentymien elinajat on sidottu toisiinsa. Luokan B
+ilmentymä luodaan sen omistavan luokan A ilmentymän mukana ja tuhoutuu tämän ilmentymän kanssa.
+Täten luokan B ilmentymiä ei voi olla olemassa erillään ne omistavasta luokan A ilmentymästä,
+eikä luokan A ilmentymiä ilman niiden omistamia luokan B ilmentymiä. Tälläinen suhde on yleistä
 suurien komponenttien erillisessä luokassa esitettyjen osien kanssa. Esimerkiksi aggregaation
 yhteydessä annetussa linja-auto -esimerkissä linja-auto -luokan ja moottori-luokan välinen suhde
 on kompositiosuhde. Moottori luodaan linja-auton kanssa ja tuhoutuu kun linja-auto tuhoutuu.
@@ -1489,9 +1491,9 @@ periville luokille.
 \subsection{Periytyminen, rakentajat ja super}
 \label{super}
 
-\newthought{Luotaessa lapsiluokan} instanssia Javassa on aina kutsuttava kantaluokan rakentajaa.
+\newthought{Luotaessa lapsiluokan} ilmentymiä Javassa on aina kutsuttava kantaluokan rakentajaa.
 Mikäli kummallekaan luokalle ei ole määritelty rakentajaa, kutsuu Java automaattisesti kantaluokan
-oletusrakentajaa rakentaessaan lapsiluokan instanssia. Mikäli lapsiluokalla ei ole rakentajaa,
+oletusrakentajaa rakentaessaan lapsiluokan ilmentymää. Mikäli lapsiluokalla ei ole rakentajaa,
 mutta kantaluokalle halutaan määrittää rakentaja, jota lapsiluokan rakennus käyttää, on tämän
 rakentajan oltava parametritön.
 
@@ -1500,7 +1502,7 @@ ensimmäisenä komentona jotain emoluokan rakentajaa. Tämän ei tarvitse olla p
 oletusrakentaja vaan mikä tahansa rakentaja kelpaa.
 
 \newthought{Päästäkseen käsiksi} kantaluokkansa kenttiin, kuten rakentajiin, voi lapsiluokka
-käyttää \newjava{super}-avainsanaa. Avainsana toimii viittauksena kantaluokan instanssiin, jonka
+käyttää \newjava{super}-avainsanaa. Avainsana toimii viittauksena kantaluokan ilmentymään, jonka
 pohjalle lapsiluokka on luotu. Käyttämällä avainsanaa metodikutsuna päästään käsiksi kantaluokan
 rakentajametodin eri ylikuormituksiin ja käyttämällä pistenotaatiota päästään käsiksi kantaluokan
 muuttujiin ja metodeihin näkyvyysmääreiden salliessa. Seuraavat koodiesimerkit esittelevät
@@ -1532,8 +1534,8 @@ kehittämisprosessia monimutkaistettaisiin turhaan ilman selkeitä hyötyjä per
 \newthought{Kuten kapppaleen} \nameref{super} koodiesimerkeissä nähtiin, voidaan lapsiluokan olio
 tallentaa muuttujaan, jonka tyypiksi on määritelty emoluokan olio. Tällöin muuttujaan tallennettua
 olioita voidaan kohdella kuin emoluokan oliota. Tämä käyttäytyminen mahdollistaa monia hyödyllisiä
-toiminnallisuuksia, kuten monen eri lapsiluokan instanssien tallentamista samaan \java{ArrayList}-
-instanssiin, kunhan kyseinen \java{ArrayList}-instanssi on luotu viitaten kantaluokkaan, eikä
+toiminnallisuuksia, kuten monen eri lapsiluokan ilmentymien tallentamista samaan \java{ArrayList}-
+ilmentymään, kunhan kyseinen \java{ArrayList}-ilmentymä on luotu viitaten kantaluokkaan, eikä
 lapsiluokkaan.
 
 \newthought{Kuitenkin tällainen} luokkien käyttäminen luo velvotteita lapsiluokkien suunnitteluun.
@@ -1544,8 +1546,8 @@ on suunniteltu helpottamaan laadukkaan oliopohjaisen koodin tuottamista ja loput
 käsitellään myöhemmin luvussa \nameref{solid}.
 
 \newthought{\Gls{Liskovin korvaavuusperiaate}} määrittelee kantaluokan ja lapsiluokkien suhteen
-seuraavasti: "Mikä tahansa emoluokan instanssi pitäisi olla korvattavassa millä tahansa 
-lapsiluokan instanssilla ilman että ohjelman toiminta häiriintyy." Käytännössä tämä tarkoittaa,
+seuraavasti: "Mikä tahansa emoluokan ilmentymä pitäisi olla korvattavassa millä tahansa 
+lapsiluokan ilmentymällä ilman että ohjelman toiminta häiriintyy." Käytännössä tämä tarkoittaa,
 että lapsiluokkien ei pitäisi ylikirjoittaa emoluokkien julkisia kenttiä niin että kentän
 toiminnallisuus ulkoa tarkasteltaessa muuttuu. Esimerkiksi metodin ylikirjoittaminen
 toimimattomalla tyngällä rikkoo täten Liskovin korvaavuusperiaatetta.
@@ -1611,7 +1613,7 @@ rajapintaluokan vastaavan metodin määritelmän kanssa.
 
 \newthought{Rajapintaluokka määritellään} Javassa korvaamalla normaalin luokan määritelmän 
 \java{class}-avainsana \newjava{interface}-avainsanalla. Rajapintaluokkasta ei voi luoda
-instansseja, eikä luokalle voi määrittää rakentajaa. Ainoat tietokentät, jotka ovat hyväksyttyjä
+ilmentymiä, eikä luokalle voi määrittää rakentajaa. Ainoat tietokentät, jotka ovat hyväksyttyjä
 rajapintaluokassa ovat oletuksena näkyvyydeltään julkisia luokkamuuttujavakioita. Mikäli muuttujan
 määritelmä rajapintaluokassa ei sisällä avainsanoja \java{public}, \java{static} ja \java{final}
 lisätään ne määritelmään automaattisesti. Muiden näkyvyysmääreiden käyttäminen estää ohjelmiston
@@ -1657,7 +1659,7 @@ rajapinta \java{implements}-avainsanalla. Esimerkiksi pelinkehityksessä saateta
 tuhoutuvia objekteja, joita varten voitaisiin luoda "Destructable"-rajapintaluokka jolle on
 määritelty "destroyObject"-metodi. Koodi voi sitten tarkistaa implementoiko jokin luokka tämä
 rajapinnan \newjava{instanceof}-avainsanalla ja jos luokka implementoi "Destructable"-rajapinnan,
-koodi voi kutsua "destroyObject"-metodia luokan instanssista tuhoten objektin.
+koodi voi kutsua "destroyObject"-metodia luokan ilmentymästä tuhoten objektin.
 
 \newthought{Rajapintaluokan ja} abstraktin luokan käyttötarkoitukset siis eroavat toisistaan
 hieman. Yleisesti rajapintaluokan tehtävä on määrittää laajemmin käytössä oleva sopimus, joka
@@ -1696,15 +1698,15 @@ määrittelemiä luokkia, sillä kaikki primitiiviset tietotyypit ja suurin osa 
 yleisesti käytetyistä luokista, kuten kokoelmat, implementoivat \java{Serializable}-rajapinnan.
 
 \newthought{Jos luokka} ja kaikki luokan muuttujat implementoivat \java{Serializable}-rajapinnan,
-voidaan luokan instanssi muuttaa tekstimuotoon \newjava{ObjectOutputStream}-luokan avulla.
+voidaan luokan ilmentymä muuttaa tekstimuotoon \newjava{ObjectOutputStream}-luokan avulla.
 Luokan julkinen rakentaja ottaa \java{OutputStream}-olion, joka edustaa datakuluttajaa, johon
-serialisoitava objekti kirjoitetaan. Luodusta instanssista voidaan kutsua instanssin writeObject-
+serialisoitava objekti kirjoitetaan. Luodusta ilmentymästä voidaan kutsua ilmentymän writeObject-
 metodia serialisoitavalla oliolla. Tämä kirjoitaa olion serialisoidun tavudataversion
 \java{ObjectOutputStream}-rakentajassa määriteltyyn \java{OutputStream}-olioon.
 
 \newthought{Luokan deserialisaatio} tapahtuu \newjava{ObjectInputStream}-luokan avulla. Luokan
 julkinen rakentaja ottaa \java{InputStream}-olion, joka edustaa datasyötettä, josta
-deserialisoitava objekti on luettavissa. Luodusta instassista voidaan kutsua instanssin
+deserialisoitava objekti on luettavissa. Luodusta ilmentymästä voidaan kutsua ilmentymän
 readObject-metodia ilman argumentteja. Tämä palauttaa deserialisoidun olion luetun tavudatan
 pohjalta.
 
@@ -1724,11 +1726,11 @@ tallennetaan tiedostoon, on normaalia nimetä tiedosto ".ser"-päätteellä.
 \label{singletonkappale}
 
 \newthought{Välillä ohjelmistoa} luodessa on tarve luoda luokka, josta on olemassa vain yksi
-instanssi, jota muu ohjelma voi kutsua tarvittaessa. Tähän käyttötarkoitukseen on kehitettu
+\gls{ilmentyma}, jota muu ohjelma voi kutsua tarvittaessa. Tähän käyttötarkoitukseen on kehitettu
 suunnittelumalli nimeltä \neweng{singleton}{singleton}. Suunnittelumallin ideana on tallentaa
-luokan instanssi yksityiseen luokkamuuttujaan ja tarjota julkinen "getInstance"-luokkametodi,
-joka joko hakee olemassaolevan instanssin luokkamuuttujasta tai luo uuden instanssin
-luokkamuuttujaan, mikäli instanssia ei vielä ole olemassa. Seuraava koodiesimerkki esittelee
+luokan ilmentymä yksityiseen luokkamuuttujaan ja tarjota julkinen "getInstance"-luokkametodi,
+joka joko hakee olemassaolevan ilmentymän luokkamuuttujasta tai luo uuden ilmentymän
+luokkamuuttujaan, mikäli ilmentymää ei vielä ole olemassa. Seuraava koodiesimerkki esittelee
 tämän toteutuksen käytännössä.
 
 \code{week8}{SingletonExample}{Singleton-suunnittelumallin toteuttava luokka}
@@ -1907,8 +1909,8 @@ toivotun virhetilaluokan \java{Exception}-luokasta.
 
 \newthought{Oman virhetilaluokan} luominen ei hyödytä ohjelmistoa, ellei ohjelmointikieli tarjoa
 työkaluja käyttää luotua virhetilaluokkaa. Tätä varten Java tarjoaa \java{throw}-avainsanan.
-Avainsanaa käytetään lisäämällä avainsanan perään jonkin virhetilan instanssi, tai luomalla uusi
-virhetilaluokan instanssi \java{new}-avainsanalla. Tämä aiheuttaa koodin siirtymisen
+Avainsanaa käytetään lisäämällä avainsanan perään jonkin virhetilan ilmentymä, tai luomalla uusi
+virhetilaluokan ilmentymä \java{new}-avainsanalla. Tämä aiheuttaa koodin siirtymisen
 virhetilanhallintaan, josta aiheutettu virhetila voidaan hallitusti napata ylemmällä tasolla. Tämä
 mahdollistaa siistin virhetilasta palautumisen tasolla, jossa se on mahdollista. 
 
@@ -1969,24 +1971,24 @@ pilkulla eroteltuina, metodin parametrien tapaan.
 geneeristä luokkaa tai metodia kutsuvien koodin osien on toteutettava tämä ehto luokalle tai
 metodille tarjoamissaan tyypeissä. Tämä tapahtuu lisäämällä heti rajattavan tyyppiparametrin
 perään \java{extends}-avainsana ja ylärajaluokka. Rajattu tyyppiparametri vaatii, että parametriin
-annettu tyyppi on joko ylärajaluokan instanssi tai jonkin ylärajaluokasta periytyvän luokan
-instanssi.
+annettu tyyppi on joko ylärajaluokan ilmentymä tai jonkin ylärajaluokasta periytyvän luokan
+ilmentymä.
 
 \newthought{Kuten kappaleessa} \nameref{listat} opittiin, määriteltäessä geneerisen luokan
-instanssin säilövää muuttujaa täytyy tyyppiparametri antaa samalla notaatiolla kuin luokan
+ilmentymän säilövää muuttujaa täytyy tyyppiparametri antaa samalla notaatiolla kuin luokan
 määritelmässä. Tätä geneerisen luokan tyyppiparametrin määrittelemistä kutsutaan
-parametrisoinniksi. Luotaessa instanssia olemassa olevaan parametrisoituun muuttujaan, voidaan
+parametrisoinniksi. Luotaessa ilmentymää olemassa olevaan parametrisoituun muuttujaan, voidaan
 Java 7:ssä ja uudemmissa Javan versioissa jättää tyyppiparametrit määrittelemättä: kääntäjä osaa
-tulkita ne muuttujasta, johon instanssia luodaan. Samaan tapaan kutsuttaessa geneeristä metodia
+tulkita ne muuttujasta, johon ilmentymää luodaan. Samaan tapaan kutsuttaessa geneeristä metodia
 kääntäjä tulkitsee tyyppiparametrit annettujen muuttujien tyypeistä.
 
 Seuraava koodiesimerkki esittelee
 geneerisen säilöluokan toteuttamisen ja geneerisen metodin toteuttamisen säilöluokalle, sekä
-luokan instanssin luomisen ja metodin kutsumisen.
+luokan ilmentymän luomisen ja metodin kutsumisen.
 
 \code{week10/genericexample}{GenericContainer}{Geneerinen säiliöluokka, jolla on geneerinen metodi
 säiliön sisällön vaihtamiseen}
-\code{week10/genericexample}{GenericExample}{Säiliöluokan instanssin luominen, ja vaihtometodin
+\code{week10/genericexample}{GenericExample}{Säiliöluokan ilmentymän luominen, ja vaihtometodin
 kutsuminen}
 
 \subsection{Geneerisyys ja perintä}
@@ -1999,7 +2001,7 @@ ei enää ole geneerinen, sillä sen tyyppiparametria ei voida määrittää luo
 parametrisointia ei ole pakko toteuttaa, periytymisessä voidaan geneerinen parametri myös
 jättää ennalleen tai sen rajausta voidaan tiukentaa. Rajauksen löysentäminen ei kuitenkaan ole
 mahdollista. Mikäli kantaluokka on geneerinen tyypin T yli ja T on rajattu olemaan tietyn luokan
-tai sen lapsiluokkien instanssi, ei voida ilmoitta T:hen käyvän minkä tahansa olion. Tämä rikkoisi
+tai sen lapsiluokkien ilmentymä, ei voida ilmoitta T:hen käyvän minkä tahansa olion. Tämä rikkoisi
 kantaluokan toiminnallisuuden ja täten ei seuraa \gls{Liskovin korvaavuusperiaate}tta.
 
 \newthought{Seuraava koodiesimerkki} esittelee geneerisen validointirajapinnan ja kahden
@@ -2032,15 +2034,15 @@ kokoelmaluokasta liittyy kokoelmaluokan tehtävään ja \gls{yhden vastuun peria
 tehtäviin lisättäisiin iterointikohdan muistaminen, luokalla olisi kaksi tehtävää. Tästä syystä
 kokoelmaluokat tarjoavat \newjava{iterator}-metodin ja \java{List}-rajapinnan toteuttavat listat
 \newjava{listIterator}-metodin näiden iterointiluokkien luomiseen. Nimiensä mukaisesti
-\java{iterator}-metodi luo \java{Iterator}-instanssin ja \java{listIterator}-metodi luo
-\java{ListIterator}-instanssin.
+\java{iterator}-metodi luo \java{Iterator}-ilmentymän ja \java{listIterator}-metodi luo
+\java{ListIterator}-ilmentymän.
 
 \newthought{Iteraattorien käyttö} on melko simppeliä. Iteraattoriolio muistaa indeksin, johon
-asti kokoelmaa on iteroitu ja mahdollistaa seuraavan instanssin olemassaolon tarkistamisen
-hasNext-metodilla, joka ei ota argumentteja ja palauttaa totuusarvon seuraavan instanssin
-olemassaolosta. Seuraava instanssi voidaan noutaa metodilla next, joka ei ota argumentteja ja
-palauttaa seuraavan instanssin, sekä korottaa iterointi-indeksiä iteraattoriluokan sisällä
-yhdellä. Mikäli seuraavaa instanssia ei ole, aiheuttaa next-metodi
+asti kokoelmaa on iteroitu ja mahdollistaa seuraavan alkion olemassaolon tarkistamisen
+hasNext-metodilla, joka ei ota argumentteja ja palauttaa totuusarvon seuraavan alkion
+olemassaolosta. Seuraava alkio voidaan noutaa metodilla next, joka ei ota argumentteja ja
+palauttaa seuraavan alkion, sekä korottaa iterointi-indeksiä iteraattoriluokan sisällä
+yhdellä. Mikäli seuraavaa alkiota ei ole, aiheuttaa next-metodi
 NoSuchElementException-virhetilan. \java{ListIterator} omistaa lisäksi hasPrevious ja previous
 -metodit, jotka toimivat samalla tavalla, mutta iteroivat kokoelmaa takaperin. Sekä
 \java{Iterator}-oliot että \java{ListIterator}-oliot sisältävät lisäksi mahdollisuuden ajaa
@@ -2052,7 +2054,7 @@ kykenevät myös poistamaan viimeisimmän noudetun kokoelman alkion remove-metod
 
 \newthought{Näiden jaettujen} toiminnallisuuksien lisäksi \java{ListIterator}-rajapinta
 määrittelee set- ja add-metodit. Metodit ottavat iteraattorin pohjana olevan 
-\java{List}-instanssin alkiotyypin olion. Metodi set asettaa viimeisimmän noudetun kokoelman
+\java{List}-ilmentymän alkiotyypin olion. Metodi set asettaa viimeisimmän noudetun kokoelman
 alkion tilalle annetun alkion ja add-metodi lisää annetun alkion listaan viimeisimmän noudetun
 alkion jälkeiseksi alkioksi. Iteraattorien käyttö koodissa esitellään \nameref{consumers}-osion
 koodiesimerkin yhteydessä.
@@ -2063,10 +2065,10 @@ koodiesimerkin yhteydessä.
 \newthought{Viime kappaleessa} (\nameref{iterators}) esiteltiin
 \neweng{kuluttaja}{consumer}-tyyppisen luokan idea. Kuluttaja on metodi, joka ottaa yhden
 määritellyn tyyppisen olion ja ei palauta mitään, periaatteessa kuluttaen vastaanottamansa
-instanssin. Java tarjoaa erillisen geneerisen \java{Consumer}-rajapintaluokan tällaisten
+ilmentymän. Java tarjoaa erillisen geneerisen \java{Consumer}-rajapintaluokan tällaisten
 kuluttajien luomiseen. Rajapintaluokka on geneerinen tyyppiparametrin T yli ja määrittelee kaksi
 metodia; accept(T) ja andThen(Consumer<? super T>). Rajapinnan kuluttajametodi on accept, se ei
-palauta mitään ja ottaa yhden tyypin T instanssin. Toinen rajapinnan tarjoama metodi on
+palauta mitään ja ottaa yhden tyypin T ilmentymän. Toinen rajapinnan tarjoama metodi on
 andThen-joka ottaa toisen kuluttajan, jonka pitää olla parametrisoitu samoin tai löysemmin rajoin
 kuin metodin omaava kuluttajaimplementaatio ja palauttaa yhdistetyn kuluttajan, joka kutsuu
 molempien kuluttajien accept-metodia vuorotellen.
@@ -2096,7 +2098,7 @@ sisällä. Tämän luokan nimi on \neweng{sisaluokka}{inner class}. Sisäluokka 
 tahansa luokan sisällä määritelty kenttä. Se näkee kaikki muuttujat luokasta, jonka sisällä se on 
 määritelty ja se voidaan normaalin luokan sijaan määritellä näkyvyysmääreellä \java{protected} tai
 \java{private}. Tarvittaessa sisäluokka voidaan myös luoda \java{static}-avainsanalla, jolloin
-siihen voidaan viitata luomatta sen omistavan luokan instanssia.
+siihen voidaan viitata luomatta sen omistavan luokan ilmentymää.
 
 \newthought{Sisäluokkien käyttötarve} perustuu lähinnä puhtaamman koodin tuottamiseen: ne eivät
 tarjoa valtavaa toiminnallista etua, vaan mahdollistavat koodin jäsentämisen tavalla, joka on
@@ -2104,13 +2106,13 @@ joskus luonnollisempi ja luettavampi. Esimerkiksi jossain \gls{kompositio}rakent
 yksi luokka tarvitsee toista luokkaa. Jos tämä toinen luokka on tarpeeksi pieni, voi olla
 järkevämpää määritellä tämä luokka sisäluokkana. Lisäksi sisäluokkien uniikki kyky nähdä kaikki 
 ulomman luokan muuttujat ja metodit, mukaan lukien yksityiset muuttujat ja metodit, saattaa auttaa
-enkapsulaation parantamisessa. Mikäli luokka A paljastaa jonkin metodin tai luo noutajan jollekin
+kapseloinnin parantamisessa. Mikäli luokka A paljastaa jonkin metodin tai luo noutajan jollekin
 muuttujalle vain luokkaa B varten, voi olla syytä muuttaa luokka B luokan A sisäluokaksi. Näin
 aiemmin julkiset kentät voidaan muuttaa yksityisyksi. Seuraava koodiesimerkki esittelee
 sisäluokan luomisen ja käytön perusteet.
 
 \code{week11/innerclassexample}{OuterClass}{Luokka, jolla on sisäluokka}
-\code{week11/innerclassexample}{InnerClassesExample}{Sisäluokan instanssin luominen ja käyttö}
+\code{week11/innerclassexample}{InnerClassesExample}{Sisäluokan ilmentymän luominen ja käyttö}
 
 \newthought{Sisäluokka} ei ole sama asia kuin \neweng{anonyymi luokka}{anonymous class}. Siinä
 missä sisäluokka on toiminnallisuuksiltaan täysi luokka, joka vaan sattuu sijaitsemaan toisen 
@@ -2119,7 +2121,7 @@ rajapintaluokalle. Anonyymi luokka luodaan tallentamalla rajapintaluokan tyyppis
 implementoitavan rajapintaluokan \java{new}-avainsanalla luotu parametriton rakentajaakutsu. Tätä
 kutsua on seurattava anonyymin luokan rungon määritelmä suljettuna aaltosulkeisiin. Runkoon
 voidaan määritellä muuttujia, mutta luokkaa ei voi nimetä, vaan luotu luokka rakennetaan saman
-tien ja luokan ainut instanssi sidotaan annettuun muuttujaan. Seuraava koodiesimerkki esittelee
+tien ja luokan ainut ilmentymä sidotaan annettuun muuttujaan. Seuraava koodiesimerkki esittelee
 \nameref{consumers}-kappaleen koodiesimerkin toteuttamisen luomalla Printer-kuluttajaa vastaava
 luokka anonyymina luokkana Main-luokassa. Huomaa myös kuinka anonyymi luokka voi olla
 määritelty \java{static}-avainsanalla tarvittaessa.
@@ -2138,22 +2140,22 @@ metodille, Java ei kerro "käytä arvoa 'MyObject'". Tämän sijaan Java kertoo 
 löytyy tästä osasta muistia". Tämä helpottaa kielen käyttöä normaalitilanteissa, sillä kieli ei
 tarvitse C:n kaltaista osoitinsyntaksia antaakseen metodeille viittauksia. Toisaalta muuttujien
 kopioiminen muuttuu tämän takia hankalammaksi, sillä jos käyttäjä vain tallentaa "MyObject"
-instanssin uuteen muuttujaan tämä ei kopioi instanssin arvoja. Sen sijaan tällainen tallennus luo
-uuden viittauksen samaan "MyObject"-instanssiin. Jos tämän uuden muuttujan tilaa muokataan, myös
+ilmentymän uuteen muuttujaan tämä ei kopioi ilmentymän arvoja. Sen sijaan tällainen tallennus luo
+uuden viittauksen samaan "MyObject"-ilmentymään. Jos tämän uuden muuttujan tilaa muokataan, myös
 vanhan muuttujan tila muuttuu. Näin luodun kopion nimi on \neweng{viitekopio}{reference copy}.
 
 
-\newthought{Mikäli halutaan} luoda aidosti uusi kopio "MyObject"-instanssista tarvitaan Javassa
+\newthought{Mikäli halutaan} luoda aidosti uusi kopio "MyObject"-ilmentymästä tarvitaan Javassa
 \newjava{Object}-luokan clone-metodia. Jota olio voisi hyödyntää metodia, täytyy sen implementoida
 \newjava{Cloneable}-rajapintaluokka ja ylikirjoitettava \java{Object}-luokasta peritty
 clone-metodi. Tässä vaiheessa on tehtävä päätös onko toivottu kopioinnin tulos \neweng{matala
 kopio}{shallow copy} vai \neweng{syva kopio}{deep copy}. 
 
 \newthought{\Gls{matala kopio}} kopioi kaikki luokan muuttujat viittauskopioina, mikäli muuttuja
-on jonkin luokan instanssi ja suorittaa arvokopion vain jos muuttujan tyyppi on primitiivinen
-tietotyyppi. Näin kopiointi on melko nopea toimenpide ja uusi ja alkuperäinen instanssi eivät ole
-suoraan riippuvaisia toisistaan. Kuitenkin luodun uuden instanssin ei-primitiivisen tietotyypin
-muuttujat viittavaat samoihin olioihin kuin alkuperäisen instanssin vastaavat muuttujat. Täten
+on jonkin luokan ilmentymä ja suorittaa arvokopion vain jos muuttujan tyyppi on primitiivinen
+tietotyyppi. Näin kopiointi on melko nopea toimenpide ja uusi ja alkuperäinen ilmentymä eivät ole
+suoraan riippuvaisia toisistaan. Kuitenkin luodun uuden ilmentymän ei-primitiivisen tietotyypin
+muuttujat viittavaat samoihin olioihin kuin alkuperäisen ilmentymän vastaavat muuttujat. Täten
 uuden ja alkuperäisen kopion tilat ovat edelleen jossain määrin riippuvaisia toisistaan. Tämä
 kopiointityyli on Javan oletuskopiointi ja voidaan täten saavuttaa ylikirjoitetun clone-metodin
 sisällä kutsumalla super().clone -metodia.
@@ -2161,17 +2163,17 @@ sisällä kutsumalla super().clone -metodia.
 \newthought{\Gls{syva kopio}} puolestaan kopioi kaikki alkuperäisen luokan muuttujat syväkopioina
 rekursiivisesti. Tällainen kopiointi kuluttaa huomattavasti enemmän resursseja kuin viitekopion
 tai matalan kopion luominen, etenkin pitkissä riippuvuusketjuissa. Kopiointityylin etuna on, että
-se luo kopioidun instanssin, jonka tila on täysin riippumaton alkuperäisen instanssin tilasta.
+se luo kopioidun ilmentymän, jonka tila on täysin riippumaton alkuperäisen ilmentymän tilasta.
 Syvää kopiointia ei ole mahdollista implementoida yhden luokan clone-metodissa. Sen sijaan luokan
 on manuaalisesti kutsuttava clone-metodissaan kaikkien muuttujiensa clone-metodia, eli myös
 kaikkien luokan muuttujien on toteutettava \java{Cloneable}-rajapinta. Tämä syväkopioiva
-clone-metodi on sitten implementoitava jokaiseen luokkaan, jonka instanssin luokka omistaa ja niin
+clone-metodi on sitten implementoitava jokaiseen luokkaan, jonka ilmentymän luokka omistaa ja niin
 edelleen täydellisen syväkopion saavuttamiseksi. Kopioinnin voi kuitenkin suorittaa jollain
 tasolla matalan kopion ja täydellisen syväkopion välillä.
 
 \newthought{Seuraava koodiesimerkki} esittelee luokan A, joka tukee matalan kopion luomista
-itsestään ja luokan, joka sisältää luokan A instanssin ja jonka kopiointimetodi luo
-matalan kopion instanssin omistamasta luokan A instanssista ja muuten kopio luokan B normaalina
+itsestään ja luokan, joka sisältää luokan A ilmentymän ja jonka kopiointimetodi luo
+matalan kopion ilmentymän omistamasta luokan A ilmentymästä ja muuten kopio luokan B normaalina
 matalana kopiona.
 
 \code{week11/cloningexample}{DataPoint}{Matalan kopion luomista tukeva luokka}
