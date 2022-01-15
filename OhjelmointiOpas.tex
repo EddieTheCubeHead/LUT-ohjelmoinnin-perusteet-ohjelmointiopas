@@ -336,7 +336,7 @@ laatua huomaamattomasti.
 
 \newthought{Java} on staattisesti tyypitetty korkean tason oliopohjainen ohjelmointikieli, joka
 pyrkii standardisoimaan ohjelmien kirjoittamisen alustasta riippumatta. Java-ohjelmat käännetään
-bittikoodiksi, joka ajetaan Java-virtuaalikoneella siten, että tismalleen sama koodi voidaan ajaa
+tavukoodiksi, joka ajetaan Java-virtuaalikoneella siten, että tismalleen sama koodi voidaan ajaa
 jokaisella alustalla, jolle virtuaalikone voidaan asentaa.
 
 \newthought{Tästä syystä} Java toimii tismalleen samoin kaikilla käyttöjärjestelmillä. Tämä
@@ -363,7 +363,7 @@ koodista, sen tehtävä on vain selventää miten kommenttien sijoittelu vaikutt
 
 \code{week2/basicexamples}{Commenting}{Kommentointi Javassa}
 
-\subsection{Primitiiviset tietotyypit ja String}
+\subsection{Perustietotyypit ja String}
 \label{tietotyypit}
 
 \newthought{Yksiä tärkeimmistä} koodin osista ovat ehdottomasti \textit{\gls{muuttuja}t}
@@ -371,13 +371,12 @@ koodista, sen tehtävä on vain selventää miten kommenttien sijoittelu vaikutt
 luokan ilmentymän, tai kokonaislukumuodossa esitetyn simppelin datayksikön. Koska Java on 
 \neweng{staattinen kieli}{statically typed language}, täytyy siinä jokaisen muuttujan tietotyyppi
 määritellä muuttujan määrittelyn yhteydessä. Muuttujan tyyppi voi olla joko jokin käyttäjän
-määrittelemä luokka, jokin Javan standardikirjaston luokka, tai jokin \neweng{primitiivinen
-tietotyyppi}{primitive data type}.
+määrittelemä luokka, jokin Javan standardikirjaston luokka, tai jokin
+\neweng{perustietotyyppi}{primitive data type}.
 
-\newthought{Java sisältää} yhteensä kahdeksan primitiivistiä tietotyyppiä. Nämä määritellään
-pienellä alkukirjaimella kirjoitetulla tyypin nimellä. Seuraava taulukko ja koodiesimerkki
-sisältävät kaikki primitiivisten tietotyyppien nimet, arvojoukot, oletusarvot ja määrittelytavan
-koodissa.
+\newthought{Java sisältää} yhteensä kahdeksan perustietotyyppiä. Nämä määritellään pienellä
+alkukirjaimella kirjoitetulla tyypin nimellä. Seuraava taulukko ja koodiesimerkki sisältävät
+kaikki perustietotyyppien nimet, arvojoukot, oletusarvot ja määrittelytavan koodissa.
 
 \bigskip
 \begin{center}
@@ -398,14 +397,14 @@ Avainsana & Oletusarvo & Arvojoukko \\
 \addlinespace
 \newjava{float} & 0.0f & noin $1.4e-45$:stä noin $3.4e+38$:aan \\
 \addlinespace
-\newjava{double} & 0.0d & noin $4.9e-324d$:stä noin $1.8e+308d$:hen \\
+\newjava{double} & 0.0d & noin $4.9e-324$:stä noin $1.8e+308$:hen \\
 \addlinespace
 \newjava{char} & 0 & $0$:sta $2^{16}-1$:een \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\code{week2/basicexamples}{DataTypes}{Primitiiviset tietotyypit Javassa}
+\code{week2/basicexamples}{DataTypes}{Perustietotyypit Javassa}
 
 \newthought{Näiden tietotyyppien} lisäksi Javasta löytyy monta valmiiksi määriteltyä luokkaa datan
 säilömistä varten. Näistä tärkein kielen opettelua aloitettaessa on ehdottomasti merkkijonoja
@@ -430,8 +429,8 @@ hipsut (') eivät toimi, koska niitä käytetään char-tyypin muuttujien määr
 \newthought{Luokat ovat} Javan ydin ja kaiken koodin rakennuspala. Kaikki koodi Javassa on
 suljettava luokan sisään, niin myös ohjelman ajon aloittava koodi. Tästä syystä jokaisessa
 Java-ohjelmistossa on yksi erikseen määritelty pääluokka, joka sisältää main-metodin. Tämä
-metodi määritellään avainsanoilla \java{public} \java{static} \java{void} ja sen 
-\neweng{signatuuri}{signature} on \java{main}(\java{String}[] args). Void-avainsana selitetään
+metodi määritellään avainsanoilla \newjava{public} \newjava{static} \newjava{void} ja sen 
+\neweng{signatuuri}{signature} on \newjava{main}(\java{String}[] args). Void-avainsana selitetään
 myöhemmin tässä kappaleessa osiossa \nameref{metodi} ja static-avainsana kappaleessa
 \nameref{static}. Toistaiseksi riittää sisällyttää nämä avainsanat annetussa järjestyksessä
 main-metodin määritelmään. Pääluokan ei tarvitse olla ainoa main-metodin sisältävä luokka, mutta
@@ -446,7 +445,7 @@ luokka on näkyvyysmääreellä \java{public}. Koko määritelmä koostuu näkyv
 \java{class} -avainsanasta ja luokan nimestä, jota seuraa luokan käyttäytymisen määrittävä koodi
 hakasulkeisiin suljettuna. Seuraavassa koodiesimerkissä on kommentoitu auki yksinkertaisen
 pääluokan luonti (huomaa pääluokan nimeämisen vapaus) ja sen sisään "Hello world!" tulostavan
-main-funktion lisääminen.
+main-metodin lisääminen.
 
 \subsection{Tulostaminen Javassa}
 \label{print}
@@ -472,10 +471,10 @@ ja sitä seuraavasta sulkuihin suljetusta parametrien määritelmästä ja lopul
 suljetusta metodin koodista. Metodin parametrit vaativat pythonista poiketen parametrin nimen
 määritelmän lisäksi myös parametrin tyypin määrittämistä. Vastaavasti metodia kutsuttaessa on
 argumenttien, jolla metodia kutsutaan oltava metodin yhteydessä määriteltyä tyyppiä. Jos metodi
-ei palauta mitään, määritellään sen paluuarvoksi \newjava{void}.
+ei palauta mitään, määritellään sen paluuarvoksi \newjava{void}, eli ei paluuarvoa.
 
-\newthought{Metodien nimeämisessä} suositellaan Javassa vahvasti niin sanottua camel case-
-nimeämistapaa. Tavassa kaikki nimen sanat kirjoitetaan yhteen niin, että nimi aloitetaan
+\newthought{Metodien nimeämisessä} suositellaan Javassa vahvasti niin sanottua 
+camelCase-nimeämistapaa. Tavassa kaikki nimen sanat kirjoitetaan yhteen niin, että nimi aloitetaan
 pienellä kirjaimella ja seuraavat sanat aloitetaan isolla alukirjaimella. Täten esimerkiksi
 "parse user name"-metodin nimi on muotoa "parseUserName". On myös vahvasti suositeltua käyttää
 verbiä metodin nimessä. Tämä helpottaa metodien ja muuttujien erottamista ja pakottaa
@@ -496,7 +495,7 @@ palauttaa tämän tyypin muuttujan, jota voidaan käyttää koodissa.
 \subsection{If-lause ja else-lause}
 \label{if else}
 
-\newthought{Ohjelmointi on} pohjimmiltaan logiikkaa. Ohjelman ajon muokkaaminen olosuheiden
+\newthought{Ohjelmointi on} pohjimmiltaan logiikkaa. Ohjelman ajon muokkaaminen olosuhteiden
 mukaan tekee ohjelmasta älykkään. Yksinkertaisin tapa muokata ohjelman toimintaa on
 \newjava{if}-lause ja sen kanssa toimiva \newjava{else}-lause. Lauseet mahdollistavat ennalta
 määriteltyjen koodin osien ajamisen annetun lauseen totuusarvon mukaan.
@@ -524,10 +523,11 @@ että normaalisti ehtolauseiden arvoa ei tiedetä ennen ohjelman ajoa, vaan se m
 \subsection{Rakentajat, luokan ilmentymän luominen ja this}
 \label{new this}
 
-\newthought{Olioiden hallinta} on Javalla ohejlmoinnin ytimessä. Koodissa on luotava uusia
+\newthought{Olioiden hallinta} on Javalla ohjelmoinnin ytimessä. Koodissa on luotava uusia
 ilmentymiä sekä Javan standardikirjaston luokista, että käyttäjän itse määrittelemistä luokista.
-Uusi ilmentymä luokasta luodaan \newjava{new}-avainsanalla. Avainsanaa seuraa luotavan luokan
-nimi ja luomisen parametrit sulkuihin suljettuna, tai tyhjä pari sulkuja.
+Uusi ilmentymä luokasta luodaan \newjava{new}-avainsanalla. Avainsanaa seuraa luotavan ilmentymän
+luokan nimi ja luomisen mahdolliset parametrit sulkuihin suljettuna. Mikäli ilmentymän luominen
+ei vaadi parametrejä, jätetään sulut tyhjäksi.
 
 \newthought{Luokan ilmentymän} luonti tyhjänä ja alustamattomana on usein kömpelöä ja vaatisi
 useita rivejä manuaalista arvojen asettamista jokaisen uuden ilmentymän luonnin yhteydessä.
@@ -538,16 +538,17 @@ kanssa. Rakentajan voi määritellä ottamaan mitä tahansa argumentteja kyseine
 Rakentajametodi ei tarvitse \java{return}-avainsanaa, vaan palauttaa automaattisesti
 käsittelemänsä ilmentymän.
 
-\newthought{Rakentajan yhteydessä} on tärkeää puhua \newjava{this}-avainsanasta. This tarjoaa
-ohjelmalle mahdollisuuden viitata luokan ilmentymää, jolle jokin metodi kuuluu. This toimii
-vain rakentajassa ja ilmentymään sidotuissa metodeissa, eli konteksteissa, joissa ilmentymä, johon
-viitataan on tiedossa. Täten rakentajassa voidaan yhdistämällä this-avainsana ja pistenotaatio
-viitata helposti rakennettavaan ilmentymään.
+\newthought{Rakentajan yhteydessä} on tärkeää puhua \newjava{this}-avainsanasta. This on
+saatavilla kaikissa jäsenmetodeissa (metodi, jota ei ole määritelty \java{static}-avainsanalla) ja
+tarjoaa viittauksen olioon, josta metodia on kutsuttu. Koska rakentajaa käsitellään myös
+jäsenmetodina, this on saatavilla myös rakentajan sisällä, viitaten ilmentymään, jota rakentaja
+on rakentamassa. Täten rakentajassa voidaan yhdistämällä this-avainsana ja pistenotaatio viitata
+helposti rakennettavaan ilmentymään.
 
 \newthought{Seuraava koodiesimerkki} esittelee rakentajan määrittelemisen ja new-avainsanan
-käytön rakentajan kanssa. On huomioitavaa, että seuraavassa alakappaleessa käsiteltävä
-ylikuormittaminen toimii myös rakentajametodeihin, eli luokalla voi olla useampi ylikuormitettu
-rakentajametodi. Koodiesimerkki kuitenkin käyttää vain yhtä rakentajametodia.
+käytön rakentajan kanssa. On huomioitavaa, että seuraavassa alakappaleessa (\nameref{overloading})
+käsiteltävä ylikuormittaminen toimii myös rakentajametodeihin, eli luokalla voi olla useampi
+ylikuormitettu rakentajametodi. Koodiesimerkki kuitenkin käyttää vain yhtä rakentajametodia.
 
 \code{week2/constructorexample}{ClassWithConstructor}{Rakentajan luonti Javassa}
 \code{week2/constructorexample}{ConstructorExample}{\java{new}-avainsanan käyttö}
@@ -573,8 +574,8 @@ tulostettavan muuttujan tietotyyppi int vai String.
 \subsection{Näkyvyysmääreet}
 \label{näkyvyysmääreet}
 
-\newthought{Lähes kaikkien} koodin osien, kuten muuttujan, metodin, interface-luokan tai luokan
-luominen Javassa tukee kyseisen koodin osan näkyvyyden määrittämistä. Tämä määritelmä on nimeltään 
+\newthought{Lähes kaikkien} koodin osien, kuten muuttujan, metodin tai luokan luominen Javassa
+tukee kyseisen koodin osan näkyvyyden määrittämistä. Tämä määritelmä on nimeltään
 \neweng{nakyvyysmaare}{access modifier}. Kuten oppaan luvussa \nameref{koodin laadusta} todettiin,
 yksi olio-ohjelmoinnin ydinideoista on \gls{kapselointi}, eli koodin osien vastuiden tarkka
 rajaaminen. Näkyvyysmääreet ovat tärkein työkalu tämän suhteen. Näkyvyysmääre rajoittaa
@@ -590,7 +591,7 @@ Avainsana & Näkyvyys & Käyttökohteet \\
 \midrule
 \newjava{private} & Vain tämä luokka & Luokkien ominaisuudet \\
 \addlinespace
-Ei avainsanaa (default) & Kaikki luokat tässä paketissa & Luokat ja luokkien ominaisuudet \\
+Ei avainsanaa (oletus) & Kaikki luokat tässä paketissa & Luokat ja luokkien ominaisuudet \\
 \addlinespace
 \newjava{protected} & Kaikki luokat tässä paketissa ja kaikki tämän luokan perivät luokat &
 Luokkien ominaisuudet \\
@@ -609,12 +610,15 @@ ymmärtäminen ei ole vielä ajankohtaista.
 
 \newthought{Tähän mennessä} oppaassa on vältetty näkyvyysmääreiden käyttöä, eli niitä on käytetty
 vain main-metodien määrittelemisen yhteydessä. Tällöin Java-kääntäjä asettaa näkyvyydeksi
-automaattisesti oletusnäkyvyyden (default/package-private), jossa luokka, tai sen ominaisuus näkyy
-kaikkialle sen määrittelypaketin sisällä, muttei muualle. Tämä ei ole suositeltavaa, vaan jokaisen
-luokan ja luokkien jokaisen ominaisuuden näkyvyyden tarve pitäisi arvioida erikseen ja asettaa
-kullekin tiukin mahdollinen näkyvyysmääre. Tämä tyyli paitsi takaa mahdollisimman korkean
-kapseloinnin, myös tekee ohjelmistosta tehokkaamman, koska vain luokan sisällä näkyvät metodit
-voidaan optimoida tehokkaammin ohjelman kääntämisen yhteydessä.
+automaattisesti oletusnäkyvyyden. Oletusnäkyvyys tunnetaan englanniksi nimellä default tai
+package-private, joista jälkimmäinen on hieman yleisempi. Se määrittelee luokan, tai sen
+ominaisuuden näkyvän kaikkialle luokan määrittelypaketin sisällä, muttei muualle koodissa.
+Tämä ei ole suositeltavaa, vaan jokaisen luokan ja luokkien jokaisen ominaisuuden näkyvyyden tarve
+pitäisi arvioida erikseen ja asettaa kullekin tiukin mahdollinen näkyvyysmääre. Tämä tyyli paitsi
+takaa mahdollisimman korkean kapseloinnin, myös tekee ohjelmistosta tehokkaamman, koska vain
+luokan sisällä näkyvät metodit voidaan optimoida tehokkaammin ohjelman kääntämisen yhteydessä.
+Lisäksi \java{private}-avainsanan käyttö oletuksena suojelee arvojen virheellisiltä muutoksilta,
+koska se estää muun koodin suoran pääsyn arvoon.
 
 \newthought{Seuraava koodiesimerkki} sisältää pääluokan ja kaksi apuluokkaa ja esittelee näin
 \java{public} ja \java{private} avainsanojen toimivuuden. Avainsana \java{protected} on esitelty
@@ -646,9 +650,12 @@ alustamisen muuttujille, joiden alustaminen on raskasta, muttei aina tarpeellist
 ulkopuolelta saatava arvo luokan sisällä yksityiseksi määriteltyyn muuttujaan. Asettaja nimetään
 noutajan tapaan camelCase-tyylisesti lisäämällä muuttujan nimen eteen "set". Täten edellä mainitun
 "privateVariable"-muuttujan asettajan nimi on "setPrivateVariable". Asettajafunktio ottaa yleensä
-asetettavan muuttujan tyyppiä olevan ilmentymän eikä palauta mitään. Samoin kuin noutajat,
-asettajat rajoittavat luokan ulkopuolista pääsyä luokan säilömään dataan. Lisäksi asettajat
-vastaavat usein luokan ulkopuolelta tulevan datan validoinnista ennen sen tallentamista
+asetettavan muuttujan tyyppiä olevan ilmentymän. Asettajafunktion paluuarvo on yleensä void tai
+luokka, jossa asentaja on määritetty. Luokan ilmentymän palauttaminen asettajasta mahdollistaa
+asettajakutsujen ketjuttamisen. Esimerkiksi koordinaattiluokan instanssista coordinates voitaisiin
+tällöin asettaa molemmat koordinaatit samalla komennolla "coordinates.setX(10).setY(11). Samoin
+kuin noutajat, asettajat rajoittavat luokan ulkopuolista pääsyä luokan säilömään dataan. Lisäksi
+asettajat vastaavat usein luokan ulkopuolelta tulevan datan validoinnista ennen sen tallentamista
 muuttujaan.
 
 \newthought{Noutajien ja asettajien} käytön perusteet on esitetty seuraavassa koodiesimerkissä.
@@ -665,19 +672,16 @@ asettaja -mallin sijaan.
 \newthought{Tähän mennessä} oppaan käyttämät eri tiedostossa sijaitsevat luokat ovat aina olleet
 osa samaa pakettia, sillä opas jakaa esimerkit paketteihin kappaleen ja aiheen mukaan. Samassa
 paketissa olevat luokat ovat automaattisesti käytettävissä paketin sisällä, joten luokkia ei ole
-tarvinnut tuoda tiedoston nimitilaan tiedoston alussa. Aina tarvittavat luokat eivät kuitenkaan
-sijaitse samassa paketissa. Tätä varten Javassa on \newjava{import}-avainsana. Import-avainsanalla
-listataan tiedoston alussa tiedoston nimitilaan paketin ulkopuolelta tuotavat luokat. Myös Javan
-standardikirjasto sisältää luokkia, jotka on tuotava nimitilaan import-lauseella. Tästä hyviä
-esimerkkejä ovat seuraavaksi käytävät \java{Scanner}, \java{InputStreamReader} ja
-\java{BufferedReader}-luokat.
+tarvinnut tuoda tiedoston nimiavaruuteen tiedoston alussa. Aina tarvittavat luokat eivät
+kuitenkaan sijaitse samassa paketissa. Tätä varten Javassa on \newjava{import}-avainsana.
+Import-avainsanalla listataan tiedoston alussa tiedoston nimiavaruuteen paketin ulkopuolelta
+tuotavat luokat. Myös Javan standardikirjasto sisältää luokkia, jotka on tuotava nimiavaruuteen
+import-lauseella. Tästä hyviä esimerkkejä ovat seuraavassa oppaan osiossa (\nameref{input})
+käytävät \java{Scanner}, \java{InputStreamReader} ja \java{BufferedReader}-luokat.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Syötteen vastaanottamisen perusteet}
-\label{syötteestä}
-
-\subsection{Käyttäjän syötteen vastaanottaminen Javassa}
+\section{Käyttäjän syötteen vastaanottaminen Javassa}
 \label{input}
 
 \newthought{Komentoriviin perustuvan} ohjelman tuottaminen vaatii paitsi kykyä tulostaa
@@ -769,7 +773,7 @@ ja monikäyttöisin on \newjava{ArrayList}. Se muistuttaa pythonin listaa toimin
 pystyy Javan staattisen tyypityksen vuoksi säilömään vain yhden tyyppisiä muuttujia. Toisaalta on
 huomioitava, että mikäli ohjelmassa nousee ikinä tarve säilöä usean tyyppisiä muuttujia samaan
 listaan, on ohjelma luultavasti epäoptimaalisesti suunniteltu. ArrayList ei kykene säilömään
-primitiivisiä tietotyyppejä.
+perustietotyyppejä.
 
 \newthought{\java{ArrayList} tukee} pythonin listan tapaan indeksipohjaista hakua ja lisäystä,
 alkoiden hakua kriteeripohjaisesti ja iterointia. Toisin kuin taulukko se on kooltaan dynaaminen
@@ -804,7 +808,7 @@ postamista avaimen perusteella ja iterointia joko avainjoukon, arvojoukon tai av
 yli. HashMap pystyy säilömään identtisiä arvoja, mutta jokaisen avaimen on oltava uniikki.
 Seuraava esimerkki esittelee HashMap-ilmentymän luomisen, avain-arvo -parin lisäämisen ja
 arvon hakemisen sekä poistamisen avaimen perusteella. ArrayListin tapaan HashMap ei tue
-primitiivisten tietotyyppien säilömistä.
+perustietotyyppien säilömistä.
 
 \code{week3/basicexamples}{HashMapUsage}{HashMap-luokan käyttö Javassa}
 
@@ -1040,7 +1044,7 @@ aiheuttaa ongelmia ohjelman ajovaiheessa. Tyypinmuunnosta käsitellään tarkemm
 yhteydessä. Seuraava koodiesimerkki esittelee tyyppimuunnoksen perussyntaksin muuttamalla
 liukulukumuuttujan kokonaisluvuksi.
 
-\code{week3/basicexamples}{Casting}{Tyyppimuunnos primitiivisestä tietotyypistä toiseen Javassa}
+\code{week3/basicexamples}{Casting}{Tyyppimuunnos perustietotyypistä toiseen Javassa}
 
 \subsection{Vakiot ja final}
 \label{final}
@@ -1694,8 +1698,8 @@ automaattisen muuttamisen tallennettavaan muotoon ja tämän muodon muuttamisen 
 \newthought{Serialisaatio on} mahdollista vain luokille, jotka implementoivat
 \newjava{Serializable}-rajapinnan. Tämän lisäksi kaikkien luokan muuttujien on myös oltava
 tietotyyppiä, joka implementoi tämän rajapinnan. Suurimmaksi osaksi tämä koskee vain käyttäjän
-määrittelemiä luokkia, sillä kaikki primitiiviset tietotyypit ja suurin osa standardikirjaston
-yleisesti käytetyistä luokista, kuten kokoelmat, implementoivat \java{Serializable}-rajapinnan.
+määrittelemiä luokkia, sillä kaikki perustietotyypit ja suurin osa standardikirjaston yleisesti
+käytetyistä luokista, kuten kokoelmat, implementoivat \java{Serializable}-rajapinnan.
 
 \newthought{Jos luokka} ja kaikki luokan muuttujat implementoivat \java{Serializable}-rajapinnan,
 voidaan luokan ilmentymä muuttaa tekstimuotoon \newjava{ObjectOutputStream}-luokan avulla.
@@ -2134,15 +2138,15 @@ määritelty \java{static}-avainsanalla tarvittaessa.
 \label{copying}
 
 \newthought{Toisin kuin} C:n kaltaiset matalan tason kielet, jotka säilövät muuttujat oletuksena
-arvoina, oliopohjaiset kielet kuten Java säilövät kaikki muuttujat paitsi primitiiviset
-tietotyypit viittauksina. Tämä tarkoittaa, että annettaessa muuttujaa argumenttina jollekin
-metodille, Java ei kerro "käytä arvoa 'MyObject'". Tämän sijaan Java kertoo "käytä arvoa, joka
-löytyy tästä osasta muistia". Tämä helpottaa kielen käyttöä normaalitilanteissa, sillä kieli ei
-tarvitse C:n kaltaista osoitinsyntaksia antaakseen metodeille viittauksia. Toisaalta muuttujien
-kopioiminen muuttuu tämän takia hankalammaksi, sillä jos käyttäjä vain tallentaa "MyObject"
-ilmentymän uuteen muuttujaan tämä ei kopioi ilmentymän arvoja. Sen sijaan tällainen tallennus luo
-uuden viittauksen samaan "MyObject"-ilmentymään. Jos tämän uuden muuttujan tilaa muokataan, myös
-vanhan muuttujan tila muuttuu. Näin luodun kopion nimi on \neweng{viitekopio}{reference copy}.
+arvoina, oliopohjaiset kielet kuten Java säilövät kaikki muuttujat paitsi perustietotyypit
+viittauksina. Tämä tarkoittaa, että annettaessa muuttujaa argumenttina jollekin metodille, Java ei
+kerro "käytä arvoa 'MyObject'". Tämän sijaan Java kertoo "käytä arvoa, joka löytyy tästä osasta
+muistia". Tämä helpottaa kielen käyttöä normaalitilanteissa, sillä kieli ei tarvitse C:n kaltaista
+osoitinsyntaksia antaakseen metodeille viittauksia. Toisaalta muuttujien kopioiminen muuttuu tämän
+takia hankalammaksi, sillä jos käyttäjä vain tallentaa "MyObject" ilmentymän uuteen muuttujaan
+tämä ei kopioi ilmentymän arvoja. Sen sijaan tällainen tallennus luo uuden viittauksen samaan
+"MyObject"-ilmentymään. Jos tämän uuden muuttujan tilaa muokataan, myös vanhan muuttujan tila
+muuttuu. Näin luodun kopion nimi on \neweng{viitekopio}{reference copy}.
 
 
 \newthought{Mikäli halutaan} luoda aidosti uusi kopio "MyObject"-ilmentymästä tarvitaan Javassa
@@ -2152,11 +2156,11 @@ clone-metodi. Tässä vaiheessa on tehtävä päätös onko toivottu kopioinnin 
 kopio}{shallow copy} vai \neweng{syva kopio}{deep copy}. 
 
 \newthought{\Gls{matala kopio}} kopioi kaikki luokan muuttujat viittauskopioina, mikäli muuttuja
-on jonkin luokan ilmentymä ja suorittaa arvokopion vain jos muuttujan tyyppi on primitiivinen
-tietotyyppi. Näin kopiointi on melko nopea toimenpide ja uusi ja alkuperäinen ilmentymä eivät ole
-suoraan riippuvaisia toisistaan. Kuitenkin luodun uuden ilmentymän ei-primitiivisen tietotyypin
-muuttujat viittavaat samoihin olioihin kuin alkuperäisen ilmentymän vastaavat muuttujat. Täten
-uuden ja alkuperäisen kopion tilat ovat edelleen jossain määrin riippuvaisia toisistaan. Tämä
+on jonkin luokan ilmentymä ja suorittaa arvokopion vain jos muuttujan tyyppi on perustietotyyppi.
+Näin kopiointi on melko nopea toimenpide ja uusi ja alkuperäinen ilmentymä eivät ole suoraan
+riippuvaisia toisistaan. Kuitenkin luodun uuden ilmentymän ei-perustietotyypin muuttujat
+viittavaat samoihin olioihin kuin alkuperäisen ilmentymän vastaavat muuttujat. Täten uuden ja
+alkuperäisen kopion tilat ovat edelleen jossain määrin riippuvaisia toisistaan. Tämä
 kopiointityyli on Javan oletuskopiointi ja voidaan täten saavuttaa ylikirjoitetun clone-metodin
 sisällä kutsumalla super().clone -metodia.
 
