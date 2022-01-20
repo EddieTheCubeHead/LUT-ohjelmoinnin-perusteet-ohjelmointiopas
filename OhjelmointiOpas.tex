@@ -1476,8 +1476,27 @@ tyyppimuunnoksen lapsiluokasta kantaluokaksi viitatessaan lapsiluokan olioon: ko
 perii kantaluokan toiminnallisuudet, sisältää se aina vähintään samat kentät kuin kantaluokka.
 Joskus ilmenee kuitenkin tarve käsitellä tällä tavalla säilöttyä lapsiluokan ilmentymää aidosti
 oman luokkansa ilmentymänä. Tällöin voidaan suorittaa \gls{pakotettu tyyppimuunnos} luokasta
-toiseen. Pakotettu tyyppimuunnos kahden luokan välillä onnistuu vain, jos luokka, joksi muuttuja
-halutaan pakottaa, on periytetty muuttujan määritellystä luokasta.
+toiseen. Yleensä luokkien välinen pakotettu tyyppimuunnos on ehdollinen toiminta, jonka ehto
+tarkistetaan Javan \newjava{instanceof}-avainsanalla. Avainsana toimii vertailuoperaation tapaan.
+Ennen avainsanaa annetaan tarkasteltava muuttuja ja avainsanan jälkeen toivottu luokka. Jos
+annettuun muuttujaan on säilötty annetun luokan instanssi, palauttaa avainsana tosi, muuten tulos
+on epätosi.
+
+Pakotettu tyyppimuunnos kahden luokan välillä onnistuu vain, jos luokka, joksi muuttuja
+halutaan pakottaa, on periytetty muuttujan määritellystä luokasta. Sen syntaksi on sama kuin
+osiossa \nameref{casting} esitetty syntaksi tyyppimuunnokselle perustietotyypistä toiseksi.
+Toivottu tyyppi suljetaan sulkuihin muutettavan ilmentymän eteen. Seuraavassa esimerkkissä luodaan
+\gls{kantaluokka} UserRegistration, joka kuvastaa käyttäjän rekisteröitymistä johonkin palveluun.
+Kantaluokasta luodaan \gls{lapsiluokka} EmailRegistration, joka tarjoaa metodin sendEmail
+kantaluokan toiminnan lisäksi. Esimerkin pääluokka ClassCasting esittelee EmailRegistration
+ilmentymän tallentamisen UserRegistration-tyyppiseen muuttujaan ja ehdollisen sendEmail kutsun
+pakotetun tyyppimuunnoksen ja \java{instanceof}-avainsanan avulla. 
+
+\code{week6/castingexample}{UserRegistration}{Kantaluokka, joka kuvastaa käyttäjän
+rekisteröintitapahtumaa}
+\code{week6/castingexample}{EmailRegistration}{Lapsiluokka UserRegistration-luokalle laajennetulla
+toiminnallisuudella}
+\code{week6/castingexample}{ClassCasting}{\Gls{pakotettu tyyppimuunnos} kantaluokasta lapsiluokaksi}
 
 \section{Periytyminen ja rakentajat}
 \label{superprotected}
@@ -1666,7 +1685,7 @@ valmiiksi määritellyn rajapinnan toiminnallisuudet, voidaan luokan määritelm
 rajapinta \java{implements}-avainsanalla. Esimerkiksi pelinkehityksessä saatetaan tarvita
 tuhoutuvia objekteja, joita varten voitaisiin luoda "Destructable"-rajapintaluokka jolle on
 määritelty "destroyObject"-metodi. Koodi voi sitten tarkistaa implementoiko jokin luokka tämä
-rajapinnan \newjava{instanceof}-avainsanalla ja jos luokka implementoi "Destructable"-rajapinnan,
+rajapinnan \java{instanceof}-avainsanalla ja jos luokka implementoi "Destructable"-rajapinnan,
 koodi voi kutsua "destroyObject"-metodia luokan ilmentymästä tuhoten objektin.
 
 \newthought{Rajapintaluokan ja} abstraktin luokan käyttötarkoitukset siis eroavat toisistaan
