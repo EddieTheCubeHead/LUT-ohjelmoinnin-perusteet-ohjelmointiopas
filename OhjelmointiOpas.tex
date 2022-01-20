@@ -74,6 +74,7 @@ Erno Vanhalalle.}}
 
 \newenvironment{code_example}{\captionsetup{type=listing}}{}
 \SetupFloatingEnvironment{listing}{name=Koodiesimerkki}
+\SetupFloatingEnvironment{figure}{name=Kaavio}
 
 \newcommand{\code}[3]{
 	\begin{code_example}
@@ -84,7 +85,7 @@ Erno Vanhalalle.}}
 }
 
 \renewcommand*{\listlistingname}{Oppaan koodiesimerkit}
-
+\renewcommand*{\listfigurename}{Oppaan UML-kaaviot}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,6 +125,7 @@ Copyright \copyright\ \the\year\ \thanklessauthor
 
 \tableofcontents
 \listoflistings
+\listoffigures
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1379,12 +1381,12 @@ Luokan nimi on DataManipulator, se omistaa int-tyypin tietokentän integerDataPo
 String-tyypin tietokentän stringDataPoint sekä metodin ManipulateData, joka ottaa int- ja
 String-tyyppiset muuttujat ja palauttaa String-tyypin muuttujan.
 
-\begin{listing}
+\begin{figure}
     \includegraphics{ClassDiagramExample1}
     \caption{Yksittäisen luokan esittäminen UML-luokkakaaviossa}
     \label{luokkakaavioluokka}
     \setfloatalignment{b}
-\end{listing}
+\end{figure}
 
 \newthought{Luokkakaaviossa ohjelmiston} erilaisten luokkien esittäminen on kuitenkin vain pieni
 osa kaavion käyttöä. Tärkein luokkakaavion käyttötarkoitus on luokkien välisten suhteiden
@@ -1397,12 +1399,12 @@ aggregaatiota ja kompositiota kuvaavat yhteydet ovat viivoja, jotka päättyvät
 omistussuhteen omistavan osapuolen päässä. Aggregaatiossa vinoneliö on täyttämätön,
 kompositiossa täytetty. Seuraava kaavio esittelee kaikki neljä yhteystyyppiä.
 
-\begin{listing}
+\begin{figure}
     \includegraphics{ClassDiagramExample2}
     \caption{Luokkien välisten suhteiden esittäminen UML-luokkakaaviossa}
     \label{luokkakaavioluokka}
     \setfloatalignment{b}
-\end{listing}
+\end{figure}
 
 \subsection{Kaavioiden käyttö ohjelmiston suunnittelussa}
 \label{UMLkäyttö}
@@ -1850,7 +1852,9 @@ strategia-suunnittelumallilla. Huomaa, kuinka paljon helpompaa jälkimmäisen la
 rakenteen sisäistä koodia ei tarvitse muuttaa ollenkaan, vaikka esimerkkiin lisättäisiin
 väli-ilmansuunnat tai muita suuntia. Jokainen suuntaluokka voisi määritellä hahmon liikkeen
 omassa movePlayer-metodissaan. Sen sijaan ensimmäisen esimerkin laajentaminen vaatii jo valmiin
-koodin muokkaamista aina, kun rakenteeseen halutaan lisätä uusi suunta.
+koodin muokkaamista aina, kun rakenteeseen halutaan lisätä uusi suunta. Tämä altistaa jo
+määritellyn toiminnallisuuden muutoksille; luokilla laajennettaessa voidaan olla varmoja, ettei
+jo kirjoitettuun toiminnallisuuteen tule muutoksia.
 
 \code{week9/openclosedexample}{Player}{Pelaaja-luokka, jonka koordinaatteja esimerkissä pyritään
 muuttamaan}
@@ -1896,27 +1900,27 @@ korkean tason luokka ei saa luoda itse tarvitsemiaan alemman tason riippuvuuksia
 pyydettävä ne muulta ohjelmistolta rakentajassaan. Täten täytetään ensimmäisen säännön ensimmäinen
 puoli. Säännön toinen puoli puolestaan täyttyy, kun korkean tason komponentti ei pyydä
 rakentajassaan konkreettista luokkaa riippuvuutena, vaan rajapintaluokkaa, jonka alemman tason
-komponentti toteuttaa. Seuraava kuvapari havainnollistaa tämän suorat riippuvuudet rikkovan
-arkkitehtuurin \gls{UML}-luokkakaaviona. Huomaa HighLevelService-luokan assosiaationuolen tyypin
-muuttuminen. Ensimmäisessä kuvassa luokkien välinen suhde on \gls{kompositio}, kun taas toisessa
-suhteen tyyppi on \gls{aggregaatio}. Tämä johtuu teoreettisesta LowLevelServiceInterface-luokan
-vastaanottamisesta luokan rakentajassa konkreettisen LowLevelService luokan luonnin sijaan.
-Täten LowLevelServiceInterface luokan elinikä ei enää ole sidottu HighLevelService-luokan
-elinikään.
+komponentti toteuttaa. \gls{UML}-kaavio \ref{DIPUML} havainnollistaa tätä. Kaavio esittää
+simppelin foorumimaisen verkkosivun serverin käyttäjän kotisivusta vastaavan ohjainluokan
+FeedController:in toteutusta koodissa. Luokka hyödyntää PostService-palvelua, joka hakee
+käyttäjien lähettämät viestit tietokannasta. Vasemmalla esitellyssä arkkitehtuurissa
+FeedControllerin ja PostServicen välinen suhde on \gls{kompositio}, eli FeedController luo
+rakentajassaan PostService-ilmentymän. Tämä on simppeli tapa ratkaista asia, mutta asettaa
+FeedControllerin riippuvaiseksi PostService muutoksiin, niin rakentajassa kuin metodeissa.
+Oikealla esitelty rakenne puolestaan noudattaa käänteisten riippuvuuksien periaatetta.
+FeedController ei enää luo itse PostService-ilmentymää, tai edes tiedä PostService-luokan
+olemassaolosta. Luokkien väliin on luotu PostServiceInterface-rajapintaluokka ja FeedControllerin
+rakentaja on määritelty ottamaan tämän rajapintaluokan ilmentymä argumenttina. FeedControllerin ei
+siis enää tarvitse tietää, miltä PostServicen rakentaja näyttää. Lisäksi testivaiheessa
+FeedController voidaan luoda valepalvelulla, jolloin testaaminen voidaan eristää FeedControllerin
+omaan toimintaan.
 
-\begin{listing}
-    \includegraphics{NoDIPExample}
-    \caption{Luokkakaavio suorasta riippuvuudesta korkean ja matalan tason luokan välillä}
-    \label{luokkakaavioluokka}
+\begin{figure}
+    \includegraphics{CombinedDIPExample}
+    \caption{Sosiaalisen verkkopalvelun kotisivun ohjainluokka toteutettuna sekä ilman käänteisten riippuvuuksien periaatetta, että periaatteen kanssa.}
+    \label{DIPUML}
     \setfloatalignment{b}
-\end{listing}
-
-\begin{listing}
-    \includegraphics{DIPExample}
-    \caption{Luokkakaavio rajapintaluokalla piilotetusta riippuvuudesta korkean ja matalan tason luokan välillä}
-    \label{luokkakaavioluokka}
-    \setfloatalignment{b}
-\end{listing}
+\end{figure}
 
 \newthought{Käänteisten riippuvuuksien} periaatteeseen sitoutuminen tuottaa yleensä jonkin verran
 ylimääräistä koodia riippuvuuskohtien rajapintojen luonnissa. Lisäksi ohjelmistoon on luotava
@@ -2129,8 +2133,8 @@ molempien kuluttajien accept-metodia vuorotellen.
 \newthought{Koska \gls{kuluttaja}-suunnittelumallin} ideana on, ettei kuluttava metodi palauta
 mitään, täytyy kaiken metodin toiminnallisuuden tapahtua muokaten metodin omistavaa luokkaa tai
 jotain jaettua tilaa. Seuraava koodiesimerkki esittelee tekstikuluttajan luomisen simppelimmän
-printtauskomennon kirjoittamiseksi. Tässä tapauksessa globaalin metodin toiminta on syötteen
-antaminen käyttäjälle: koko ohjelmisto jakaa saman terminaalin.
+printtauskomennon kirjoittamiseksi. Tässä tapauksessa globaalia tilaa muuttava metodin toiminta on
+syötteen tulostaminen käyttäjälle: koko ohjelmisto jakaa saman terminaalin.
 
 \code{week10/iteratorexample}{Printer}{Kuluttajaluokka, joka tulostaa merkkijonoargumentin}
 \code{week10/iteratorexample}{IteratorExample}{Merkkijonolistan iteraattorin luominen, ensimmäisen
@@ -2200,9 +2204,9 @@ muuttuu. Näin luodun kopion nimi on \neweng{viitekopio}{reference copy}.
 
 \newthought{Mikäli halutaan} luoda aidosti uusi kopio "MyObject"-ilmentymästä tarvitaan Javassa
 \newjava{Object}-luokan clone-metodia. Jota olio voisi hyödyntää metodia, täytyy sen implementoida
-\newjava{Cloneable}-rajapintaluokka ja ylikirjoitettava \java{Object}-luokasta peritty
-clone-metodi. Tässä vaiheessa on tehtävä päätös onko toivottu kopioinnin tulos \neweng{matala
-kopio}{shallow copy} vai \neweng{syva kopio}{deep copy}. 
+\newjava{Cloneable}-rajapintaluokka ja ylikirjoittaa \java{Object}-luokasta peritty clone-metodi.
+Tässä vaiheessa on tehtävä päätös onko toivottu kopioinnin tulos \neweng{matala kopio}{shallow
+copy} vai \neweng{syva kopio}{deep copy}. 
 
 \newthought{\Gls{matala kopio}} kopioi kaikki luokan muuttujat viittauskopioina, mikäli muuttuja
 on jonkin luokan ilmentymä ja suorittaa arvokopion vain jos muuttujan tyyppi on perustietotyyppi.
