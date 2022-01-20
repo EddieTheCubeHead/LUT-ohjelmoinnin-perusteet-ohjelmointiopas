@@ -1002,28 +1002,6 @@ ohjelman, joka muuttaa valintarakenteella kouluarvosanan sanalliseksi arvioksi.
 \code{week3/basicexamples}{Switch}{Valikkorakenne, \java{switch}- ja \java{case} -avainsanojen
 käyttö Javassa}
 
-\subsection{Luokkamuuttujat, luokkafunktiot ja static}
-\label{static}
-
-\newthought{Oppaassa viitattiin} aiemmin jo luokkamuuttujiin/-metodeihin kappaleessa
-\nameref{main}. Luokkamuuttujat ja -metodit on sidottu ne omistavaan luokkaan luokan ilmentymän
-sijasta. Kaikki luokan ilmentymät voivat käyttää luokkamuuttujia tai kutsua luokkametodeja, mutta
-luokkametodin sisällä ei voi viitata jäsenmuuttujaan, ainoastaan luokkamuuttujiin.
-Luokkametodeja ja -muuttujia voidaan kutsua myös luokan nimen avulla pistenotaatiolla luokan
-ulkopuolella. Esimerkiksi tulostamiseen käytetty \java{System}.out on oikeastaan luokkamuuttuja
-out standardikirjaston System-luokassa.
-
-\newthought{Luokkametodit ja -muuttujat} luodaan \newjava{static}-avainsanalla. Avainsanan
-sijainti voi olla ennen tai jälkeen näkyvyysmääreen, mutta normalisoitu tyyli on kirjoittaa
-näkyvyysmääre ennen static-avainsanaa. Main-metodi on siis luokkametodi ohjelman juuriluokassa.
-Tämä tarkoittaa, ettei Javan tarvitse alustaa juuriluokan ilmentymää ohjelman ajon aluksi.
-Seuraava esimerkki esittelee luokkametodin luomisen apuriluokkaan ja kutsumisen apuriluokan
-ulkopuolelta ilman apuriluokan ilmentymää.
-
-\code{week3/staticexample}{StaticPrinter}{Luokkametodin luominen \java{static}-avainsanalla}
-\code{week3/staticexample}{StaticExample}{Luokkametodin kutsuminen metodin määrittelevän luokan
-ulkopuolella}
-
 \subsection{Tyyppimuunnokset (casting)}
 \label{casting}
 
@@ -1443,7 +1421,7 @@ ohjelmiston mallintamiseen erityisesti tehtäessä yhteistyötä usean kehittäj
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Periytyminen ja Java}
+\chapter{Periytyminen}
 \label{periytyminen2}
 
 \newthought{\Gls{periytyminen} käsitteenä} käytiin läpi viime luvussa, mutta sen soveltaminen
@@ -1557,12 +1535,12 @@ kehittämisprosessia monimutkaistettaisiin turhaan ilman selkeitä hyötyjä per
 \subsection{Liskovin korvaavuusperiaate}
 \label{LSP}
 
-\newthought{Kuten kapppaleen} \nameref{super} koodiesimerkeissä nähtiin, voidaan lapsiluokan olio
-tallentaa muuttujaan, jonka tyypiksi on määritelty emoluokan olio. Tällöin muuttujaan tallennettua
-olioita voidaan kohdella kuin emoluokan oliota. Tämä käyttäytyminen mahdollistaa monia hyödyllisiä
-toiminnallisuuksia, kuten monen eri lapsiluokan ilmentymien tallentamista samaan \java{ArrayList}-
-ilmentymään, kunhan kyseinen \java{ArrayList}-ilmentymä on luotu viitaten kantaluokkaan, eikä
-lapsiluokkaan.
+\newthought{Kuten osiossa} \nameref{casting2} kerrottiin ja osion \nameref{super}
+koodiesimerkeissä nähtiin, voidaan lapsiluokan olio tallentaa muuttujaan, jonka tyypiksi on
+määritelty kantaluokka. Tällöin muuttujaan tallennettua olioita voidaan kohdella kuin emoluokan
+oliota. Tämä käyttäytyminen mahdollistaa monia hyödyllisiä toiminnallisuuksia, kuten monen eri
+lapsiluokan ilmentymien tallentamista samaan \java{ArrayList}-ilmentymään, kunhan kyseinen
+\java{ArrayList}-ilmentymä on luotu viitaten kantaluokkaan, eikä lapsiluokkaan.
 
 \newthought{Kuitenkin tällainen} luokkien käyttäminen luo velvotteita lapsiluokkien suunnitteluun.
 Jotta edellä kuvailtu käyttötapa sujuisi ongelmitta, kuuluu lapsiluokkien ja emoluokan toteuttaa
@@ -1576,7 +1554,8 @@ seuraavasti: "Mikä tahansa emoluokan ilmentymä pitäisi olla korvattavassa mil
 lapsiluokan ilmentymällä ilman että ohjelman toiminta häiriintyy." Käytännössä tämä tarkoittaa,
 että lapsiluokkien ei pitäisi ylikirjoittaa emoluokkien julkisia kenttiä niin että kentän
 toiminnallisuus ulkoa tarkasteltaessa muuttuu. Esimerkiksi metodin ylikirjoittaminen
-toimimattomalla tyngällä rikkoo täten Liskovin korvaavuusperiaatetta.
+toimimattomalla tyngällä, eli metodilla, joka on määritelty olemaan tekemättä mitään tai joskus
+jopa aiheuttavan "NotImplemented"-virhetilan, rikkoo täten Liskovin korvaavuusperiaatetta.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1606,10 +1585,13 @@ määritelmään \java{class}-avainsanan eteen. Abstraktin luokan ei-abstraktin 
 \newthought{Jokaisella abstraktilla} luokalla on oltava vähintään yksi 
 \neweng{abstrakti metodi}{abstract method}. Tämä metodi määritellään luomalla metodi, joka
 sisältää pelkän signatuurin ilman runkoa ja lisäämällä metodin määritelmään \java{abstract}
--avainsana näkyvyysmääreen jälkeen. Abstrakti metoodi on siis ikään kuin musta laatikko. Sen
+-avainsana näkyvyysmääreen jälkeen. Abstrakti metodi on siis ikään kuin musta laatikko. Sen
 argumentit ja paluuarvo tiedetään, mutta abstrakti kantaluokka, joka määrittelee metodin ei
 kerro, miten metodeista saadaan paluuarvo vaan jokaisen konkreettisen lapsiluokan on
-määriteltävä tämä itse.
+määriteltävä tämä itse. Abstraktin metodin vaatimiseen on syynä abstraktien luokkien käyttötapa.
+Luokka on keskeneräinen pohja, jonka päälle valmiita toiminnallisuuksia luodaan. Jos luokalla ei
+olisi abstraktia (eli määrittelemätöntä) metodia, olisi luokka valmis ja sen merkitseminen
+abstraktiksi ei olisi loogista.
 
 \newthought{Abstraktin luokan} käyttö koodissa vaatii yleensä jonkin jaetun toiminnallisuuden
 tarpeen toteamista ja tämän toiminnallisuuden eristämistä abstraktiin luokkaan. Seuraava
@@ -1748,8 +1730,34 @@ tallennetaan tiedostoon, on normaalia nimetä tiedosto ".ser"-päätteellä.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \addtocounter{chapter}{1}
-\chapter{Singleton-suunnittelumalli}
-\label{singletonkappale}
+\chapter{Luokkamuuttujat ja luokkametodit}
+\label{staticsingleton}
+
+\section{Luokkamuuttujat, luokkametodit ja static}
+\label{static}
+
+\newthought{Oppaan alkupuolella} kappaleessa \nameref{main} kerrottiin \java{main}-metodin
+tarvitsevan \java{static}-avainsanaa. Avainsana tekee muuttujasta tai metodista niin sanotun
+luokkamuuttujan tai luokkametodin. Luokkamuuttujat ja -metodit on sidottu ne omistavaan luokkaan
+luokan ilmentymän sijasta. Kaikki luokan ilmentymät voivat käyttää luokkamuuttujia tai kutsua
+luokkametodeja, mutta luokkametodin sisällä ei voi viitata jäsenmuuttujaan, ainoastaan
+luokkamuuttujiin. Luokkametodeja ja -muuttujia voidaan kutsua myös luokan nimen avulla
+pistenotaatiolla luokan ulkopuolella. Esimerkiksi tulostamiseen käytetty \java{System}.out on
+oikeastaan luokkamuuttuja out standardikirjaston System-luokassa.
+
+\newthought{Luokkametodit ja -muuttujat} luodaan \newjava{static}-avainsanalla. Avainsanan
+sijainti voi olla ennen tai jälkeen näkyvyysmääreen, mutta normalisoitu tyyli on kirjoittaa
+näkyvyysmääre ennen static-avainsanaa. Main-metodi on siis luokkametodi ohjelman juuriluokassa.
+Tämä tarkoittaa, ettei Javan tarvitse alustaa juuriluokan ilmentymää ohjelman ajon aluksi.
+Seuraava esimerkki esittelee luokkametodin luomisen apuriluokkaan ja kutsumisen apuriluokan
+ulkopuolelta ilman apuriluokan ilmentymää.
+
+\code{week3/staticexample}{StaticPrinter}{Luokkametodin luominen \java{static}-avainsanalla}
+\code{week3/staticexample}{StaticExample}{Luokkametodin kutsuminen metodin määrittelevän luokan
+ulkopuolella}
+
+\section{singleton}
+\label{singleton}
 
 \newthought{Välillä ohjelmistoa} luodessa on tarve luoda luokka, josta on olemassa vain yksi
 \gls{ilmentyma}, jota muu ohjelma voi kutsua tarvittaessa. Tähän käyttötarkoitukseen on kehitettu
@@ -1819,7 +1827,7 @@ käydä muokkaamassa vanhaa koodia, mikä altistaa ohjelmiston virhetiloille, ku
 toimivaksi todettua koodia muokataan myöhemmin. Oliopohjaisessa ohjelmoinnissa kannustetaan
 korvaamaan switch rakenteet \neweng{strategia}{strategy}-suunnittelumallilla. Seuraava
 koodiesimerkki havainnollistaa saman rakenteen toteuttamisen enum-switch yhdistelmällä, ja
-strategia-suunnittelumallilla. Huomaa, kuinka paljon helpompaa jälkimmäisen laajentaminen on,
+strategia-suunnittelumallilla. Huomaa, kuinka paljon helpompaa jälkimmäisen laajentaminen on:
 rakenteen sisäistä koodia ei tarvitse muuttaa ollenkaan, vaikka esimerkkiin lisättäisiin
 väli-ilmansuunnat tai muita suuntia. Jokainen suuntaluokka voisi määritellä hahmon liikkeen
 omassa movePlayer-metodissaan. Sen sijaan ensimmäisen esimerkin laajentaminen vaatii jo valmiin
@@ -1896,15 +1904,15 @@ ylimääräistä koodia riippuvuuskohtien rajapintojen luonnissa. Lisäksi ohjel
 luokka tai luokkia, joiden vastuulla on ohjelmiston riippuvuuksien rakentaminen käynnistyksen
 yhteydessä, koska korkean tason luokat eivät enää osaa itse rakentaa tarvitsemiaan matalan tason
 palveluita. Periaate saattaa vaikuttaa turhalta teoreettiselta näpertelyltä ja sitä se
-todennäköisesti onkin pienemmissä projekteissa. Periaatteella on kuitenkin valtava jalansija
-teollisessa koodintuotannossa, eikä tämä ole sattumaa. Käänteisten riippuvuuksien periaatetta
-noudattavaa koodia on uskomattoman helppo testata, koska jokainen palvelu voidaan irrottaa lopun
-ohjelmiston kontekstista ja palvelua voidaan testata puhtaasti oman toiminnallisuutensa suhteen.
-Opas ei siis suosittele kaikkia oppaan lukijoita toteuttamaan omia projektejaan käänneteisten
-riippuvuuksien periaatteen mukaan. Periaate kannattaa kuitenkin opetella, sillä siirryttäessä
-työelämään sekä koodikantojen koko että testaamisen merkitys moninkertaistuvat ja silloin
-käänteisten riippuvuuksien periaate kohoaa todennäköisesti tärkeimmäksi kaikista 
-SOLID-periaatteista.
+todennäköisesti onkin pienissä projekteissa, jotka eivät sisällä laaja testikantaa. Periaatteella
+on kuitenkin valtava jalansija teollisessa koodintuotannossa, eikä tämä ole sattumaa. Käänteisten
+riippuvuuksien periaatetta noudattavaa koodia on uskomattoman helppo testata, koska jokainen
+palvelu voidaan irrottaa lopun ohjelmiston kontekstista ja palvelua voidaan testata puhtaasti oman
+toiminnallisuutensa suhteen. Opas ei siis suosittele kaikkia oppaan lukijoita toteuttamaan omia
+projektejaan käänneteisten riippuvuuksien periaatteen mukaan. Periaate kannattaa kuitenkin
+opetella, sillä siirryttäessä työelämään sekä koodikantojen koko että testaamisen merkitys
+moninkertaistuvat ja silloin käänteisten riippuvuuksien periaate kohoaa todennäköisesti
+tärkeimmäksi kaikista SOLID-periaatteista.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1983,7 +1991,7 @@ monimutkaiseen Javan ominaisuuteen.
 \newthought{Oppaan kappaleessa} \nameref{listat} mainittiin käsite \gls{geneerinen luokka}. 
 Geneerinen luokka ja \neweng{geneerinen metodi}{generic method} ovat yleisiä käsitteitä
 staattisesti tyypitetyille kielille ja viittaavat luokkaan ja metodiin, jotka määritellään
-suhteessa johonkin toiseen luokkaan. Tämä geneerinen \neweng{tyyppiparametri}{type paremeter}
+suhteessa johonkin toiseen luokkaan. Tämä geneerinen \neweng{tyyppiparametri}{type parameter}
 kirjoitetaan yleensä luokan määritelmän yhteydessä yhdellä kirjaimella, joka on toivottua
 parametria kuvaavan sanan ensimmäinen kirjain; T - Type, E - Element, K -Key, N - Number, V -
 Value. Monta tyyppiparametria omaavassa luokassa voidaan käyttää joko kirjaimia S, U, V, jne. tai
@@ -2021,7 +2029,7 @@ kutsuminen}
 \label{genericInheritance}
 
 \newthought{Tyyppiparametrin konkreettinen} määrittäminen on mahdollista myös perinnän yhteydessä.
-Generisestä kantaluokasta on mahdollisuus luoda parametrisoitu lapsiluokka ja geneerisestä
+Geneerisestä kantaluokasta on mahdollisuus luoda parametrisoitu lapsiluokka ja geneerisestä
 rajapintaluokasta on mahdollista luoda parametrisoitu implementaatio. Tällöin luotu luokka
 ei enää ole geneerinen, sillä sen tyyppiparametria ei voida määrittää luokkaa luotaessa. Tätä
 parametrisointia ei ole pakko toteuttaa, periytymisessä voidaan geneerinen parametri myös
@@ -2085,7 +2093,7 @@ alkion tilalle annetun alkion ja add-metodi lisää annetun alkion listaan viime
 alkion jälkeiseksi alkioksi. Iteraattorien käyttö koodissa esitellään \nameref{consumers}-osion
 koodiesimerkin yhteydessä.
 
-\subsection{kuluttajat}
+\subsection{Kuluttajat}
 \label{consumers}
 
 \newthought{Viime kappaleessa} (\nameref{iterators}) esiteltiin
@@ -2141,7 +2149,7 @@ sisäluokan luomisen ja käytön perusteet.
 \code{week11/innerclassexample}{InnerClassesExample}{Sisäluokan ilmentymän luominen ja käyttö}
 
 \newthought{Sisäluokka} ei ole sama asia kuin \neweng{anonyymi luokka}{anonymous class}. Siinä
-missä sisäluokka on toiminnallisuuksiltaan täysi luokka, joka vaan sattuu sijaitsemaan toisen 
+missä sisäluokka on toiminnallisuuksiltaan täysi luokka, joka vain sattuu sijaitsemaan toisen 
 luokan sisällä, on anonyymi luokka vain kertakäyttöinen tynkäimplementaatio jollekin
 rajapintaluokalle. Anonyymi luokka luodaan tallentamalla rajapintaluokan tyyppiseen muuttujaan
 implementoitavan rajapintaluokan \java{new}-avainsanalla luotu parametriton rakentajaakutsu. Tätä
