@@ -1,13 +1,26 @@
-\documentclass[a4paper,justified,notoc]{tufte-book}
+\documentclass[openany]{book}
+\usepackage[nomarginpar,margin=.8in]{geometry}
+\usepackage{hyperref}
 
 \setcounter{secnumdepth}{2}
 \renewcommand{\contentsname}{Sisältö}
 
-\titleformat{\chapter}{\Huge\rmfamily\scshape}{\thechapter}{18pt}{\Huge\rmfamily\scshape}
-\titleformat{\section}{\huge\rmfamily}{\thesection}{12pt}{\huge\rmfamily}
-\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{9pt}{\Large\bfseries}
+\usepackage{titlesec}
 
-\hypersetup{colorlinks}
+\titleformat{\chapter}[hang]{\Huge\rmfamily\scshape}{\thechapter}{18pt}{\Huge\rmfamily\scshape}
+\titleformat{\section}[hang]{\huge\rmfamily}{\thesection}{12pt}{\huge\rmfamily}
+\titleformat{\subsection}[hang]{\Large\bfseries}{\thesubsection}{9pt}{\Large\bfseries}
+
+\titlespacing*{\chapter}{0pt}{10pt}{10pt}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\subsection}{0pt}{0pt}{-10pt}
+
+\newcommand{\newthought}[1]{\smallskip\textsc{#1}}
+
+\hypersetup{colorlinks,pdfborder={0 0 0},bookmarksdepth=section,citecolor=green,linkcolor=blue,urlcolor=green}
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{0em}
 
 %%
 % Omat komennot
@@ -26,13 +39,8 @@
 
 %%
 % Book metadata
-\title{Ohjelmointiopas{\small \lutin olio-ohjelmointikurssi}\thanks{Kiitokset kandityön valvojalle
-Erno Vanhalalle.}}
-\author[Eetu Juhani Asikainen]{Eetu Juhani Asikainen}
-\publisher{BETA}
+\title{Ohjelmointiopas \\ \small{\lutin olio-ohjelmointikurssi} \\ \small{versio Beta 0.3.0}}
 
-%%
-% For nicely typeset tabular material
 \usepackage{booktabs}
 
 \usepackage[utf8]{inputenc}
@@ -56,7 +64,6 @@ Erno Vanhalalle.}}
 \usepackage{makeidx}
 \makeindex
 
-\usepackage{titletoc}
 \usepackage{etoolbox}
 \setcounter{tocdepth}{2}
 
@@ -70,24 +77,29 @@ Erno Vanhalalle.}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[newfloat]{minted}
-\usepackage{caption}
 
-\newenvironment{code_example}{\captionsetup{type=listing}}{}
 \SetupFloatingEnvironment{listing}{name=Koodiesimerkki}
 \SetupFloatingEnvironment{figure}{name=Kaavio}
 \SetupFloatingEnvironment{table}{name=Taulukko}
 
 \newcommand{\code}[3]{
-	\begin{code_example}
-		\captionof{listing}{#1: #3}
-		\label{#1/#2}
+	\begin{listing}
+		\linespread{0.85}
 		\inputminted{java}{OhjelmointiopasEsimerkit/src/#1/#2.java}
-	\end{code_example}
+		\caption{#1: #3}
+		\label{#1/#2}
+	\end{listing}
 }
 
-\renewcommand*{\listlistingname}{Oppaan koodiesimerkit}
-\renewcommand*{\listfigurename}{Oppaan UML-kaaviot}
-\renewcommand*{\listtablename}{Oppaan taulukot}
+\renewcommand{\listlistingname}{Oppaan koodiesimerkit}
+\renewcommand{\listfigurename}{Oppaan UML-kaaviot}
+\renewcommand{\listtablename}{Oppaan taulukot}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tocloft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -103,28 +115,24 @@ Erno Vanhalalle.}}
 
 \begin{document}
 
+\author{Eetu Asikainen ja Erno Vanhala}
+
 % Front matter
 \frontmatter
 
 \maketitle
 
 \newpage
-\begin{fullwidth}
 ~\vfill
 \thispagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{\baselineskip}
-Copyright \copyright\ \the\year\ \thanklessauthor
 
-\par\smallcaps{Tämä on oppaan betaversio}
-
-\par\smallcaps{tufte-latex.googlecode.com}
+\textsc{Tämä on oppaan betaversio}
 
 \includegraphics[scale=1]{cc-by-sa}
 
-\par Java ohjelmointiopas LUT © 2022 by Eetu Asikainen and Erno Vanhala is licensed under CC BY 4.0. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by/4.0/}
-
-\par\textit{First printing, \monthyear}
+Java ohjelmointiopas LUT © 2022 by Eetu Asikainen and Erno Vanhala is licensed under CC BY 4.0. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by/4.0/}
 
 \tableofcontents
 \listoflistings
@@ -149,11 +157,10 @@ käyttöä. Opas on tarkoitettu käytettäväksi osana kurssikokonaisuutta, mutt
 niin, että se tarjoaa laadukkaan perehdytyksen oliopohjaiseen ajatteluun, suunnitteluun ja
 ohjelmointiin myös itsenäisenä kokonaisuutena.
 
-\newthought{Oppaan tavoitteena} on tarjota opiskelijoille helppokäyttöinen,
-laadukas ja suomenkielinen resurssi kurssin käsittelemien aihealueiden
-opiskeluun. Opas olettaa käyttäjän hallitsevan proseduraalisen ohjelmoinnin
-perusteet, jotka käydään läpi esimerkiksi \lutin "Ohjelmoinnin perusteet" 
--kurssilla.
+\newthought{Oppaan tavoitteena} on tarjota opiskelijoille helppokäyttöinen, laadukas ja
+suomenkielinen resurssi kurssin käsittelemien aihealueiden opiskeluun. Opas olettaa käyttäjän
+hallitsevan proseduraalisen ohjelmoinnin perusteet, jotka käydään läpi esimerkiksi \lutin
+"Ohjelmoinnin perusteet"-kurssilla.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -204,7 +211,7 @@ lajiteltuina. Jokaisen koodiesimerkin kuvauksen yhteydestä löytyy kansiorakenn
 sijaitsee esimerkkikoodirepositorion src-kansiossa. Linkki koodiesimerkkeihin löytyy myös kurssin
 Moodle-sivuilta.
 
-\newthought{Koodiesimerkit on kirjoitettu} Javan virallisen tyylioppaan suosittelemien
+\newthought{Koodiesimerkit} on kirjoitettu Javan virallisen tyylioppaan suosittelemien
 ohjelinjojen mukaisesti. Kaikki muuttujat, luokat ja metodit on nimetty englanniksi, mutta koodi
 on kommentoitu suomeksi. Kommentointi ei noudata hyvää ohjelmointityyliä vaan kommentit ovat
 koodin opetusmaisen luonteen vuoksi monisanaisempia ja yleisempiä kuin suosituksissa.
@@ -1424,7 +1431,6 @@ ottaa int- ja String-tyyppiset muuttujat ja palauttaa String-tyypin muuttujan.
     \includegraphics{ClassDiagramExample1}
     \caption{Yksittäisen luokan esittäminen UML-luokkakaaviossa}
     \label{luokkakaavioluokka}
-    \setfloatalignment{b}
 \end{figure}
 
 \newthought{Luokkakaaviossa ohjelmiston} erilaisten luokkien esittäminen on kuitenkin vain pieni
@@ -1442,7 +1448,6 @@ kompositiossa täytetty. Kaavio \ref{luokkakaaviosuhteet} esittelee kaikki nelj�
     \includegraphics{ClassDiagramExample2}
     \caption{Luokkien välisten suhteiden esittäminen UML-luokkakaaviossa}
     \label{luokkakaaviosuhteet}
-    \setfloatalignment{b}
 \end{figure}
 
 \subsection{Kaavioiden käyttö ohjelmiston suunnittelussa}
@@ -1971,7 +1976,6 @@ omaan toimintaan.
     \includegraphics{CombinedDIPExample}
     \caption{Sosiaalisen verkkopalvelun kotisivun ohjainluokka toteutettuna sekä ilman käänteisten riippuvuuksien periaatetta, että periaatteen kanssa.}
     \label{DIPUML}
-    \setfloatalignment{b}
 \end{figure}
 
 \newthought{Käänteisten riippuvuuksien} periaatteeseen sitoutuminen tuottaa yleensä jonkin verran
@@ -2328,5 +2332,4 @@ Google (tai muu valitsemasi hakukone) tukenasi.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\end{fullwidth}
 \end{document}
