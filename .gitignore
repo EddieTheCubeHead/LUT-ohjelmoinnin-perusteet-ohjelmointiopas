@@ -1,6 +1,5 @@
 # From: https://github.com/github/gitignore/blob/master/TeX.gitignore
 
-/YlimääräisetResurssit/
 /_minted-OhjelmointiOpas/
 *.ist
 *.jvn
